@@ -1,0 +1,3 @@
+generate localization in dev:    dart run slang
+generate localization in relese: dart run build_runner build -d
+generate app icon:               flutter pub run flutter_launcher_icons

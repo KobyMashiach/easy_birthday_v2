@@ -1,0 +1,9 @@
+{
+  "hello": "שלום",
+  "choose_own_sex": "בחירת המין שלך",
+  "choose_partner_sex": "בחירת מין הבן/בת זוג",
+  "greeter(context=GenderContext)": {
+    "male": "ברוך הבא $name",
+    "female": "ברוכה הבאה, $name"
+  }
+}

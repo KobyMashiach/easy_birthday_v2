@@ -1,0 +1,9 @@
+{
+  "hello": "Hello",
+  "choose_own_sex": "Choose your gender",
+  "choose_partner_sex": "Choose partner's gender",
+  "greeter(context=GenderContext)": {
+    "male": "Welcome, $name",
+    "female": "Welcome, $name"
+  }
+}
