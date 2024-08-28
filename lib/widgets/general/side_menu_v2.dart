@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:easy_birthday/core/colors.dart';
-import 'package:easy_birthday/screens/home_screen/home_screen.dart';
+import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/settings/setting_screen.dart';
-import 'package:easy_birthday/services/package_info.dart';
+import 'package:easy_birthday/services/global_vars.dart';
+import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
@@ -13,21 +13,23 @@ appSideMenuV2(BuildContext context, String pageName) {
     name: "קובי",
     profileImage:
         "https://media.easy.co.il/images/UserPics/10116330_1673229445567.png",
-    color: AppColor.primaryColor,
-    contactsScreenButtomBackground: AppColor.buttomBackground,
-    appBar: appAppBar(title: 'יצירת קשר'),
+    color: AppColors.primaryColor,
+    contactsScreenButtomBackground: AppColors.buttomBackground,
+    contactsScreenDialogColor: AppColors.primaryColor,
+    appBar: appAppBar(title: t.contact_us),
     context: context,
     appDetails: (globalAppName, globalAppVersion),
+    languageCode: getLanguageCode(),
     buttonsTextSize: 24,
     buttons: [
       DrawerButtonModel(
-        text: "home",
+        text: t.home_screen,
         enableColor: pageName == 'home',
         icon: Icon(Icons.home),
         page: HomeScreen(),
       ),
       DrawerButtonModel(
-        text: "settings",
+        text: t.settings,
         enableColor: pageName == 'settings',
         icon: Icon(Icons.settings),
         page: SettingsScreen(),

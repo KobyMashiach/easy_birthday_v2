@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "388015310398",
+    "project_id": "easybirthday-67eec",
+    "storage_bucket": "easybirthday-67eec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388015310398:android:c97876e8c9b5b998a3b36f",
+        "android_client_info": {
+          "package_name": "com.KHEasyDev.easy_birthday"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ50WCVabvU5r0PBaBgumTbTfrZlCbqvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

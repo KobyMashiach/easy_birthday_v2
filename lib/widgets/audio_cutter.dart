@@ -116,7 +116,7 @@ class _AudioCutterWidgetState extends State<AudioCutterWidget> {
             value: end.inSeconds.toDouble(),
             min: 0.0,
             max: duration.inSeconds.toDouble(),
-            activeColor: AppColor.shadowColor,
+            activeColor: AppColors.shadowColor,
             onChanged: (value) {
               setState(() {
                 final newEnd = Duration(seconds: value.toInt());
@@ -150,7 +150,7 @@ class _AudioCutterWidgetState extends State<AudioCutterWidget> {
             value: start.inSeconds.toDouble(),
             min: 0.0,
             max: duration.inSeconds.toDouble(),
-            activeColor: AppColor.shadowColor,
+            activeColor: AppColors.shadowColor,
             onChanged: (value) {
               setState(() {
                 final newStart = Duration(seconds: value.toInt());
@@ -176,7 +176,7 @@ class _AudioCutterWidgetState extends State<AudioCutterWidget> {
       value: position.inSeconds.toDouble(),
       min: start.inSeconds.toDouble(),
       max: end.inSeconds.toDouble(),
-      activeColor: AppColor.primaryColor,
+      activeColor: AppColors.primaryColor,
       onChanged: (value) {
         setState(() {
           position = Duration(seconds: value.toInt());

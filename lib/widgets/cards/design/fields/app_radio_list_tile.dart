@@ -39,7 +39,7 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
         return RadioListTile<String>(
             title: Text(pictureSize),
             contentPadding: EdgeInsets.all(0),
-            activeColor: AppColor.primaryColor,
+            activeColor: AppColors.primaryColor,
             value: pictureSize,
             groupValue: value,
             onChanged: (newValue) {

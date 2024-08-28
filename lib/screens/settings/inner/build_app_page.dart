@@ -1,16 +1,17 @@
 import 'package:easy_birthday/core/colors.dart';
-import 'package:easy_birthday/screens/home_screen/home_screen.dart';
+import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/screens/settings/setting_screen.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/widgets/navigate_page.dart';
 
-//TODO: new page
-
 class BuildAppPage extends StatefulWidget {
   final int loadingTime;
   final Widget? page;
+  final String? description;
 
-  const BuildAppPage(this.loadingTime, {super.key, this.page});
+  const BuildAppPage(this.loadingTime,
+      {super.key, this.page, this.description});
 
   @override
   _BuildAppPageState createState() => _BuildAppPageState();
@@ -30,11 +31,12 @@ class _BuildAppPageState extends State<BuildAppPage>
     )..addListener(() {
         setState(() {
           _percentage = _controller.value * 100;
-          if (_percentage == 100) {
-            KheasydevNavigatePage()
-                .pushAndRemoveUntil(context, widget.page ?? HomeScreen());
-          }
         });
+
+        if (_percentage == 100) {
+          KheasydevNavigatePage()
+              .pushAndRemoveUntil(context, widget.page ?? SettingsScreen());
+        }
       });
 
     _controller.forward();
@@ -49,33 +51,40 @@ class _BuildAppPageState extends State<BuildAppPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appAppBar(title: "בונה את האפליקציה"),
+      appBar: appAppBar(title: t.build_app),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              // appTranslate(context, 'app_build_now'),
-              "TODO: add new text",
-              style: TextStyle(fontSize: 20),
+              t.build_app_description,
+              style: TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: 100,
-              height: 100,
-              child: CircularProgressIndicator(
-                strokeWidth: 15.0,
-                value: _controller.value,
-                backgroundColor: AppColor.disableColor,
-                valueColor:
-                    AlwaysStoppedAnimation<Color>(AppColor.primaryColor),
-              ),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 15.0,
+                    value: _controller.value,
+                    backgroundColor: AppColors.disableColor,
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+                  ),
+                ),
+                Text(
+                  '${_percentage.toStringAsFixed(1)}%',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
             const SizedBox(height: 20),
             Text(
-              '${_percentage.toStringAsFixed(1)}%',
-              style: TextStyle(fontSize: 16),
+              widget.description ?? "",
+              style: TextStyle(fontSize: 24),
             ),
           ],
         ),

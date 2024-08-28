@@ -1,7 +1,5 @@
+import 'package:easy_birthday/services/global_vars.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
-String globalAppName = "";
-String globalAppVersion = "";
 
 getAppFutureInfo() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();

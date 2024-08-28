@@ -5,6 +5,7 @@ class AppButton extends StatelessWidget {
   final Function()? onTap;
   final String text;
   final bool unfillColors;
+  final bool disableColors;
   final EdgeInsets? padding;
   final double? textSize;
 
@@ -13,6 +14,7 @@ class AppButton extends StatelessWidget {
     this.onTap,
     required this.text,
     this.unfillColors = false,
+    this.disableColors = false,
     this.padding,
     this.textSize,
   });
@@ -25,16 +27,24 @@ class AppButton extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         margin: padding ?? const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-            color: !unfillColors ? AppColor.primaryColor : Colors.white,
+            color: !disableColors
+                ? !unfillColors
+                    ? AppColors.primaryColor
+                    : Colors.white
+                : Colors.grey[200],
             borderRadius: BorderRadius.circular(30),
-            border: !unfillColors
+            border: !unfillColors || disableColors
                 ? null
-                : Border.all(color: AppColor.primaryColor)),
+                : Border.all(color: AppColors.primaryColor)),
         child: Center(
           child: Text(
             text,
             style: TextStyle(
-              color: !unfillColors ? Colors.white : AppColor.primaryColor,
+              color: !disableColors
+                  ? !unfillColors
+                      ? Colors.white
+                      : AppColors.primaryColor
+                  : Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: textSize ?? 20,
             ),

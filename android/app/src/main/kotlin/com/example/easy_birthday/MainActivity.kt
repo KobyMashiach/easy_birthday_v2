@@ -1,4 +1,4 @@
-package com.example.easy_birthday
+package com.KHEasyDev.easy_birthday
 
 import io.flutter.embedding.android.FlutterActivity
 

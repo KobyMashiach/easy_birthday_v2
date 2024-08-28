@@ -28,7 +28,7 @@ class NextButton extends StatelessWidget {
         width: 160,
         height: 160,
         decoration: BoxDecoration(
-          border: Border.all(color: AppColor.primaryColor, width: 4),
+          border: Border.all(color: AppColors.primaryColor, width: 4),
           shape: BoxShape.circle,
           color: disabled ? disabledColor : Colors.transparent,
         ),

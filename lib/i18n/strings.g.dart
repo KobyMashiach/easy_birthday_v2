@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 14 (7 per locale)
+/// Strings: 50 (25 per locale)
 ///
-/// Built on 2024-08-28 at 08:48 UTC
+/// Built on 2024-08-28 at 18:44 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -168,6 +168,24 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	}
 	String get home_screen => 'Home Screen';
 	String get settings => 'Settings';
+	String get contact_us => 'Contact Us';
+	String get pick_color => 'Pick a color';
+	String get ok => 'OK';
+	String get cancel => 'Cancel';
+	String get recommand_drak_colors => 'Recommended dark colors';
+	String get build_app => 'Building the app';
+	String get build_app_description => 'The app is currently being built just for you!';
+	String get change_color => 'Change color';
+	String get change_sex => 'Change sex';
+	String get choose_sex => 'Choose sex';
+	String get male => 'male';
+	String get female => 'female';
+	String get app_info => 'App info';
+	String get app_name => 'App name';
+	String get app_version => 'App Version';
+	String get event_id => 'Event id';
+	String get change_language => 'Change language';
+	String get choose_language => 'Choose Language';
 }
 
 // Path: <root>
@@ -207,6 +225,24 @@ class _StringsHe implements Translations {
 	}
 	@override String get home_screen => 'מסך בית';
 	@override String get settings => 'הגדרות';
+	@override String get contact_us => 'יצירת קשר';
+	@override String get pick_color => 'בחר צבע';
+	@override String get ok => 'אישור';
+	@override String get cancel => 'ביטול';
+	@override String get recommand_drak_colors => 'מומלץ צבעים כהים';
+	@override String get build_app => 'בונה את האפליקציה';
+	@override String get build_app_description => 'האפליקציה נבנית כרגע במיוחד בשבילך!';
+	@override String get change_color => 'שינוי צבע';
+	@override String get change_sex => 'שינוי מין';
+	@override String get choose_sex => 'בחר מין';
+	@override String get male => 'זכר';
+	@override String get female => 'נקבה';
+	@override String get app_info => 'מידע על האפליקציה';
+	@override String get app_name => 'שם האפליקציה';
+	@override String get app_version => 'גרסת האפליקציה';
+	@override String get event_id => 'מספר אירוע';
+	@override String get change_language => 'שנה שפה';
+	@override String get choose_language => 'בחר שפה';
 }
 
 /// Flat map(s) containing all translations.
@@ -228,6 +264,24 @@ extension on Translations {
 			};
 			case 'home_screen': return 'Home Screen';
 			case 'settings': return 'Settings';
+			case 'contact_us': return 'Contact Us';
+			case 'pick_color': return 'Pick a color';
+			case 'ok': return 'OK';
+			case 'cancel': return 'Cancel';
+			case 'recommand_drak_colors': return 'Recommended dark colors';
+			case 'build_app': return 'Building the app';
+			case 'build_app_description': return 'The app is currently being built just for you!';
+			case 'change_color': return 'Change color';
+			case 'change_sex': return 'Change sex';
+			case 'choose_sex': return 'Choose sex';
+			case 'male': return 'male';
+			case 'female': return 'female';
+			case 'app_info': return 'App info';
+			case 'app_name': return 'App name';
+			case 'app_version': return 'App Version';
+			case 'event_id': return 'Event id';
+			case 'change_language': return 'Change language';
+			case 'choose_language': return 'Choose Language';
 			default: return null;
 		}
 	}
@@ -249,6 +303,24 @@ extension on _StringsHe {
 			};
 			case 'home_screen': return 'מסך בית';
 			case 'settings': return 'הגדרות';
+			case 'contact_us': return 'יצירת קשר';
+			case 'pick_color': return 'בחר צבע';
+			case 'ok': return 'אישור';
+			case 'cancel': return 'ביטול';
+			case 'recommand_drak_colors': return 'מומלץ צבעים כהים';
+			case 'build_app': return 'בונה את האפליקציה';
+			case 'build_app_description': return 'האפליקציה נבנית כרגע במיוחד בשבילך!';
+			case 'change_color': return 'שינוי צבע';
+			case 'change_sex': return 'שינוי מין';
+			case 'choose_sex': return 'בחר מין';
+			case 'male': return 'זכר';
+			case 'female': return 'נקבה';
+			case 'app_info': return 'מידע על האפליקציה';
+			case 'app_name': return 'שם האפליקציה';
+			case 'app_version': return 'גרסת האפליקציה';
+			case 'event_id': return 'מספר אירוע';
+			case 'change_language': return 'שנה שפה';
+			case 'choose_language': return 'בחר שפה';
 			default: return null;
 		}
 	}

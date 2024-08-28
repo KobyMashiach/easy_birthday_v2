@@ -13,8 +13,8 @@ appAppBar({
   return kheasydevAppBar(
     title: title,
     logoPath: 'assets/logo.png',
-    primaryColor: AppColor.primaryColor,
-    shadowColor: AppColor.shadowColor,
+    primaryColor: AppColors.primaryColor,
+    shadowColor: AppColors.shadowColor,
     titleColor: Colors.white,
     actions: actions,
     developerPage: developerPage,

@@ -7,5 +7,23 @@
     "female": "ברוכה הבאה, $name"
   },
   "home_screen": "מסך בית",
-  "settings": "הגדרות"
+  "settings": "הגדרות",
+  "contact_us": "יצירת קשר",
+  "pick_color": "בחר צבע",
+  "ok": "אישור",
+  "cancel": "ביטול",
+  "recommand_drak_colors": "מומלץ צבעים כהים",
+  "build_app": "בונה את האפליקציה",
+  "build_app_description": "האפליקציה נבנית כרגע במיוחד בשבילך!",
+  "change_color": "שינוי צבע",
+  "change_sex": "שינוי מין",
+  "choose_sex": "בחר מין",
+  "male": "זכר",
+  "female": "נקבה",
+  "app_info": "מידע על האפליקציה",
+  "app_name": "שם האפליקציה",
+  "app_version": "גרסת האפליקציה",
+  "event_id": "מספר אירוע",
+  "change_language": "שנה שפה",
+  "choose_language": "בחר שפה"
 }

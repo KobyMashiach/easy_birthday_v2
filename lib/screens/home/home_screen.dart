@@ -1,3 +1,4 @@
+import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/cards/design/buttons/app_button.dart';
@@ -31,7 +32,20 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               changeLanguage(AppLocale.he);
             },
-          )
+          ),
+          SizedBox(height: 20),
+          SizedBox(
+            height: 200,
+            // width: 200,
+            child: Row(
+              children: [
+                Expanded(child: Container(color: AppColors.primaryColor)),
+                Expanded(child: Container(color: AppColors.shadowColor)),
+                Expanded(child: Container(color: AppColors.disableColor)),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
         ],
       ),
     );

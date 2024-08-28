@@ -5,3 +5,10 @@ changeLanguage(AppLocale lang) {
 }
 
 getLanguageCode() => LocaleSettings.currentLocale.languageCode;
+
+Map<String, Map<String, String>> getAllLanguages() {
+  return {
+    'he': {"name": "עברית", "flag": "israel"},
+    'en': {"name": "English", "flag": "usa"},
+  };
+}
