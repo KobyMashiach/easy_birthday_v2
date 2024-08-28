@@ -34,10 +34,10 @@ dependencies:
     sdk: flutter
 
   # General
-  kh_easy_dev: ^0.2.7
+  kh_easy_dev: ^0.2.8
   # kh_easy_dev:
   #   git:
-  #     url: https://github.com/kobymashiach/kh_easy_dev
+  #     url: https://github.com/kobymashiach/kh_easy_dev.git
 
   slang: ^3.31.1
   slang_flutter: ^3.31.0

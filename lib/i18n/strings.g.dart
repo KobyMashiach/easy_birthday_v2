@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 10 (5 per locale)
+/// Strings: 14 (7 per locale)
 ///
-/// Built on 2024-08-27 at 10:29 UTC
+/// Built on 2024-08-28 at 08:48 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -166,6 +166,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'Welcome, ${name}';
 		}
 	}
+	String get home_screen => 'Home Screen';
+	String get settings => 'Settings';
 }
 
 // Path: <root>
@@ -203,6 +205,8 @@ class _StringsHe implements Translations {
 				return 'ברוכה הבאה, ${name}';
 		}
 	}
+	@override String get home_screen => 'מסך בית';
+	@override String get settings => 'הגדרות';
 }
 
 /// Flat map(s) containing all translations.
@@ -222,6 +226,8 @@ extension on Translations {
 						return 'Welcome, ${name}';
 				}
 			};
+			case 'home_screen': return 'Home Screen';
+			case 'settings': return 'Settings';
 			default: return null;
 		}
 	}
@@ -241,6 +247,8 @@ extension on _StringsHe {
 						return 'ברוכה הבאה, ${name}';
 				}
 			};
+			case 'home_screen': return 'מסך בית';
+			case 'settings': return 'הגדרות';
 			default: return null;
 		}
 	}

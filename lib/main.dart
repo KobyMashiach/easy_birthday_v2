@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        fontFamily: GoogleFonts.amaticSc().fontFamily,
+        fontFamily:
+            GoogleFonts.amaticSc(fontWeight: FontWeight.bold).fontFamily,
         textTheme: TextTheme(
           bodyLarge: GoogleFonts.amaticSc(
             textStyle: TextStyle(fontSize: 28),

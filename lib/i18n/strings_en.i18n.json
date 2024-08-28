@@ -5,5 +5,7 @@
   "greeter(context=GenderContext)": {
     "male": "Welcome, $name",
     "female": "Welcome, $name"
-  }
+  },
+  "home_screen": "Home Screen",
+  "settings": "Settings"
 }

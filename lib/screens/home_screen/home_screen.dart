@@ -12,8 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appAppBar(title: "Home Screen"),
-      // drawer: appSideMenu(context, index: 0),
-      drawer: appSideMenuV2(context),
+      drawer: appSideMenuV2(context, 'home'),
       body: Column(
         children: [
           const SizedBox(height: 20),

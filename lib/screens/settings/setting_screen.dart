@@ -3,6 +3,7 @@ import 'package:easy_birthday/screens/settings/inner/sex_change.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/onwillpop.dart';
 import 'package:easy_birthday/widgets/general/side_menu.dart';
+import 'package:easy_birthday/widgets/general/side_menu_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/widgets/navigate_page.dart';
 
@@ -29,10 +30,10 @@ class SettingsScreen extends StatelessWidget {
     ];
 
     return PopScope(
-      onPopInvoked: (value) => appOnwillpop(context),
+      onPopInvokedWithResult: (value, result) => appOnwillpop(context),
       child: Scaffold(
         appBar: appAppBar(title: "הגדרות"),
-        drawer: appSideMenu(context, index: 1),
+        drawer: appSideMenuV2(context, 'settings'),
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: ListView.separated(
