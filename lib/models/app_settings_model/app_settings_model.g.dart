@@ -18,15 +18,18 @@ class AppSettingsModelAdapter extends TypeAdapter<_$AppSettingsModelImpl> {
     };
     return _$AppSettingsModelImpl(
       appColor: fields[0] as Color,
+      languageCode: fields[1] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$AppSettingsModelImpl obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.appColor);
+      ..write(obj.appColor)
+      ..writeByte(1)
+      ..write(obj.languageCode);
   }
 
   @override
@@ -49,10 +52,12 @@ _$AppSettingsModelImpl _$$AppSettingsModelImplFromJson(
     _$AppSettingsModelImpl(
       appColor:
           const ColorConverter().fromJson((json['appColor'] as num).toInt()),
+      languageCode: json['languageCode'] as String,
     );
 
 Map<String, dynamic> _$$AppSettingsModelImplToJson(
         _$AppSettingsModelImpl instance) =>
     <String, dynamic>{
       'appColor': const ColorConverter().toJson(instance.appColor),
+      'languageCode': instance.languageCode,
     };

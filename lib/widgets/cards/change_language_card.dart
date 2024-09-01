@@ -10,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class ChangeLanguageCard extends StatelessWidget {
   final LanguageModel language;
-  final VoidCallback onLanguageChange;
+  final Function(String languageCode) onLanguageChange;
   const ChangeLanguageCard(
       {super.key, required this.language, required this.onLanguageChange});
 
@@ -20,7 +20,7 @@ class ChangeLanguageCard extends StatelessWidget {
       onTap: language.enable
           ? () {
               changeLanguage(LanguageModel.getAppLocale(language.languageCode));
-              onLanguageChange.call();
+              onLanguageChange.call(language.languageCode);
             }
           : null,
       title: language.enable

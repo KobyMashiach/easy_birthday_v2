@@ -1,3 +1,4 @@
+import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/models/app_settings_model/app_settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -28,7 +29,8 @@ class AppSettingsDataSource {
 
     return appSettings.isNotEmpty
         ? appSettings.first
-        : AppSettingsModel(appColor: Colors.red);
+        : AppSettingsModel(
+            appColor: AppColors.primaryColor, languageCode: 'he');
   }
 
   Future clearAppSettings() async {

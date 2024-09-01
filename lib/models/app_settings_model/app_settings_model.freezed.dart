@@ -23,6 +23,8 @@ mixin _$AppSettingsModel {
   @HiveField(0)
   @ColorConverter()
   Color get appColor => throw _privateConstructorUsedError;
+  @HiveField(1)
+  String get languageCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,9 @@ abstract class $AppSettingsModelCopyWith<$Res> {
           AppSettingsModel value, $Res Function(AppSettingsModel) then) =
       _$AppSettingsModelCopyWithImpl<$Res, AppSettingsModel>;
   @useResult
-  $Res call({@HiveField(0) @ColorConverter() Color appColor});
+  $Res call(
+      {@HiveField(0) @ColorConverter() Color appColor,
+      @HiveField(1) String languageCode});
 }
 
 /// @nodoc
@@ -53,12 +57,17 @@ class _$AppSettingsModelCopyWithImpl<$Res, $Val extends AppSettingsModel>
   @override
   $Res call({
     Object? appColor = null,
+    Object? languageCode = null,
   }) {
     return _then(_value.copyWith(
       appColor: null == appColor
           ? _value.appColor
           : appColor // ignore: cast_nullable_to_non_nullable
               as Color,
+      languageCode: null == languageCode
+          ? _value.languageCode
+          : languageCode // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -71,7 +80,9 @@ abstract class _$$AppSettingsModelImplCopyWith<$Res>
       __$$AppSettingsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@HiveField(0) @ColorConverter() Color appColor});
+  $Res call(
+      {@HiveField(0) @ColorConverter() Color appColor,
+      @HiveField(1) String languageCode});
 }
 
 /// @nodoc
@@ -86,12 +97,17 @@ class __$$AppSettingsModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appColor = null,
+    Object? languageCode = null,
   }) {
     return _then(_$AppSettingsModelImpl(
       appColor: null == appColor
           ? _value.appColor
           : appColor // ignore: cast_nullable_to_non_nullable
               as Color,
+      languageCode: null == languageCode
+          ? _value.languageCode
+          : languageCode // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -101,7 +117,8 @@ class __$$AppSettingsModelImplCopyWithImpl<$Res>
 @HiveType(typeId: 101, adapterName: 'AppSettingsModelAdapter')
 class _$AppSettingsModelImpl implements _AppSettingsModel {
   _$AppSettingsModelImpl(
-      {@HiveField(0) @ColorConverter() required this.appColor});
+      {@HiveField(0) @ColorConverter() required this.appColor,
+      @HiveField(1) required this.languageCode});
 
   factory _$AppSettingsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppSettingsModelImplFromJson(json);
@@ -110,10 +127,13 @@ class _$AppSettingsModelImpl implements _AppSettingsModel {
   @HiveField(0)
   @ColorConverter()
   final Color appColor;
+  @override
+  @HiveField(1)
+  final String languageCode;
 
   @override
   String toString() {
-    return 'AppSettingsModel(appColor: $appColor)';
+    return 'AppSettingsModel(appColor: $appColor, languageCode: $languageCode)';
   }
 
   @override
@@ -122,12 +142,14 @@ class _$AppSettingsModelImpl implements _AppSettingsModel {
         (other.runtimeType == runtimeType &&
             other is _$AppSettingsModelImpl &&
             (identical(other.appColor, appColor) ||
-                other.appColor == appColor));
+                other.appColor == appColor) &&
+            (identical(other.languageCode, languageCode) ||
+                other.languageCode == languageCode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, appColor);
+  int get hashCode => Object.hash(runtimeType, appColor, languageCode);
 
   @JsonKey(ignore: true)
   @override
@@ -146,7 +168,8 @@ class _$AppSettingsModelImpl implements _AppSettingsModel {
 
 abstract class _AppSettingsModel implements AppSettingsModel {
   factory _AppSettingsModel(
-          {@HiveField(0) @ColorConverter() required final Color appColor}) =
+          {@HiveField(0) @ColorConverter() required final Color appColor,
+          @HiveField(1) required final String languageCode}) =
       _$AppSettingsModelImpl;
 
   factory _AppSettingsModel.fromJson(Map<String, dynamic> json) =
@@ -156,6 +179,9 @@ abstract class _AppSettingsModel implements AppSettingsModel {
   @HiveField(0)
   @ColorConverter()
   Color get appColor;
+  @override
+  @HiveField(1)
+  String get languageCode;
   @override
   @JsonKey(ignore: true)
   _$$AppSettingsModelImplCopyWith<_$AppSettingsModelImpl> get copyWith =>

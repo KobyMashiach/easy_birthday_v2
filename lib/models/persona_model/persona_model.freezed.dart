@@ -36,6 +36,10 @@ mixin _$PersonaModel {
   String get gender => throw _privateConstructorUsedError;
   @HiveField(7)
   String? get partnerGender => throw _privateConstructorUsedError;
+  @HiveField(8)
+  bool get phoneValidation => throw _privateConstructorUsedError;
+  @HiveField(9)
+  bool get registerComplete => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +61,9 @@ abstract class $PersonaModelCopyWith<$Res> {
       @HiveField(4) int? age,
       @HiveField(5) String? profileImage,
       @HiveField(6) String gender,
-      @HiveField(7) String? partnerGender});
+      @HiveField(7) String? partnerGender,
+      @HiveField(8) bool phoneValidation,
+      @HiveField(9) bool registerComplete});
 }
 
 /// @nodoc
@@ -81,6 +87,8 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
     Object? profileImage = freezed,
     Object? gender = null,
     Object? partnerGender = freezed,
+    Object? phoneValidation = null,
+    Object? registerComplete = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -115,6 +123,14 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
           ? _value.partnerGender
           : partnerGender // ignore: cast_nullable_to_non_nullable
               as String?,
+      phoneValidation: null == phoneValidation
+          ? _value.phoneValidation
+          : phoneValidation // ignore: cast_nullable_to_non_nullable
+              as bool,
+      registerComplete: null == registerComplete
+          ? _value.registerComplete
+          : registerComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -135,7 +151,9 @@ abstract class _$$PersonaModelImplCopyWith<$Res>
       @HiveField(4) int? age,
       @HiveField(5) String? profileImage,
       @HiveField(6) String gender,
-      @HiveField(7) String? partnerGender});
+      @HiveField(7) String? partnerGender,
+      @HiveField(8) bool phoneValidation,
+      @HiveField(9) bool registerComplete});
 }
 
 /// @nodoc
@@ -157,6 +175,8 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
     Object? profileImage = freezed,
     Object? gender = null,
     Object? partnerGender = freezed,
+    Object? phoneValidation = null,
+    Object? registerComplete = null,
   }) {
     return _then(_$PersonaModelImpl(
       name: null == name
@@ -191,6 +211,14 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
           ? _value.partnerGender
           : partnerGender // ignore: cast_nullable_to_non_nullable
               as String?,
+      phoneValidation: null == phoneValidation
+          ? _value.phoneValidation
+          : phoneValidation // ignore: cast_nullable_to_non_nullable
+              as bool,
+      registerComplete: null == registerComplete
+          ? _value.registerComplete
+          : registerComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -207,7 +235,9 @@ class _$PersonaModelImpl implements _PersonaModel {
       @HiveField(4) this.age,
       @HiveField(5) this.profileImage,
       @HiveField(6) this.gender = "male",
-      @HiveField(7) this.partnerGender});
+      @HiveField(7) this.partnerGender,
+      @HiveField(8) required this.phoneValidation,
+      @HiveField(9) required this.registerComplete});
 
   factory _$PersonaModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonaModelImplFromJson(json);
@@ -237,10 +267,16 @@ class _$PersonaModelImpl implements _PersonaModel {
   @override
   @HiveField(7)
   final String? partnerGender;
+  @override
+  @HiveField(8)
+  final bool phoneValidation;
+  @override
+  @HiveField(9)
+  final bool registerComplete;
 
   @override
   String toString() {
-    return 'PersonaModel(name: $name, phoneNumber: $phoneNumber, password: $password, role: $role, age: $age, profileImage: $profileImage, gender: $gender, partnerGender: $partnerGender)';
+    return 'PersonaModel(name: $name, phoneNumber: $phoneNumber, password: $password, role: $role, age: $age, profileImage: $profileImage, gender: $gender, partnerGender: $partnerGender, phoneValidation: $phoneValidation, registerComplete: $registerComplete)';
   }
 
   @override
@@ -259,13 +295,27 @@ class _$PersonaModelImpl implements _PersonaModel {
                 other.profileImage == profileImage) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.partnerGender, partnerGender) ||
-                other.partnerGender == partnerGender));
+                other.partnerGender == partnerGender) &&
+            (identical(other.phoneValidation, phoneValidation) ||
+                other.phoneValidation == phoneValidation) &&
+            (identical(other.registerComplete, registerComplete) ||
+                other.registerComplete == registerComplete));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, phoneNumber, password,
-      role, age, profileImage, gender, partnerGender);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      phoneNumber,
+      password,
+      role,
+      age,
+      profileImage,
+      gender,
+      partnerGender,
+      phoneValidation,
+      registerComplete);
 
   @JsonKey(ignore: true)
   @override
@@ -290,7 +340,9 @@ abstract class _PersonaModel implements PersonaModel {
       @HiveField(4) final int? age,
       @HiveField(5) final String? profileImage,
       @HiveField(6) final String gender,
-      @HiveField(7) final String? partnerGender}) = _$PersonaModelImpl;
+      @HiveField(7) final String? partnerGender,
+      @HiveField(8) required final bool phoneValidation,
+      @HiveField(9) required final bool registerComplete}) = _$PersonaModelImpl;
 
   factory _PersonaModel.fromJson(Map<String, dynamic> json) =
       _$PersonaModelImpl.fromJson;
@@ -319,6 +371,12 @@ abstract class _PersonaModel implements PersonaModel {
   @override
   @HiveField(7)
   String? get partnerGender;
+  @override
+  @HiveField(8)
+  bool get phoneValidation;
+  @override
+  @HiveField(9)
+  bool get registerComplete;
   @override
   @JsonKey(ignore: true)
   _$$PersonaModelImplCopyWith<_$PersonaModelImpl> get copyWith =>

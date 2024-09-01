@@ -12,7 +12,12 @@ final class SettingsScreenNavigateOpenColorPicker
     extends SettingsScreenNavigateState {}
 
 final class SettingsScreenNavigateToBuildAppPage
-    extends SettingsScreenNavigateState {}
+    extends SettingsScreenNavigateState {
+  final int? seconds;
+  final String? pageText;
+
+  SettingsScreenNavigateToBuildAppPage({this.seconds, this.pageText});
+}
 
 final class SettingsScreenNavigateToGenderChangePage
     extends SettingsScreenNavigateState {}

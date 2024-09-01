@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 96 (48 per locale)
 ///
-/// Built on 2024-09-01 at 10:40 UTC
+/// Built on 2024-09-01 at 16:56 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -270,7 +270,7 @@ class _StringsHe implements Translations {
 	@override String get app_name => 'שם האפליקציה';
 	@override String get app_version => 'גרסת האפליקציה';
 	@override String get event_id => 'מספר אירוע';
-	@override String get change_language => 'שנה שפה';
+	@override String get change_language => 'שינוי שפה';
 	@override String get choose_language => 'בחר שפה';
 	@override String get soon => 'בקרוב';
 	@override String selected({required GenderContext context}) {
@@ -406,7 +406,7 @@ extension on _StringsHe {
 			case 'app_name': return 'שם האפליקציה';
 			case 'app_version': return 'גרסת האפליקציה';
 			case 'event_id': return 'מספר אירוע';
-			case 'change_language': return 'שנה שפה';
+			case 'change_language': return 'שינוי שפה';
 			case 'choose_language': return 'בחר שפה';
 			case 'soon': return 'בקרוב';
 			case 'selected': return ({required GenderContext context}) {

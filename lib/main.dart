@@ -1,9 +1,9 @@
 import 'package:easy_birthday/core/hive/adapters_controller.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
+import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/firebase_options.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
-import 'package:easy_birthday/repos/app_settings_repo.dart';
-import 'package:easy_birthday/screens/home/home_screen.dart';
+import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/splash/bloc/splash_screen_bloc.dart';
 import 'package:easy_birthday/screens/splash/splash_screen.dart';
 import 'package:easy_birthday/services/package_info.dart';
@@ -44,14 +44,17 @@ class MyApp extends StatelessWidget {
           create: (context) => AppSettingsDataSource(),
         ),
         RepositoryProvider(
-          create: (context) =>
-              AppSettingsRepo(context.read<AppSettingsDataSource>()),
+          create: (context) => PersonaDataSource(),
+        ),
+        RepositoryProvider(
+          create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
         ),
       ],
       child: BlocProvider(
-        create: (context) =>
-            SplashScreenBloc(appSettingsRepo: context.read<AppSettingsRepo>())
-              ..add(SplashScreenInitialized()),
+        create: (context) => SplashScreenBloc(
+            appSettingsDB: context.read<AppSettingsDataSource>(),
+            personaRepo: context.read<PersonaRepo>())
+          ..add(SplashScreenInitialized()),
         child: MaterialApp(
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.grey[100],
@@ -68,7 +71,7 @@ class MyApp extends StatelessWidget {
                 textStyle: TextStyle(fontSize: 20),
               ),
             ),
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
             useMaterial3: true,
           ),
           debugShowCheckedModeBanner: false,

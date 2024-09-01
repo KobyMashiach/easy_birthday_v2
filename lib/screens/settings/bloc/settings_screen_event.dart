@@ -11,6 +11,20 @@ class SettingsScreenEventChangeColor extends SettingsScreenEvent {
   SettingsScreenEventChangeColor({required this.color});
 }
 
+class SettingsScreenEventChangeLanguage extends SettingsScreenEvent {
+  final String languageCode;
+
+  SettingsScreenEventChangeLanguage({required this.languageCode});
+}
+
+class SettingsScreenEventChangeGender extends SettingsScreenEvent {
+  final String ownerGenerIsMale;
+  final String partnerGenerIsMale;
+
+  SettingsScreenEventChangeGender(
+      {required this.ownerGenerIsMale, required this.partnerGenerIsMale});
+}
+
 class SettingsScreenEventOpenAppColorDialog extends SettingsScreenEvent {}
 
 class SettingsScreenEventNavigateToAppBuildScreen extends SettingsScreenEvent {}

@@ -1,4 +1,5 @@
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
@@ -9,9 +10,9 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class GenderChange extends StatefulWidget {
-  final bool? settings;
+  final Function((String owner, String partner)) changeGenderFunction;
 
-  const GenderChange({super.key, this.settings});
+  const GenderChange({super.key, required this.changeGenderFunction});
 
   @override
   State<GenderChange> createState() => _GenderChangeState();
@@ -30,7 +31,9 @@ class _GenderChangeState extends State<GenderChange> {
           child: Column(
             children: [
               Text(t.choose_own_gender, style: AppTextStyle().title),
-              chooseGenderToggle(initIndex: ownerIndex, partner: false),
+              chooseGenderToggle(
+                  initIndex: globalUser.gender == "male" ? 0 : 1,
+                  partner: false),
               SizedBox(height: 28),
               Text(t.choose_partner_gender, style: AppTextStyle().title),
               chooseGenderToggle(initIndex: partnerIndex, partner: true),
@@ -41,7 +44,10 @@ class _GenderChangeState extends State<GenderChange> {
       bottomNavigationBar: AppButtonsBottomNavigationBar(
         activeButtonOnTap: () {
           changeGender(male: ownerIndex == 0);
-          KheasydevNavigatePage().pop(context);
+          final own = ownerIndex == 0 ? "male" : "female";
+          final partn = partnerIndex == 0 ? "male" : "female";
+          widget.changeGenderFunction.call((own, partn));
+          KheasydevNavigatePage().pop(context, value: "male");
         },
       ),
     );

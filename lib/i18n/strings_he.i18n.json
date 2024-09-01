@@ -24,7 +24,7 @@
   "app_name": "שם האפליקציה",
   "app_version": "גרסת האפליקציה",
   "event_id": "מספר אירוע",
-  "change_language": "שנה שפה",
+  "change_language": "שינוי שפה",
   "choose_language": "בחר שפה",
   "soon": "בקרוב",
   "selected(context=GenderContext)": {

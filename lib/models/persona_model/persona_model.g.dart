@@ -25,13 +25,15 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       profileImage: fields[5] as String?,
       gender: fields[6] as String,
       partnerGender: fields[7] as String?,
+      phoneValidation: fields[8] as bool,
+      registerComplete: fields[9] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$PersonaModelImpl obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -47,7 +49,11 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       ..writeByte(6)
       ..write(obj.gender)
       ..writeByte(7)
-      ..write(obj.partnerGender);
+      ..write(obj.partnerGender)
+      ..writeByte(8)
+      ..write(obj.phoneValidation)
+      ..writeByte(9)
+      ..write(obj.registerComplete);
   }
 
   @override
@@ -75,6 +81,8 @@ _$PersonaModelImpl _$$PersonaModelImplFromJson(Map<String, dynamic> json) =>
       profileImage: json['profileImage'] as String?,
       gender: json['gender'] as String? ?? "male",
       partnerGender: json['partnerGender'] as String?,
+      phoneValidation: json['phoneValidation'] as bool,
+      registerComplete: json['registerComplete'] as bool,
     );
 
 Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
@@ -87,4 +95,6 @@ Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
       'profileImage': instance.profileImage,
       'gender': instance.gender,
       'partnerGender': instance.partnerGender,
+      'phoneValidation': instance.phoneValidation,
+      'registerComplete': instance.registerComplete,
     };

@@ -12,6 +12,7 @@ class AppSettingsModel with _$AppSettingsModel {
   @HiveType(typeId: 101, adapterName: 'AppSettingsModelAdapter')
   factory AppSettingsModel({
     @HiveField(0) @ColorConverter() required Color appColor,
+    @HiveField(1) required String languageCode,
   }) = _AppSettingsModel;
 
   factory AppSettingsModel.fromJson(Map<String, dynamic> json) =>

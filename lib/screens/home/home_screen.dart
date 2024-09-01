@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appAppBar(title: "Home Screen"),
+      appBar: appAppBar(title: t.home_screen),
       drawer: appSideMenuV2(context, 'home'),
       body: Column(
         children: [

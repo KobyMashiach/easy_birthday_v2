@@ -1,7 +1,8 @@
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
+import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
-import 'package:easy_birthday/repos/app_settings_repo.dart';
+import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/settings/bloc/settings_screen_bloc.dart';
 import 'package:easy_birthday/screens/settings/inner/app_info.dart';
 import 'package:easy_birthday/screens/settings/inner/build_app_page.dart';
@@ -30,14 +31,17 @@ class SettingsScreen extends StatelessWidget {
             create: (context) => AppSettingsDataSource(),
           ),
           RepositoryProvider(
-            create: (context) =>
-                AppSettingsRepo(context.read<AppSettingsDataSource>()),
+            create: (context) => PersonaDataSource(),
+          ),
+          RepositoryProvider(
+            create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
           ),
         ],
         child: BlocProvider(
-          create: (context) =>
-              SettingsScreenBloc(context.read<AppSettingsRepo>())
-                ..add(SettingsScreenEventInit()),
+          create: (context) => SettingsScreenBloc(
+            appSettingsDB: context.read<AppSettingsDataSource>(),
+            personaRepo: context.read<PersonaRepo>(),
+          )..add(SettingsScreenEventInit()),
           child: BlocConsumer<SettingsScreenBloc, SettingsScreenState>(
             listenWhen: (previous, current) =>
                 current is SettingsScreenNavigateState,
@@ -58,13 +62,28 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   );
                 case const (SettingsScreenNavigateToBuildAppPage):
+                  final newState =
+                      state as SettingsScreenNavigateToBuildAppPage;
                   KheasydevNavigatePage().push(
-                      context, BuildAppPage(1, description: t.change_color));
+                      context,
+                      BuildAppPage(newState.seconds ?? 1,
+                          description: newState.pageText ?? t.change_color));
                 case const (SettingsScreenNavigateToGenderChangePage):
-                  KheasydevNavigatePage()
-                      .push(context, GenderChange(settings: true));
+                  KheasydevNavigatePage().push(context, GenderChange(
+                    changeGenderFunction: (genders) {
+                      bloc.add(SettingsScreenEventChangeGender(
+                          ownerGenerIsMale: genders.$1,
+                          partnerGenerIsMale: genders.$2));
+                    },
+                  ));
                 case const (SettingsScreenNavigateToChangeLanguage):
-                  KheasydevNavigatePage().push(context, ChangeLanguageScreen());
+                  KheasydevNavigatePage().push(
+                      context,
+                      ChangeLanguageScreen(
+                        onLanguageChange: (languageCode) => bloc.add(
+                            SettingsScreenEventChangeLanguage(
+                                languageCode: languageCode)),
+                      ));
                 case const (SettingsScreenNavigateToAppInfoPage):
                   KheasydevNavigatePage().push(context, AppInfo());
               }
