@@ -2,7 +2,7 @@ import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/settings/setting_screen.dart';
-import 'package:easy_birthday/services/global_vars.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';

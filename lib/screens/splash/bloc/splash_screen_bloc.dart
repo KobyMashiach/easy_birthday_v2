@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/repos/app_settings_repo.dart';
-import 'package:easy_birthday/services/global_vars.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:meta/meta.dart';
 
 part 'splash_screen_event.dart';

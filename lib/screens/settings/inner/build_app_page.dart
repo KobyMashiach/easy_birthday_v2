@@ -3,7 +3,7 @@ import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/screens/settings/setting_screen.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:kh_easy_dev/widgets/navigate_page.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class BuildAppPage extends StatefulWidget {
   final int loadingTime;

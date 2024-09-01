@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
               ..add(SplashScreenInitialized()),
         child: MaterialApp(
           theme: ThemeData(
+            scaffoldBackgroundColor: Colors.grey[100],
             fontFamily:
                 GoogleFonts.amaticSc(fontWeight: FontWeight.bold).fontFamily,
             textTheme: TextTheme(

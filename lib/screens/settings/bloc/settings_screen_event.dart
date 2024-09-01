@@ -15,7 +15,7 @@ class SettingsScreenEventOpenAppColorDialog extends SettingsScreenEvent {}
 
 class SettingsScreenEventNavigateToAppBuildScreen extends SettingsScreenEvent {}
 
-class SettingsScreenEventNavigateToSexChange extends SettingsScreenEvent {}
+class SettingsScreenEventNavigateToGenderChange extends SettingsScreenEvent {}
 
 class SettingsScreenEventNavigateToAppInfo extends SettingsScreenEvent {}
 

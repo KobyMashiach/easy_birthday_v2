@@ -14,7 +14,7 @@ final class SettingsScreenNavigateOpenColorPicker
 final class SettingsScreenNavigateToBuildAppPage
     extends SettingsScreenNavigateState {}
 
-final class SettingsScreenNavigateToSexChangePage
+final class SettingsScreenNavigateToGenderChangePage
     extends SettingsScreenNavigateState {}
 
 final class SettingsScreenNavigateToAppInfoPage

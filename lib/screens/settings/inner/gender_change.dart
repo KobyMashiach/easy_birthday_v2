@@ -1,48 +1,53 @@
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class SexChange extends StatefulWidget {
+class GenderChange extends StatefulWidget {
   final bool? settings;
 
-  const SexChange({super.key, this.settings});
+  const GenderChange({super.key, this.settings});
 
   @override
-  State<SexChange> createState() => _SexChangeState();
+  State<GenderChange> createState() => _GenderChangeState();
 }
 
-class _SexChangeState extends State<SexChange> {
+class _GenderChangeState extends State<GenderChange> {
   int ownerIndex = 0, partnerIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appAppBar(title: t.choose_sex),
+      appBar: appAppBar(title: t.choose_gender),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              Text(t.choose_own_sex, style: AppTextStyle().title),
-              chooseSexToggle(initIndex: 0, partner: false),
+              Text(t.choose_own_gender, style: AppTextStyle().title),
+              chooseGenderToggle(initIndex: ownerIndex, partner: false),
               SizedBox(height: 28),
-              Text(t.choose_partner_sex, style: AppTextStyle().title),
-              chooseSexToggle(initIndex: 0, partner: true),
+              Text(t.choose_partner_gender, style: AppTextStyle().title),
+              chooseGenderToggle(initIndex: partnerIndex, partner: true),
             ],
           ),
         ),
       ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(
-          // oneButton: true,
-          ),
+        activeButtonOnTap: () {
+          changeGender(male: ownerIndex == 0);
+          KheasydevNavigatePage().pop(context);
+        },
+      ),
     );
   }
 
-  ToggleSwitch chooseSexToggle(
+  ToggleSwitch chooseGenderToggle(
       {required int initIndex, required bool partner}) {
     return ToggleSwitch(
       initialLabelIndex: initIndex,

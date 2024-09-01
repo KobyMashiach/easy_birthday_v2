@@ -1,7 +1,7 @@
 {
   "hello": "שלום",
-  "choose_own_sex": "בחירת המין שלך",
-  "choose_partner_sex": "בחירת מין הבן/בת זוג",
+  "choose_own_gender": "בחירת המין שלך",
+  "choose_partner_gender": "בחירת מין הבן/בת זוג",
   "greeter(context=GenderContext)": {
     "male": "ברוך הבא $name",
     "female": "ברוכה הבאה, $name"
@@ -16,8 +16,8 @@
   "build_app": "בונה את האפליקציה",
   "build_app_description": "האפליקציה נבנית כרגע במיוחד בשבילך!",
   "change_color": "שינוי צבע",
-  "change_sex": "שינוי מין",
-  "choose_sex": "בחר מין",
+  "change_gender": "שינוי מין",
+  "choose_gender": "בחר מין",
   "male": "זכר",
   "female": "נקבה",
   "app_info": "מידע על האפליקציה",
@@ -25,5 +25,30 @@
   "app_version": "גרסת האפליקציה",
   "event_id": "מספר אירוע",
   "change_language": "שנה שפה",
-  "choose_language": "בחר שפה"
+  "choose_language": "בחר שפה",
+  "soon": "בקרוב",
+  "selected(context=GenderContext)": {
+    "male": "נבחר",
+    "female": "נבחרה"
+  },
+  "back": "חזור",
+  "login_screen": "מסך התחברות",
+  "login": "התחברות",
+  "register_screen": "מסך הרשמה",
+  "register": "הרשמה",
+  "phone": "טלפון",
+  "password": "סיסמה",
+  "have_account": "יש משתמש",
+  "no_account": "אין משתמש",
+  "click_here": "לחץ כאן",
+  "password_verification": "אימות סיסמה",
+  "got_it": "בסדר, הבנתי",
+  "short_password": "סיסמה קצרה מידי",
+  "password_dont_match": "הסיסמאות לא תואמות",
+  "phone_exist": "טלפון קיים במערכת",
+  "phone_not_valid": "מספר הטלפון לא חוקי",
+  "short_password_description": "הסיסמה צריכה להיות 8 תווים לפחות",
+  "password_dont_match_description": "2 הסיסמאות שהזנת לא תואמות, נא נסה שוב",
+  "phone_exist_description": "מספר הטלפון קיים במערכת שלנו, עבור למסך ההתחברות ונסה שנית",
+  "phone_not_valid_description": "כנראה שטעית במספר הטלפון, נא נסה שנית"
 }

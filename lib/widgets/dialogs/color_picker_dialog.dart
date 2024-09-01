@@ -24,7 +24,7 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
         child: ColorPicker(
           pickerColor: _currentColor,
           displayThumbColor: true,
-          labelTypes: [],
+          // labelTypes: [],
           onColorChanged: (Color color) => _currentColor = color,
           pickerAreaHeightPercent: 0.8,
         ),

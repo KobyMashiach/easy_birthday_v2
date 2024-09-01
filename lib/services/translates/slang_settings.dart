@@ -1,14 +1,11 @@
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 
 changeLanguage(AppLocale lang) {
   LocaleSettings.setLocale(lang);
 }
 
-getLanguageCode() => LocaleSettings.currentLocale.languageCode;
+changeGender({required bool male}) =>
+    globalGender = male ? GenderContext.male : GenderContext.female;
 
-Map<String, Map<String, String>> getAllLanguages() {
-  return {
-    'he': {"name": "עברית", "flag": "israel"},
-    'en': {"name": "English", "flag": "usa"},
-  };
-}
+getLanguageCode() => LocaleSettings.currentLocale.languageCode;

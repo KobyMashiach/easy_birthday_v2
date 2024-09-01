@@ -1,5 +1,5 @@
 import 'package:easy_birthday/i18n/strings.g.dart';
-import 'package:easy_birthday/services/global_vars.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';

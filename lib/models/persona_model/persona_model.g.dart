@@ -19,29 +19,35 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
     return _$PersonaModelImpl(
       name: fields[0] as String,
       phoneNumber: fields[1] as String,
-      email: fields[2] as String?,
-      canEdit: fields[3] as bool,
+      password: fields[2] as String,
+      role: fields[3] as String,
       age: fields[4] as int?,
       profileImage: fields[5] as String?,
+      gender: fields[6] as String,
+      partnerGender: fields[7] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$PersonaModelImpl obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.phoneNumber)
       ..writeByte(2)
-      ..write(obj.email)
+      ..write(obj.password)
       ..writeByte(3)
-      ..write(obj.canEdit)
+      ..write(obj.role)
       ..writeByte(4)
       ..write(obj.age)
       ..writeByte(5)
-      ..write(obj.profileImage);
+      ..write(obj.profileImage)
+      ..writeByte(6)
+      ..write(obj.gender)
+      ..writeByte(7)
+      ..write(obj.partnerGender);
   }
 
   @override
@@ -63,18 +69,22 @@ _$PersonaModelImpl _$$PersonaModelImplFromJson(Map<String, dynamic> json) =>
     _$PersonaModelImpl(
       name: json['name'] as String,
       phoneNumber: json['phoneNumber'] as String,
-      email: json['email'] as String?,
-      canEdit: json['canEdit'] as bool,
+      password: json['password'] as String,
+      role: json['role'] as String,
       age: (json['age'] as num?)?.toInt(),
       profileImage: json['profileImage'] as String?,
+      gender: json['gender'] as String? ?? "male",
+      partnerGender: json['partnerGender'] as String?,
     );
 
 Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'phoneNumber': instance.phoneNumber,
-      'email': instance.email,
-      'canEdit': instance.canEdit,
+      'password': instance.password,
+      'role': instance.role,
       'age': instance.age,
       'profileImage': instance.profileImage,
+      'gender': instance.gender,
+      'partnerGender': instance.partnerGender,
     };

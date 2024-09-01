@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 50 (25 per locale)
+/// Strings: 96 (48 per locale)
 ///
-/// Built on 2024-08-28 at 18:44 UTC
+/// Built on 2024-09-01 at 10:40 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -156,8 +156,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 	String get hello => 'Hello';
-	String get choose_own_sex => 'Choose your gender';
-	String get choose_partner_sex => 'Choose partner\'s gender';
+	String get choose_own_gender => 'Choose your gender';
+	String get choose_partner_gender => 'Choose partner\'s gender';
 	String greeter({required GenderContext context, required Object name}) {
 		switch (context) {
 			case GenderContext.male:
@@ -176,8 +176,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get build_app => 'Building the app';
 	String get build_app_description => 'The app is currently being built just for you!';
 	String get change_color => 'Change color';
-	String get change_sex => 'Change sex';
-	String get choose_sex => 'Choose sex';
+	String get change_gender => 'Change gender';
+	String get choose_gender => 'Choose gender';
 	String get male => 'male';
 	String get female => 'female';
 	String get app_info => 'App info';
@@ -186,6 +186,35 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get event_id => 'Event id';
 	String get change_language => 'Change language';
 	String get choose_language => 'Choose Language';
+	String get soon => 'Soon';
+	String selected({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'Selected';
+			case GenderContext.female:
+				return 'Selected';
+		}
+	}
+	String get back => 'Back';
+	String get login_screen => 'Login Screen';
+	String get login => 'Login';
+	String get register_screen => 'Register Screen';
+	String get register => 'Register';
+	String get phone => 'Phone';
+	String get password => 'Password';
+	String get have_account => 'Have an account';
+	String get no_account => 'Don\'t have an account';
+	String get click_here => 'Click here';
+	String get password_verification => 'Password verification';
+	String get got_it => 'OK, I got it';
+	String get short_password => 'Password too short';
+	String get password_dont_match => 'Passwords don\'t match';
+	String get phone_exist => 'Phone number already exists in the system';
+	String get phone_not_valid => 'Phone number is not valid';
+	String get short_password_description => 'The password must be at least 8 characters long';
+	String get password_dont_match_description => 'The two passwords you entered do not match, please try again';
+	String get phone_exist_description => 'The phone number already exists in our system, please go to the login screen and try again';
+	String get phone_not_valid_description => 'There might be an error with the phone number, please try again';
 }
 
 // Path: <root>
@@ -213,8 +242,8 @@ class _StringsHe implements Translations {
 
 	// Translations
 	@override String get hello => 'שלום';
-	@override String get choose_own_sex => 'בחירת המין שלך';
-	@override String get choose_partner_sex => 'בחירת מין הבן/בת זוג';
+	@override String get choose_own_gender => 'בחירת המין שלך';
+	@override String get choose_partner_gender => 'בחירת מין הבן/בת זוג';
 	@override String greeter({required GenderContext context, required Object name}) {
 		switch (context) {
 			case GenderContext.male:
@@ -233,8 +262,8 @@ class _StringsHe implements Translations {
 	@override String get build_app => 'בונה את האפליקציה';
 	@override String get build_app_description => 'האפליקציה נבנית כרגע במיוחד בשבילך!';
 	@override String get change_color => 'שינוי צבע';
-	@override String get change_sex => 'שינוי מין';
-	@override String get choose_sex => 'בחר מין';
+	@override String get change_gender => 'שינוי מין';
+	@override String get choose_gender => 'בחר מין';
 	@override String get male => 'זכר';
 	@override String get female => 'נקבה';
 	@override String get app_info => 'מידע על האפליקציה';
@@ -243,6 +272,35 @@ class _StringsHe implements Translations {
 	@override String get event_id => 'מספר אירוע';
 	@override String get change_language => 'שנה שפה';
 	@override String get choose_language => 'בחר שפה';
+	@override String get soon => 'בקרוב';
+	@override String selected({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'נבחר';
+			case GenderContext.female:
+				return 'נבחרה';
+		}
+	}
+	@override String get back => 'חזור';
+	@override String get login_screen => 'מסך התחברות';
+	@override String get login => 'התחברות';
+	@override String get register_screen => 'מסך הרשמה';
+	@override String get register => 'הרשמה';
+	@override String get phone => 'טלפון';
+	@override String get password => 'סיסמה';
+	@override String get have_account => 'יש משתמש';
+	@override String get no_account => 'אין משתמש';
+	@override String get click_here => 'לחץ כאן';
+	@override String get password_verification => 'אימות סיסמה';
+	@override String get got_it => 'בסדר, הבנתי';
+	@override String get short_password => 'סיסמה קצרה מידי';
+	@override String get password_dont_match => 'הסיסמאות לא תואמות';
+	@override String get phone_exist => 'טלפון קיים במערכת';
+	@override String get phone_not_valid => 'מספר הטלפון לא חוקי';
+	@override String get short_password_description => 'הסיסמה צריכה להיות 8 תווים לפחות';
+	@override String get password_dont_match_description => '2 הסיסמאות שהזנת לא תואמות, נא נסה שוב';
+	@override String get phone_exist_description => 'מספר הטלפון קיים במערכת שלנו, עבור למסך ההתחברות ונסה שנית';
+	@override String get phone_not_valid_description => 'כנראה שטעית במספר הטלפון, נא נסה שנית';
 }
 
 /// Flat map(s) containing all translations.
@@ -252,8 +310,8 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'hello': return 'Hello';
-			case 'choose_own_sex': return 'Choose your gender';
-			case 'choose_partner_sex': return 'Choose partner\'s gender';
+			case 'choose_own_gender': return 'Choose your gender';
+			case 'choose_partner_gender': return 'Choose partner\'s gender';
 			case 'greeter': return ({required GenderContext context, required Object name}) {
 				switch (context) {
 					case GenderContext.male:
@@ -272,8 +330,8 @@ extension on Translations {
 			case 'build_app': return 'Building the app';
 			case 'build_app_description': return 'The app is currently being built just for you!';
 			case 'change_color': return 'Change color';
-			case 'change_sex': return 'Change sex';
-			case 'choose_sex': return 'Choose sex';
+			case 'change_gender': return 'Change gender';
+			case 'choose_gender': return 'Choose gender';
 			case 'male': return 'male';
 			case 'female': return 'female';
 			case 'app_info': return 'App info';
@@ -282,6 +340,35 @@ extension on Translations {
 			case 'event_id': return 'Event id';
 			case 'change_language': return 'Change language';
 			case 'choose_language': return 'Choose Language';
+			case 'soon': return 'Soon';
+			case 'selected': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'Selected';
+					case GenderContext.female:
+						return 'Selected';
+				}
+			};
+			case 'back': return 'Back';
+			case 'login_screen': return 'Login Screen';
+			case 'login': return 'Login';
+			case 'register_screen': return 'Register Screen';
+			case 'register': return 'Register';
+			case 'phone': return 'Phone';
+			case 'password': return 'Password';
+			case 'have_account': return 'Have an account';
+			case 'no_account': return 'Don\'t have an account';
+			case 'click_here': return 'Click here';
+			case 'password_verification': return 'Password verification';
+			case 'got_it': return 'OK, I got it';
+			case 'short_password': return 'Password too short';
+			case 'password_dont_match': return 'Passwords don\'t match';
+			case 'phone_exist': return 'Phone number already exists in the system';
+			case 'phone_not_valid': return 'Phone number is not valid';
+			case 'short_password_description': return 'The password must be at least 8 characters long';
+			case 'password_dont_match_description': return 'The two passwords you entered do not match, please try again';
+			case 'phone_exist_description': return 'The phone number already exists in our system, please go to the login screen and try again';
+			case 'phone_not_valid_description': return 'There might be an error with the phone number, please try again';
 			default: return null;
 		}
 	}
@@ -291,8 +378,8 @@ extension on _StringsHe {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'hello': return 'שלום';
-			case 'choose_own_sex': return 'בחירת המין שלך';
-			case 'choose_partner_sex': return 'בחירת מין הבן/בת זוג';
+			case 'choose_own_gender': return 'בחירת המין שלך';
+			case 'choose_partner_gender': return 'בחירת מין הבן/בת זוג';
 			case 'greeter': return ({required GenderContext context, required Object name}) {
 				switch (context) {
 					case GenderContext.male:
@@ -311,8 +398,8 @@ extension on _StringsHe {
 			case 'build_app': return 'בונה את האפליקציה';
 			case 'build_app_description': return 'האפליקציה נבנית כרגע במיוחד בשבילך!';
 			case 'change_color': return 'שינוי צבע';
-			case 'change_sex': return 'שינוי מין';
-			case 'choose_sex': return 'בחר מין';
+			case 'change_gender': return 'שינוי מין';
+			case 'choose_gender': return 'בחר מין';
 			case 'male': return 'זכר';
 			case 'female': return 'נקבה';
 			case 'app_info': return 'מידע על האפליקציה';
@@ -321,6 +408,35 @@ extension on _StringsHe {
 			case 'event_id': return 'מספר אירוע';
 			case 'change_language': return 'שנה שפה';
 			case 'choose_language': return 'בחר שפה';
+			case 'soon': return 'בקרוב';
+			case 'selected': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'נבחר';
+					case GenderContext.female:
+						return 'נבחרה';
+				}
+			};
+			case 'back': return 'חזור';
+			case 'login_screen': return 'מסך התחברות';
+			case 'login': return 'התחברות';
+			case 'register_screen': return 'מסך הרשמה';
+			case 'register': return 'הרשמה';
+			case 'phone': return 'טלפון';
+			case 'password': return 'סיסמה';
+			case 'have_account': return 'יש משתמש';
+			case 'no_account': return 'אין משתמש';
+			case 'click_here': return 'לחץ כאן';
+			case 'password_verification': return 'אימות סיסמה';
+			case 'got_it': return 'בסדר, הבנתי';
+			case 'short_password': return 'סיסמה קצרה מידי';
+			case 'password_dont_match': return 'הסיסמאות לא תואמות';
+			case 'phone_exist': return 'טלפון קיים במערכת';
+			case 'phone_not_valid': return 'מספר הטלפון לא חוקי';
+			case 'short_password_description': return 'הסיסמה צריכה להיות 8 תווים לפחות';
+			case 'password_dont_match_description': return '2 הסיסמאות שהזנת לא תואמות, נא נסה שוב';
+			case 'phone_exist_description': return 'מספר הטלפון קיים במערכת שלנו, עבור למסך ההתחברות ונסה שנית';
+			case 'phone_not_valid_description': return 'כנראה שטעית במספר הטלפון, נא נסה שנית';
 			default: return null;
 		}
 	}

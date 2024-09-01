@@ -6,14 +6,17 @@ import 'package:easy_birthday/screens/settings/bloc/settings_screen_bloc.dart';
 import 'package:easy_birthday/screens/settings/inner/app_info.dart';
 import 'package:easy_birthday/screens/settings/inner/build_app_page.dart';
 import 'package:easy_birthday/screens/settings/inner/change_language_screen.dart';
-import 'package:easy_birthday/screens/settings/inner/sex_change.dart';
+import 'package:easy_birthday/screens/settings/inner/gender_change.dart';
+import 'package:easy_birthday/core/general_functions.dart';
+import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/dialogs/color_picker_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/onwillpop.dart';
 import 'package:easy_birthday/widgets/general/side_menu_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kh_easy_dev/widgets/navigate_page.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -57,9 +60,9 @@ class SettingsScreen extends StatelessWidget {
                 case const (SettingsScreenNavigateToBuildAppPage):
                   KheasydevNavigatePage().push(
                       context, BuildAppPage(1, description: t.change_color));
-                case const (SettingsScreenNavigateToSexChangePage):
+                case const (SettingsScreenNavigateToGenderChangePage):
                   KheasydevNavigatePage()
-                      .push(context, SexChange(settings: true));
+                      .push(context, GenderChange(settings: true));
                 case const (SettingsScreenNavigateToChangeLanguage):
                   KheasydevNavigatePage().push(context, ChangeLanguageScreen());
                 case const (SettingsScreenNavigateToAppInfoPage):
@@ -113,16 +116,19 @@ class SettingsScreen extends StatelessWidget {
         'function': () => bloc.add(SettingsScreenEventOpenAppColorDialog())
       },
       {
-        'title': t.change_sex,
+        'title': t.change_gender,
         'icon': Icons.man_2_outlined,
         'hintWidget': Icon(Icons.male, color: Colors.blue),
         'function': () async =>
-            bloc.add(SettingsScreenEventNavigateToSexChange()),
+            bloc.add(SettingsScreenEventNavigateToGenderChange()),
       },
       {
         'title': t.change_language,
         'icon': Icons.language_outlined,
-        'hintWidget': Text("data"),
+        'hintWidget': SvgPicture.asset(
+          width: 50,
+          getFlag(getLanguageCode()),
+        ),
         'function': () async =>
             bloc.add(SettingsScreenEventNavigateToChangeLanguage()),
       },

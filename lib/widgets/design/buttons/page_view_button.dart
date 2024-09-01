@@ -47,7 +47,7 @@ class PageViewButton extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
       ),
       textAlign: TextAlign.center,

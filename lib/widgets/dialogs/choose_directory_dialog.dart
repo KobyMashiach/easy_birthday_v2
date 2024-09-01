@@ -1,5 +1,5 @@
 import 'package:easy_birthday/core/consts.dart';
-import 'package:easy_birthday/widgets/cards/design/buttons/app_button.dart';
+import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';

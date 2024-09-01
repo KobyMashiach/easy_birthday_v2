@@ -2,12 +2,11 @@
 
 import 'dart:async';
 import 'package:easy_birthday/core/colors.dart';
-
-import 'package:easy_birthday/screens/home/home_screen.dart';
+import 'package:easy_birthday/screens/login_register/register/register_screen.dart';
 import 'package:easy_birthday/screens/splash/bloc/splash_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kh_easy_dev/widgets/navigate_page.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,7 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _SplashScreenState() {
     // Ensure the splash screen is visible for at least 3 seconds
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 0), () {
+      //TODO: change to 3 seconds
       setState(() {
         _canNavigate = true;
         _checkNavigationCondition();
@@ -41,8 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
     if (_canNavigate) {
       final splashBloc = context.read<SplashScreenBloc>();
       final state = splashBloc.state;
+      //TODO: check if login or home or first details
       if (state is SplashScreenNavigationToHomeScreen) {
-        KheasydevNavigatePage().pushAndRemoveUntil(context, HomeScreen());
+        KheasydevNavigatePage().pushAndRemoveUntil(context, RegisterScreen());
+        // KheasydevNavigatePage().pushAndRemoveUntil(context, HomeScreen());
       }
     }
   }

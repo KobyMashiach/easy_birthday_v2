@@ -1,7 +1,7 @@
 {
   "hello": "Hello",
-  "choose_own_sex": "Choose your gender",
-  "choose_partner_sex": "Choose partner's gender",
+  "choose_own_gender": "Choose your gender",
+  "choose_partner_gender": "Choose partner's gender",
   "greeter(context=GenderContext)": {
     "male": "Welcome, $name",
     "female": "Welcome, $name"
@@ -16,8 +16,8 @@
   "build_app": "Building the app",
   "build_app_description": "The app is currently being built just for you!",
   "change_color": "Change color",
-  "change_sex": "Change sex",
-  "choose_sex": "Choose sex",
+  "change_gender": "Change gender",
+  "choose_gender": "Choose gender",
   "male": "male",
   "female": "female",
   "app_info": "App info",
@@ -25,5 +25,30 @@
   "app_version": "App Version",
   "event_id": "Event id",
   "change_language": "Change language",
-  "choose_language": "Choose Language"
+  "choose_language": "Choose Language",
+  "soon": "Soon",
+  "selected(context=GenderContext)": {
+    "male": "Selected",
+    "female": "Selected"
+  },
+  "back": "Back",
+  "login_screen": "Login Screen",
+  "login": "Login",
+  "register_screen": "Register Screen",
+  "register": "Register",
+  "phone": "Phone",
+  "password": "Password",
+  "have_account": "Have an account",
+  "no_account": "Don't have an account",
+  "click_here": "Click here",
+  "password_verification": "Password verification",
+  "got_it": "OK, I got it",
+  "short_password": "Password too short",
+  "password_dont_match": "Passwords don't match",
+  "phone_exist": "Phone number already exists in the system",
+  "phone_not_valid": "Phone number is not valid",
+  "short_password_description": "The password must be at least 8 characters long",
+  "password_dont_match_description": "The two passwords you entered do not match, please try again",
+  "phone_exist_description": "The phone number already exists in our system, please go to the login screen and try again",
+  "phone_not_valid_description": "There might be an error with the phone number, please try again"
 }

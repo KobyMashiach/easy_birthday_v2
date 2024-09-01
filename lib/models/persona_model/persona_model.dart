@@ -11,10 +11,12 @@ class PersonaModel with _$PersonaModel {
   factory PersonaModel({
     @HiveField(0) required String name,
     @HiveField(1) required String phoneNumber,
-    @HiveField(2) String? email,
-    @HiveField(3) required bool canEdit,
+    @HiveField(2) required String password,
+    @HiveField(3) required String role,
     @HiveField(4) int? age,
     @HiveField(5) String? profileImage,
+    @HiveField(6) @Default("male") String gender,
+    @HiveField(7) String? partnerGender,
   }) = _PersonaModel;
 
   factory PersonaModel.fromJson(Map<String, dynamic> json) =>

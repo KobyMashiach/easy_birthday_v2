@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/repos/app_settings_repo.dart';
-import 'package:easy_birthday/services/global_vars.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:flutter/widgets.dart';
 
 part 'settings_screen_event.dart';
@@ -20,8 +20,8 @@ class SettingsScreenBloc
         _settingsScreenEventOpenAppColorDialog);
     on<SettingsScreenEventNavigateToAppBuildScreen>(
         _settingsScreenEventNavigateToAppBuildScreen);
-    on<SettingsScreenEventNavigateToSexChange>(
-        _settingsScreenEventNavigateToSexChange);
+    on<SettingsScreenEventNavigateToGenderChange>(
+        _settingsScreenEventNavigateToGenderChange);
     on<SettingsScreenEventNavigateToAppInfo>(
         _settingsScreenEventNavigateToAppInfo);
     on<SettingsScreenEventNavigateToChangeLanguage>(
@@ -53,10 +53,10 @@ class SettingsScreenBloc
     emit(SettingsScreenNavigateToBuildAppPage());
   }
 
-  FutureOr<void> _settingsScreenEventNavigateToSexChange(
-      SettingsScreenEventNavigateToSexChange event,
+  FutureOr<void> _settingsScreenEventNavigateToGenderChange(
+      SettingsScreenEventNavigateToGenderChange event,
       Emitter<SettingsScreenState> emit) {
-    emit(SettingsScreenNavigateToSexChangePage());
+    emit(SettingsScreenNavigateToGenderChangePage());
   }
 
   FutureOr<void> _settingsScreenEventNavigateToAppInfo(

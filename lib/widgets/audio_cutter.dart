@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:easy_birthday/core/colors.dart';
-import 'package:easy_birthday/widgets/cards/design/buttons/app_button.dart';
+import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
