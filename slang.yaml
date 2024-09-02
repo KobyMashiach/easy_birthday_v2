@@ -1,7 +1,8 @@
+base_locale: he
 input_directory: lib/i18n
 output_directory: lib/i18n
 use_redundant_keys: true
 
 languages:
   - he
-  - en
+  # - en

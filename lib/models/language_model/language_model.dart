@@ -40,7 +40,7 @@ class LanguageModel {
   static AppLocale getAppLocale(String languageCode) {
     return switch (languageCode) {
       "he" => AppLocale.he,
-      "en" => AppLocale.en,
+      // "en" => AppLocale.en, //TODO: add en
       _ => AppLocale.he,
     };
   }

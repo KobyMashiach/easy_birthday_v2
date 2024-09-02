@@ -16,38 +16,7 @@ class HomeScreen extends StatelessWidget {
       appBar: appAppBar(title: t.home_screen),
       drawer: appSideMenuV2(context, 'home'),
       body: Column(
-        children: [
-          const SizedBox(height: 20),
-          Text(t.hello),
-          Text(t.greeter(context: globalGender, name: "Koby")),
-          const SizedBox(height: 20),
-          AppButton(
-            text: "Change to english",
-            onTap: () {
-              changeLanguage(AppLocale.en);
-            },
-          ),
-          const SizedBox(height: 20),
-          AppButton(
-            text: "Change to hebrew",
-            onTap: () {
-              changeLanguage(AppLocale.he);
-            },
-          ),
-          SizedBox(height: 20),
-          SizedBox(
-            height: 200,
-            // width: 200,
-            child: Row(
-              children: [
-                Expanded(child: Container(color: AppColors.primaryColor)),
-                Expanded(child: Container(color: AppColors.shadowColor)),
-                Expanded(child: Container(color: AppColors.disableColor)),
-              ],
-            ),
-          ),
-          SizedBox(height: 20),
-        ],
+        children: [],
       ),
     );
   }

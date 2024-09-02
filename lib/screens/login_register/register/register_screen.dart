@@ -4,8 +4,10 @@ import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/login_register/register/bloc/register_screen_bloc.dart';
+import 'package:easy_birthday/screens/login_register/register/otp_phone_verification.dart';
 import 'package:easy_birthday/services/encryption.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
@@ -65,13 +67,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: BlocConsumer<RegisterScreenBloc, RegisterScreenState>(
           listenWhen: (previous, current) => current is RegisterScreenStateNavi,
           buildWhen: (previous, current) => current is! RegisterScreenStateNavi,
-          listener: (context, state) {
+          listener: (context, state) async {
+            final bloc = context.read<RegisterScreenBloc>();
             switch (state.runtimeType) {
               case const (RegisterScreenStateNaviLogin):
                 KheasydevNavigatePage()
                     .pushAndRemoveUntil(context, LoginScreen());
               case const (RegisterScreenStateDialogPhoneExist):
                 openWrongDialog(phoneExists: true);
+
+              case const (RegisterScreenStateDialogErrorRegister):
+                final newState =
+                    state as RegisterScreenStateDialogErrorRegister;
+                openWrongDialog(title: newState.message);
+
+              case const (RegisterScreenStateNavToOtpScreen):
+                final newState = state as RegisterScreenStateNavToOtpScreen;
+                KheasydevNavigatePage().push(
+                  context,
+                  OtpPhoneVerificationScreen(
+                    onVerification: (otpCode) => bloc.add(
+                        RegisterScreenEventOnVerification(
+                            verificationId: newState.verificationId,
+                            otpCode: otpCode)),
+                    onTapSendAgain: () {
+                      KheasydevNavigatePage().pop(context);
+                      moveToOtp(bloc);
+                    },
+                    verificationId: newState.verificationId,
+                  ),
+                );
+              case const (RegisterScreenStateNavToHomeScreen):
+                KheasydevNavigatePage()
+                    .pushAndRemoveUntil(context, HomeScreen());
             }
           },
           builder: (context, state) {
@@ -138,17 +166,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     phoneController.text =
                                         phoneController.text.substring(1);
                                   }
-                                  final newPhone =
-                                      countryCode + phoneController.text;
-                                  final encryptedPassword =
-                                      MyEncryptionDecryption.encryptFernet(
-                                          passwordController.text);
-                                  bloc.add(
-                                      RegisterScreenEventOnRegisterButtonClick(
-                                          phoneNumber: newPhone,
-                                          password: encryptedPassword.base64));
+                                  moveToOtp(bloc);
                                 }
-                                // openWrongDialog(phoneNotValid: true);
                               },
                             ),
                             const SizedBox(height: 12),
@@ -186,6 +205,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   openWrongDialog({
+    String? title,
+    String? description,
     bool shortPassword = false,
     bool passwordsDontMatch = false,
     bool phoneExists = false,
@@ -204,7 +225,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ? t.phone_exist
                     : phoneNotValid
                         ? t.phone_not_valid
-                        : "",
+                        : title ?? "",
         description: shortPassword
             ? t.short_password_description
             : passwordsDontMatch
@@ -213,7 +234,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ? t.phone_exist_description
                     : phoneNotValid
                         ? t.phone_not_valid_description
-                        : "",
+                        : description ?? "",
         child: SvgPicture.asset(
           wrongLoginIllustration,
           height: 200,
@@ -239,5 +260,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return false;
     }
     return true;
+  }
+
+  void moveToOtp(RegisterScreenBloc bloc) {
+    final newPhone = countryCode + phoneController.text;
+    final encryptedPassword =
+        MyEncryptionDecryption.encryptFernet(passwordController.text);
+    bloc.add(RegisterScreenEventOnRegisterButtonClick(
+        phoneNumber: newPhone, password: encryptedPassword.base64));
   }
 }

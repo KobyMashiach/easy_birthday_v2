@@ -37,7 +37,7 @@ dependencies:
   # kh_easy_dev: ^0.2.8
   kh_easy_dev:
     git:
-      url: https://github.com/kobymashiach/kh_easy_dev
+      url: https://github.com/kobymashiach/kh_easy_dev.git
 
   slang: ^3.31.1
   slang_flutter: ^3.31.0
@@ -51,6 +51,7 @@ dependencies:
   flutter_colorpicker: ^1.1.0
   flutter_svg: ^2.0.10+1
   blobs: ^2.0.0
+  pin_code_fields: ^8.0.1
 
   # Models
   freezed: ^2.5.2

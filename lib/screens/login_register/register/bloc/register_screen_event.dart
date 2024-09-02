@@ -12,3 +12,10 @@ class RegisterScreenEventOnRegisterButtonClick extends RegisterScreenEvent {
   RegisterScreenEventOnRegisterButtonClick(
       {required this.phoneNumber, required this.password});
 }
+
+class RegisterScreenEventOnVerification extends RegisterScreenEvent {
+  final String verificationId;
+  final String otpCode;
+  RegisterScreenEventOnVerification(
+      {required this.verificationId, required this.otpCode});
+}
