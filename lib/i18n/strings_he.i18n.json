@@ -74,5 +74,7 @@
   "full_name": "שם מלא",
   "otp_code": "קוד אימות",
   "otp_code_description": "קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור",
-  "send_again": "שלח שוב"
+  "send_again": "שלח שוב",
+  "login_with_password": "התחבר עם סיסמה",
+  "login_with_otp_code": "התחבר עם קוד אימות"
 }

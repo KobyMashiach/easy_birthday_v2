@@ -7,7 +7,7 @@ import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/login_register/register/bloc/register_screen_bloc.dart';
-import 'package:easy_birthday/screens/login_register/register/otp_phone_verification.dart';
+import 'package:easy_birthday/screens/login_register/register/otp_phone_verification_screen.dart';
 import 'package:easy_birthday/services/encryption.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             switch (state.runtimeType) {
               case const (RegisterScreenStateNaviLogin):
                 KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, LoginScreen());
+                    .pushAndRemoveUntilDuration(context, LoginScreen());
               case const (RegisterScreenStateDialogPhoneExist):
                 openWrongDialog(phoneExists: true);
 
@@ -115,84 +115,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Center(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        t.register,
-                        style: AppTextStyle().bigTitle,
-                      ),
-                      if (MediaQuery.of(context).viewInsets.bottom == 0)
-                        SvgPicture.asset(registerIllustration, height: 300),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                      Center(
                         child: Column(
                           children: [
-                            Directionality(
-                              textDirection: TextDirection.ltr,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                      flex: 3,
-                                      child: CountriesCodesDropdown(
-                                        onCountryChange: (country) => {},
-                                      )),
-                                  Expanded(
-                                    flex: 6,
-                                    child: AppTextField(
-                                      hintText: t.phone,
-                                      controller: phoneController,
-                                      keyboard: TextInputType.phone,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              t.register,
+                              style: AppTextStyle().bigTitle,
                             ),
-                            AppTextField(
-                              hintText: t.password,
-                              controller: passwordController,
-                              checkIfPassword: true,
-                            ),
-                            AppTextField(
-                              hintText: t.password_verification,
-                              controller: passwordVerificationController,
-                              checkIfPassword: true,
-                            ),
-                            const SizedBox(height: 12),
-                            AppButton(
-                              text: t.register,
-                              onTap: () {
-                                final formValid = formValidation();
-                                if (formValid) {
-                                  if (phoneController.text.startsWith('0')) {
-                                    phoneController.text =
-                                        phoneController.text.substring(1);
-                                  }
-                                  moveToOtp(bloc);
-                                }
-                              },
-                            ),
-                            const SizedBox(height: 12),
-                            Text.rich(
-                              TextSpan(
-                                text: t.have_account,
-                                style: AppTextStyle().smallDescription,
-                                children: [
-                                  TextSpan(text: "?"),
-                                  TextSpan(text: " "),
-                                  TextSpan(
-                                      text: t.click_here,
-                                      style: AppTextStyle()
-                                          .smallDescription
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () => bloc.add(
-                                            RegisterScreenEventNavToLoginScreen())),
-                                ],
-                              ),
-                            )
+                            if (MediaQuery.of(context).viewInsets.bottom == 0)
+                              SvgPicture.asset(registerIllustration,
+                                  height: 300),
+                            countriesCode(),
                           ],
                         ),
                       ),
+                      buttons(bloc),
                     ],
                   ),
                 ),
@@ -200,6 +139,87 @@ class _RegisterScreenState extends State<RegisterScreen> {
             );
           },
         ),
+      ),
+    );
+  }
+
+  Padding countriesCode() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: Row(
+              children: [
+                Expanded(
+                    flex: 3,
+                    child: CountriesCodesDropdown(
+                      onCountryChange: (country) => {},
+                    )),
+                Expanded(
+                  flex: 6,
+                  child: AppTextField(
+                    hintText: t.phone,
+                    controller: phoneController,
+                    keyboard: TextInputType.phone,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          AppTextField(
+            hintText: t.password,
+            controller: passwordController,
+            checkIfPassword: true,
+          ),
+          AppTextField(
+            hintText: t.password_verification,
+            controller: passwordVerificationController,
+            checkIfPassword: true,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding buttons(RegisterScreenBloc bloc) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          AppButton(
+            text: t.register,
+            onTap: () {
+              final formValid = formValidation();
+              if (formValid) {
+                if (phoneController.text.startsWith('0')) {
+                  phoneController.text = phoneController.text.substring(1);
+                }
+                moveToOtp(bloc);
+              }
+            },
+          ),
+          const SizedBox(height: 12),
+          Text.rich(
+            TextSpan(
+              text: t.have_account,
+              style: AppTextStyle().smallDescription,
+              children: [
+                TextSpan(text: "?"),
+                TextSpan(text: " "),
+                TextSpan(
+                    text: t.click_here,
+                    style: AppTextStyle()
+                        .smallDescription
+                        .copyWith(fontWeight: FontWeight.bold),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () =>
+                          bloc.add(RegisterScreenEventNavToLoginScreen())),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

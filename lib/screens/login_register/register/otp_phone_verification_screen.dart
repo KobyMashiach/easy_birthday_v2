@@ -28,7 +28,7 @@ class _OtpPhoneVerificationScreenState
     extends State<OtpPhoneVerificationScreen> {
   late TextEditingController pinCodeController;
   late Timer _timer;
-  int timeCount = 10;
+  int timeCount = 30;
   late int _remainingTime;
 
   @override

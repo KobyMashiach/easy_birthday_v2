@@ -762,8 +762,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: bc2e953fae1862f99fe78b7f3746e05f7ea98bb9
-      url: "https://github.com/kobymashiach/kh_easy_dev.git"
+      resolved-ref: dc5bcabe03d680033c6830d3859ee108dacce2f0
+      url: "https://github.com/kobymashiach/kh_easy_dev"
     source: git
     version: "0.3.0"
   leak_tracker:

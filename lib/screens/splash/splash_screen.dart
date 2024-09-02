@@ -2,8 +2,8 @@
 
 import 'dart:async';
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/login_register/register/register_screen.dart';
-import 'package:easy_birthday/screens/settings/setting_screen.dart';
 import 'package:easy_birthday/screens/splash/bloc/splash_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
-    // Control the visibility of the logo
     Timer(const Duration(milliseconds: 500), () {
       setState(() {
         _isVisible = true;
@@ -44,8 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
       final state = splashBloc.state;
       //TODO: check if login or home or first details
       if (state is SplashScreenNavigationToHomeScreen) {
-        KheasydevNavigatePage().pushAndRemoveUntil(context, RegisterScreen());
-        // KheasydevNavigatePage().pushAndRemoveUntil(context, SettingsScreen());
+        KheasydevNavigatePage().pushAndRemoveUntil(context, LoginScreen());
       }
     }
   }

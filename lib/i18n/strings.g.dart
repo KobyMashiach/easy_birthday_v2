@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 72
+/// Strings: 74
 ///
-/// Built on 2024-09-02 at 14:40 UTC
+/// Built on 2024-09-02 at 19:03 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -238,6 +238,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get otp_code => 'קוד אימות';
 	String get otp_code_description => 'קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור';
 	String get send_again => 'שלח שוב';
+	String get login_with_password => 'התחבר עם סיסמה';
+	String get login_with_otp_code => 'התחבר עם קוד אימות';
 }
 
 /// Flat map(s) containing all translations.
@@ -330,6 +332,8 @@ extension on Translations {
 			case 'otp_code': return 'קוד אימות';
 			case 'otp_code_description': return 'קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור';
 			case 'send_again': return 'שלח שוב';
+			case 'login_with_password': return 'התחבר עם סיסמה';
+			case 'login_with_otp_code': return 'התחבר עם קוד אימות';
 			default: return null;
 		}
 	}
