@@ -238,7 +238,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       openWrongDialog(passwordsDontMatch: true);
       return false;
     }
-
     return true;
   }
 }
