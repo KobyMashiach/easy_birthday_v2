@@ -67,6 +67,15 @@ Future<dynamic> firestoreGetDataFromDoc(
   }
 }
 
+Future<void> firestoreDeleteDoc(
+    CollectionReference<Map<String, dynamic>> collection,
+    {required String docName}) async {
+  try {
+    await collection.doc(docName).delete();
+    log('Document $docName deleted successfully');
+  } catch (e) {}
+}
+
 Future<bool> firestoreCheckIfDocExists(
     CollectionReference<Map<String, dynamic>> collection,
     String docName) async {

@@ -1,3 +1,4 @@
+import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
@@ -12,13 +13,12 @@ class PersonaModel with _$PersonaModel {
     @HiveField(0) required String name,
     @HiveField(1) required String phoneNumber,
     @HiveField(2) required String password,
-    @HiveField(3) required String role,
+    @HiveField(3) @RoleModelConverter() required RoleModel role,
     @HiveField(4) int? age,
     @HiveField(5) String? profileImage,
     @HiveField(6) @Default("male") String gender,
     @HiveField(7) String? partnerGender,
-    @HiveField(8) required bool phoneValidation,
-    @HiveField(9) required bool registerComplete,
+    @HiveField(8) required bool registerComplete,
   }) = _PersonaModel;
 
   factory PersonaModel.fromJson(Map<String, dynamic> json) =>

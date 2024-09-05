@@ -56,12 +56,12 @@
   "email_not_valid": "כתובת המייל לא חוקית",
   "email_exist_description": "כתובת המייל קיימת במערכת שלנו, עבור למסך ההתחברות ונסה שנית",
   "email_not_valid_description": "כנראה שטעית בכתובת המייל, נא נסה שנית",
-  "wrong_password": "האימייל או הסיסמה שגויים, נסה שוב",
+  "wrong_password": "הסיסמה לא נכונה, נא נסה שנית",
   "user_not_found": "לא נמצאה כתובת המייל הזו, נסה שוב",
   "user_disabled": "משתמש מושבת",
   "too_many_requests": "יותר מדי בקשות להתחבר לחשבון זה",
   "operation_not_allowed": "שגיאת שרת, אנא נסה שוב מאוחר יותר",
-  "default_error": "ההתחברות נכשלה. בבקשה נסה שוב",
+  "default_error": "ההתחברות או ההרשמה נכשלו. בבקשה נסה שוב",
   "invalid_credential": "כתובת המייל או הסיסמה לא נכונים, נא נסה שנית",
   "forgot_password": "שכחת סיסמה",
   "password_recovery": "שחזור סיסמה",
@@ -77,5 +77,6 @@
   "otp_code_description": "קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור",
   "send_again": "שלח שוב",
   "login_with_password": "התחבר עם סיסמה",
-  "login_with_otp_code": "התחבר עם קוד אימות"
+  "login_with_otp_code": "התחבר עם קוד אימות",
+  "phone_not_exist_system": "מספר הטלפון לא קיים במערכת"
 }

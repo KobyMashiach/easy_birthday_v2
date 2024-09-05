@@ -10,12 +10,10 @@ abstract class LoginScreenStateNavi extends LoginScreenState {}
 
 final class LoginScreenStateNaviRegister extends LoginScreenStateNavi {}
 
-final class LoginScreenStateDialogPhoneExist extends LoginScreenStateNavi {}
-
-final class LoginScreenStateDialogErrorRegister extends LoginScreenStateNavi {
+final class LoginScreenStateDialogErrorMessage extends LoginScreenStateNavi {
   final String message;
 
-  LoginScreenStateDialogErrorRegister({required this.message});
+  LoginScreenStateDialogErrorMessage({required this.message});
 }
 
 final class LoginScreenStateNavToOtpScreen extends LoginScreenStateNavi {
@@ -25,3 +23,6 @@ final class LoginScreenStateNavToOtpScreen extends LoginScreenStateNavi {
 }
 
 final class LoginScreenStateNavToHomeScreen extends LoginScreenStateNavi {}
+
+final class LoginScreenStateNavToFirstRegisterScreen
+    extends LoginScreenStateNavi {}

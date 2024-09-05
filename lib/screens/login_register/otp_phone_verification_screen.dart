@@ -104,8 +104,11 @@ class _OtpPhoneVerificationScreenState
                       const Spacer(),
                       AppButton(
                         text: t.ok,
-                        onTap: () =>
-                            widget.onVerification.call(pinCodeController.text),
+                        disableColors: pinCodeController.text.length < 6,
+                        onTap: pinCodeController.text.length < 6
+                            ? null
+                            : () => widget.onVerification
+                                .call(pinCodeController.text),
                       ),
                     ],
                   ),

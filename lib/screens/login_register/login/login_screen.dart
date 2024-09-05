@@ -73,6 +73,14 @@ class _LoginScreenState extends State<LoginScreen> {
               case const (LoginScreenStateNavToHomeScreen):
                 KheasydevNavigatePage()
                     .pushAndRemoveUntil(context, HomeScreen());
+
+              case const (LoginScreenStateNavToFirstRegisterScreen):
+                KheasydevNavigatePage()
+                    .pushAndRemoveUntil(context, HomeScreen());
+
+              case const (LoginScreenStateDialogErrorMessage):
+                final newState = state as LoginScreenStateDialogErrorMessage;
+                openWrongDialog(title: newState.message);
             }
           },
           builder: (context, state) {
@@ -159,8 +167,18 @@ class _LoginScreenState extends State<LoginScreen> {
           AppButton(
             text: loginWithPassword ? t.login : t.send_code,
             onTap: () {
-              final formValid = formValidation();
-              if (formValid) {}
+              final formValid = formValidation(loginWithPassword);
+              if (formValid) {
+                final newPhone = countryCode + phoneController.text;
+                if (loginWithPassword) {
+                  bloc.add(LoginScreenEventOnLoginButtonClick(
+                      phoneNumber: newPhone,
+                      password: passwordController.text));
+                } else {
+                  bloc.add(LoginScreenEventOnSendCodeButtonClick(
+                      phoneNumber: newPhone));
+                }
+              }
             },
           ),
           const SizedBox(height: 12),
@@ -169,16 +187,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ? t.login_with_otp_code
                 : t.login_with_password,
             unfillColors: true,
-            onTap: () {
-              setState(() {
-                loginWithPassword = !loginWithPassword;
-              });
-            },
+            onTap: () => setState(
+              () => loginWithPassword = !loginWithPassword,
+            ),
           ),
           const SizedBox(height: 12),
           Text.rich(
             TextSpan(
-              text: t.have_account,
+              text: t.no_account,
               style: AppTextStyle().smallDescription,
               children: [
                 TextSpan(text: "?"),
@@ -190,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         .copyWith(fontWeight: FontWeight.bold),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () =>
-                          bloc.add(RegisterScreenEventNavToRegisterScreen())),
+                          bloc.add(LoginScreenEventNavToRegisterScreen())),
               ],
             ),
           ),
@@ -233,7 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  bool formValidation() {
+  bool formValidation(bool withPassword) {
     if (countryCode.isEmpty ||
         phoneController.text.length < 6 ||
         phoneController.text.length > 9) {
@@ -241,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return false;
     }
 
-    if (passwordController.text.isEmpty) {
+    if (withPassword && passwordController.text.isEmpty) {
       openWrongDialog(shortPassword: true);
       return false;
     }

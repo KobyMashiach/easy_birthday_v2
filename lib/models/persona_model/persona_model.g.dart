@@ -20,20 +20,19 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       name: fields[0] as String,
       phoneNumber: fields[1] as String,
       password: fields[2] as String,
-      role: fields[3] as String,
+      role: fields[3] as RoleModel,
       age: fields[4] as int?,
       profileImage: fields[5] as String?,
       gender: fields[6] as String,
       partnerGender: fields[7] as String?,
-      phoneValidation: fields[8] as bool,
-      registerComplete: fields[9] as bool,
+      registerComplete: fields[8] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$PersonaModelImpl obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -51,8 +50,6 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       ..writeByte(7)
       ..write(obj.partnerGender)
       ..writeByte(8)
-      ..write(obj.phoneValidation)
-      ..writeByte(9)
       ..write(obj.registerComplete);
   }
 
@@ -76,12 +73,11 @@ _$PersonaModelImpl _$$PersonaModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       phoneNumber: json['phoneNumber'] as String,
       password: json['password'] as String,
-      role: json['role'] as String,
+      role: const RoleModelConverter().fromJson(json['role'] as String),
       age: (json['age'] as num?)?.toInt(),
       profileImage: json['profileImage'] as String?,
       gender: json['gender'] as String? ?? "male",
       partnerGender: json['partnerGender'] as String?,
-      phoneValidation: json['phoneValidation'] as bool,
       registerComplete: json['registerComplete'] as bool,
     );
 
@@ -90,11 +86,10 @@ Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
       'name': instance.name,
       'phoneNumber': instance.phoneNumber,
       'password': instance.password,
-      'role': instance.role,
+      'role': const RoleModelConverter().toJson(instance.role),
       'age': instance.age,
       'profileImage': instance.profileImage,
       'gender': instance.gender,
       'partnerGender': instance.partnerGender,
-      'phoneValidation': instance.phoneValidation,
       'registerComplete': instance.registerComplete,
     };

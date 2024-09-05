@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 75
+/// Strings: 76
 ///
-/// Built on 2024-09-05 at 10:08 UTC
+/// Built on 2024-09-05 at 11:20 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -219,12 +219,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get email_not_valid => 'כתובת המייל לא חוקית';
 	String get email_exist_description => 'כתובת המייל קיימת במערכת שלנו, עבור למסך ההתחברות ונסה שנית';
 	String get email_not_valid_description => 'כנראה שטעית בכתובת המייל, נא נסה שנית';
-	String get wrong_password => 'האימייל או הסיסמה שגויים, נסה שוב';
+	String get wrong_password => 'הסיסמה לא נכונה, נא נסה שנית';
 	String get user_not_found => 'לא נמצאה כתובת המייל הזו, נסה שוב';
 	String get user_disabled => 'משתמש מושבת';
 	String get too_many_requests => 'יותר מדי בקשות להתחבר לחשבון זה';
 	String get operation_not_allowed => 'שגיאת שרת, אנא נסה שוב מאוחר יותר';
-	String get default_error => 'ההתחברות נכשלה. בבקשה נסה שוב';
+	String get default_error => 'ההתחברות או ההרשמה נכשלו. בבקשה נסה שוב';
 	String get invalid_credential => 'כתובת המייל או הסיסמה לא נכונים, נא נסה שנית';
 	String get forgot_password => 'שכחת סיסמה';
 	String get password_recovery => 'שחזור סיסמה';
@@ -241,6 +241,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get send_again => 'שלח שוב';
 	String get login_with_password => 'התחבר עם סיסמה';
 	String get login_with_otp_code => 'התחבר עם קוד אימות';
+	String get phone_not_exist_system => 'מספר הטלפון לא קיים במערכת';
 }
 
 /// Flat map(s) containing all translations.
@@ -314,12 +315,12 @@ extension on Translations {
 			case 'email_not_valid': return 'כתובת המייל לא חוקית';
 			case 'email_exist_description': return 'כתובת המייל קיימת במערכת שלנו, עבור למסך ההתחברות ונסה שנית';
 			case 'email_not_valid_description': return 'כנראה שטעית בכתובת המייל, נא נסה שנית';
-			case 'wrong_password': return 'האימייל או הסיסמה שגויים, נסה שוב';
+			case 'wrong_password': return 'הסיסמה לא נכונה, נא נסה שנית';
 			case 'user_not_found': return 'לא נמצאה כתובת המייל הזו, נסה שוב';
 			case 'user_disabled': return 'משתמש מושבת';
 			case 'too_many_requests': return 'יותר מדי בקשות להתחבר לחשבון זה';
 			case 'operation_not_allowed': return 'שגיאת שרת, אנא נסה שוב מאוחר יותר';
-			case 'default_error': return 'ההתחברות נכשלה. בבקשה נסה שוב';
+			case 'default_error': return 'ההתחברות או ההרשמה נכשלו. בבקשה נסה שוב';
 			case 'invalid_credential': return 'כתובת המייל או הסיסמה לא נכונים, נא נסה שנית';
 			case 'forgot_password': return 'שכחת סיסמה';
 			case 'password_recovery': return 'שחזור סיסמה';
@@ -336,6 +337,7 @@ extension on Translations {
 			case 'send_again': return 'שלח שוב';
 			case 'login_with_password': return 'התחבר עם סיסמה';
 			case 'login_with_otp_code': return 'התחבר עם קוד אימות';
+			case 'phone_not_exist_system': return 'מספר הטלפון לא קיים במערכת';
 			default: return null;
 		}
 	}

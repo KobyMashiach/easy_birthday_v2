@@ -27,7 +27,7 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
     await PersonaDataSource.initialise();
 
     globalAppSettings = appSettingsDB.getAppSettings();
-    globalUser = personaRepo.getPersona();
+    globalUser = personaRepo.getLocalPersona();
     changeAppColors(globalAppSettings.appColor);
     changeLanguage(LanguageModel.getAppLocale(globalAppSettings.languageCode));
     changeGender(male: globalUser.gender == "male");

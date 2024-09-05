@@ -18,6 +18,9 @@ class MyEncryptionDecryption {
   static encrypt.Encrypted getEncryptedFromString(String text) =>
       encrypt.Encrypted.fromBase64(text);
 
+  static String getStringFromEncrypted(String text) =>
+      getDecryptFromString(getEncryptedFromString(text));
+
   static String decryptFernet(encrypt.Encrypted encrypted) {
     return encrypterFernet.decrypt(encrypted);
   }

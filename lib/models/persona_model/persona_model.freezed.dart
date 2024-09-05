@@ -27,7 +27,8 @@ mixin _$PersonaModel {
   @HiveField(2)
   String get password => throw _privateConstructorUsedError;
   @HiveField(3)
-  String get role => throw _privateConstructorUsedError;
+  @RoleModelConverter()
+  RoleModel get role => throw _privateConstructorUsedError;
   @HiveField(4)
   int? get age => throw _privateConstructorUsedError;
   @HiveField(5)
@@ -37,8 +38,6 @@ mixin _$PersonaModel {
   @HiveField(7)
   String? get partnerGender => throw _privateConstructorUsedError;
   @HiveField(8)
-  bool get phoneValidation => throw _privateConstructorUsedError;
-  @HiveField(9)
   bool get registerComplete => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,13 +56,12 @@ abstract class $PersonaModelCopyWith<$Res> {
       {@HiveField(0) String name,
       @HiveField(1) String phoneNumber,
       @HiveField(2) String password,
-      @HiveField(3) String role,
+      @HiveField(3) @RoleModelConverter() RoleModel role,
       @HiveField(4) int? age,
       @HiveField(5) String? profileImage,
       @HiveField(6) String gender,
       @HiveField(7) String? partnerGender,
-      @HiveField(8) bool phoneValidation,
-      @HiveField(9) bool registerComplete});
+      @HiveField(8) bool registerComplete});
 }
 
 /// @nodoc
@@ -87,7 +85,6 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
     Object? profileImage = freezed,
     Object? gender = null,
     Object? partnerGender = freezed,
-    Object? phoneValidation = null,
     Object? registerComplete = null,
   }) {
     return _then(_value.copyWith(
@@ -106,7 +103,7 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String,
+              as RoleModel,
       age: freezed == age
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
@@ -123,10 +120,6 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
           ? _value.partnerGender
           : partnerGender // ignore: cast_nullable_to_non_nullable
               as String?,
-      phoneValidation: null == phoneValidation
-          ? _value.phoneValidation
-          : phoneValidation // ignore: cast_nullable_to_non_nullable
-              as bool,
       registerComplete: null == registerComplete
           ? _value.registerComplete
           : registerComplete // ignore: cast_nullable_to_non_nullable
@@ -147,13 +140,12 @@ abstract class _$$PersonaModelImplCopyWith<$Res>
       {@HiveField(0) String name,
       @HiveField(1) String phoneNumber,
       @HiveField(2) String password,
-      @HiveField(3) String role,
+      @HiveField(3) @RoleModelConverter() RoleModel role,
       @HiveField(4) int? age,
       @HiveField(5) String? profileImage,
       @HiveField(6) String gender,
       @HiveField(7) String? partnerGender,
-      @HiveField(8) bool phoneValidation,
-      @HiveField(9) bool registerComplete});
+      @HiveField(8) bool registerComplete});
 }
 
 /// @nodoc
@@ -175,7 +167,6 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
     Object? profileImage = freezed,
     Object? gender = null,
     Object? partnerGender = freezed,
-    Object? phoneValidation = null,
     Object? registerComplete = null,
   }) {
     return _then(_$PersonaModelImpl(
@@ -194,7 +185,7 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String,
+              as RoleModel,
       age: freezed == age
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
@@ -211,10 +202,6 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
           ? _value.partnerGender
           : partnerGender // ignore: cast_nullable_to_non_nullable
               as String?,
-      phoneValidation: null == phoneValidation
-          ? _value.phoneValidation
-          : phoneValidation // ignore: cast_nullable_to_non_nullable
-              as bool,
       registerComplete: null == registerComplete
           ? _value.registerComplete
           : registerComplete // ignore: cast_nullable_to_non_nullable
@@ -231,13 +218,12 @@ class _$PersonaModelImpl implements _PersonaModel {
       {@HiveField(0) required this.name,
       @HiveField(1) required this.phoneNumber,
       @HiveField(2) required this.password,
-      @HiveField(3) required this.role,
+      @HiveField(3) @RoleModelConverter() required this.role,
       @HiveField(4) this.age,
       @HiveField(5) this.profileImage,
       @HiveField(6) this.gender = "male",
       @HiveField(7) this.partnerGender,
-      @HiveField(8) required this.phoneValidation,
-      @HiveField(9) required this.registerComplete});
+      @HiveField(8) required this.registerComplete});
 
   factory _$PersonaModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonaModelImplFromJson(json);
@@ -253,7 +239,8 @@ class _$PersonaModelImpl implements _PersonaModel {
   final String password;
   @override
   @HiveField(3)
-  final String role;
+  @RoleModelConverter()
+  final RoleModel role;
   @override
   @HiveField(4)
   final int? age;
@@ -269,14 +256,11 @@ class _$PersonaModelImpl implements _PersonaModel {
   final String? partnerGender;
   @override
   @HiveField(8)
-  final bool phoneValidation;
-  @override
-  @HiveField(9)
   final bool registerComplete;
 
   @override
   String toString() {
-    return 'PersonaModel(name: $name, phoneNumber: $phoneNumber, password: $password, role: $role, age: $age, profileImage: $profileImage, gender: $gender, partnerGender: $partnerGender, phoneValidation: $phoneValidation, registerComplete: $registerComplete)';
+    return 'PersonaModel(name: $name, phoneNumber: $phoneNumber, password: $password, role: $role, age: $age, profileImage: $profileImage, gender: $gender, partnerGender: $partnerGender, registerComplete: $registerComplete)';
   }
 
   @override
@@ -296,26 +280,14 @@ class _$PersonaModelImpl implements _PersonaModel {
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.partnerGender, partnerGender) ||
                 other.partnerGender == partnerGender) &&
-            (identical(other.phoneValidation, phoneValidation) ||
-                other.phoneValidation == phoneValidation) &&
             (identical(other.registerComplete, registerComplete) ||
                 other.registerComplete == registerComplete));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      phoneNumber,
-      password,
-      role,
-      age,
-      profileImage,
-      gender,
-      partnerGender,
-      phoneValidation,
-      registerComplete);
+  int get hashCode => Object.hash(runtimeType, name, phoneNumber, password,
+      role, age, profileImage, gender, partnerGender, registerComplete);
 
   @JsonKey(ignore: true)
   @override
@@ -336,13 +308,12 @@ abstract class _PersonaModel implements PersonaModel {
       {@HiveField(0) required final String name,
       @HiveField(1) required final String phoneNumber,
       @HiveField(2) required final String password,
-      @HiveField(3) required final String role,
+      @HiveField(3) @RoleModelConverter() required final RoleModel role,
       @HiveField(4) final int? age,
       @HiveField(5) final String? profileImage,
       @HiveField(6) final String gender,
       @HiveField(7) final String? partnerGender,
-      @HiveField(8) required final bool phoneValidation,
-      @HiveField(9) required final bool registerComplete}) = _$PersonaModelImpl;
+      @HiveField(8) required final bool registerComplete}) = _$PersonaModelImpl;
 
   factory _PersonaModel.fromJson(Map<String, dynamic> json) =
       _$PersonaModelImpl.fromJson;
@@ -358,7 +329,8 @@ abstract class _PersonaModel implements PersonaModel {
   String get password;
   @override
   @HiveField(3)
-  String get role;
+  @RoleModelConverter()
+  RoleModel get role;
   @override
   @HiveField(4)
   int? get age;
@@ -373,9 +345,6 @@ abstract class _PersonaModel implements PersonaModel {
   String? get partnerGender;
   @override
   @HiveField(8)
-  bool get phoneValidation;
-  @override
-  @HiveField(9)
   bool get registerComplete;
   @override
   @JsonKey(ignore: true)

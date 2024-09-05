@@ -86,10 +86,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 KheasydevNavigatePage().push(
                   context,
                   OtpPhoneVerificationScreen(
-                    onVerification: (otpCode) => bloc.add(
-                        RegisterScreenEventOnVerification(
-                            verificationId: newState.verificationId,
-                            otpCode: otpCode)),
+                    onVerification: (otpCode) {
+                      final newPhone = countryCode + phoneController.text;
+                      final encryptedPassword =
+                          MyEncryptionDecryption.encryptFernet(
+                              passwordController.text);
+                      bloc.add(RegisterScreenEventOnVerification(
+                          verificationId: newState.verificationId,
+                          otpCode: otpCode,
+                          phoneNumber: newPhone,
+                          password: encryptedPassword.base64));
+                    },
                     onTapSendAgain: () {
                       KheasydevNavigatePage().pop(context);
                       moveToOtp(bloc);
@@ -111,31 +118,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   LanguageDropdown(onLanguageChange: () => setState(() {}))
                 ],
               ),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Center(
+              body: state is RegisterScreenLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24),
+                      child: Center(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              t.register,
-                              style: AppTextStyle().bigTitle,
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    t.register,
+                                    style: AppTextStyle().bigTitle,
+                                  ),
+                                  if (MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom ==
+                                      0)
+                                    SvgPicture.asset(registerIllustration,
+                                        height: 300),
+                                  countriesCode(),
+                                ],
+                              ),
                             ),
-                            if (MediaQuery.of(context).viewInsets.bottom == 0)
-                              SvgPicture.asset(registerIllustration,
-                                  height: 300),
-                            countriesCode(),
+                            buttons(bloc),
                           ],
                         ),
                       ),
-                      buttons(bloc),
-                    ],
-                  ),
-                ),
-              ),
+                    ),
             );
           },
         ),
@@ -284,9 +296,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void moveToOtp(RegisterScreenBloc bloc) {
     final newPhone = countryCode + phoneController.text;
-    final encryptedPassword =
-        MyEncryptionDecryption.encryptFernet(passwordController.text);
-    bloc.add(RegisterScreenEventOnRegisterButtonClick(
-        phoneNumber: newPhone, password: encryptedPassword.base64));
+    bloc.add(RegisterScreenEventOnRegisterButtonClick(phoneNumber: newPhone));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/models/persona_model/persona_model.dart';
+import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class PersonaDataSource {
@@ -20,17 +21,23 @@ class PersonaDataSource {
     final box = Hive.box<PersonaModel>(_boxKey);
     box.clear();
     await box.add(persona);
+    globalUser = persona;
   }
 
   PersonaModel getPersona() {
     final box = Hive.box<PersonaModel>(_boxKey);
     final persona = box.values.map((e) => e).toList();
-
     return persona.isNotEmpty ? persona.first : globalUser;
   }
 
-  Future clearPersona() async {
+  Future deletePersona() async {
     final box = Hive.box<PersonaModel>(_boxKey);
     await box.clear();
+    globalUser = PersonaModel(
+        name: "",
+        phoneNumber: "",
+        password: "",
+        role: RoleModel.partner,
+        registerComplete: false);
   }
 }

@@ -5,6 +5,10 @@ abstract class RegisterScreenState {}
 
 final class RegisterScreenInitial extends RegisterScreenState {}
 
+final class RegisterScreenLoading extends RegisterScreenState {}
+
+final class RegisterScreenRefreshUI extends RegisterScreenState {}
+
 @immutable
 abstract class RegisterScreenStateNavi extends RegisterScreenState {}
 
