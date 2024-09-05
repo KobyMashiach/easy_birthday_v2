@@ -7,7 +7,7 @@ import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/login_register/register/bloc/register_screen_bloc.dart';
-import 'package:easy_birthday/screens/login_register/register/otp_phone_verification_screen.dart';
+import 'package:easy_birthday/screens/login_register/otp_phone_verification_screen.dart';
 import 'package:easy_birthday/services/encryption.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';

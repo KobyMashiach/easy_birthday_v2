@@ -7,7 +7,6 @@ import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/login/bloc/login_screen_bloc.dart';
 import 'package:easy_birthday/screens/login_register/register/register_screen.dart';
-import 'package:easy_birthday/services/encryption.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
@@ -31,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController phoneController;
   late TextEditingController passwordController;
   late String countryCode = "";
+  bool loginWithPassword = true;
 
   @override
   void initState() {
@@ -140,11 +140,12 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          AppTextField(
-            hintText: t.password,
-            controller: passwordController,
-            checkIfPassword: true,
-          ),
+          if (loginWithPassword)
+            AppTextField(
+              hintText: t.password,
+              controller: passwordController,
+              checkIfPassword: true,
+            ),
         ],
       ),
     );
@@ -156,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Column(
         children: [
           AppButton(
-            text: t.login,
+            text: loginWithPassword ? t.login : t.send_code,
             onTap: () {
               final formValid = formValidation();
               if (formValid) {}
@@ -164,11 +165,14 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           const SizedBox(height: 12),
           AppButton(
-            text: t.login_with_password,
+            text: loginWithPassword
+                ? t.login_with_otp_code
+                : t.login_with_password,
             unfillColors: true,
             onTap: () {
-              final formValid = formValidation();
-              if (formValid) {}
+              setState(() {
+                loginWithPassword = !loginWithPassword;
+              });
             },
           ),
           const SizedBox(height: 12),

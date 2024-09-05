@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 74
+/// Strings: 75
 ///
-/// Built on 2024-09-02 at 19:03 UTC
+/// Built on 2024-09-05 at 10:08 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -229,6 +229,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get forgot_password => 'שכחת סיסמה';
 	String get password_recovery => 'שחזור סיסמה';
 	String get send_mail => 'שלח מייל';
+	String get send_code => 'שלח קוד';
 	String get mail__recover_sent_title => 'מייל לשחזור סיסמה נשלח בהצלחה';
 	String get mail__recover_sent_description => 'נא לחץ על הקישור במייל.\nאם אינך רואה את המייל נסה לחפש בתיקיית הספאם או נסה שנית';
 	String get upload_dog_image => 'העלה תמונה של הכלב';
@@ -323,6 +324,7 @@ extension on Translations {
 			case 'forgot_password': return 'שכחת סיסמה';
 			case 'password_recovery': return 'שחזור סיסמה';
 			case 'send_mail': return 'שלח מייל';
+			case 'send_code': return 'שלח קוד';
 			case 'mail__recover_sent_title': return 'מייל לשחזור סיסמה נשלח בהצלחה';
 			case 'mail__recover_sent_description': return 'נא לחץ על הקישור במייל.\nאם אינך רואה את המייל נסה לחפש בתיקיית הספאם או נסה שנית';
 			case 'upload_dog_image': return 'העלה תמונה של הכלב';

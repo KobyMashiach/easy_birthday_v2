@@ -66,6 +66,7 @@
   "forgot_password": "שכחת סיסמה",
   "password_recovery": "שחזור סיסמה",
   "send_mail": "שלח מייל",
+  "send_code": "שלח קוד",
   "mail__recover_sent_title": "מייל לשחזור סיסמה נשלח בהצלחה",
   "mail__recover_sent_description": "נא לחץ על הקישור במייל.\nאם אינך רואה את המייל נסה לחפש בתיקיית הספאם או נסה שנית",
   "upload_dog_image": "העלה תמונה של הכלב",
