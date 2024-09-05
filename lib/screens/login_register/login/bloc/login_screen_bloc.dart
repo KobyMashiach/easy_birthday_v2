@@ -42,8 +42,11 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         if (persona.registerComplete) {
           emit(LoginScreenStateNavToHomeScreen());
         } else {
-          if (persona.role.isPartner())
+          if (persona.role.isPartner()) {
             emit(LoginScreenStateNavToFirstRegisterScreen());
+          } else {
+            emit(LoginScreenStateNavToFirstLoginScreen());
+          }
         }
       } else {
         emit(LoginScreenStateDialogErrorMessage(message: t.wrong_password));

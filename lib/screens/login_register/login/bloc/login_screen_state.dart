@@ -26,3 +26,6 @@ final class LoginScreenStateNavToHomeScreen extends LoginScreenStateNavi {}
 
 final class LoginScreenStateNavToFirstRegisterScreen
     extends LoginScreenStateNavi {}
+
+final class LoginScreenStateNavToFirstLoginScreen
+    extends LoginScreenStateNavi {}
