@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 76
+/// Strings: 80
 ///
-/// Built on 2024-09-05 at 11:20 UTC
+/// Built on 2024-09-05 at 17:08 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -242,6 +242,10 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get login_with_password => 'התחבר עם סיסמה';
 	String get login_with_otp_code => 'התחבר עם קוד אימות';
 	String get phone_not_exist_system => 'מספר הטלפון לא קיים במערכת';
+	String get explanation_screen_title => 'המדריך ליצירת הפתעה מושלמת';
+	String get continue_ => 'המשך';
+	String get first_register => 'הרשמה ראשונית';
+	String get date_of_birth => 'תאריך לידה';
 }
 
 /// Flat map(s) containing all translations.
@@ -338,6 +342,10 @@ extension on Translations {
 			case 'login_with_password': return 'התחבר עם סיסמה';
 			case 'login_with_otp_code': return 'התחבר עם קוד אימות';
 			case 'phone_not_exist_system': return 'מספר הטלפון לא קיים במערכת';
+			case 'explanation_screen_title': return 'המדריך ליצירת הפתעה מושלמת';
+			case 'continue_': return 'המשך';
+			case 'first_register': return 'הרשמה ראשונית';
+			case 'date_of_birth': return 'תאריך לידה';
 			default: return null;
 		}
 	}

@@ -2,7 +2,8 @@
 
 import 'dart:async';
 import 'package:easy_birthday/core/colors.dart';
-import 'package:easy_birthday/screens/login_register/first_register/explanation_screen.dart';
+import 'package:easy_birthday/screens/login_register/first_register/first_register_main.dart';
+import 'package:easy_birthday/screens/login_register/first_register/inner/explanation_screen.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/login_register/register/register_screen.dart';
 import 'package:easy_birthday/screens/splash/bloc/splash_screen_bloc.dart';
@@ -44,9 +45,9 @@ class _SplashScreenState extends State<SplashScreen> {
       final state = splashBloc.state;
       //TODO: check if login or home or first details
       if (state is SplashScreenNavigationToHomeScreen) {
-        KheasydevNavigatePage().pushAndRemoveUntil(context, LoginScreen());
-        // KheasydevNavigatePage()
-        //     .pushAndRemoveUntil(context, ExplanationScreen());
+        // KheasydevNavigatePage().pushAndRemoveUntil(context, LoginScreen());
+        KheasydevNavigatePage()
+            .pushAndRemoveUntil(context, FirstRegisterMain());
       }
     }
   }

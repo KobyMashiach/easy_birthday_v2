@@ -78,5 +78,9 @@
   "send_again": "שלח שוב",
   "login_with_password": "התחבר עם סיסמה",
   "login_with_otp_code": "התחבר עם קוד אימות",
-  "phone_not_exist_system": "מספר הטלפון לא קיים במערכת"
+  "phone_not_exist_system": "מספר הטלפון לא קיים במערכת",
+  "explanation_screen_title": "המדריך ליצירת הפתעה מושלמת",
+  "continue_": "המשך",
+  "first_register": "הרשמה ראשונית",
+  "date_of_birth": "תאריך לידה"
 }
