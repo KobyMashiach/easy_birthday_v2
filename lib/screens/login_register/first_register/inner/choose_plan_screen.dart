@@ -68,13 +68,17 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
         Spacer(),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.pinkAccent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ),
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           ),
           onPressed: () {},
-          child: Icon(Icons.shopping_cart, color: Colors.white),
+          child: Icon(
+            Icons.shopping_cart,
+            color: Colors.white,
+          ),
         ),
       ],
     );
