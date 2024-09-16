@@ -16,7 +16,7 @@ class ChoosePlanScreen extends StatefulWidget {
 
 class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
   final PageController _pageController =
-      PageController(viewportFraction: 0.8, initialPage: 1);
+      PageController(viewportFraction: 0.7, initialPage: 1);
 
   int _selectedPlanIndex = 1;
 
@@ -27,7 +27,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: PageView.builder(
-            itemCount: 3,
+            itemCount: plans.length,
             controller: _pageController,
             onPageChanged: (index) {
               setState(() {
@@ -36,7 +36,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
             },
             itemBuilder: (context, index) {
               bool isSelected = _selectedPlanIndex == index;
-
+              final plan = plans.entries.elementAt(index).value;
               return AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
@@ -70,27 +70,10 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                   },
                   child: Opacity(
                     opacity: isSelected ? 1.0 : 0.3,
-                    child: ChoosePlanListView(
-                      title: index == 0
-                          ? 'Basic'
-                          : index == 1
-                              ? 'Enterprise'
-                              : 'Startup',
-                      price: index == 0
-                          ? '10\$'
-                          : index == 1
-                              ? '35\$'
-                              : '24\$',
-                      features: index == 0
-                          ? ['Feature 1', 'Feature 2', 'Feature 3']
-                          : index == 1
-                              ? [
-                                  'Feature 1',
-                                  'Feature 2',
-                                  'Feature 3',
-                                  'Feature 4'
-                                ]
-                              : ['Feature 1', 'Feature 2', 'Feature 3'],
+                    child: ChoosePlanCard(
+                      title: plan["title"],
+                      price: plan["price"],
+                      features: plan["features"],
                       isSelected: isSelected,
                     ),
                   ),
@@ -111,3 +94,36 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
     );
   }
 }
+
+Map<String, dynamic> plans = {
+  "basic": {
+    "title": "Free",
+    "price": "0",
+    "features": [
+      'גלריית תמונות (עד 30 תמונות)',
+      'טקסט לברכה מרגשת',
+      'גלריית מוסיקה מיוטיוב',
+    ]
+  },
+  "Standard": {
+    "title": "Standard",
+    "price": "25",
+    "features": [
+      'גלריית תמונות (עד 60 תמונות)',
+      'טקסט לברכה מרגשת',
+      'גלריית מוסיקה מיוטיוב',
+      'ללא פרסומות'
+    ]
+  },
+  "Platinum": {
+    "title": "Platinum",
+    "price": "40",
+    "features": [
+      'גלריית תמונות (ללא הגבלה)',
+      'טקסט לברכה מרגשת',
+      'גלריית מוסיקה מיוטיוב',
+      'משחק טריוויה כיפי ומאתגר',
+      'ללא פרסומות'
+    ]
+  }
+};

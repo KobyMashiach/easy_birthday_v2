@@ -1,12 +1,13 @@
+import 'package:easy_birthday/core/text_styles.dart';
 import 'package:flutter/material.dart';
 
-class ChoosePlanListView extends StatelessWidget {
+class ChoosePlanCard extends StatelessWidget {
   final String title;
   final String price;
   final List<String> features;
   final bool isSelected;
 
-  const ChoosePlanListView({
+  const ChoosePlanCard({
     Key? key,
     required this.title,
     required this.price,
@@ -19,23 +20,15 @@ class ChoosePlanListView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-            color: isSelected ? Colors.white : Colors.black,
-          ),
-        ),
+        Text(title,
+            style: AppTextStyle().bigTitle.copyWith(
+                  color: isSelected ? Colors.white : Colors.black,
+                )),
         SizedBox(height: 8.0),
-        Text(
-          price,
-          style: TextStyle(
-            fontSize: 32.0,
-            fontWeight: FontWeight.bold,
-            color: isSelected ? Colors.white : Colors.black,
-          ),
-        ),
+        Text("$price₪",
+            style: AppTextStyle().title.copyWith(
+                  color: isSelected ? Colors.white : Colors.black,
+                )),
         SizedBox(height: 16.0),
         ListView.separated(
             shrinkWrap: true,
@@ -67,16 +60,21 @@ class ChoosePlanListView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.check,
-            color: isSelected ? Colors.pink : Colors.grey,
+          Expanded(
+            flex: 2,
+            child: Icon(
+              Icons.check,
+              color: isSelected ? Colors.pink : Colors.grey,
+            ),
           ),
           SizedBox(width: 8.0),
-          Text(
-            features[index],
-            style: TextStyle(
-              fontSize: 16.0,
-              color: isSelected ? Colors.white : Colors.black,
+          Expanded(
+            flex: 8,
+            child: Text(
+              features[index],
+              style: AppTextStyle().smallDescription.copyWith(
+                    color: isSelected ? Colors.white : Colors.black,
+                  ),
             ),
           ),
         ],
