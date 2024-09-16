@@ -30,7 +30,8 @@ mixin _$PersonaModel {
   @RoleModelConverter()
   RoleModel get role => throw _privateConstructorUsedError;
   @HiveField(4)
-  int? get age => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+  DateTime? get dateOfBirth => throw _privateConstructorUsedError;
   @HiveField(5)
   String? get profileImage => throw _privateConstructorUsedError;
   @HiveField(6)
@@ -39,6 +40,8 @@ mixin _$PersonaModel {
   String? get partnerGender => throw _privateConstructorUsedError;
   @HiveField(8)
   bool get registerComplete => throw _privateConstructorUsedError;
+  @HiveField(9)
+  String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,11 +60,14 @@ abstract class $PersonaModelCopyWith<$Res> {
       @HiveField(1) String phoneNumber,
       @HiveField(2) String password,
       @HiveField(3) @RoleModelConverter() RoleModel role,
-      @HiveField(4) int? age,
+      @HiveField(4)
+      @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+      DateTime? dateOfBirth,
       @HiveField(5) String? profileImage,
       @HiveField(6) String gender,
       @HiveField(7) String? partnerGender,
-      @HiveField(8) bool registerComplete});
+      @HiveField(8) bool registerComplete,
+      @HiveField(9) String? email});
 }
 
 /// @nodoc
@@ -81,11 +87,12 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
     Object? phoneNumber = null,
     Object? password = null,
     Object? role = null,
-    Object? age = freezed,
+    Object? dateOfBirth = freezed,
     Object? profileImage = freezed,
     Object? gender = null,
     Object? partnerGender = freezed,
     Object? registerComplete = null,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -104,10 +111,10 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as RoleModel,
-      age: freezed == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int?,
+      dateOfBirth: freezed == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       profileImage: freezed == profileImage
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
@@ -124,6 +131,10 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
           ? _value.registerComplete
           : registerComplete // ignore: cast_nullable_to_non_nullable
               as bool,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -141,11 +152,14 @@ abstract class _$$PersonaModelImplCopyWith<$Res>
       @HiveField(1) String phoneNumber,
       @HiveField(2) String password,
       @HiveField(3) @RoleModelConverter() RoleModel role,
-      @HiveField(4) int? age,
+      @HiveField(4)
+      @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+      DateTime? dateOfBirth,
       @HiveField(5) String? profileImage,
       @HiveField(6) String gender,
       @HiveField(7) String? partnerGender,
-      @HiveField(8) bool registerComplete});
+      @HiveField(8) bool registerComplete,
+      @HiveField(9) String? email});
 }
 
 /// @nodoc
@@ -163,11 +177,12 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
     Object? phoneNumber = null,
     Object? password = null,
     Object? role = null,
-    Object? age = freezed,
+    Object? dateOfBirth = freezed,
     Object? profileImage = freezed,
     Object? gender = null,
     Object? partnerGender = freezed,
     Object? registerComplete = null,
+    Object? email = freezed,
   }) {
     return _then(_$PersonaModelImpl(
       name: null == name
@@ -186,10 +201,10 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as RoleModel,
-      age: freezed == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int?,
+      dateOfBirth: freezed == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       profileImage: freezed == profileImage
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
@@ -206,6 +221,10 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
           ? _value.registerComplete
           : registerComplete // ignore: cast_nullable_to_non_nullable
               as bool,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -219,11 +238,14 @@ class _$PersonaModelImpl implements _PersonaModel {
       @HiveField(1) required this.phoneNumber,
       @HiveField(2) required this.password,
       @HiveField(3) @RoleModelConverter() required this.role,
-      @HiveField(4) this.age,
+      @HiveField(4)
+      @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+      this.dateOfBirth,
       @HiveField(5) this.profileImage,
       @HiveField(6) this.gender = "male",
       @HiveField(7) this.partnerGender,
-      @HiveField(8) required this.registerComplete});
+      @HiveField(8) required this.registerComplete,
+      @HiveField(9) this.email});
 
   factory _$PersonaModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonaModelImplFromJson(json);
@@ -243,7 +265,8 @@ class _$PersonaModelImpl implements _PersonaModel {
   final RoleModel role;
   @override
   @HiveField(4)
-  final int? age;
+  @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+  final DateTime? dateOfBirth;
   @override
   @HiveField(5)
   final String? profileImage;
@@ -257,10 +280,13 @@ class _$PersonaModelImpl implements _PersonaModel {
   @override
   @HiveField(8)
   final bool registerComplete;
+  @override
+  @HiveField(9)
+  final String? email;
 
   @override
   String toString() {
-    return 'PersonaModel(name: $name, phoneNumber: $phoneNumber, password: $password, role: $role, age: $age, profileImage: $profileImage, gender: $gender, partnerGender: $partnerGender, registerComplete: $registerComplete)';
+    return 'PersonaModel(name: $name, phoneNumber: $phoneNumber, password: $password, role: $role, dateOfBirth: $dateOfBirth, profileImage: $profileImage, gender: $gender, partnerGender: $partnerGender, registerComplete: $registerComplete, email: $email)';
   }
 
   @override
@@ -274,20 +300,32 @@ class _$PersonaModelImpl implements _PersonaModel {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.role, role) || other.role == role) &&
-            (identical(other.age, age) || other.age == age) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth) &&
             (identical(other.profileImage, profileImage) ||
                 other.profileImage == profileImage) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.partnerGender, partnerGender) ||
                 other.partnerGender == partnerGender) &&
             (identical(other.registerComplete, registerComplete) ||
-                other.registerComplete == registerComplete));
+                other.registerComplete == registerComplete) &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, phoneNumber, password,
-      role, age, profileImage, gender, partnerGender, registerComplete);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      phoneNumber,
+      password,
+      role,
+      dateOfBirth,
+      profileImage,
+      gender,
+      partnerGender,
+      registerComplete,
+      email);
 
   @JsonKey(ignore: true)
   @override
@@ -309,11 +347,14 @@ abstract class _PersonaModel implements PersonaModel {
       @HiveField(1) required final String phoneNumber,
       @HiveField(2) required final String password,
       @HiveField(3) @RoleModelConverter() required final RoleModel role,
-      @HiveField(4) final int? age,
+      @HiveField(4)
+      @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+      final DateTime? dateOfBirth,
       @HiveField(5) final String? profileImage,
       @HiveField(6) final String gender,
       @HiveField(7) final String? partnerGender,
-      @HiveField(8) required final bool registerComplete}) = _$PersonaModelImpl;
+      @HiveField(8) required final bool registerComplete,
+      @HiveField(9) final String? email}) = _$PersonaModelImpl;
 
   factory _PersonaModel.fromJson(Map<String, dynamic> json) =
       _$PersonaModelImpl.fromJson;
@@ -333,7 +374,8 @@ abstract class _PersonaModel implements PersonaModel {
   RoleModel get role;
   @override
   @HiveField(4)
-  int? get age;
+  @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+  DateTime? get dateOfBirth;
   @override
   @HiveField(5)
   String? get profileImage;
@@ -346,6 +388,9 @@ abstract class _PersonaModel implements PersonaModel {
   @override
   @HiveField(8)
   bool get registerComplete;
+  @override
+  @HiveField(9)
+  String? get email;
   @override
   @JsonKey(ignore: true)
   _$$PersonaModelImplCopyWith<_$PersonaModelImpl> get copyWith =>

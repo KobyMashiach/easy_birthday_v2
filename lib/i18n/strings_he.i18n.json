@@ -82,5 +82,8 @@
   "explanation_screen_title": "המדריך ליצירת הפתעה מושלמת",
   "continue_": "המשך",
   "first_register": "הרשמה ראשונית",
-  "date_of_birth": "תאריך לידה"
+  "date_of_birth": "תאריך לידה",
+  "fill_your_details": "מלא/י את הפרטים שלך",
+  "fill_partner_details": "מלא/י את הפרטים של הבן/בת זוג שלך",
+  "first_password": "בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456"
 }

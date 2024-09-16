@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 80
+/// Strings: 83
 ///
-/// Built on 2024-09-05 at 17:08 UTC
+/// Built on 2024-09-15 at 09:43 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -246,6 +246,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get continue_ => 'המשך';
 	String get first_register => 'הרשמה ראשונית';
 	String get date_of_birth => 'תאריך לידה';
+	String get fill_your_details => 'מלא/י את הפרטים שלך';
+	String get fill_partner_details => 'מלא/י את הפרטים של הבן/בת זוג שלך';
+	String get first_password => 'בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456';
 }
 
 /// Flat map(s) containing all translations.
@@ -346,6 +349,9 @@ extension on Translations {
 			case 'continue_': return 'המשך';
 			case 'first_register': return 'הרשמה ראשונית';
 			case 'date_of_birth': return 'תאריך לידה';
+			case 'fill_your_details': return 'מלא/י את הפרטים שלך';
+			case 'fill_partner_details': return 'מלא/י את הפרטים של הבן/בת זוג שלך';
+			case 'first_password': return 'בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456';
 			default: return null;
 		}
 	}

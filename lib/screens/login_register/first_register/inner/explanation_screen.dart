@@ -10,32 +10,35 @@ class ExplanationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Column(
-                    children: [
-                      Text("Easy Birthday", style: AppTextStyle().bigTitle),
-                      const SizedBox(height: 24),
-                      Text(firstRegisterHE, textAlign: TextAlign.center),
-                      const SizedBox(height: 24),
-                    ],
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Column(
+                      children: [
+                        Text("Easy Birthday", style: AppTextStyle().bigTitle),
+                        const SizedBox(height: 24),
+                        Text(firstRegisterHE, textAlign: TextAlign.center),
+                        const SizedBox(height: 24),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          AppButtonsBottomNavigationBar(
-            oneButton: true,
-            activeButtonText: t.continue_,
-            activeButtonOnTap: onContinue,
-          ),
-        ],
+            AppButtonsBottomNavigationBar(
+              oneButton: true,
+              activeButtonText: t.continue_,
+              activeButtonOnTap: onContinue,
+            ),
+          ],
+        ),
       ),
     );
   }

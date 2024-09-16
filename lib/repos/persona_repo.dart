@@ -16,6 +16,10 @@ class PersonaRepo {
     return localDB.getPersona();
   }
 
+  PersonaModel getLocalPartnerPersona() {
+    return localDB.getPartner();
+  }
+
   Future<PersonaModel> getPersona({required String phoneNumber}) async {
     final personaFirestore =
         await firestoreGetDocValues(collection, phoneNumber);
@@ -51,6 +55,16 @@ class PersonaRepo {
     final phoneExist = await firestoreCheckIfDocExists(collection, phoneNumber);
     if (phoneExist) {
       firestoreDeleteDoc(collection, docName: phoneNumber);
+    }
+  }
+
+  Future<void> updatePartnerPersona(PersonaModel persona) async {
+    await localDB.updatePartner(persona: persona);
+    final phoneExist =
+        await firestoreCheckIfDocExists(collection, persona.phoneNumber);
+    if (!phoneExist) {
+      firestoreNewDoc(collection,
+          docName: persona.phoneNumber, values: persona.toJson());
     }
   }
 }

@@ -140,7 +140,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 Expanded(
                     flex: 3,
                     child: CountriesCodesDropdown(
-                      onCountryChange: (country) => {},
+                      onCountryChange: (country) =>
+                          countryCode = country.dialCode,
                     )),
                 Expanded(
                   flex: 6,

@@ -11,6 +11,8 @@ PersonaModel globalUser = PersonaModel(
     role: RoleModel.partner,
     registerComplete: false);
 
+PersonaModel? globalPartnerUser;
+
 String globalAppName = "";
 String globalAppVersion = "";
 

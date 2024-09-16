@@ -21,18 +21,19 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       phoneNumber: fields[1] as String,
       password: fields[2] as String,
       role: fields[3] as RoleModel,
-      age: fields[4] as int?,
+      dateOfBirth: fields[4] as DateTime?,
       profileImage: fields[5] as String?,
       gender: fields[6] as String,
       partnerGender: fields[7] as String?,
       registerComplete: fields[8] as bool,
+      email: fields[9] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$PersonaModelImpl obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -42,7 +43,7 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       ..writeByte(3)
       ..write(obj.role)
       ..writeByte(4)
-      ..write(obj.age)
+      ..write(obj.dateOfBirth)
       ..writeByte(5)
       ..write(obj.profileImage)
       ..writeByte(6)
@@ -50,7 +51,9 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       ..writeByte(7)
       ..write(obj.partnerGender)
       ..writeByte(8)
-      ..write(obj.registerComplete);
+      ..write(obj.registerComplete)
+      ..writeByte(9)
+      ..write(obj.email);
   }
 
   @override
@@ -74,11 +77,12 @@ _$PersonaModelImpl _$$PersonaModelImplFromJson(Map<String, dynamic> json) =>
       phoneNumber: json['phoneNumber'] as String,
       password: json['password'] as String,
       role: const RoleModelConverter().fromJson(json['role'] as String),
-      age: (json['age'] as num?)?.toInt(),
+      dateOfBirth: timestampToDateTime(json['dateOfBirth']),
       profileImage: json['profileImage'] as String?,
       gender: json['gender'] as String? ?? "male",
       partnerGender: json['partnerGender'] as String?,
       registerComplete: json['registerComplete'] as bool,
+      email: json['email'] as String?,
     );
 
 Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
@@ -87,9 +91,10 @@ Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
       'phoneNumber': instance.phoneNumber,
       'password': instance.password,
       'role': const RoleModelConverter().toJson(instance.role),
-      'age': instance.age,
+      'dateOfBirth': dateTimeToTimestamp(instance.dateOfBirth),
       'profileImage': instance.profileImage,
       'gender': instance.gender,
       'partnerGender': instance.partnerGender,
       'registerComplete': instance.registerComplete,
+      'email': instance.email,
     };

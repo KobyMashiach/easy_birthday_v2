@@ -7,7 +7,9 @@ import 'package:kh_easy_dev/kh_easy_dev.dart';
 
 class CountriesCodesDropdown extends StatefulWidget {
   final Function(CountryModel) onCountryChange;
-  const CountriesCodesDropdown({super.key, required this.onCountryChange});
+  final String? countryDialCode;
+  const CountriesCodesDropdown(
+      {super.key, required this.onCountryChange, this.countryDialCode});
 
   @override
   State<CountriesCodesDropdown> createState() => _CountriesCodesDropdownState();
@@ -28,7 +30,7 @@ class _CountriesCodesDropdownState extends State<CountriesCodesDropdown> {
     _searchController = TextEditingController();
     filteredCountries = countries;
     selectedCountry = countries.firstWhere(
-      (country) => country.name.toLowerCase() == 'israel',
+      (country) => country.dialCode == (widget.countryDialCode ?? '+972'),
       orElse: () => countries.first,
     );
     widget.onCountryChange(selectedCountry!);
