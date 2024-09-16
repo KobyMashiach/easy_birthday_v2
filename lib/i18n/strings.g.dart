@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 83
+/// Strings: 90
 ///
-/// Built on 2024-09-15 at 09:43 UTC
+/// Built on 2024-09-16 at 07:37 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -249,6 +249,25 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get fill_your_details => 'מלא/י את הפרטים שלך';
 	String get fill_partner_details => 'מלא/י את הפרטים של הבן/בת זוג שלך';
 	String get first_password => 'בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456';
+	String get recommended_colors => 'צבעים מומלצים';
+	String choose_color({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בחר צבע מקשת צבעים';
+			case GenderContext.female:
+				return 'בחרי צבע מקשת צבעים';
+		}
+	}
+	String skip({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'דלג';
+			case GenderContext.female:
+				return 'דלגי';
+		}
+	}
+	String get continue_no_change => 'המשך ללא שינוי';
+	String get selected_color => 'צבע נבחר';
 }
 
 /// Flat map(s) containing all translations.
@@ -352,6 +371,25 @@ extension on Translations {
 			case 'fill_your_details': return 'מלא/י את הפרטים שלך';
 			case 'fill_partner_details': return 'מלא/י את הפרטים של הבן/בת זוג שלך';
 			case 'first_password': return 'בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456';
+			case 'recommended_colors': return 'צבעים מומלצים';
+			case 'choose_color': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בחר צבע מקשת צבעים';
+					case GenderContext.female:
+						return 'בחרי צבע מקשת צבעים';
+				}
+			};
+			case 'skip': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'דלג';
+					case GenderContext.female:
+						return 'דלגי';
+				}
+			};
+			case 'continue_no_change': return 'המשך ללא שינוי';
+			case 'selected_color': return 'צבע נבחר';
 			default: return null;
 		}
 	}

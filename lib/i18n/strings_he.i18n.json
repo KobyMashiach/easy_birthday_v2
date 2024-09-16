@@ -85,5 +85,16 @@
   "date_of_birth": "תאריך לידה",
   "fill_your_details": "מלא/י את הפרטים שלך",
   "fill_partner_details": "מלא/י את הפרטים של הבן/בת זוג שלך",
-  "first_password": "בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456"
+  "first_password": "בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456",
+  "recommended_colors": "צבעים מומלצים",
+  "choose_color(context=GenderContext)": {
+    "male": "בחר צבע מקשת צבעים",
+    "female": "בחרי צבע מקשת צבעים"
+  },
+  "skip(context=GenderContext)": {
+    "male": "דלג",
+    "female": "דלגי"
+  },
+  "continue_no_change": "המשך ללא שינוי",
+  "selected_color": "צבע נבחר"
 }

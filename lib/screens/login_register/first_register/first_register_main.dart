@@ -1,5 +1,6 @@
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/screens/login_register/first_register/inner/choose_app_color.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/partner_details_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/register_step_row/register_step_row.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/own_details_screen.dart';
@@ -23,7 +24,7 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: 2);
+    pageController = PageController(initialPage: 3);
   }
 
   @override
@@ -66,6 +67,10 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
                     onPrevious: () => movePreviousPage(),
                   ),
                   PartnerDetailsScreen(
+                    onContinue: () => moveNextPage(),
+                    onPrevious: () => movePreviousPage(),
+                  ),
+                  ChooseAppColor(
                     onContinue: () => moveNextPage(),
                     onPrevious: () => movePreviousPage(),
                   ),

@@ -43,13 +43,11 @@ class _CountriesCodesDropdownState extends State<CountriesCodesDropdown> {
   }
 
   void _filterCountries(String query) {
-    setState(() {
-      filteredCountries = countries
-          .where((country) =>
-              country.name.toLowerCase().contains(query.toLowerCase()) ||
-              country.dialCode.contains(query))
-          .toList();
-    });
+    filteredCountries = countries
+        .where((country) =>
+            country.name.toLowerCase().contains(query.toLowerCase()) ||
+            country.dialCode.contains(query))
+        .toList();
   }
 
   void _showDropdown(BuildContext context) {
@@ -60,6 +58,14 @@ class _CountriesCodesDropdownState extends State<CountriesCodesDropdown> {
   void _hideDropdown() {
     _dropdownOverlayEntry?.remove();
     _dropdownOverlayEntry = null;
+  }
+
+  void _onCountrySelected(CountryModel country) {
+    setState(() {
+      selectedCountry = country;
+      widget.onCountryChange(country);
+      _hideDropdown();
+    });
   }
 
   OverlayEntry _createDropdown() {
@@ -74,53 +80,50 @@ class _CountriesCodesDropdownState extends State<CountriesCodesDropdown> {
             elevation: 6,
             color: Colors.white,
             borderRadius: BorderRadius.circular(8.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: _searchController,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      border: InputBorder.none,
+            child: StatefulBuilder(
+              builder: (context, setState) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.search),
+                        border: InputBorder.none,
+                      ),
+                      onChanged: (text) =>
+                          setState(() => _filterCountries(text)),
                     ),
-                    onChanged: _filterCountries,
                   ),
-                ),
-                kheasydevDivider(black: true),
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: 200),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: filteredCountries.length,
-                    itemBuilder: (context, index) {
-                      final country = filteredCountries[index];
-                      return ListTile(
-                        leading: Text(
-                          country.flag,
-                          style: AppTextStyle().description,
-                        ),
-                        title: Text(
-                          country.name,
-                          style: AppTextStyle().description,
-                        ),
-                        trailing: Text(
-                          country.dialCode,
-                          style: AppTextStyle().description,
-                        ),
-                        onTap: () {
-                          setState(() {
-                            selectedCountry = country;
-                            widget.onCountryChange(country);
-                            _hideDropdown();
-                          });
-                        },
-                      );
-                    },
+                  kheasydevDivider(black: true),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: 200),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: filteredCountries.length,
+                      itemBuilder: (context, index) {
+                        final country = filteredCountries[index];
+                        return ListTile(
+                          leading: Text(country.flag,
+                              style: AppTextStyle().description),
+                          title: Text(country.name,
+                              style: AppTextStyle().description),
+                          trailing: Text(country.dialCode,
+                              style: AppTextStyle().description),
+                          onTap: () {
+                            setState(() {
+                              selectedCountry = country;
+                              _onCountrySelected(country);
+                              _hideDropdown();
+                            });
+                          },
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
