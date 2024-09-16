@@ -12,17 +12,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
 
-class ChooseAppColor extends StatefulWidget {
+class ChooseAppColorScreen extends StatefulWidget {
   final VoidCallback onContinue;
   final VoidCallback onPrevious;
-  const ChooseAppColor(
+  const ChooseAppColorScreen(
       {super.key, required this.onContinue, required this.onPrevious});
 
   @override
-  State<ChooseAppColor> createState() => _ChooseAppColorState();
+  State<ChooseAppColorScreen> createState() => _ChooseAppColorScreenState();
 }
 
-class _ChooseAppColorState extends State<ChooseAppColor> {
+class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
   Color selectedColor = AppColors.primaryColor;
   bool colorChange = false;
 

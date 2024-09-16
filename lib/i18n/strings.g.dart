@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 90
+/// Strings: 91
 ///
-/// Built on 2024-09-16 at 07:37 UTC
+/// Built on 2024-09-16 at 07:45 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -268,6 +268,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	}
 	String get continue_no_change => 'המשך ללא שינוי';
 	String get selected_color => 'צבע נבחר';
+	String get finish => 'סיום';
 }
 
 /// Flat map(s) containing all translations.
@@ -390,6 +391,7 @@ extension on Translations {
 			};
 			case 'continue_no_change': return 'המשך ללא שינוי';
 			case 'selected_color': return 'צבע נבחר';
+			case 'finish': return 'סיום';
 			default: return null;
 		}
 	}
