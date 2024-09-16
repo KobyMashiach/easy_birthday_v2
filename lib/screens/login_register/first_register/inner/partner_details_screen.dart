@@ -17,25 +17,44 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 
 class PartnerDetailsScreen extends StatefulWidget {
-  final VoidCallback onContinue;
-  final VoidCallback onPrevious;
   const PartnerDetailsScreen(
       {super.key, required this.onContinue, required this.onPrevious});
+
+  final VoidCallback onContinue;
+  final VoidCallback onPrevious;
 
   @override
   State<PartnerDetailsScreen> createState() => _PartnerDetailsScreenState();
 }
 
 class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
-  late TextEditingController phoneController;
-  late TextEditingController fullNameController;
-  late TextEditingController emailController;
-  late TextEditingController genderController;
-  late TextEditingController dateOfBirthController;
-  late TextEditingController passwordController;
-
   late String countryCode = "";
+  late TextEditingController dateOfBirthController;
+  late TextEditingController emailController;
+  Map<String, bool> errorsMap = {
+    "phone": false,
+    "name": false,
+    "email": false,
+    "gender": false,
+    "birth": false,
+  };
+
+  late TextEditingController fullNameController;
+  late TextEditingController genderController;
+  late TextEditingController passwordController;
+  late TextEditingController phoneController;
   late DateTime? selectedPartnerDate;
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    fullNameController.dispose();
+    emailController.dispose();
+    genderController.dispose();
+    dateOfBirthController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -52,24 +71,93 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
     }
   }
 
-  @override
-  void dispose() {
-    phoneController.dispose();
-    fullNameController.dispose();
-    emailController.dispose();
-    genderController.dispose();
-    dateOfBirthController.dispose();
-    passwordController.dispose();
-    super.dispose();
+  Directionality phoneNumberFields() {
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Row(
+        children: [
+          Expanded(
+              flex: 3,
+              child: CountriesCodesDropdown(
+                onCountryChange: (country) => countryCode = country.dialCode,
+                countryDialCode: countryCode,
+              )),
+          Expanded(
+            flex: 6,
+            child: AppTextField(
+              hintText: t.phone,
+              controller: phoneController,
+              keyboard: TextInputType.phone,
+              showError: errorsMap["phone"],
+              isRequired: true,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
-  Map<String, bool> errorsMap = {
-    "phone": false,
-    "name": false,
-    "email": false,
-    "gender": false,
-    "birth": false,
-  };
+  bool formValidation() {
+    if (phoneController.text.length == 10 &&
+        phoneController.text.startsWith('0')) {
+      phoneController.text = phoneController.text.substring(1);
+    }
+    errorsMap["phone"] = countryCode.isEmpty ||
+        phoneController.text.length < 6 ||
+        phoneController.text.length > 9;
+    errorsMap["name"] = !(fullNameController.text.length >= 2);
+    errorsMap["email"] = !(emailController.text.isEmpty ||
+        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(emailController.text));
+    errorsMap["gender"] = !(genderController.text.isNotEmpty);
+    errorsMap["birth"] = !(dateOfBirthController.text.isNotEmpty);
+    if (errorsMap.containsValue(true)) return false;
+    return true;
+  }
+
+  Future<void> onDateOfBirthTap() async {
+    DateTime initialDate = DateTime.now();
+    if (dateOfBirthController.text.isNotEmpty) {
+      try {
+        initialDate =
+            intl.DateFormat('dd/MM/yyyy').parse(dateOfBirthController.text);
+      } catch (e) {
+        initialDate = DateTime.now();
+      }
+    }
+
+    DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(DateTime.now().year + 1),
+    );
+
+    if (selectedDate != null) {
+      selectedPartnerDate = selectedDate;
+      setState(() {
+        dateOfBirthController.text =
+            intl.DateFormat('dd/MM/yyyy').format(selectedDate);
+      });
+    }
+  }
+
+  void initPartnerDetails() {
+    final splitPhone =
+        CountriesFunctions().splitPhone(globalPartnerUser!.phoneNumber);
+    countryCode = splitPhone.$1 ?? "+972";
+    phoneController.text = splitPhone.$2;
+    fullNameController.text = globalPartnerUser!.name;
+    emailController.text = globalPartnerUser!.email ?? "";
+    genderController.text = globalPartnerUser!.gender;
+    selectedPartnerDate = globalPartnerUser!.dateOfBirth;
+    if (selectedPartnerDate != null) {
+      dateOfBirthController.text =
+          intl.DateFormat('dd/MM/yyyy').format(selectedPartnerDate!);
+    }
+    passwordController.text = MyEncryptionDecryption.getStringFromEncrypted(
+        globalPartnerUser!.password);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +249,6 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
                           : null,
                       gender: genderController.text,
                       dateOfBirth: selectedPartnerDate);
-
                   context
                       .read<PersonaRepo>()
                       .updatePartnerPersona(partnerPersona);
@@ -177,93 +264,5 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
         ),
       ),
     );
-  }
-
-  Directionality phoneNumberFields() {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Row(
-        children: [
-          Expanded(
-              flex: 3,
-              child: CountriesCodesDropdown(
-                onCountryChange: (country) => countryCode = country.dialCode,
-                countryDialCode: countryCode,
-              )),
-          Expanded(
-            flex: 6,
-            child: AppTextField(
-              hintText: t.phone,
-              controller: phoneController,
-              keyboard: TextInputType.phone,
-              showError: errorsMap["phone"],
-              isRequired: true,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  bool formValidation() {
-    if (phoneController.text.length == 10 &&
-        phoneController.text.startsWith('0')) {
-      phoneController.text = phoneController.text.substring(1);
-    }
-    errorsMap["phone"] = countryCode.isEmpty ||
-        phoneController.text.length < 6 ||
-        phoneController.text.length > 9;
-    errorsMap["name"] = !(fullNameController.text.length >= 2);
-    errorsMap["email"] = !(emailController.text.isEmpty ||
-        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-            .hasMatch(emailController.text));
-    errorsMap["gender"] = !(genderController.text.isNotEmpty);
-    errorsMap["birth"] = !(dateOfBirthController.text.isNotEmpty);
-    if (errorsMap.containsValue(true)) return false;
-    return true;
-  }
-
-  Future<void> onDateOfBirthTap() async {
-    DateTime initialDate = DateTime.now();
-    if (dateOfBirthController.text.isNotEmpty) {
-      try {
-        initialDate =
-            intl.DateFormat('dd/MM/yyyy').parse(dateOfBirthController.text);
-      } catch (e) {
-        initialDate = DateTime.now();
-      }
-    }
-
-    DateTime? selectedDate = await showDatePicker(
-      context: context,
-      initialDate: initialDate,
-      firstDate: DateTime(1900),
-      lastDate: DateTime(DateTime.now().year + 1),
-    );
-
-    if (selectedDate != null) {
-      selectedPartnerDate = selectedDate;
-      setState(() {
-        dateOfBirthController.text =
-            intl.DateFormat('dd/MM/yyyy').format(selectedDate);
-      });
-    }
-  }
-
-  void initPartnerDetails() {
-    final splitPhone =
-        CountriesFunctions().splitPhone(globalPartnerUser!.phoneNumber);
-    countryCode = splitPhone.$1 ?? "+972";
-    phoneController.text = splitPhone.$2;
-    fullNameController.text = globalPartnerUser!.name;
-    emailController.text = globalPartnerUser!.email ?? "";
-    genderController.text = globalPartnerUser!.gender;
-    selectedPartnerDate = globalPartnerUser!.dateOfBirth;
-    if (selectedPartnerDate != null) {
-      dateOfBirthController.text =
-          intl.DateFormat('dd/MM/yyyy').format(selectedPartnerDate!);
-    }
-    passwordController.text = MyEncryptionDecryption.getStringFromEncrypted(
-        globalPartnerUser!.password);
   }
 }

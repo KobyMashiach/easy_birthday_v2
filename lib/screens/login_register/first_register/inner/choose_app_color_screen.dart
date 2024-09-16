@@ -13,18 +13,26 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class ChooseAppColorScreen extends StatefulWidget {
-  final VoidCallback onContinue;
-  final VoidCallback onPrevious;
   const ChooseAppColorScreen(
       {super.key, required this.onContinue, required this.onPrevious});
+
+  final VoidCallback onContinue;
+  final VoidCallback onPrevious;
 
   @override
   State<ChooseAppColorScreen> createState() => _ChooseAppColorScreenState();
 }
 
 class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
-  Color selectedColor = AppColors.primaryColor;
   bool colorChange = false;
+  Color selectedColor = AppColors.primaryColor;
+
+  changeColor(Color color) {
+    setState(() {
+      selectedColor = color;
+      colorChange = selectedColor != AppColors.primaryColor;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,13 +107,6 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
         ),
       ),
     );
-  }
-
-  changeColor(Color color) {
-    setState(() {
-      selectedColor = color;
-      colorChange = selectedColor != AppColors.primaryColor;
-    });
   }
 }
 

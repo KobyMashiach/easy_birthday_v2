@@ -10,20 +10,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OwnDetailsScreen extends StatefulWidget {
-  final VoidCallback onContinue;
-  final VoidCallback onPrevious;
   const OwnDetailsScreen(
       {super.key, required this.onContinue, required this.onPrevious});
+
+  final VoidCallback onContinue;
+  final VoidCallback onPrevious;
 
   @override
   State<OwnDetailsScreen> createState() => _OwnDetailsScreenState();
 }
 
 class _OwnDetailsScreenState extends State<OwnDetailsScreen> {
-  late TextEditingController phoneController;
-  late TextEditingController fullNameController;
   late TextEditingController emailController;
+  Map<String, bool> errorsMap = {
+    "name": false,
+    "email": false,
+    "gender": false,
+  };
+
+  late TextEditingController fullNameController;
   late TextEditingController genderController;
+  late TextEditingController phoneController;
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    fullNameController.dispose();
+    emailController.dispose();
+    genderController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -36,20 +52,23 @@ class _OwnDetailsScreenState extends State<OwnDetailsScreen> {
     initControllersValues();
   }
 
-  @override
-  void dispose() {
-    phoneController.dispose();
-    fullNameController.dispose();
-    emailController.dispose();
-    genderController.dispose();
-    super.dispose();
+  bool formValidation() {
+    errorsMap["name"] = !(fullNameController.text.length >= 2);
+    errorsMap["email"] = !(RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(emailController.text));
+    errorsMap["gender"] = !(genderController.text.isNotEmpty);
+
+    if (errorsMap.containsValue(true)) return false;
+    return true;
   }
 
-  Map<String, bool> errorsMap = {
-    "name": false,
-    "email": false,
-    "gender": false,
-  };
+  void initControllersValues() {
+    phoneController.text = globalUser.phoneNumber;
+    fullNameController.text = globalUser.name;
+    emailController.text = globalUser.email ?? "";
+    genderController.text = globalUser.gender;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,23 +145,5 @@ class _OwnDetailsScreenState extends State<OwnDetailsScreen> {
         ),
       ),
     );
-  }
-
-  bool formValidation() {
-    errorsMap["name"] = !(fullNameController.text.length >= 2);
-    errorsMap["email"] = !(RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(emailController.text));
-    errorsMap["gender"] = !(genderController.text.isNotEmpty);
-
-    if (errorsMap.containsValue(true)) return false;
-    return true;
-  }
-
-  void initControllersValues() {
-    phoneController.text = globalUser.phoneNumber;
-    fullNameController.text = globalUser.name;
-    emailController.text = globalUser.email ?? "";
-    genderController.text = globalUser.gender;
   }
 }

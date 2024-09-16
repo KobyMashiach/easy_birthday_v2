@@ -1,6 +1,7 @@
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_app_color_screen.dart';
+import 'package:easy_birthday/screens/login_register/first_register/inner/choose_plan_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_texts_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/partner_details_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/register_step_row/register_step_row.dart';
@@ -19,19 +20,35 @@ class FirstRegisterMain extends StatefulWidget {
 }
 
 class _FirstRegisterMainState extends State<FirstRegisterMain> {
-  int pageNumber = 0;
   late PageController pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    pageController = PageController(initialPage: 0);
-  }
+  int pageNumber = 0;
 
   @override
   void dispose() {
     pageController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(initialPage: 5);
+  }
+
+  moveNextPage() {
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.linear,
+    );
+    setState(() => pageNumber++);
+  }
+
+  movePreviousPage() {
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.linear,
+    );
+    setState(() => pageNumber--);
   }
 
   @override
@@ -76,6 +93,10 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
                     onPrevious: () => movePreviousPage(),
                   ),
                   ChooseTextsScreen(
+                    onContinue: () => moveNextPage(),
+                    onPrevious: () => movePreviousPage(),
+                  ),
+                  ChoosePlanScreen(
                     onContinue: () {},
                     onPrevious: () => movePreviousPage(),
                   ),
@@ -86,21 +107,5 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
         ),
       ),
     );
-  }
-
-  moveNextPage() {
-    pageController.nextPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.linear,
-    );
-    setState(() => pageNumber++);
-  }
-
-  movePreviousPage() {
-    pageController.previousPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.linear,
-    );
-    setState(() => pageNumber--);
   }
 }

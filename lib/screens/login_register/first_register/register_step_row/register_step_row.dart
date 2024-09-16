@@ -3,8 +3,23 @@ import 'package:easy_birthday/screens/login_register/first_register/register_ste
 import 'package:flutter/material.dart';
 
 class RegisterStepRow extends StatelessWidget {
-  final int index;
   const RegisterStepRow(this.index, {super.key});
+
+  final int index;
+
+  Expanded rowDivider() {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.greyDisableColor,
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+            ),
+            height: 1.5),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +30,7 @@ class RegisterStepRow extends StatelessWidget {
     const textThirdChild = CircleWithChild(child: Text("3"));
     const textFourthChild = CircleWithChild(child: Text("4"));
     const textFifthChild = CircleWithChild(child: Text("5"));
+    const textSixthChild = CircleWithChild(child: Text("6"));
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -51,21 +67,14 @@ class RegisterStepRow extends StatelessWidget {
                   ? circleIcon
                   : checkIcon,
           const SizedBox(width: 4),
+          rowDivider(),
+          index < 5
+              ? textSixthChild
+              : index == 5
+                  ? circleIcon
+                  : checkIcon,
+          const SizedBox(width: 4),
         ],
-      ),
-    );
-  }
-
-  Expanded rowDivider() {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Container(
-            decoration: BoxDecoration(
-              color: AppColors.greyDisableColor,
-              borderRadius: BorderRadius.all(Radius.circular(4)),
-            ),
-            height: 1.5),
       ),
     );
   }

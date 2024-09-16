@@ -14,8 +14,15 @@ class ChooseTextsScreen extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) => onPrevious(),
       child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Text("Choose Text"),
+            ],
+          ),
+        ),
         bottomNavigationBar: AppButtonsBottomNavigationBar(
-          activeButtonText: t.finish,
+          activeButtonText: t.continue_,
           activeButtonOnTap: () async {
             onContinue.call();
           },

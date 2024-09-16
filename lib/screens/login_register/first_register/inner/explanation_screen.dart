@@ -5,8 +5,9 @@ import 'package:easy_birthday/core/long_texts.dart';
 import 'package:flutter/material.dart';
 
 class ExplanationScreen extends StatelessWidget {
-  final VoidCallback onContinue;
   const ExplanationScreen({super.key, required this.onContinue});
+
+  final VoidCallback onContinue;
 
   @override
   Widget build(BuildContext context) {

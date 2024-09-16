@@ -21,6 +21,43 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
+
+  List<Map<String, dynamic>> settingsOptions(
+      BuildContext context, SettingsScreenBloc bloc) {
+    final List<Map<String, dynamic>> settingOptions = [
+      {
+        'title': t.change_color,
+        'icon': Icons.color_lens_outlined,
+        'hintWidget': CircleAvatar(backgroundColor: AppColors.primaryColor),
+        'function': () => bloc.add(SettingsScreenEventOpenAppColorDialog())
+      },
+      {
+        'title': t.change_gender,
+        'icon': Icons.man_2_outlined,
+        'hintWidget': Icon(Icons.male, color: Colors.blue),
+        'function': () async =>
+            bloc.add(SettingsScreenEventNavigateToGenderChange()),
+      },
+      {
+        'title': t.change_language,
+        'icon': Icons.language_outlined,
+        'hintWidget': SvgPicture.asset(
+          width: 50,
+          getFlag(getLanguageCode()),
+        ),
+        'function': () async =>
+            bloc.add(SettingsScreenEventNavigateToChangeLanguage()),
+      },
+      {
+        'title': t.app_info,
+        'icon': Icons.info_outline,
+        'function': () async =>
+            bloc.add(SettingsScreenEventNavigateToAppInfo()),
+      },
+    ];
+    return settingOptions;
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -123,41 +160,5 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  List<Map<String, dynamic>> settingsOptions(
-      BuildContext context, SettingsScreenBloc bloc) {
-    final List<Map<String, dynamic>> settingOptions = [
-      {
-        'title': t.change_color,
-        'icon': Icons.color_lens_outlined,
-        'hintWidget': CircleAvatar(backgroundColor: AppColors.primaryColor),
-        'function': () => bloc.add(SettingsScreenEventOpenAppColorDialog())
-      },
-      {
-        'title': t.change_gender,
-        'icon': Icons.man_2_outlined,
-        'hintWidget': Icon(Icons.male, color: Colors.blue),
-        'function': () async =>
-            bloc.add(SettingsScreenEventNavigateToGenderChange()),
-      },
-      {
-        'title': t.change_language,
-        'icon': Icons.language_outlined,
-        'hintWidget': SvgPicture.asset(
-          width: 50,
-          getFlag(getLanguageCode()),
-        ),
-        'function': () async =>
-            bloc.add(SettingsScreenEventNavigateToChangeLanguage()),
-      },
-      {
-        'title': t.app_info,
-        'icon': Icons.info_outline,
-        'function': () async =>
-            bloc.add(SettingsScreenEventNavigateToAppInfo()),
-      },
-    ];
-    return settingOptions;
   }
 }
