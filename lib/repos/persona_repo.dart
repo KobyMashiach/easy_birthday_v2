@@ -16,7 +16,7 @@ class PersonaRepo {
     return localDB.getPersona();
   }
 
-  PersonaModel getLocalPartnerPersona() {
+  PersonaModel? getLocalPartnerPersona() {
     return localDB.getPartner();
   }
 
@@ -37,6 +37,7 @@ class PersonaRepo {
       {required String phoneNumber, required String password}) async {
     globalUser = globalUser.copyWith(
         phoneNumber: phoneNumber, password: password, role: RoleModel.owner);
+    localDB.addNewPersona(persona: globalUser);
     firestoreNewDoc(collection,
         docName: phoneNumber, values: globalUser.toJson());
   }

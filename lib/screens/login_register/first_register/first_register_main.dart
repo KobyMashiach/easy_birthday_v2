@@ -1,4 +1,5 @@
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
+import 'package:easy_birthday/dev/developer_screen.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_app_color_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_plan_screen.dart';
@@ -32,7 +33,7 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: 5);
+    pageController = PageController(initialPage: 0);
   }
 
   moveNextPage() {
@@ -64,9 +65,11 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
       ],
       child: Scaffold(
         appBar: appAppBar(
-            title: pageNumber == 0
-                ? t.explanation_screen_title
-                : t.first_register),
+          title:
+              pageNumber == 0 ? t.explanation_screen_title : t.first_register,
+          context: context,
+          developerPage: DeveloperScreen(),
+        ),
         body: Column(
           children: [
             const SizedBox(height: 24),

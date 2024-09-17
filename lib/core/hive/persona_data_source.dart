@@ -19,6 +19,7 @@ class PersonaDataSource {
   Future addNewPersona({required PersonaModel persona}) async {
     final box = Hive.box<PersonaModel>(_boxKey);
     await box.add(persona);
+    globalUser = persona;
   }
 
   Future updatePersona({required PersonaModel persona}) async {
@@ -58,10 +59,10 @@ class PersonaDataSource {
     globalPartnerUser = persona;
   }
 
-  PersonaModel getPartner() {
+  PersonaModel? getPartner() {
     final box = Hive.box<PersonaModel>(_partnerBoxKey);
     final persona = box.values.map((e) => e).toList();
-    return persona.isNotEmpty ? persona.first : globalUser;
+    return persona.isNotEmpty ? persona.first : null;
   }
 
   Future deleteAllPartners() async {

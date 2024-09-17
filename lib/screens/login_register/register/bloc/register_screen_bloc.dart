@@ -34,7 +34,6 @@ class RegisterScreenBloc
     try {
       String verificationId = "";
       String message = "";
-      bool verificationIdReceived = false;
 
       await verifyPhoneNumber(
         event.phoneNumber,
@@ -46,7 +45,6 @@ class RegisterScreenBloc
         (verificationIdGet, forceResendingToken) {
           log("str: $verificationIdGet\nnumber: $forceResendingToken");
           verificationId = verificationIdGet;
-          verificationIdReceived = true;
         },
         (timeout) => log("timeout: $timeout"),
       );

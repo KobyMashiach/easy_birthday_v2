@@ -1,4 +1,5 @@
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/models/plan_model/plan_model.dart';
 import 'package:easy_birthday/widgets/cards/choose_plan_card.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: PageView.builder(
-            itemCount: plans.length,
+            itemCount: appPlans.length,
             controller: _pageController,
             onPageChanged: (index) {
               setState(() {
@@ -36,7 +37,6 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
             },
             itemBuilder: (context, index) {
               bool isSelected = _selectedPlanIndex == index;
-              final plan = plans.entries.elementAt(index).value;
               return AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
@@ -71,10 +71,9 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                   child: Opacity(
                     opacity: isSelected ? 1.0 : 0.3,
                     child: ChoosePlanCard(
-                      title: plan["title"],
-                      price: plan["price"],
-                      features: plan["features"],
+                      plan: appPlans.entries.elementAt(index).value,
                       isSelected: isSelected,
+                      onPurchasePlan: () {},
                     ),
                   ),
                 ),
@@ -94,36 +93,3 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
     );
   }
 }
-
-Map<String, dynamic> plans = {
-  "basic": {
-    "title": "Free",
-    "price": "0",
-    "features": [
-      'גלריית תמונות (עד 30 תמונות)',
-      'טקסט לברכה מרגשת',
-      'גלריית מוסיקה מיוטיוב',
-    ]
-  },
-  "Standard": {
-    "title": "Standard",
-    "price": "25",
-    "features": [
-      'גלריית תמונות (עד 60 תמונות)',
-      'טקסט לברכה מרגשת',
-      'גלריית מוסיקה מיוטיוב',
-      'ללא פרסומות'
-    ]
-  },
-  "Platinum": {
-    "title": "Platinum",
-    "price": "40",
-    "features": [
-      'גלריית תמונות (ללא הגבלה)',
-      'טקסט לברכה מרגשת',
-      'גלריית מוסיקה מיוטיוב',
-      'משחק טריוויה כיפי ומאתגר',
-      'ללא פרסומות'
-    ]
-  }
-};

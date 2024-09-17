@@ -1,20 +1,21 @@
+import 'dart:developer';
+
 import 'package:easy_birthday/core/text_styles.dart';
-import 'package:easy_birthday/dev/in_app_purchase_test.dart';
+import 'package:easy_birthday/models/plan_model/plan_model.dart';
+import 'package:easy_birthday/services/purchase_services.dart';
 import 'package:flutter/material.dart';
-import 'package:kh_easy_dev/services/navigate_page.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 
 class ChoosePlanCard extends StatelessWidget {
-  final String title;
-  final String price;
-  final List<String> features;
+  final PlanModel plan;
   final bool isSelected;
+  final VoidCallback? onPurchasePlan;
 
   const ChoosePlanCard({
     Key? key,
-    required this.title,
-    required this.price,
-    required this.features,
+    required this.plan,
     required this.isSelected,
+    this.onPurchasePlan,
   }) : super(key: key);
 
   @override
@@ -22,12 +23,12 @@ class ChoosePlanCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(title,
+        Text(plan.title,
             style: AppTextStyle().bigTitle.copyWith(
                   color: isSelected ? Colors.white : Colors.black,
                 )),
         SizedBox(height: 8.0),
-        Text("$price₪",
+        Text("${plan.price.toStringAsFixed(2)}₪",
             style: AppTextStyle().title.copyWith(
                   color: isSelected ? Colors.white : Colors.black,
                 )),
@@ -36,7 +37,7 @@ class ChoosePlanCard extends StatelessWidget {
             shrinkWrap: true,
             itemBuilder: (context, index) => futuresList(index),
             separatorBuilder: (context, index) => SizedBox(height: 12),
-            itemCount: features.length),
+            itemCount: plan.features.length),
         Spacer(),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -46,8 +47,17 @@ class ChoosePlanCard extends StatelessWidget {
             ),
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           ),
-          onPressed: () {
-            KheasydevNavigatePage().push(context, InAppPurchaseTest());
+          onPressed: () async {
+            await PurchaseServices().purchaseProduct(plan);
+            final purchaseServices = PurchaseServices(
+              onPurchaseStatusChanged:
+                  (PurchaseStatus status, String productId) {
+                if (status == PurchaseStatus.purchased) {
+                  log(productId);
+                } else if (status == PurchaseStatus.error) {
+                } else if (status == PurchaseStatus.pending) {}
+              },
+            );
           },
           child: Icon(
             Icons.shopping_cart,
@@ -75,7 +85,7 @@ class ChoosePlanCard extends StatelessWidget {
           Expanded(
             flex: 8,
             child: Text(
-              features[index],
+              plan.features[index],
               style: AppTextStyle().smallDescription.copyWith(
                     color: isSelected ? Colors.white : Colors.black,
                   ),
