@@ -3,7 +3,6 @@ import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/models/countries_model/countries_functions.dart';
 import 'package:easy_birthday/models/persona_model/persona_model.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
-import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/services/encryption.dart';
 import 'package:easy_birthday/widgets/design/fields/app_dropdown.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
@@ -13,14 +12,13 @@ import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/widgets/general/countries_codes_dropdown.dart';
 import 'package:easy_birthday/widgets/general/error_message_row.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 
 class PartnerDetailsScreen extends StatefulWidget {
   const PartnerDetailsScreen(
       {super.key, required this.onContinue, required this.onPrevious});
 
-  final VoidCallback onContinue;
+  final Function(PersonaModel) onContinue;
   final VoidCallback onPrevious;
 
   @override
@@ -249,10 +247,8 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
                           : null,
                       gender: genderController.text,
                       dateOfBirth: selectedPartnerDate);
-                  context
-                      .read<PersonaRepo>()
-                      .updatePartnerPersona(partnerPersona);
-                  widget.onContinue.call();
+
+                  widget.onContinue.call(partnerPersona);
                 } else {
                   setState(() {});
                 }

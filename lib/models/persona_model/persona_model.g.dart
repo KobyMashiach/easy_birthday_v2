@@ -27,13 +27,14 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       partnerGender: fields[7] as String?,
       registerComplete: fields[8] as bool,
       email: fields[9] as String?,
+      eventId: fields[10] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$PersonaModelImpl obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -53,7 +54,9 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       ..writeByte(8)
       ..write(obj.registerComplete)
       ..writeByte(9)
-      ..write(obj.email);
+      ..write(obj.email)
+      ..writeByte(10)
+      ..write(obj.eventId);
   }
 
   @override
@@ -83,6 +86,7 @@ _$PersonaModelImpl _$$PersonaModelImplFromJson(Map<String, dynamic> json) =>
       partnerGender: json['partnerGender'] as String?,
       registerComplete: json['registerComplete'] as bool,
       email: json['email'] as String?,
+      eventId: json['eventId'] as String?,
     );
 
 Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
@@ -97,4 +101,5 @@ Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
       'partnerGender': instance.partnerGender,
       'registerComplete': instance.registerComplete,
       'email': instance.email,
+      'eventId': instance.eventId,
     };

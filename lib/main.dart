@@ -3,6 +3,7 @@ import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/firebase_options.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/splash/bloc/splash_screen_bloc.dart';
 import 'package:easy_birthday/screens/splash/splash_screen.dart';
@@ -49,12 +50,16 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
           create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
         ),
+        RepositoryProvider(
+          create: (context) => EventRepo(),
+        ),
       ],
       child: BlocProvider(
         create: (context) => SplashScreenBloc(
-            appSettingsDB: context.read<AppSettingsDataSource>(),
-            personaRepo: context.read<PersonaRepo>())
-          ..add(SplashScreenInitialized()),
+          appSettingsDB: context.read<AppSettingsDataSource>(),
+          personaRepo: context.read<PersonaRepo>(),
+          eventRepo: context.read<EventRepo>(),
+        )..add(SplashScreenInitialized()),
         child: MaterialApp(
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.grey[100],

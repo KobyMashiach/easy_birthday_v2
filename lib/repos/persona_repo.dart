@@ -47,7 +47,8 @@ class PersonaRepo {
     final phoneExist =
         await firestoreCheckIfDocExists(collection, persona.phoneNumber);
     if (phoneExist) {
-      firestoreUpdateDoc(collection, docName: persona.phoneNumber);
+      firestoreUpdateDoc(collection,
+          docName: persona.phoneNumber, values: persona.toJson());
     }
   }
 
@@ -59,12 +60,22 @@ class PersonaRepo {
     }
   }
 
-  Future<void> updatePartnerPersona(PersonaModel persona) async {
+  Future<void> newPartnerPersona(PersonaModel persona) async {
     await localDB.updatePartner(persona: persona);
     final phoneExist =
         await firestoreCheckIfDocExists(collection, persona.phoneNumber);
     if (!phoneExist) {
       firestoreNewDoc(collection,
+          docName: persona.phoneNumber, values: persona.toJson());
+    }
+  }
+
+  Future<void> updatePartnerPersona(PersonaModel persona) async {
+    await localDB.updatePartner(persona: persona);
+    final phoneExist =
+        await firestoreCheckIfDocExists(collection, persona.phoneNumber);
+    if (phoneExist) {
+      firestoreUpdateDoc(collection,
           docName: persona.phoneNumber, values: persona.toJson());
     }
   }

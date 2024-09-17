@@ -1,14 +1,12 @@
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
-import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/dialogs/color_picker_dialog.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
 
@@ -16,7 +14,7 @@ class ChooseAppColorScreen extends StatefulWidget {
   const ChooseAppColorScreen(
       {super.key, required this.onContinue, required this.onPrevious});
 
-  final VoidCallback onContinue;
+  final Function(Color? color) onContinue;
   final VoidCallback onPrevious;
 
   @override
@@ -95,12 +93,10 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
           activeButtonText: colorChange ? t.continue_ : t.continue_no_change,
           activeButtonOnTap: () async {
             if (colorChange) {
-              changeAppColors(selectedColor);
-              await context.read<AppSettingsDataSource>().updateAppSettings(
-                  appSettings:
-                      globalAppSettings.copyWith(appColor: selectedColor));
+              widget.onContinue.call(selectedColor);
+            } else {
+              widget.onContinue.call(null);
             }
-            widget.onContinue.call();
           },
           inactiveButtonText: t.back,
           inactiveButtonOnTap: widget.onPrevious,

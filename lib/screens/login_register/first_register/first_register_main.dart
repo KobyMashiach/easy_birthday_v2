@@ -1,6 +1,9 @@
+import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/dev/developer_screen.dart';
+import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/screens/login_register/first_register/bloc/first_register_bloc.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_app_color_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_plan_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_texts_screen.dart';
@@ -60,53 +63,86 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
           create: (context) => PersonaDataSource(),
         ),
         RepositoryProvider(
+          create: (context) => AppSettingsDataSource(),
+        ),
+        RepositoryProvider(
           create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
         ),
-      ],
-      child: Scaffold(
-        appBar: appAppBar(
-          title:
-              pageNumber == 0 ? t.explanation_screen_title : t.first_register,
-          context: context,
-          developerPage: DeveloperScreen(),
+        RepositoryProvider(
+          create: (context) => EventRepo(),
         ),
-        body: Column(
-          children: [
-            const SizedBox(height: 24),
-            RegisterStepRow(pageNumber),
-            const SizedBox(height: 24),
-            Expanded(
-              child: PageView(
-                controller: pageController,
-                physics: const NeverScrollableScrollPhysics(),
+      ],
+      child: BlocProvider(
+        create: (context) => FirstRegisterBloc(
+          personaRepo: context.read<PersonaRepo>(),
+          appSettingLocalDb: context.read<AppSettingsDataSource>(),
+          eventRepo: context.read<EventRepo>(),
+        ),
+        child: BlocBuilder<FirstRegisterBloc, FirstRegisterState>(
+          builder: (context, state) {
+            final bloc = context.read<FirstRegisterBloc>();
+            return Scaffold(
+              appBar: appAppBar(
+                title: pageNumber == 0
+                    ? t.explanation_screen_title
+                    : t.first_register,
+                context: context,
+                developerPage: DeveloperScreen(),
+              ),
+              body: Column(
                 children: [
-                  ExplanationScreen(
-                    onContinue: () => moveNextPage(),
-                  ),
-                  OwnDetailsScreen(
-                    onContinue: () => moveNextPage(),
-                    onPrevious: () => movePreviousPage(),
-                  ),
-                  PartnerDetailsScreen(
-                    onContinue: () => moveNextPage(),
-                    onPrevious: () => movePreviousPage(),
-                  ),
-                  ChooseAppColorScreen(
-                    onContinue: () => moveNextPage(),
-                    onPrevious: () => movePreviousPage(),
-                  ),
-                  ChooseTextsScreen(
-                    onContinue: () => moveNextPage(),
-                    onPrevious: () => movePreviousPage(),
-                  ),
-                  ChoosePlanScreen(
-                    onContinue: () {},
-                    onPrevious: () => movePreviousPage(),
+                  const SizedBox(height: 24),
+                  RegisterStepRow(pageNumber),
+                  const SizedBox(height: 24),
+                  Expanded(
+                    child: PageView(
+                      controller: pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        ExplanationScreen(
+                          onContinue: () => moveNextPage(),
+                        ),
+                        OwnDetailsScreen(
+                          onContinue: (persona) {
+                            bloc.add(
+                                FirstRegisterEventOwnDetails(persona: persona));
+                            moveNextPage();
+                          },
+                          onPrevious: () => movePreviousPage(),
+                        ),
+                        PartnerDetailsScreen(
+                          onContinue: (persona) {
+                            bloc.add(FirstRegisterEventPartnerDetails(
+                                persona: persona));
+                            moveNextPage();
+                          },
+                          onPrevious: () => movePreviousPage(),
+                        ),
+                        ChooseAppColorScreen(
+                          onContinue: (color) {
+                            if (color != null) {
+                              bloc.add(
+                                  FirstRegisterEventChooseColor(color: color));
+                            }
+                            moveNextPage();
+                          },
+                          onPrevious: () => movePreviousPage(),
+                        ),
+                        ChooseTextsScreen(
+                          onContinue: () => moveNextPage(),
+                          onPrevious: () => movePreviousPage(),
+                        ),
+                        ChoosePlanScreen(
+                          onContinue: () {},
+                          onPrevious: () => movePreviousPage(),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

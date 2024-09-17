@@ -1,19 +1,18 @@
 import 'package:easy_birthday/core/persona_functions.dart';
+import 'package:easy_birthday/models/persona_model/persona_model.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
 import 'package:easy_birthday/widgets/design/fields/app_dropdown.dart';
-import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OwnDetailsScreen extends StatefulWidget {
   const OwnDetailsScreen(
       {super.key, required this.onContinue, required this.onPrevious});
 
-  final VoidCallback onContinue;
+  final Function(PersonaModel) onContinue;
   final VoidCallback onPrevious;
 
   @override
@@ -132,8 +131,7 @@ class _OwnDetailsScreenState extends State<OwnDetailsScreen> {
                     email: emailController.text,
                     gender: genderController.text,
                   );
-                  context.read<PersonaRepo>().updatePersona(newPersona);
-                  widget.onContinue.call();
+                  widget.onContinue.call(newPersona);
                 } else {
                   setState(() {});
                 }

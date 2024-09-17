@@ -26,6 +26,7 @@ class PersonaModel with _$PersonaModel {
     @HiveField(7) String? partnerGender,
     @HiveField(8) required bool registerComplete,
     @HiveField(9) String? email,
+    @HiveField(10) String? eventId,
   }) = _PersonaModel;
 
   factory PersonaModel.fromJson(Map<String, dynamic> json) =>
