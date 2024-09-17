@@ -39,14 +39,6 @@ jobs:
         run: echo "${{ secrets.ANDROID_SERVICE_ACCOUNT }}" | base64 --decode > ${{ env.SERVICE_ACCOUNT_PATH }}
 
       - run: flutter pub get
-
-      # Add Slang step
-      - name: Activate slang_build_runner
-        run: dart pub global activate slang
-
-      - name: Generate translations with slang
-        run: dart run slang_build_runner
-
       - run: dart run build_runner build -d
       - run: flutter build appbundle --release
 
