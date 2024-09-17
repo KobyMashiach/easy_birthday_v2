@@ -37,7 +37,7 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: 5);
+    pageController = PageController(initialPage: 4);
   }
 
   moveNextPage() {
