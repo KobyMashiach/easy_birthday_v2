@@ -1,5 +1,7 @@
 import 'package:easy_birthday/core/text_styles.dart';
+import 'package:easy_birthday/dev/in_app_purchase_test.dart';
 import 'package:flutter/material.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class ChoosePlanCard extends StatelessWidget {
   final String title;
@@ -44,7 +46,9 @@ class ChoosePlanCard extends StatelessWidget {
             ),
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           ),
-          onPressed: () {},
+          onPressed: () {
+            KheasydevNavigatePage().push(context, InAppPurchaseTest());
+          },
           child: Icon(
             Icons.shopping_cart,
             color: Colors.white,
