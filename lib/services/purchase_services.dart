@@ -7,7 +7,6 @@ class PurchaseServices {
   Set<String> _kIds = <String>{'platinum_plan', 'standard_plan'};
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
   late StreamSubscription<List<PurchaseDetails>> _subscription;
-
   final Function(PurchaseStatus status, String productId)?
       onPurchaseStatusChanged;
 

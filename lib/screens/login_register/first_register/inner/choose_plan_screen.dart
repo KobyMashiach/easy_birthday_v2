@@ -5,11 +5,18 @@ import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons
 import 'package:flutter/material.dart';
 
 class ChoosePlanScreen extends StatefulWidget {
-  const ChoosePlanScreen(
-      {super.key, required this.onContinue, required this.onPrevious});
-
   final VoidCallback onContinue;
   final VoidCallback onPrevious;
+  final PlanModel currentPlan;
+  final Function(String? planTitle) onPlanPurchase;
+
+  const ChoosePlanScreen({
+    super.key,
+    required this.onContinue,
+    required this.onPrevious,
+    required this.currentPlan,
+    required this.onPlanPurchase,
+  });
 
   @override
   _ChoosePlanScreenState createState() => _ChoosePlanScreenState();
@@ -37,6 +44,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
             },
             itemBuilder: (context, index) {
               bool isSelected = _selectedPlanIndex == index;
+              final currentPlan = appPlans.entries.elementAt(index).value;
               return AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
@@ -71,9 +79,11 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                   child: Opacity(
                     opacity: isSelected ? 1.0 : 0.3,
                     child: ChoosePlanCard(
-                      plan: appPlans.entries.elementAt(index).value,
+                      plan: currentPlan,
                       isSelected: isSelected,
-                      onPurchasePlan: () {},
+                      currentPlan:
+                          widget.currentPlan.title == currentPlan.title,
+                      onPurchasePlan: widget.onPlanPurchase,
                     ),
                   ),
                 ),

@@ -9,13 +9,15 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 class ChoosePlanCard extends StatelessWidget {
   final PlanModel plan;
   final bool isSelected;
-  final VoidCallback? onPurchasePlan;
+  final bool currentPlan;
+  final Function(String?)? onPurchasePlan;
 
   const ChoosePlanCard({
     Key? key,
     required this.plan,
     required this.isSelected,
     this.onPurchasePlan,
+    this.currentPlan = false,
   }) : super(key: key);
 
   @override
@@ -39,32 +41,51 @@ class ChoosePlanCard extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(height: 12),
             itemCount: plan.features.length),
         Spacer(),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.pinkAccent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-          ),
-          onPressed: () async {
-            await PurchaseServices().purchaseProduct(plan);
-            final purchaseServices = PurchaseServices(
-              onPurchaseStatusChanged:
-                  (PurchaseStatus status, String productId) {
-                if (status == PurchaseStatus.purchased) {
-                  log(productId);
-                } else if (status == PurchaseStatus.error) {
-                } else if (status == PurchaseStatus.pending) {}
-              },
-            );
-          },
-          child: Icon(
-            Icons.shopping_cart,
-            color: Colors.white,
-          ),
-        ),
+        if (plan.title != "Free" && !currentPlan) cartButton(),
+        if (currentPlan) checkIcon(),
       ],
+    );
+  }
+
+  Widget checkIcon() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.greenAccent,
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+      child: Icon(
+        Icons.check,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  ElevatedButton cartButton() {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.pinkAccent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+      ),
+      onPressed: () async {
+        await PurchaseServices().purchaseProduct(plan);
+        PurchaseServices(
+          onPurchaseStatusChanged: (PurchaseStatus status, String productId) {
+            if (status == PurchaseStatus.purchased) {
+              log(productId);
+              onPurchasePlan?.call(productId);
+            } else if (status == PurchaseStatus.error) {
+            } else if (status == PurchaseStatus.pending) {}
+          },
+        );
+      },
+      child: Icon(
+        Icons.shopping_cart,
+        color: Colors.white,
+      ),
     );
   }
 

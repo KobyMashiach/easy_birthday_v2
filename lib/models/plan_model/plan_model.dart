@@ -30,8 +30,15 @@ class PlanModel {
   }
 }
 
+enum PlansEnum { free, standard, platinum }
+
+PlanModel getPlan(PlansEnum planTitle) {
+  String planKey = planTitle.toString().split('.').last;
+  return appPlans[planKey]!;
+}
+
 Map<String, PlanModel> appPlans = {
-  "Free": PlanModel(
+  "free": PlanModel(
     title: "Free",
     price: 0,
     features: [
@@ -40,7 +47,7 @@ Map<String, PlanModel> appPlans = {
       'גלריית מוסיקה מיוטיוב',
     ],
   ),
-  "Standard": PlanModel(
+  "standard": PlanModel(
     title: "Standard",
     price: 25,
     features: [
@@ -51,7 +58,7 @@ Map<String, PlanModel> appPlans = {
     ],
     productPurchaseName: 'standard_plan',
   ),
-  "Platinum": PlanModel(
+  "platinum": PlanModel(
     title: "Platinum",
     price: 40,
     features: [

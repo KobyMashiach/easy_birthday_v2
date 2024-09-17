@@ -1,3 +1,5 @@
+import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,7 @@ class ChooseTextsScreen extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Text("Choose Text"),
+              Text(checkIfMaleGender(globalPartnerUser!.gender).toString()),
             ],
           ),
         ),

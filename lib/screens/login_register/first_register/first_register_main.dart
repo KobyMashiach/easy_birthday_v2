@@ -1,6 +1,7 @@
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/dev/developer_screen.dart';
+import 'package:easy_birthday/models/plan_model/plan_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/login_register/first_register/bloc/first_register_bloc.dart';
@@ -36,7 +37,7 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: 0);
+    pageController = PageController(initialPage: 5);
   }
 
   moveNextPage() {
@@ -77,7 +78,7 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
           personaRepo: context.read<PersonaRepo>(),
           appSettingLocalDb: context.read<AppSettingsDataSource>(),
           eventRepo: context.read<EventRepo>(),
-        ),
+        )..add(FirstRegisterEventInit()),
         child: BlocBuilder<FirstRegisterBloc, FirstRegisterState>(
           builder: (context, state) {
             final bloc = context.read<FirstRegisterBloc>();
@@ -133,6 +134,10 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
                           onPrevious: () => movePreviousPage(),
                         ),
                         ChoosePlanScreen(
+                          currentPlan: state.planModel,
+                          onPlanPurchase: (planTitle) => bloc.add(
+                              FirstRegisterEventPlanPurchase(
+                                  planTitle: planTitle)),
                           onContinue: () {},
                           onPrevious: () => movePreviousPage(),
                         ),
