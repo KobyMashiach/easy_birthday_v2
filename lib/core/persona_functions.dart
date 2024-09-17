@@ -5,6 +5,10 @@ GenderContext getUserGender() => checkIfMaleGender(globalUser.gender)
     ? GenderContext.male
     : GenderContext.female;
 
+GenderContext getPartnerGender() => checkIfMaleGender(globalPartnerUser!.gender)
+    ? GenderContext.male
+    : GenderContext.female;
+
 String? getTranslateGender(String gender) {
   return switch (gender) {
     'male' || 'זכר' => t.male,

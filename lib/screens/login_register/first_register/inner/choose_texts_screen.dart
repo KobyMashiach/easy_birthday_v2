@@ -1,3 +1,4 @@
+import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/widgets/cards/capsule_expanded_text_card.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
@@ -16,6 +17,8 @@ class ChooseTextsScreen extends StatefulWidget {
 
 class _ChooseTextsScreenState extends State<ChooseTextsScreen> {
   int? expandedIndex;
+  // final gender = GenderContext
+  final gender = getPartnerGender();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,6 @@ class _ChooseTextsScreenState extends State<ChooseTextsScreen> {
             separatorBuilder: (context, index) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               return CapsuleExpandedTextCard(
-                index: index,
                 isExpanded: expandedIndex == index,
                 onTap: () {
                   setState(() {

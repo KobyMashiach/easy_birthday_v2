@@ -2,13 +2,11 @@ import 'package:easy_birthday/core/colors.dart';
 import 'package:flutter/material.dart';
 
 class CapsuleExpandedTextCard extends StatefulWidget {
-  final int index;
   final bool isExpanded;
   final VoidCallback onTap;
 
   const CapsuleExpandedTextCard({
     Key? key,
-    required this.index,
     required this.isExpanded,
     required this.onTap,
   }) : super(key: key);
@@ -26,7 +24,7 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
       itemCount: 5,
       itemBuilder: (context, i) {
         return Container(
-          width: 100,
+          constraints: BoxConstraints(minWidth: 100),
           margin: const EdgeInsets.symmetric(horizontal: 5),
           color: Colors.blue,
           child: Center(
@@ -70,7 +68,7 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Title ${widget.index}',
+                          'Title ',
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -84,7 +82,6 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
                                 bottomRight: Radius.circular(30),
                               ),
                               child: Container(
-                                key: ValueKey<int>(widget.index),
                                 height: 100,
                                 child: TweenAnimationBuilder<Offset>(
                                   duration: const Duration(milliseconds: 300),

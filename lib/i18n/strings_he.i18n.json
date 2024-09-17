@@ -97,5 +97,13 @@
   },
   "continue_no_change": "המשך ללא שינוי",
   "selected_color": "צבע נבחר",
-  "finish": "סיום"
+  "finish": "סיום",
+  "married(context=GenderContext)": {
+    "male": "אשתי",
+    "female": "בעלי"
+  },
+  "spouse(context=GenderContext)": {
+    "male": "בת זוגתי",
+    "female": "בן זוגי"
+  }
 }
