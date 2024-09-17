@@ -30,75 +30,80 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   # Custom Packages
+  # kh_easy_dev: ^0.2.8
   kh_easy_dev:
     git:
       url: https://github.com/kobymashiach/kh_easy_dev
 
-  # Firebase
-  firebase_core: ^2.21.0
-  firebase_auth: ^4.12.1
-  cloud_firestore: ^4.12.2
-  firebase_storage: ^11.2.8
-
-  # State Management
-  flutter_bloc: ^8.1.4
-
-  # Localization
-  flutter_localization: ^0.2.0
-  flutter_localizations:
-    sdk: flutter
-  intl: ^0.19.0
-  # Custom Localization
+  # Localization and Internationalization
   slang: ^3.31.1
   slang_flutter: ^3.31.0
+  flutter_localization: ^0.2.0
+  intl: ^0.19.0
 
-  # UI & Design
-  cupertino_icons: ^1.0.6
-  flutter_colorpicker: ^1.1.0
-  flutter_svg: ^2.0.10+1
-  google_fonts: ^6.2.1
-  toggle_switch: ^2.3.0
-  pin_code_fields: ^8.0.1
-
-  # Audio & Video
-  audioplayers: ^6.0.0
-  ffmpeg_kit_flutter_full: ^6.0.3
-  youtube_player_flutter: ^8.1.2
-
-  # Networking
-  dio: ^5.5.0+1
-  http: ^1.1.0
-  connectivity_plus: ^6.0.2
-
-  # File Management
-  file_picker: ^8.0.7
-  path_provider: ^2.1.4
-
-  # Data Storage & Encryption
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  encrypt: ^5.0.3
-
-  # Permissions & Device Info
+  # Permissions and Device Info
   permission_handler: ^11.3.1
   package_info_plus: ^8.0.2
+  connectivity_plus: ^6.0.2
+  path_provider: ^2.1.4
 
-  # Animations & Graphics
+  # UI and Styling
+  google_fonts: ^6.2.1
+  toggle_switch: ^2.3.0
+  flutter_colorpicker: ^1.1.0
+  flutter_svg: ^2.0.10+1
   blobs: ^2.0.0
+  pin_code_fields: ^8.0.1
+  cupertino_icons: ^1.0.6
 
-  # Web & URL Launching
-  flutter_inappwebview: ^5.8.0
-  url_launcher: ^6.2.5
-
-  # Code Generation
+  # State Management and Utilities
+  flutter_bloc: ^8.1.4
   freezed: ^2.5.2
   json_annotation: ^4.9.0
-  build_runner: ^2.4.12
 
-  # Monetization
+  # Network and API
+  http: ^1.1.0
+  dio: ^5.5.0+1
+
+  # Security and Encryption
+  encrypt: ^5.0.3
+
+  # Media and Playback
+  youtube_player_flutter: ^8.1.2
+  flutter_inappwebview: ^5.8.0
+  ffmpeg_kit_flutter_full: ^6.0.3
+  audioplayers: ^6.0.0
+
+  # File and Storage
+  file_picker: ^8.0.7
+  hive_flutter: ^1.1.0
+  hive: ^2.2.3
+
+  # Firebase Services
+  firebase_core: ^2.21.0
+  cloud_firestore: ^4.12.2
+  firebase_storage: ^11.2.8
+  firebase_auth: ^4.12.1
+
+  # In-App Purchases
   in_app_purchase: ^3.2.0
+
+  # Miscellaneous
+  url_launcher: ^6.2.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: "^0.13.1"
+  build_runner: ^2.4.12
+  hive_generator: ^2.0.1
+  json_serializable: ^6.8.0
+  slang_build_runner: ^3.31.0
+  slang_gpt: ^0.10.3
 
 flutter_launcher_icons:
   android: "launcher_icon"
