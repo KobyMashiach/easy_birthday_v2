@@ -5,3 +5,4 @@ use_redundant_keys: true
 
 languages:
   - he
+  - en
