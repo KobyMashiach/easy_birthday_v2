@@ -19,7 +19,7 @@ class ChooseTextsScreen extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Text(checkIfMaleGender(globalPartnerUser!.gender).toString()),
+              Text(globalPartnerUser!.gender),
             ],
           ),
         ),
