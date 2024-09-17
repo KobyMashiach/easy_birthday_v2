@@ -3,10 +3,10 @@
 /// Original: lib/i18n
 /// To regenerate, run: `dart run slang`
 ///
-/// Locales: 2
-/// Strings: 182 (91 per locale)
+/// Locales: 1
+/// Strings: 91
 ///
-/// Built on 2024-09-17 at 06:22 UTC
+/// Built on 2024-09-17 at 07:05 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -16,17 +16,16 @@ import 'package:slang/builder/model/node.dart';
 import 'package:slang_flutter/slang_flutter.dart';
 export 'package:slang_flutter/slang_flutter.dart';
 
-const AppLocale _baseLocale = AppLocale.en;
+const AppLocale _baseLocale = AppLocale.he;
 
 /// Supported locales, see extension methods below.
 ///
 /// Usage:
-/// - LocaleSettings.setLocale(AppLocale.en) // set locale
-/// - Locale locale = AppLocale.en.flutterLocale // get flutter locale from enum
-/// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
+/// - LocaleSettings.setLocale(AppLocale.he) // set locale
+/// - Locale locale = AppLocale.he.flutterLocale // get flutter locale from enum
+/// - if (LocaleSettings.currentLocale == AppLocale.he) // locale check
 enum AppLocale with BaseAppLocale<AppLocale, Translations> {
-	en(languageCode: 'en', build: Translations.build),
-	he(languageCode: 'he', build: _StringsHe.build);
+	he(languageCode: 'he', build: Translations.build);
 
 	const AppLocale({required this.languageCode, this.scriptCode, this.countryCode, required this.build}); // ignore: unused_element
 
@@ -138,7 +137,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	Translations.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
 		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
 		  $meta = TranslationMetadata(
-		    locale: AppLocale.en,
+		    locale: AppLocale.he,
 		    overrides: overrides ?? {},
 		    cardinalResolver: cardinalResolver,
 		    ordinalResolver: ordinalResolver,
@@ -146,7 +145,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 		$meta.setFlatMapFunction(_flatMapFunction);
 	}
 
-	/// Metadata for the translations of <en>.
+	/// Metadata for the translations of <he>.
 	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	/// Access flat map
@@ -272,274 +271,10 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get finish => 'סיום';
 }
 
-// Path: <root>
-class _StringsHe implements Translations {
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	_StringsHe.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
-		    locale: AppLocale.he,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ) {
-		$meta.setFlatMapFunction(_flatMapFunction);
-	}
-
-	/// Metadata for the translations of <he>.
-	@override final TranslationMetadata<AppLocale, Translations> $meta;
-
-	/// Access flat map
-	@override dynamic operator[](String key) => $meta.getTranslation(key);
-
-	@override late final _StringsHe _root = this; // ignore: unused_field
-
-	// Translations
-	@override String get hello => 'שלום';
-	@override String get choose_own_gender => 'בחירת המין שלך';
-	@override String get choose_partner_gender => 'בחירת מין הבן/בת זוג';
-	@override String greeter({required GenderContext context, required Object name}) {
-		switch (context) {
-			case GenderContext.male:
-				return 'ברוך הבא ${name}';
-			case GenderContext.female:
-				return 'ברוכה הבאה, ${name}';
-		}
-	}
-	@override String get home_screen => 'מסך בית';
-	@override String get settings => 'הגדרות';
-	@override String get contact_us => 'יצירת קשר';
-	@override String get pick_color => 'בחר צבע';
-	@override String get ok => 'אישור';
-	@override String get cancel => 'ביטול';
-	@override String get recommand_drak_colors => 'מומלץ צבעים כהים';
-	@override String get build_app => 'בונה את האפליקציה';
-	@override String get build_app_description => 'האפליקציה נבנית כרגע במיוחד בשבילך!';
-	@override String get change_color => 'שינוי צבע';
-	@override String get change_gender => 'שינוי מין';
-	@override String get choose_gender => 'בחר מין';
-	@override String get male => 'זכר';
-	@override String get female => 'נקבה';
-	@override String get app_info => 'מידע על האפליקציה';
-	@override String get app_name => 'שם האפליקציה';
-	@override String get app_version => 'גרסת האפליקציה';
-	@override String get event_id => 'מספר אירוע';
-	@override String get change_language => 'שינוי שפה';
-	@override String get choose_language => 'בחר שפה';
-	@override String get soon => 'בקרוב';
-	@override String selected({required GenderContext context}) {
-		switch (context) {
-			case GenderContext.male:
-				return 'נבחר';
-			case GenderContext.female:
-				return 'נבחרה';
-		}
-	}
-	@override String get back => 'חזור';
-	@override String get login_screen => 'מסך התחברות';
-	@override String get login => 'התחברות';
-	@override String get register_screen => 'מסך הרשמה';
-	@override String get register => 'הרשמה';
-	@override String get phone => 'טלפון';
-	@override String get password => 'סיסמה';
-	@override String get have_account => 'יש משתמש';
-	@override String get no_account => 'אין משתמש';
-	@override String get click_here => 'לחץ כאן';
-	@override String get password_verification => 'אימות סיסמה';
-	@override String get got_it => 'בסדר, הבנתי';
-	@override String get short_password => 'סיסמה קצרה מידי';
-	@override String get password_dont_match => 'הסיסמאות לא תואמות';
-	@override String get phone_exist => 'טלפון קיים במערכת';
-	@override String get phone_not_valid => 'מספר הטלפון לא חוקי';
-	@override String get short_password_description => 'הסיסמה צריכה להיות 8 תווים לפחות';
-	@override String get password_dont_match_description => '2 הסיסמאות שהזנת לא תואמות, נא נסה שוב';
-	@override String get phone_exist_description => 'מספר הטלפון קיים במערכת שלנו, עבור למסך ההתחברות ונסה שנית';
-	@override String get phone_not_valid_description => 'כנראה שטעית במספר הטלפון, נא נסה שנית';
-	@override String get email => 'אימייל';
-	@override String get email_exist => 'כתובת מייל קיימת במערכת';
-	@override String get email_not_valid => 'כתובת המייל לא חוקית';
-	@override String get email_exist_description => 'כתובת המייל קיימת במערכת שלנו, עבור למסך ההתחברות ונסה שנית';
-	@override String get email_not_valid_description => 'כנראה שטעית בכתובת המייל, נא נסה שנית';
-	@override String get wrong_password => 'הסיסמה לא נכונה, נא נסה שנית';
-	@override String get user_not_found => 'לא נמצאה כתובת המייל הזו, נסה שוב';
-	@override String get user_disabled => 'משתמש מושבת';
-	@override String get too_many_requests => 'יותר מדי בקשות להתחבר לחשבון זה';
-	@override String get operation_not_allowed => 'שגיאת שרת, אנא נסה שוב מאוחר יותר';
-	@override String get default_error => 'ההתחברות או ההרשמה נכשלו. בבקשה נסה שוב';
-	@override String get invalid_credential => 'כתובת המייל או הסיסמה לא נכונים, נא נסה שנית';
-	@override String get forgot_password => 'שכחת סיסמה';
-	@override String get password_recovery => 'שחזור סיסמה';
-	@override String get send_mail => 'שלח מייל';
-	@override String get send_code => 'שלח קוד';
-	@override String get mail__recover_sent_title => 'מייל לשחזור סיסמה נשלח בהצלחה';
-	@override String get mail__recover_sent_description => 'נא לחץ על הקישור במייל.\nאם אינך רואה את המייל נסה לחפש בתיקיית הספאם או נסה שנית';
-	@override String get upload_dog_image => 'העלה תמונה של הכלב';
-	@override String get add_notes => 'הוספת הערות';
-	@override String get contact_phone => 'מספר טלפון ליצירת קשר';
-	@override String get full_name => 'שם מלא';
-	@override String get otp_code => 'קוד אימות';
-	@override String get otp_code_description => 'קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור';
-	@override String get send_again => 'שלח שוב';
-	@override String get login_with_password => 'התחבר עם סיסמה';
-	@override String get login_with_otp_code => 'התחבר עם קוד אימות';
-	@override String get phone_not_exist_system => 'מספר הטלפון לא קיים במערכת';
-	@override String get explanation_screen_title => 'המדריך ליצירת הפתעה מושלמת';
-	@override String get continue_ => 'המשך';
-	@override String get first_register => 'הרשמה ראשונית';
-	@override String get date_of_birth => 'תאריך לידה';
-	@override String get fill_your_details => 'מלא/י את הפרטים שלך';
-	@override String get fill_partner_details => 'מלא/י את הפרטים של הבן/בת זוג שלך';
-	@override String get first_password => 'בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456';
-	@override String get recommended_colors => 'צבעים מומלצים';
-	@override String choose_color({required GenderContext context}) {
-		switch (context) {
-			case GenderContext.male:
-				return 'בחר צבע מקשת צבעים';
-			case GenderContext.female:
-				return 'בחרי צבע מקשת צבעים';
-		}
-	}
-	@override String skip({required GenderContext context}) {
-		switch (context) {
-			case GenderContext.male:
-				return 'דלג';
-			case GenderContext.female:
-				return 'דלגי';
-		}
-	}
-	@override String get continue_no_change => 'המשך ללא שינוי';
-	@override String get selected_color => 'צבע נבחר';
-	@override String get finish => 'סיום';
-}
-
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
 extension on Translations {
-	dynamic _flatMapFunction(String path) {
-		switch (path) {
-			case 'hello': return 'שלום';
-			case 'choose_own_gender': return 'בחירת המין שלך';
-			case 'choose_partner_gender': return 'בחירת מין הבן/בת זוג';
-			case 'greeter': return ({required GenderContext context, required Object name}) {
-				switch (context) {
-					case GenderContext.male:
-						return 'ברוך הבא ${name}';
-					case GenderContext.female:
-						return 'ברוכה הבאה, ${name}';
-				}
-			};
-			case 'home_screen': return 'מסך בית';
-			case 'settings': return 'הגדרות';
-			case 'contact_us': return 'יצירת קשר';
-			case 'pick_color': return 'בחר צבע';
-			case 'ok': return 'אישור';
-			case 'cancel': return 'ביטול';
-			case 'recommand_drak_colors': return 'מומלץ צבעים כהים';
-			case 'build_app': return 'בונה את האפליקציה';
-			case 'build_app_description': return 'האפליקציה נבנית כרגע במיוחד בשבילך!';
-			case 'change_color': return 'שינוי צבע';
-			case 'change_gender': return 'שינוי מין';
-			case 'choose_gender': return 'בחר מין';
-			case 'male': return 'זכר';
-			case 'female': return 'נקבה';
-			case 'app_info': return 'מידע על האפליקציה';
-			case 'app_name': return 'שם האפליקציה';
-			case 'app_version': return 'גרסת האפליקציה';
-			case 'event_id': return 'מספר אירוע';
-			case 'change_language': return 'שינוי שפה';
-			case 'choose_language': return 'בחר שפה';
-			case 'soon': return 'בקרוב';
-			case 'selected': return ({required GenderContext context}) {
-				switch (context) {
-					case GenderContext.male:
-						return 'נבחר';
-					case GenderContext.female:
-						return 'נבחרה';
-				}
-			};
-			case 'back': return 'חזור';
-			case 'login_screen': return 'מסך התחברות';
-			case 'login': return 'התחברות';
-			case 'register_screen': return 'מסך הרשמה';
-			case 'register': return 'הרשמה';
-			case 'phone': return 'טלפון';
-			case 'password': return 'סיסמה';
-			case 'have_account': return 'יש משתמש';
-			case 'no_account': return 'אין משתמש';
-			case 'click_here': return 'לחץ כאן';
-			case 'password_verification': return 'אימות סיסמה';
-			case 'got_it': return 'בסדר, הבנתי';
-			case 'short_password': return 'סיסמה קצרה מידי';
-			case 'password_dont_match': return 'הסיסמאות לא תואמות';
-			case 'phone_exist': return 'טלפון קיים במערכת';
-			case 'phone_not_valid': return 'מספר הטלפון לא חוקי';
-			case 'short_password_description': return 'הסיסמה צריכה להיות 8 תווים לפחות';
-			case 'password_dont_match_description': return '2 הסיסמאות שהזנת לא תואמות, נא נסה שוב';
-			case 'phone_exist_description': return 'מספר הטלפון קיים במערכת שלנו, עבור למסך ההתחברות ונסה שנית';
-			case 'phone_not_valid_description': return 'כנראה שטעית במספר הטלפון, נא נסה שנית';
-			case 'email': return 'אימייל';
-			case 'email_exist': return 'כתובת מייל קיימת במערכת';
-			case 'email_not_valid': return 'כתובת המייל לא חוקית';
-			case 'email_exist_description': return 'כתובת המייל קיימת במערכת שלנו, עבור למסך ההתחברות ונסה שנית';
-			case 'email_not_valid_description': return 'כנראה שטעית בכתובת המייל, נא נסה שנית';
-			case 'wrong_password': return 'הסיסמה לא נכונה, נא נסה שנית';
-			case 'user_not_found': return 'לא נמצאה כתובת המייל הזו, נסה שוב';
-			case 'user_disabled': return 'משתמש מושבת';
-			case 'too_many_requests': return 'יותר מדי בקשות להתחבר לחשבון זה';
-			case 'operation_not_allowed': return 'שגיאת שרת, אנא נסה שוב מאוחר יותר';
-			case 'default_error': return 'ההתחברות או ההרשמה נכשלו. בבקשה נסה שוב';
-			case 'invalid_credential': return 'כתובת המייל או הסיסמה לא נכונים, נא נסה שנית';
-			case 'forgot_password': return 'שכחת סיסמה';
-			case 'password_recovery': return 'שחזור סיסמה';
-			case 'send_mail': return 'שלח מייל';
-			case 'send_code': return 'שלח קוד';
-			case 'mail__recover_sent_title': return 'מייל לשחזור סיסמה נשלח בהצלחה';
-			case 'mail__recover_sent_description': return 'נא לחץ על הקישור במייל.\nאם אינך רואה את המייל נסה לחפש בתיקיית הספאם או נסה שנית';
-			case 'upload_dog_image': return 'העלה תמונה של הכלב';
-			case 'add_notes': return 'הוספת הערות';
-			case 'contact_phone': return 'מספר טלפון ליצירת קשר';
-			case 'full_name': return 'שם מלא';
-			case 'otp_code': return 'קוד אימות';
-			case 'otp_code_description': return 'קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור';
-			case 'send_again': return 'שלח שוב';
-			case 'login_with_password': return 'התחבר עם סיסמה';
-			case 'login_with_otp_code': return 'התחבר עם קוד אימות';
-			case 'phone_not_exist_system': return 'מספר הטלפון לא קיים במערכת';
-			case 'explanation_screen_title': return 'המדריך ליצירת הפתעה מושלמת';
-			case 'continue_': return 'המשך';
-			case 'first_register': return 'הרשמה ראשונית';
-			case 'date_of_birth': return 'תאריך לידה';
-			case 'fill_your_details': return 'מלא/י את הפרטים שלך';
-			case 'fill_partner_details': return 'מלא/י את הפרטים של הבן/בת זוג שלך';
-			case 'first_password': return 'בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456';
-			case 'recommended_colors': return 'צבעים מומלצים';
-			case 'choose_color': return ({required GenderContext context}) {
-				switch (context) {
-					case GenderContext.male:
-						return 'בחר צבע מקשת צבעים';
-					case GenderContext.female:
-						return 'בחרי צבע מקשת צבעים';
-				}
-			};
-			case 'skip': return ({required GenderContext context}) {
-				switch (context) {
-					case GenderContext.male:
-						return 'דלג';
-					case GenderContext.female:
-						return 'דלגי';
-				}
-			};
-			case 'continue_no_change': return 'המשך ללא שינוי';
-			case 'selected_color': return 'צבע נבחר';
-			case 'finish': return 'סיום';
-			default: return null;
-		}
-	}
-}
-
-extension on _StringsHe {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'hello': return 'שלום';
