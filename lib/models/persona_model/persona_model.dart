@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

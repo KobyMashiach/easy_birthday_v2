@@ -77,7 +77,7 @@ _$PersonaModelImpl _$$PersonaModelImplFromJson(Map<String, dynamic> json) =>
       phoneNumber: json['phoneNumber'] as String,
       password: json['password'] as String,
       role: const RoleModelConverter().fromJson(json['role'] as String),
-      dateOfBirth: timestampToDateTime(json['dateOfBirth']),
+      dateOfBirth: timestampToDateTime(json['dateOfBirth'] as Timestamp?),
       profileImage: json['profileImage'] as String?,
       gender: json['gender'] as String? ?? "male",
       partnerGender: json['partnerGender'] as String?,
