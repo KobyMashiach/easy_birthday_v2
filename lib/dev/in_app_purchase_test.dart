@@ -29,7 +29,7 @@ class _InAppPurchaseTestState extends State<InAppPurchaseTest> {
         child: Column(
           children: [
             Text(products.toString()),
-            AppButton(text: "purchase", onTap: () => purchaseProduct(), s)
+            AppButton(text: "purchase", onTap: () => purchaseProduct())
           ],
         ),
       ),
