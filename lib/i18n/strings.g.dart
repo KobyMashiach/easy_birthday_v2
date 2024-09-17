@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 91
+/// Strings: 97
 ///
-/// Built on 2024-09-17 at 07:05 UTC
+/// Built on 2024-09-17 at 13:44 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -269,6 +269,24 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get continue_no_change => 'המשך ללא שינוי';
 	String get selected_color => 'צבע נבחר';
 	String get finish => 'סיום';
+	String get relationship => 'מערכת יחסים';
+	String married({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בעלי';
+			case GenderContext.female:
+				return 'אשתי';
+		}
+	}
+	String spouse({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בן זוגי';
+			case GenderContext.female:
+				return 'בת זוגתי';
+		}
+	}
+	String get soul_mate => 'נפש תאומה';
 }
 
 /// Flat map(s) containing all translations.
@@ -392,6 +410,24 @@ extension on Translations {
 			case 'continue_no_change': return 'המשך ללא שינוי';
 			case 'selected_color': return 'צבע נבחר';
 			case 'finish': return 'סיום';
+			case 'relationship': return 'מערכת יחסים';
+			case 'married': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בעלי';
+					case GenderContext.female:
+						return 'אשתי';
+				}
+			};
+			case 'spouse': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בן זוגי';
+					case GenderContext.female:
+						return 'בת זוגתי';
+				}
+			};
+			case 'soul_mate': return 'נפש תאומה';
 			default: return null;
 		}
 	}

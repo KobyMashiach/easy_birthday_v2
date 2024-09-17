@@ -37,7 +37,7 @@ dependencies:
   # kh_easy_dev: ^0.2.8
   kh_easy_dev:
     git:
-      url: https://github.com/kobymashiach/kh_easy_dev
+      url: https://github.com/kobymashiach/kh_easy_dev.git
 
   # Localization and Internationalization
   slang: ^3.31.1

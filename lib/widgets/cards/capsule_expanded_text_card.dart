@@ -1,14 +1,17 @@
 import 'package:easy_birthday/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:kh_easy_dev/kh_easy_dev.dart';
 
 class CapsuleExpandedTextCard extends StatefulWidget {
   final bool isExpanded;
   final VoidCallback onTap;
+  final MapEntry<String, List<String>> items;
 
   const CapsuleExpandedTextCard({
     Key? key,
     required this.isExpanded,
     required this.onTap,
+    required this.items,
   }) : super(key: key);
 
   @override
@@ -19,16 +22,19 @@ class CapsuleExpandedTextCard extends StatefulWidget {
 class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
     with SingleTickerProviderStateMixin {
   ListView _buildHorizontalListViews() {
-    return ListView.builder(
+    final values = widget.items.value;
+    return ListView.separated(
       scrollDirection: Axis.horizontal,
-      itemCount: 5,
-      itemBuilder: (context, i) {
+      itemCount: values.length,
+      separatorBuilder: (context, index) => kheasydevVerticalDivider(
+          black: true, padding: EdgeInsets.symmetric(vertical: 24)),
+      itemBuilder: (context, index) {
         return Container(
           constraints: BoxConstraints(minWidth: 100),
           margin: const EdgeInsets.symmetric(horizontal: 5),
-          color: Colors.blue,
           child: Center(
-            child: Text('Item $i', style: const TextStyle(color: Colors.white)),
+            child: Text(values[index],
+                style: const TextStyle(color: Colors.white)),
           ),
         );
       },
@@ -60,17 +66,29 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
                 height: 80,
                 width: widget.isExpanded
                     ? MediaQuery.of(context).size.width - 24
-                    : 100,
+                    : 150,
                 child: Row(
                   children: [
                     SizedBox(
-                      width: 100,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Title ',
-                          style: const TextStyle(color: Colors.white),
-                        ),
+                      width: 150,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              widget.items.key,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          Spacer(),
+                          if (!widget.isExpanded)
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Icon(Icons.arrow_forward),
+                            ),
+                          if (widget.isExpanded)
+                            kheasydevVerticalDivider(black: true)
+                        ],
                       ),
                     ),
                     Expanded(

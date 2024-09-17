@@ -98,12 +98,14 @@
   "continue_no_change": "המשך ללא שינוי",
   "selected_color": "צבע נבחר",
   "finish": "סיום",
+  "relationship": "מערכת יחסים",
   "married(context=GenderContext)": {
-    "male": "אשתי",
-    "female": "בעלי"
+    "male": "בעלי",
+    "female": "אשתי"
   },
   "spouse(context=GenderContext)": {
-    "male": "בת זוגתי",
-    "female": "בן זוגי"
-  }
+    "male": "בן זוגי",
+    "female": "בת זוגתי"
+  },
+  "soul_mate": "נפש תאומה"
 }

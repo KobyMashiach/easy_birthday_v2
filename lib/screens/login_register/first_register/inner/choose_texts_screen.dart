@@ -17,11 +17,22 @@ class ChooseTextsScreen extends StatefulWidget {
 
 class _ChooseTextsScreenState extends State<ChooseTextsScreen> {
   int? expandedIndex;
-  // final gender = GenderContext
   final gender = getPartnerGender();
 
   @override
   Widget build(BuildContext context) {
+    Map<String, List<String>> items = {
+      t.relationship: [
+        t.married(context: gender),
+        t.spouse(context: gender),
+        t.soul_mate,
+      ],
+      "relationship2": [
+        t.married(context: gender),
+        t.spouse(context: gender),
+        t.soul_mate,
+      ],
+    };
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) => widget.onPrevious(),
@@ -29,10 +40,11 @@ class _ChooseTextsScreenState extends State<ChooseTextsScreen> {
         body: Padding(
           padding: const EdgeInsets.all(12),
           child: ListView.separated(
-            itemCount: 5,
+            itemCount: items.length,
             separatorBuilder: (context, index) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               return CapsuleExpandedTextCard(
+                items: items.entries.elementAt(index),
                 isExpanded: expandedIndex == index,
                 onTap: () {
                   setState(() {
