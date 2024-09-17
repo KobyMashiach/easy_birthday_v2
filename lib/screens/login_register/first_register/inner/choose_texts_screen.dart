@@ -1,3 +1,4 @@
+import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
@@ -26,12 +27,81 @@ class _ChooseTextsScreenState extends State<ChooseTextsScreen> {
       onPopInvokedWithResult: (didPop, result) => widget.onPrevious(),
       child: Scaffold(
         body: Center(
-          child: Column(
-            children: [
-              Expanded(
-                child: titlesListView(),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: ListView.separated(
+              itemCount: 5,
+              separatorBuilder: (context, index) => const SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (expandedIndex == index) {
+                            expandedIndex = null;
+                          } else {
+                            expandedIndex = index;
+                          }
+                        });
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: expandedIndex != index
+                              ? Radius.zero
+                              : Radius.circular(30),
+                          bottomLeft: expandedIndex != index
+                              ? Radius.zero
+                              : Radius.circular(30),
+                          topRight: Radius.circular(30),
+                          bottomRight: Radius.circular(30),
+                        ),
+                        child: Container(
+                          color: AppColors.primaryColor,
+                          height: 80,
+                          width: expandedIndex == index
+                              ? double.infinity
+                              : 60, // Change width conditionally
+                          child: Row(
+                            children: [
+                              Text('Title $index'),
+                              Expanded(
+                                flex: 5,
+                                child: AnimatedSwitcher(
+                                  duration: Duration(milliseconds: 300),
+                                  transitionBuilder: (Widget child,
+                                      Animation<double> animation) {
+                                    return SizeTransition(
+                                      sizeFactor: animation,
+                                      axis: Axis.horizontal,
+                                      child: child,
+                                    );
+                                  },
+                                  child: expandedIndex == index
+                                      ? ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(30),
+                                            bottomRight: Radius.circular(30),
+                                          ),
+                                          child: Container(
+                                            key: ValueKey<int>(index),
+                                            height: 100,
+                                            child: horizontalListViews(),
+                                          ),
+                                        )
+                                      : SizedBox.shrink(),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
         bottomNavigationBar: AppButtonsBottomNavigationBar(
@@ -43,61 +113,6 @@ class _ChooseTextsScreenState extends State<ChooseTextsScreen> {
           inactiveButtonOnTap: widget.onPrevious,
         ),
       ),
-    );
-  }
-
-  ListView titlesListView() {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            SizedBox(
-              height: 100,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: ListTile(
-                      title: Text('Title $index'),
-                      onTap: () {
-                        setState(() {
-                          if (expandedIndex == index) {
-                            expandedIndex = null;
-                          } else {
-                            expandedIndex = index;
-                          }
-                        });
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: AnimatedSwitcher(
-                      duration: Duration(milliseconds: 300),
-                      transitionBuilder:
-                          (Widget child, Animation<double> animation) {
-                        return SizeTransition(
-                          sizeFactor: animation,
-                          axis: Axis.horizontal,
-                          child: child,
-                        );
-                      },
-                      child: expandedIndex == index
-                          ? Container(
-                              key: ValueKey<int>(index),
-                              height: 100,
-                              child: horizontalListViews(),
-                            )
-                          : SizedBox.shrink(),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
     );
   }
 
