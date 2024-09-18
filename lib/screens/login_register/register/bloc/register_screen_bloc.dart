@@ -81,7 +81,7 @@ class RegisterScreenBloc
     } else {
       repo.firstRegister(
           phoneNumber: event.phoneNumber, password: event.password);
-      emit(RegisterScreenStateNavToHomeScreen());
+      emit(RegisterScreenStateNavToFirstRegister());
     }
   }
 }

@@ -14,3 +14,6 @@ class SplashScreenNavigationToLoginScreen extends SplashScreenNavigatorState {}
 
 class SplashScreenNavigationToFirstRegister
     extends SplashScreenNavigatorState {}
+
+class SplashScreenNavigationToFirstLoginScreen
+    extends SplashScreenNavigatorState {}

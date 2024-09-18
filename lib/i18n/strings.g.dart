@@ -6,7 +6,7 @@
 /// Locales: 1
 /// Strings: 118
 ///
-/// Built on 2024-09-18 at 13:46 UTC
+/// Built on 2024-09-18 at 15:21 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -162,7 +162,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 			case GenderContext.male:
 				return 'ברוך הבא ${name}';
 			case GenderContext.female:
-				return 'ברוכה הבאה, ${name}';
+				return 'ברוכה הבאה ${name}';
 		}
 	}
 	String get home_screen => 'מסך בית';
@@ -354,7 +354,7 @@ extension on Translations {
 					case GenderContext.male:
 						return 'ברוך הבא ${name}';
 					case GenderContext.female:
-						return 'ברוכה הבאה, ${name}';
+						return 'ברוכה הבאה ${name}';
 				}
 			};
 			case 'home_screen': return 'מסך בית';

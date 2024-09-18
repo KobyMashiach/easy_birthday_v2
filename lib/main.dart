@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
           eventRepo: context.read<EventRepo>(),
         )..add(SplashScreenInitialized()),
         child: MaterialApp(
+          navigatorKey: NavigationContextService.navigatorKey,
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.grey[100],
             fontFamily:

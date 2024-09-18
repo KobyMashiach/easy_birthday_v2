@@ -4,7 +4,7 @@ import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
-import 'package:easy_birthday/screens/home/home_screen.dart';
+import 'package:easy_birthday/screens/login_register/first_register/first_register_main.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/login_register/register/bloc/register_screen_bloc.dart';
 import 'package:easy_birthday/screens/login_register/otp_phone_verification_screen.dart';
@@ -104,9 +104,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     verificationId: newState.verificationId,
                   ),
                 );
-              case const (RegisterScreenStateNavToHomeScreen):
+              case const (RegisterScreenStateNavToFirstRegister):
                 KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, HomeScreen());
+                    .pushAndRemoveUntil(context, FirstRegisterMain());
             }
           },
           builder: (context, state) {

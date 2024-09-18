@@ -30,5 +30,5 @@ final class RegisterScreenStateNavToOtpScreen extends RegisterScreenStateNavi {
   RegisterScreenStateNavToOtpScreen({required this.verificationId});
 }
 
-final class RegisterScreenStateNavToHomeScreen
+final class RegisterScreenStateNavToFirstRegister
     extends RegisterScreenStateNavi {}

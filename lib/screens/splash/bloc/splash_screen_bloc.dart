@@ -11,7 +11,6 @@ import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 part 'splash_screen_event.dart';
@@ -55,10 +54,18 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
         }
       }
 
-      if (globalUser.registerComplete) {
-        emit(SplashScreenNavigationToHomeScreen());
+      if (!globalUser.role.isPartner()) {
+        if (globalUser.registerComplete) {
+          emit(SplashScreenNavigationToHomeScreen());
+        } else {
+          emit(SplashScreenNavigationToFirstRegister());
+        }
       } else {
-        emit(SplashScreenNavigationToFirstRegister());
+        if (globalUser.registerComplete) {
+          emit(SplashScreenNavigationToHomeScreen());
+        } else {
+          emit(SplashScreenNavigationToFirstLoginScreen());
+        }
       }
     } else {
       emit(SplashScreenNavigationToLoginScreen());

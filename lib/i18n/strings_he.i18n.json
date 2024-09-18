@@ -4,7 +4,7 @@
   "choose_partner_gender": "בחירת מין הבן/בת זוג",
   "greeter(context=GenderContext)": {
     "male": "ברוך הבא $name",
-    "female": "ברוכה הבאה, $name"
+    "female": "ברוכה הבאה $name"
   },
   "home_screen": "מסך בית",
   "settings": "הגדרות",

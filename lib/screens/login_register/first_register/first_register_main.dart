@@ -1,6 +1,5 @@
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
-import 'package:easy_birthday/dev/developer_screen.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
@@ -105,11 +104,6 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
                     title: pageNumber == 0
                         ? t.explanation_screen_title
                         : t.first_register,
-                    context: context,
-                    developerPage: DeveloperScreen(),
-                    // developerPage: globalUser.role == RoleModel.admin
-                    //     ? DeveloperScreen()
-                    //     : null,
                   ),
                   body: Column(
                     children: [

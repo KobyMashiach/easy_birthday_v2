@@ -1,4 +1,6 @@
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/dev/developer_screen.dart';
+import 'package:easy_birthday/main.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
 
@@ -17,12 +19,12 @@ appAppBar({
     shadowColor: AppColors.shadowColor,
     titleColor: Colors.white,
     actions: actions,
-    developerPage: developerPage,
+    developerPage: developerPage ?? DeveloperScreen(),
     leading: onBackButtonPreesed != null
         ? IconButton(
             onPressed: onBackButtonPreesed, icon: Icon(Icons.arrow_back))
         : null,
-    context: context,
+    context: context ?? NavigationContextService.navigatorKey.currentContext,
     searchAppBar: searchAppBar,
   );
 }

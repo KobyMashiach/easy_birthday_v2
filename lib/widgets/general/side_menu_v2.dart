@@ -1,6 +1,8 @@
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
+import 'package:easy_birthday/screens/login_register/first_login.dart';
 import 'package:easy_birthday/screens/settings/setting_screen.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
@@ -10,7 +12,7 @@ import 'package:kh_easy_dev/kh_easy_dev.dart';
 
 appSideMenuV2(BuildContext context, String pageName) {
   return kheasydevAppDrawerV2(
-    name: "קובי",
+    name: globalUser.name,
     profileImage:
         "https://media.easy.co.il/images/UserPics/10116330_1673229445567.png",
     color: AppColors.primaryColor,
@@ -26,7 +28,7 @@ appSideMenuV2(BuildContext context, String pageName) {
         text: t.home_screen,
         enableColor: pageName == 'home',
         icon: Icon(Icons.home),
-        page: HomeScreen(),
+        page: !globalUser.role.isPartner() ? HomeScreen() : FirstLoginScreen(),
       ),
       DrawerButtonModel(
         text: t.settings,

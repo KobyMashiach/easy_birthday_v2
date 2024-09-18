@@ -2,7 +2,6 @@ import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/core/text_styles.dart';
-import 'package:easy_birthday/dev/developer_screen.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
@@ -87,6 +86,30 @@ class _LoginScreenState extends State<LoginScreen> {
               case const (LoginScreenStateDialogErrorMessage):
                 final newState = state as LoginScreenStateDialogErrorMessage;
                 openWrongDialog(title: newState.message);
+
+              // case const():
+              //   final newState = state as RegisterScreenStateNavToOtpScreen;
+              // KheasydevNavigatePage().push(
+              //   context,
+              //   OtpPhoneVerificationScreen(
+              //     onVerification: (otpCode) {
+              //       final newPhone = countryCode + phoneController.text;
+              //       final encryptedPassword =
+              //           MyEncryptionDecryption.encryptFernet(
+              //               passwordController.text);
+              //       bloc.add(RegisterScreenEventOnVerification(
+              //           verificationId: newState.verificationId,
+              //           otpCode: otpCode,
+              //           phoneNumber: newPhone,
+              //           password: encryptedPassword.base64));
+              //     },
+              //     onTapSendAgain: () {
+              //       KheasydevNavigatePage().pop(context);
+              //       moveToOtp(bloc);
+              //     },
+              //     verificationId: newState.verificationId,
+              //   ),
+              // );
             }
           },
           builder: (context, state) {
@@ -94,8 +117,6 @@ class _LoginScreenState extends State<LoginScreen> {
             return Scaffold(
               appBar: appAppBar(
                 title: t.login_screen,
-                context: context,
-                developerPage: const DeveloperScreen(),
                 actions: [
                   LanguageDropdown(onLanguageChange: () => setState(() {}))
                 ],
