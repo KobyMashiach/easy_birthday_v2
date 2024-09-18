@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
+import 'package:easy_birthday/core/hive/hive_functions.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/services/firebase/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 
 part 'settings_screen_event.dart';
@@ -32,6 +34,8 @@ class SettingsScreenBloc
         _settingsScreenEventNavigateToChangeLanguage);
     on<SettingsScreenEventChangeLanguage>(_settingsScreenEventChangeLanguage);
     on<SettingsScreenEventChangeGender>(_settingsScreenEventChangeGender);
+    on<SettingsScreenEventLogout>(_settingsScreenEventLogout);
+    on<SettingsScreenEventLogoutDialog>(_settingsScreenEventLogoutDialog);
   }
   FutureOr<void> _settingsScreenEventInit(
       SettingsScreenEventInit event, Emitter<SettingsScreenState> emit) async {
@@ -93,5 +97,18 @@ class SettingsScreenBloc
       Emitter<SettingsScreenState> emit) async {
     personaRepo
         .updatePersona(globalUser.copyWith(gender: event.ownerGenerIsMale));
+  }
+
+  FutureOr<void> _settingsScreenEventLogoutDialog(
+      SettingsScreenEventLogoutDialog event,
+      Emitter<SettingsScreenState> emit) {
+    emit(SettingsScreenOpenLogoutDialog());
+  }
+
+  FutureOr<void> _settingsScreenEventLogout(SettingsScreenEventLogout event,
+      Emitter<SettingsScreenState> emit) async {
+    await logoutFirestore();
+    clearAllHiveBoxes();
+    emit(SettingsScreenNavigateToLoginScreen());
   }
 }

@@ -1,8 +1,10 @@
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/settings/bloc/settings_screen_bloc.dart';
 import 'package:easy_birthday/screens/settings/inner/app_info.dart';
 import 'package:easy_birthday/screens/settings/inner/build_app_page.dart';
@@ -11,6 +13,7 @@ import 'package:easy_birthday/screens/settings/inner/gender_change.dart';
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/dialogs/color_picker_dialog.dart';
+import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/onwillpop.dart';
 import 'package:easy_birthday/widgets/general/side_menu_v2.dart';
@@ -53,6 +56,11 @@ class SettingsScreen extends StatelessWidget {
         'icon': Icons.info_outline,
         'function': () async =>
             bloc.add(SettingsScreenEventNavigateToAppInfo()),
+      },
+      {
+        'title': t.logout,
+        'icon': Icons.logout_outlined,
+        'function': () async => bloc.add(SettingsScreenEventLogoutDialog()),
       },
     ];
     return settingOptions;
@@ -123,6 +131,18 @@ class SettingsScreen extends StatelessWidget {
                       ));
                 case const (SettingsScreenNavigateToAppInfoPage):
                   KheasydevNavigatePage().push(context, AppInfo());
+                case const (SettingsScreenOpenLogoutDialog):
+                  final userChoise = await showDialog(
+                    context: context,
+                    builder: (context) => GeneralDialog(
+                        title: t.sure_logout(context: globalGender)),
+                  );
+                  if (userChoise == true) {
+                    bloc.add(SettingsScreenEventLogout());
+                  }
+                case const (SettingsScreenNavigateToLoginScreen):
+                  KheasydevNavigatePage()
+                      .pushAndRemoveUntil(context, LoginScreen());
               }
             },
             builder: (context, state) {

@@ -91,7 +91,7 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
         ),
         bottomNavigationBar: AppButtonsBottomNavigationBar(
           activeButtonText: colorChange ? t.continue_ : t.continue_no_change,
-          activeButtonOnTap: () async {
+          activeButtonOnTap: () {
             if (colorChange) {
               widget.onContinue.call(selectedColor);
             } else {

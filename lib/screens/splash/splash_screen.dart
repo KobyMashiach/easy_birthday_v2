@@ -2,10 +2,9 @@
 
 import 'dart:async';
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/first_register_main.dart';
-import 'package:easy_birthday/screens/login_register/first_register/inner/explanation_screen.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
-import 'package:easy_birthday/screens/login_register/register/register_screen.dart';
 import 'package:easy_birthday/screens/splash/bloc/splash_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,11 +42,16 @@ class _SplashScreenState extends State<SplashScreen> {
     if (_canNavigate) {
       final splashBloc = context.read<SplashScreenBloc>();
       final state = splashBloc.state;
-      //TODO: check if login or home or first details
-      if (state is SplashScreenNavigationToHomeScreen) {
-        // KheasydevNavigatePage().pushAndRemoveUntil(context, LoginScreen());
-        KheasydevNavigatePage()
-            .pushAndRemoveUntil(context, FirstRegisterMain());
+      switch (state.runtimeType) {
+        case const (SplashScreenNavigationToHomeScreen):
+          KheasydevNavigatePage()
+              .pushAndRemoveUntil(context, const HomeScreen());
+        case const (SplashScreenNavigationToFirstRegister):
+          KheasydevNavigatePage()
+              .pushAndRemoveUntil(context, FirstRegisterMain());
+        case const (SplashScreenNavigationToLoginScreen):
+          KheasydevNavigatePage()
+              .pushAndRemoveUntil(context, const LoginScreen());
       }
     }
   }
@@ -58,9 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
       listenWhen: (previous, current) => current is SplashScreenNavigatorState,
       buildWhen: (previous, current) => current is! SplashScreenNavigatorState,
       listener: (context, state) {
-        if (state is SplashScreenNavigationToHomeScreen) {
-          _checkNavigationCondition();
-        }
+        _checkNavigationCondition();
       },
       builder: (context, state) {
         return Container(

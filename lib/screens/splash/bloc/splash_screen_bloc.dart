@@ -11,6 +11,7 @@ import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 part 'splash_screen_event.dart';
@@ -39,11 +40,28 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
       globalPartnerUser = personaRepo.getLocalPartnerPersona();
     }
 
-    globalEvent = await eventRepo.getEventFromServer();
-
     changeAppColors(globalAppSettings.appColor);
     changeLanguage(LanguageModel.getAppLocale(globalAppSettings.languageCode));
     changeGender(male: checkIfMaleGender(globalUser.gender));
-    emit(SplashScreenNavigationToHomeScreen());
+    if (globalUser.phoneNumber != "") {
+      globalUser =
+          await personaRepo.getPersona(phoneNumber: globalUser.phoneNumber);
+      if (globalUser.eventId != null) {
+        globalEvent = await eventRepo.getEventFromServer();
+        if (globalUser.role != RoleModel.partner && globalEvent != null) {
+          globalPartnerUser = await personaRepo.getPersona(
+              phoneNumber: globalEvent!.users
+                  .firstWhere((e) => e != globalUser.phoneNumber));
+        }
+      }
+
+      if (globalUser.registerComplete) {
+        emit(SplashScreenNavigationToHomeScreen());
+      } else {
+        emit(SplashScreenNavigationToFirstRegister());
+      }
+    } else {
+      emit(SplashScreenNavigationToLoginScreen());
+    }
   }
 }

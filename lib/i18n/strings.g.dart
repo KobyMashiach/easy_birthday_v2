@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 97
+/// Strings: 118
 ///
-/// Built on 2024-09-17 at 13:44 UTC
+/// Built on 2024-09-18 at 13:46 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -287,6 +287,57 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 		}
 	}
 	String get soul_mate => 'נפש תאומה';
+	String get got_full_app => 'אז קיבלת אפליקציה שלמה רק בשביל זה';
+	String get title => 'כותרת';
+	String celebrant({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'חוגג';
+			case GenderContext.female:
+				return 'חוגגת';
+		}
+	}
+	String indicating({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'מציין';
+			case GenderContext.female:
+				return 'מציינת';
+		}
+	}
+	String you({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'את';
+			case GenderContext.female:
+				return 'אתה';
+		}
+	}
+	String my_deer({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'היקר';
+			case GenderContext.female:
+				return 'היקרה';
+		}
+	}
+	String get display_result => 'הראה תוצאות';
+	String get we_use => 'אנחנו נשתמש בטקסטים שבחרתם כדי לבנות את האפליקציה באופן אישי';
+	String get description => 'תיאור';
+	String get age => 'גיל';
+	String get it => 'זה';
+	String special_age({required Object age}) => 'גיל ${age} זה גיל מיוחד';
+	String get fill_all_fields => 'מלא את כל השדות בבקשה';
+	String get more_few_seconds => 'בעוד כמה שניות נוכל להתחיל לבנות את המתנה המושלמת!';
+	String get logout => 'התנתקות';
+	String sure_logout({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'אתה בטוח שאתה רוצה להתנתק?';
+			case GenderContext.female:
+				return 'את בטוחה שאת רוצה להתנתק?';
+		}
+	}
 }
 
 /// Flat map(s) containing all translations.
@@ -428,6 +479,57 @@ extension on Translations {
 				}
 			};
 			case 'soul_mate': return 'נפש תאומה';
+			case 'got_full_app': return 'אז קיבלת אפליקציה שלמה רק בשביל זה';
+			case 'title': return 'כותרת';
+			case 'celebrant': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'חוגג';
+					case GenderContext.female:
+						return 'חוגגת';
+				}
+			};
+			case 'indicating': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'מציין';
+					case GenderContext.female:
+						return 'מציינת';
+				}
+			};
+			case 'you': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'את';
+					case GenderContext.female:
+						return 'אתה';
+				}
+			};
+			case 'my_deer': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'היקר';
+					case GenderContext.female:
+						return 'היקרה';
+				}
+			};
+			case 'display_result': return 'הראה תוצאות';
+			case 'we_use': return 'אנחנו נשתמש בטקסטים שבחרתם כדי לבנות את האפליקציה באופן אישי';
+			case 'description': return 'תיאור';
+			case 'age': return 'גיל';
+			case 'it': return 'זה';
+			case 'special_age': return ({required Object age}) => 'גיל ${age} זה גיל מיוחד';
+			case 'fill_all_fields': return 'מלא את כל השדות בבקשה';
+			case 'more_few_seconds': return 'בעוד כמה שניות נוכל להתחיל לבנות את המתנה המושלמת!';
+			case 'logout': return 'התנתקות';
+			case 'sure_logout': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'אתה בטוח שאתה רוצה להתנתק?';
+					case GenderContext.female:
+						return 'את בטוחה שאת רוצה להתנתק?';
+				}
+			};
 			default: return null;
 		}
 	}

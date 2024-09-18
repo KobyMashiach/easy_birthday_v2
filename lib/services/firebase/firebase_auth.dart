@@ -119,3 +119,13 @@ Future<String> verifyEmail() async {
     return "";
   }
 }
+
+Future<String> logoutFirestore() async {
+  try {
+    await FirebaseAuth.instance.signOut();
+    return "";
+  } catch (e) {
+    log(e.toString());
+    return "An error occurred while logging out";
+  }
+}

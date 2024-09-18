@@ -2,10 +2,12 @@ import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/core/text_styles.dart';
+import 'package:easy_birthday/dev/developer_screen.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_login.dart';
+import 'package:easy_birthday/screens/login_register/first_register/first_register_main.dart';
 import 'package:easy_birthday/screens/login_register/login/bloc/login_screen_bloc.dart';
 import 'package:easy_birthday/screens/login_register/register/register_screen.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
@@ -65,7 +67,6 @@ class _LoginScreenState extends State<LoginScreen> {
           listenWhen: (previous, current) => current is LoginScreenStateNavi,
           buildWhen: (previous, current) => current is! LoginScreenStateNavi,
           listener: (context, state) async {
-            final bloc = context.read<LoginScreenBloc>();
             switch (state.runtimeType) {
               case const (LoginScreenStateNaviRegister):
                 KheasydevNavigatePage()
@@ -77,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               case const (LoginScreenStateNavToFirstRegisterScreen):
                 KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, HomeScreen());
+                    .pushAndRemoveUntil(context, FirstRegisterMain());
 
               case const (LoginScreenStateNavToFirstLoginScreen):
                 KheasydevNavigatePage()
@@ -93,6 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
             return Scaffold(
               appBar: appAppBar(
                 title: t.login_screen,
+                context: context,
+                developerPage: const DeveloperScreen(),
                 actions: [
                   LanguageDropdown(onLanguageChange: () => setState(() {}))
                 ],

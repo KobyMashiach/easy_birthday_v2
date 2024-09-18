@@ -9,3 +9,8 @@ final class SplashScreenInitial extends SplashScreenState {}
 abstract class SplashScreenNavigatorState extends SplashScreenState {}
 
 class SplashScreenNavigationToHomeScreen extends SplashScreenNavigatorState {}
+
+class SplashScreenNavigationToLoginScreen extends SplashScreenNavigatorState {}
+
+class SplashScreenNavigationToFirstRegister
+    extends SplashScreenNavigatorState {}

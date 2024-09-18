@@ -1,10 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
-import 'package:easy_birthday/models/persona_model/persona_model.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/services/encryption.dart';
@@ -42,7 +39,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         if (persona.registerComplete) {
           emit(LoginScreenStateNavToHomeScreen());
         } else {
-          if (persona.role.isPartner()) {
+          if (!persona.role.isPartner()) {
             emit(LoginScreenStateNavToFirstRegisterScreen());
           } else {
             emit(LoginScreenStateNavToFirstLoginScreen());

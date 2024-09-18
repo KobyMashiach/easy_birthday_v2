@@ -94,9 +94,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
       ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(
         activeButtonText: t.finish,
-        activeButtonOnTap: () async {
-          widget.onContinue.call();
-        },
+        activeButtonOnTap: widget.onContinue,
         inactiveButtonText: t.back,
         inactiveButtonOnTap: widget.onPrevious,
       ),

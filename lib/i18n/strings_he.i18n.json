@@ -107,5 +107,36 @@
     "male": "בן זוגי",
     "female": "בת זוגתי"
   },
-  "soul_mate": "נפש תאומה"
+  "soul_mate": "נפש תאומה",
+  "got_full_app": "אז קיבלת אפליקציה שלמה רק בשביל זה",
+  "title": "כותרת",
+  "celebrant(context=GenderContext)": {
+    "male": "חוגג",
+    "female": "חוגגת"
+  },
+  "indicating(context=GenderContext)": {
+    "male": "מציין",
+    "female": "מציינת"
+  },
+  "you(context=GenderContext)": {
+    "male": "את",
+    "female": "אתה"
+  },
+  "my_deer(context=GenderContext)": {
+    "male": "היקר",
+    "female": "היקרה"
+  },
+  "display_result": "הראה תוצאות",
+  "we_use": "אנחנו נשתמש בטקסטים שבחרתם כדי לבנות את האפליקציה באופן אישי",
+  "description": "תיאור",
+  "age": "גיל",
+  "it": "זה",
+  "special_age": "גיל $age זה גיל מיוחד",
+  "fill_all_fields": "מלא את כל השדות בבקשה",
+  "more_few_seconds": "בעוד כמה שניות נוכל להתחיל לבנות את המתנה המושלמת!",
+  "logout": "התנתקות",
+  "sure_logout(context=GenderContext)": {
+    "male": "אתה בטוח שאתה רוצה להתנתק?",
+    "female": "את בטוחה שאת רוצה להתנתק?"
+  }
 }

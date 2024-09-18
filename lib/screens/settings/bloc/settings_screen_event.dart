@@ -34,3 +34,7 @@ class SettingsScreenEventNavigateToGenderChange extends SettingsScreenEvent {}
 class SettingsScreenEventNavigateToAppInfo extends SettingsScreenEvent {}
 
 class SettingsScreenEventNavigateToChangeLanguage extends SettingsScreenEvent {}
+
+class SettingsScreenEventLogoutDialog extends SettingsScreenEvent {}
+
+class SettingsScreenEventLogout extends SettingsScreenEvent {}

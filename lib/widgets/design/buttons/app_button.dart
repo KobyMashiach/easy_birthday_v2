@@ -21,5 +21,6 @@ Widget AppButton({
       margin: margin ?? EdgeInsets.zero,
       textSize: textSize,
       textColor: textColor,
+      padding: padding,
       primaryColor: AppColors.primaryColor);
 }

@@ -28,7 +28,9 @@ class FirstRegisterBloc extends Bloc<FirstRegisterEvent, FirstRegisterState> {
     on<FirstRegisterEventOwnDetails>(_firstRegisterEventOwnDetails);
     on<FirstRegisterEventPartnerDetails>(_firstRegisterEventPartnerDetails);
     on<FirstRegisterEventChooseColor>(_firstRegisterEventChooseColor);
+    on<FirstRegisterEventChooseTexts>(_firstRegisterEventChooseTexts);
     on<FirstRegisterEventPlanPurchase>(_firstRegisterEventPlanPurchase);
+    on<FirstRegisterEventFinishRegister>(_firstRegisterEventFinishRegister);
   }
 
   FutureOr<void> _firstRegisterEventInit(
@@ -48,7 +50,8 @@ class FirstRegisterBloc extends Bloc<FirstRegisterEvent, FirstRegisterState> {
       Emitter<FirstRegisterState> emit) async {
     final eventId = globalUser.eventId;
     await personaRepo.newPartnerPersona(event.persona);
-    eventRepo.buildEvent();
+    final checkEvent = await eventRepo.getEventFromServer();
+    if (checkEvent == null) eventRepo.buildEvent();
     if (eventId != null && globalUser.eventId != eventId) {
       await personaRepo.updatePersona(globalUser);
       await personaRepo.updatePartnerPersona(globalPartnerUser!);
@@ -62,6 +65,13 @@ class FirstRegisterBloc extends Bloc<FirstRegisterEvent, FirstRegisterState> {
     await appSettingLocalDb.updateAppSettings(
         appSettings: globalAppSettings.copyWith(appColor: event.color));
     eventRepo.updateEvent(globalEvent!.copyWith(appColor: event.color));
+  }
+
+  FutureOr<void> _firstRegisterEventChooseTexts(
+      FirstRegisterEventChooseTexts event,
+      Emitter<FirstRegisterState> emit) async {
+    eventRepo
+        .updateEvent(globalEvent!.copyWith(choosenTexts: event.choosenTexts));
   }
 
   FutureOr<void> _firstRegisterEventPlanPurchase(
@@ -80,5 +90,14 @@ class FirstRegisterBloc extends Bloc<FirstRegisterEvent, FirstRegisterState> {
   Future<void> refreshEventSubscribe(Emitter<FirstRegisterState> emit) async {
     final event = await eventRepo.getEventFromServer();
     emit(FirstRegisterRefreshUI(planModel: event!.planSubscribe));
+  }
+
+  FutureOr<void> _firstRegisterEventFinishRegister(
+      FirstRegisterEventFinishRegister event,
+      Emitter<FirstRegisterState> emit) async {
+    await personaRepo
+        .updatePersona(globalUser.copyWith(registerComplete: true));
+    final event = await eventRepo.getEventFromServer();
+    emit(FirstRegisterStateNavHomeScreen(planModel: event!.planSubscribe));
   }
 }

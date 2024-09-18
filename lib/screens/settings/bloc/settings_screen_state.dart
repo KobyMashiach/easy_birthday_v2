@@ -27,3 +27,9 @@ final class SettingsScreenNavigateToAppInfoPage
 
 final class SettingsScreenNavigateToChangeLanguage
     extends SettingsScreenNavigateState {}
+
+final class SettingsScreenOpenLogoutDialog
+    extends SettingsScreenNavigateState {}
+
+final class SettingsScreenNavigateToLoginScreen
+    extends SettingsScreenNavigateState {}

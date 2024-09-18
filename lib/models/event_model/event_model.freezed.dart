@@ -37,6 +37,8 @@ mixin _$EventModel {
   @HiveField(6)
   @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
   DateTime? get partnerDateOfBirth => throw _privateConstructorUsedError;
+  @HiveField(7)
+  Map<String, String>? get choosenTexts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,7 +61,8 @@ abstract class $EventModelCopyWith<$Res> {
       @HiveField(5) String? greeting,
       @HiveField(6)
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
-      DateTime? partnerDateOfBirth});
+      DateTime? partnerDateOfBirth,
+      @HiveField(7) Map<String, String>? choosenTexts});
 }
 
 /// @nodoc
@@ -82,6 +85,7 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
     Object? imagesUrl = freezed,
     Object? greeting = freezed,
     Object? partnerDateOfBirth = freezed,
+    Object? choosenTexts = freezed,
   }) {
     return _then(_value.copyWith(
       eventId: null == eventId
@@ -112,6 +116,10 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
           ? _value.partnerDateOfBirth
           : partnerDateOfBirth // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      choosenTexts: freezed == choosenTexts
+          ? _value.choosenTexts
+          : choosenTexts // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ) as $Val);
   }
 }
@@ -133,7 +141,8 @@ abstract class _$$EventModelImplCopyWith<$Res>
       @HiveField(5) String? greeting,
       @HiveField(6)
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
-      DateTime? partnerDateOfBirth});
+      DateTime? partnerDateOfBirth,
+      @HiveField(7) Map<String, String>? choosenTexts});
 }
 
 /// @nodoc
@@ -154,6 +163,7 @@ class __$$EventModelImplCopyWithImpl<$Res>
     Object? imagesUrl = freezed,
     Object? greeting = freezed,
     Object? partnerDateOfBirth = freezed,
+    Object? choosenTexts = freezed,
   }) {
     return _then(_$EventModelImpl(
       eventId: null == eventId
@@ -184,6 +194,10 @@ class __$$EventModelImplCopyWithImpl<$Res>
           ? _value.partnerDateOfBirth
           : partnerDateOfBirth // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      choosenTexts: freezed == choosenTexts
+          ? _value._choosenTexts
+          : choosenTexts // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ));
   }
 }
@@ -201,9 +215,11 @@ class _$EventModelImpl implements _EventModel {
       @HiveField(5) this.greeting,
       @HiveField(6)
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
-      this.partnerDateOfBirth})
+      this.partnerDateOfBirth,
+      @HiveField(7) final Map<String, String>? choosenTexts})
       : _users = users,
-        _imagesUrl = imagesUrl;
+        _imagesUrl = imagesUrl,
+        _choosenTexts = choosenTexts;
 
   factory _$EventModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$EventModelImplFromJson(json);
@@ -246,10 +262,20 @@ class _$EventModelImpl implements _EventModel {
   @HiveField(6)
   @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
   final DateTime? partnerDateOfBirth;
+  final Map<String, String>? _choosenTexts;
+  @override
+  @HiveField(7)
+  Map<String, String>? get choosenTexts {
+    final value = _choosenTexts;
+    if (value == null) return null;
+    if (_choosenTexts is EqualUnmodifiableMapView) return _choosenTexts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'EventModel(eventId: $eventId, users: $users, planSubscribe: $planSubscribe, appColor: $appColor, imagesUrl: $imagesUrl, greeting: $greeting, partnerDateOfBirth: $partnerDateOfBirth)';
+    return 'EventModel(eventId: $eventId, users: $users, planSubscribe: $planSubscribe, appColor: $appColor, imagesUrl: $imagesUrl, greeting: $greeting, partnerDateOfBirth: $partnerDateOfBirth, choosenTexts: $choosenTexts)';
   }
 
   @override
@@ -268,7 +294,9 @@ class _$EventModelImpl implements _EventModel {
             (identical(other.greeting, greeting) ||
                 other.greeting == greeting) &&
             (identical(other.partnerDateOfBirth, partnerDateOfBirth) ||
-                other.partnerDateOfBirth == partnerDateOfBirth));
+                other.partnerDateOfBirth == partnerDateOfBirth) &&
+            const DeepCollectionEquality()
+                .equals(other._choosenTexts, _choosenTexts));
   }
 
   @JsonKey(ignore: true)
@@ -281,7 +309,8 @@ class _$EventModelImpl implements _EventModel {
       appColor,
       const DeepCollectionEquality().hash(_imagesUrl),
       greeting,
-      partnerDateOfBirth);
+      partnerDateOfBirth,
+      const DeepCollectionEquality().hash(_choosenTexts));
 
   @JsonKey(ignore: true)
   @override
@@ -299,15 +328,17 @@ class _$EventModelImpl implements _EventModel {
 
 abstract class _EventModel implements EventModel {
   factory _EventModel(
-      {@HiveField(0) required final String eventId,
-      @HiveField(1) required final List<String> users,
-      @HiveField(2) @PlanConverter() required final PlanModel planSubscribe,
-      @HiveField(3) @ColorConverter() final Color? appColor,
-      @HiveField(4) final List<String>? imagesUrl,
-      @HiveField(5) final String? greeting,
-      @HiveField(6)
-      @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
-      final DateTime? partnerDateOfBirth}) = _$EventModelImpl;
+          {@HiveField(0) required final String eventId,
+          @HiveField(1) required final List<String> users,
+          @HiveField(2) @PlanConverter() required final PlanModel planSubscribe,
+          @HiveField(3) @ColorConverter() final Color? appColor,
+          @HiveField(4) final List<String>? imagesUrl,
+          @HiveField(5) final String? greeting,
+          @HiveField(6)
+          @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+          final DateTime? partnerDateOfBirth,
+          @HiveField(7) final Map<String, String>? choosenTexts}) =
+      _$EventModelImpl;
 
   factory _EventModel.fromJson(Map<String, dynamic> json) =
       _$EventModelImpl.fromJson;
@@ -336,6 +367,9 @@ abstract class _EventModel implements EventModel {
   @HiveField(6)
   @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
   DateTime? get partnerDateOfBirth;
+  @override
+  @HiveField(7)
+  Map<String, String>? get choosenTexts;
   @override
   @JsonKey(ignore: true)
   _$$EventModelImplCopyWith<_$EventModelImpl> get copyWith =>
