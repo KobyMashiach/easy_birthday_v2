@@ -2,7 +2,6 @@ import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'dart:io';
 
 const Set<String> _kIds = <String>{'platinum_plan'};
 

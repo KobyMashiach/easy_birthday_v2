@@ -15,13 +15,12 @@ class LoginScreenEventOnVerification extends LoginScreenEvent {
   final String verificationId;
   final String otpCode;
   final String phoneNumber;
-  final String password;
 
-  LoginScreenEventOnVerification(
-      {required this.verificationId,
-      required this.otpCode,
-      required this.phoneNumber,
-      required this.password});
+  LoginScreenEventOnVerification({
+    required this.verificationId,
+    required this.otpCode,
+    required this.phoneNumber,
+  });
 }
 
 class LoginScreenEventOnLoginButtonClick extends LoginScreenEvent {

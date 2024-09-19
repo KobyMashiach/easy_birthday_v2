@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/models/persona_model/persona_model.dart';

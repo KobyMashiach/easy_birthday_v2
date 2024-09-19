@@ -23,6 +23,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
     on<LoginScreenEventOnLoginButtonClick>(_loginScreenEventOnLoginButtonClick);
     on<LoginScreenEventOnSendCodeButtonClick>(
         _loginScreenEventOnSendCodeButtonClick);
+    on<LoginScreenEventOnVerification>(_loginScreenEventOnVerification);
   }
 
   FutureOr<void> _loginScreenEventNavToRegisterScreen(
@@ -52,6 +53,68 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
     }
   }
 
+  FutureOr<void> _loginScreenEventOnSendCodeButtonClick(
+      LoginScreenEventOnSendCodeButtonClick event,
+      Emitter<LoginScreenState> emit) async {
+    try {
+      final personaExist =
+          await repo.checkIfHaveDetails(phoneNumber: event.phoneNumber);
+      String message = "";
+
+      if (personaExist) {
+        String verificationId = "";
+        await verifyPhoneNumber(
+          event.phoneNumber,
+          (phoneAuthCredential) => log("credential: $phoneAuthCredential"),
+          (error) {
+            message = getMessageFromErrorCode(error.code);
+            log("e: ${error.code}");
+          },
+          (verificationIdGet, forceResendingToken) {
+            log("str: $verificationIdGet\nnumber: $forceResendingToken");
+            verificationId = verificationIdGet;
+          },
+          (timeout) => log("timeout: $timeout"),
+        );
+        emit(LoginScreenLoading());
+        await Future.any([
+          Future.delayed(Duration(seconds: 5)),
+          Future.doWhile(() async {
+            await Future.delayed(Duration(milliseconds: 100));
+            return verificationId == "";
+          })
+        ]);
+        emit(LoginScreenRefreshUI());
+        if (message != "") {
+          log(message);
+          emit(LoginScreenStateDialogErrorMessage(message: message));
+        } else if (verificationId != "") {
+          emit(LoginScreenStateNavToOtpScreen(verificationId: verificationId));
+        } else {
+          emit(LoginScreenStateDialogErrorMessage(
+              message: t.operation_not_allowed));
+        }
+      } else {
+        emit(LoginScreenStateDialogErrorMessage(
+            message: t.phone_not_exist_system));
+      }
+    } catch (e) {}
+  }
+
+  FutureOr<void> _loginScreenEventOnVerification(
+      LoginScreenEventOnVerification event,
+      Emitter<LoginScreenState> emit) async {
+    final message = await signInWithOTP(event.verificationId, event.otpCode);
+    if (message != "") {
+      log(message);
+      emit(LoginScreenStateDialogErrorMessage(message: message));
+    } else {
+      final persona = await repo.getPersona(phoneNumber: event.phoneNumber);
+      await repo.updatePersona(persona);
+      loginToApp(persona, emit);
+    }
+  }
+
   void loginToApp(PersonaModel persona, Emitter<LoginScreenState> emit) {
     if (!persona.role.isPartner()) {
       if (persona.registerComplete) {
@@ -66,28 +129,5 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         emit(LoginScreenStateNavToFirstLoginScreen());
       }
     }
-  }
-
-  FutureOr<void> _loginScreenEventOnSendCodeButtonClick(
-      LoginScreenEventOnSendCodeButtonClick event,
-      Emitter<LoginScreenState> emit) async {
-    try {
-      String verificationId = "";
-      String message = "";
-      await verifyPhoneNumber(
-        event.phoneNumber,
-        (phoneAuthCredential) => log("credential: $phoneAuthCredential"),
-        (error) {
-          message = getMessageFromErrorCode(error.code);
-          log("e: ${error.code}");
-        },
-        (verificationIdGet, forceResendingToken) {
-          log("str: $verificationIdGet\nnumber: $forceResendingToken");
-          verificationId = verificationIdGet;
-        },
-        (timeout) => log("timeout: $timeout"),
-      );
-      // emit(LoginScreenStateNavToOtpScreen());
-    } catch (e) {}
   }
 }

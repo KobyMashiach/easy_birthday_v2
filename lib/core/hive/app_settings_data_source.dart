@@ -1,6 +1,5 @@
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/models/app_settings_model/app_settings_model.dart';
-import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class AppSettingsDataSource {

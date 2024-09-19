@@ -8,6 +8,7 @@ import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_login.dart';
 import 'package:easy_birthday/screens/login_register/first_register/first_register_main.dart';
 import 'package:easy_birthday/screens/login_register/login/bloc/login_screen_bloc.dart';
+import 'package:easy_birthday/screens/login_register/otp_phone_verification_screen.dart';
 import 'package:easy_birthday/screens/login_register/register/register_screen.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
@@ -29,18 +30,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late TextEditingController phoneController;
-  late TextEditingController passwordController;
   late String countryCode = "";
   bool loginWithPassword = true;
-
-  @override
-  void initState() {
-    phoneController = TextEditingController();
-    passwordController = TextEditingController();
-    countryCode = "+972";
-    super.initState();
-  }
+  late TextEditingController passwordController;
+  late TextEditingController phoneController;
 
   @override
   void dispose() {
@@ -50,106 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) => PersonaDataSource(),
-        ),
-        RepositoryProvider(
-          create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
-        ),
-      ],
-      child: BlocProvider(
-        create: (context) => LoginScreenBloc(context.read<PersonaRepo>()),
-        child: BlocConsumer<LoginScreenBloc, LoginScreenState>(
-          listenWhen: (previous, current) => current is LoginScreenStateNavi,
-          buildWhen: (previous, current) => current is! LoginScreenStateNavi,
-          listener: (context, state) async {
-            switch (state.runtimeType) {
-              case const (LoginScreenStateNaviRegister):
-                KheasydevNavigatePage()
-                    .pushAndRemoveUntilDuration(context, RegisterScreen());
-
-              case const (LoginScreenStateNavToHomeScreen):
-                KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, HomeScreen());
-
-              case const (LoginScreenStateNavToFirstRegisterScreen):
-                KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, FirstRegisterMain());
-
-              case const (LoginScreenStateNavToFirstLoginScreen):
-                KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, FirstLoginScreen());
-
-              case const (LoginScreenStateDialogErrorMessage):
-                final newState = state as LoginScreenStateDialogErrorMessage;
-                openWrongDialog(title: newState.message);
-
-              // case const():
-              //   final newState = state as RegisterScreenStateNavToOtpScreen;
-              // KheasydevNavigatePage().push(
-              //   context,
-              //   OtpPhoneVerificationScreen(
-              //     onVerification: (otpCode) {
-              //       final newPhone = countryCode + phoneController.text;
-              //       final encryptedPassword =
-              //           MyEncryptionDecryption.encryptFernet(
-              //               passwordController.text);
-              //       bloc.add(RegisterScreenEventOnVerification(
-              //           verificationId: newState.verificationId,
-              //           otpCode: otpCode,
-              //           phoneNumber: newPhone,
-              //           password: encryptedPassword.base64));
-              //     },
-              //     onTapSendAgain: () {
-              //       KheasydevNavigatePage().pop(context);
-              //       moveToOtp(bloc);
-              //     },
-              //     verificationId: newState.verificationId,
-              //   ),
-              // );
-            }
-          },
-          builder: (context, state) {
-            final bloc = context.read<LoginScreenBloc>();
-            return Scaffold(
-              appBar: appAppBar(
-                title: t.login_screen,
-                actions: [
-                  LanguageDropdown(onLanguageChange: () => setState(() {}))
-                ],
-              ),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              t.login,
-                              style: AppTextStyle().bigTitle,
-                            ),
-                            if (MediaQuery.of(context).viewInsets.bottom == 0)
-                              SvgPicture.asset(loginIllustration, height: 300),
-                            countriesCode(),
-                          ],
-                        ),
-                      ),
-                      buttons(bloc),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-      ),
-    );
+  void initState() {
+    phoneController = TextEditingController();
+    passwordController = TextEditingController();
+    countryCode = "+972";
+    super.initState();
   }
 
   Padding countriesCode() {
@@ -292,5 +190,118 @@ class _LoginScreenState extends State<LoginScreen> {
       return false;
     }
     return true;
+  }
+
+  void moveToOtp(LoginScreenBloc bloc) {
+    final newPhone = countryCode + phoneController.text;
+    bloc.add(LoginScreenEventOnSendCodeButtonClick(phoneNumber: newPhone));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => PersonaDataSource(),
+        ),
+        RepositoryProvider(
+          create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
+        ),
+      ],
+      child: BlocProvider(
+        create: (context) => LoginScreenBloc(context.read<PersonaRepo>()),
+        child: BlocConsumer<LoginScreenBloc, LoginScreenState>(
+          listenWhen: (previous, current) => current is LoginScreenStateNavi,
+          buildWhen: (previous, current) => current is! LoginScreenStateNavi,
+          listener: (context, state) async {
+            final bloc = context.read<LoginScreenBloc>();
+            switch (state.runtimeType) {
+              case const (LoginScreenStateNaviRegister):
+                KheasydevNavigatePage()
+                    .pushAndRemoveUntilDuration(context, RegisterScreen());
+
+              case const (LoginScreenStateNavToHomeScreen):
+                KheasydevNavigatePage()
+                    .pushAndRemoveUntil(context, HomeScreen());
+
+              case const (LoginScreenStateNavToFirstRegisterScreen):
+                KheasydevNavigatePage()
+                    .pushAndRemoveUntil(context, FirstRegisterMain());
+
+              case const (LoginScreenStateNavToFirstLoginScreen):
+                KheasydevNavigatePage()
+                    .pushAndRemoveUntil(context, FirstLoginScreen());
+
+              case const (LoginScreenStateDialogErrorMessage):
+                final newState = state as LoginScreenStateDialogErrorMessage;
+                openWrongDialog(title: newState.message);
+
+              case const (LoginScreenStateNavToOtpScreen):
+                final newState = state as LoginScreenStateNavToOtpScreen;
+                KheasydevNavigatePage().push(
+                  context,
+                  OtpPhoneVerificationScreen(
+                    onVerification: (otpCode) {
+                      final newPhone = countryCode + phoneController.text;
+
+                      bloc.add(LoginScreenEventOnVerification(
+                        verificationId: newState.verificationId,
+                        otpCode: otpCode,
+                        phoneNumber: newPhone,
+                      ));
+                    },
+                    onTapSendAgain: () {
+                      KheasydevNavigatePage().pop(context);
+                      moveToOtp(bloc);
+                    },
+                    verificationId: newState.verificationId,
+                  ),
+                );
+            }
+          },
+          builder: (context, state) {
+            final bloc = context.read<LoginScreenBloc>();
+            return Scaffold(
+              appBar: appAppBar(
+                title: t.login_screen,
+                actions: [
+                  LanguageDropdown(onLanguageChange: () => setState(() {}))
+                ],
+              ),
+              body: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24),
+                child: Center(
+                  child: state is LoginScreenLoading
+                      ? CircularProgressIndicator()
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    t.login,
+                                    style: AppTextStyle().bigTitle,
+                                  ),
+                                  if (MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom ==
+                                      0)
+                                    SvgPicture.asset(loginIllustration,
+                                        height: 300),
+                                  countriesCode(),
+                                ],
+                              ),
+                            ),
+                            buttons(bloc),
+                          ],
+                        ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }

@@ -29,19 +29,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  late TextEditingController phoneController;
+  late String countryCode = "";
   late TextEditingController passwordController;
   late TextEditingController passwordVerificationController;
-  late String countryCode = "";
-
-  @override
-  void initState() {
-    phoneController = TextEditingController();
-    passwordController = TextEditingController();
-    passwordVerificationController = TextEditingController();
-    countryCode = "+972";
-    super.initState();
-  }
+  late TextEditingController phoneController;
 
   @override
   void dispose() {
@@ -52,107 +43,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) => PersonaDataSource(),
-        ),
-        RepositoryProvider(
-          create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
-        ),
-      ],
-      child: BlocProvider(
-        create: (context) => RegisterScreenBloc(context.read<PersonaRepo>()),
-        child: BlocConsumer<RegisterScreenBloc, RegisterScreenState>(
-          listenWhen: (previous, current) => current is RegisterScreenStateNavi,
-          buildWhen: (previous, current) => current is! RegisterScreenStateNavi,
-          listener: (context, state) async {
-            final bloc = context.read<RegisterScreenBloc>();
-            switch (state.runtimeType) {
-              case const (RegisterScreenStateNaviLogin):
-                KheasydevNavigatePage()
-                    .pushAndRemoveUntilDuration(context, LoginScreen());
-              case const (RegisterScreenStateDialogPhoneExist):
-                openWrongDialog(phoneExists: true);
-
-              case const (RegisterScreenStateDialogErrorRegister):
-                final newState =
-                    state as RegisterScreenStateDialogErrorRegister;
-                openWrongDialog(title: newState.message);
-
-              case const (RegisterScreenStateNavToOtpScreen):
-                final newState = state as RegisterScreenStateNavToOtpScreen;
-                KheasydevNavigatePage().push(
-                  context,
-                  OtpPhoneVerificationScreen(
-                    onVerification: (otpCode) {
-                      final newPhone = countryCode + phoneController.text;
-                      final encryptedPassword =
-                          MyEncryptionDecryption.encryptFernet(
-                              passwordController.text);
-                      bloc.add(RegisterScreenEventOnVerification(
-                          verificationId: newState.verificationId,
-                          otpCode: otpCode,
-                          phoneNumber: newPhone,
-                          password: encryptedPassword.base64));
-                    },
-                    onTapSendAgain: () {
-                      KheasydevNavigatePage().pop(context);
-                      moveToOtp(bloc);
-                    },
-                    verificationId: newState.verificationId,
-                  ),
-                );
-              case const (RegisterScreenStateNavToFirstRegister):
-                KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, FirstRegisterMain());
-            }
-          },
-          builder: (context, state) {
-            final bloc = context.read<RegisterScreenBloc>();
-            return Scaffold(
-              appBar: appAppBar(
-                title: t.register_screen,
-                actions: [
-                  LanguageDropdown(onLanguageChange: () => setState(() {}))
-                ],
-              ),
-              body: state is RegisterScreenLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 24),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Center(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    t.register,
-                                    style: AppTextStyle().bigTitle,
-                                  ),
-                                  if (MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom ==
-                                      0)
-                                    SvgPicture.asset(registerIllustration,
-                                        height: 300),
-                                  countriesCode(),
-                                ],
-                              ),
-                            ),
-                            buttons(bloc),
-                          ],
-                        ),
-                      ),
-                    ),
-            );
-          },
-        ),
-      ),
-    );
+  void initState() {
+    phoneController = TextEditingController();
+    passwordController = TextEditingController();
+    passwordVerificationController = TextEditingController();
+    countryCode = "+972";
+    super.initState();
   }
 
   Padding countriesCode() {
@@ -297,5 +193,109 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void moveToOtp(RegisterScreenBloc bloc) {
     final newPhone = countryCode + phoneController.text;
     bloc.add(RegisterScreenEventOnRegisterButtonClick(phoneNumber: newPhone));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => PersonaDataSource(),
+        ),
+        RepositoryProvider(
+          create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
+        ),
+      ],
+      child: BlocProvider(
+        create: (context) => RegisterScreenBloc(context.read<PersonaRepo>()),
+        child: BlocConsumer<RegisterScreenBloc, RegisterScreenState>(
+          listenWhen: (previous, current) => current is RegisterScreenStateNavi,
+          buildWhen: (previous, current) => current is! RegisterScreenStateNavi,
+          listener: (context, state) async {
+            final bloc = context.read<RegisterScreenBloc>();
+            switch (state.runtimeType) {
+              case const (RegisterScreenStateNaviLogin):
+                KheasydevNavigatePage()
+                    .pushAndRemoveUntilDuration(context, LoginScreen());
+              case const (RegisterScreenStateDialogPhoneExist):
+                openWrongDialog(phoneExists: true);
+
+              case const (RegisterScreenStateDialogErrorRegister):
+                final newState =
+                    state as RegisterScreenStateDialogErrorRegister;
+                openWrongDialog(title: newState.message);
+
+              case const (RegisterScreenStateNavToOtpScreen):
+                final newState = state as RegisterScreenStateNavToOtpScreen;
+                KheasydevNavigatePage().push(
+                  context,
+                  OtpPhoneVerificationScreen(
+                    onVerification: (otpCode) {
+                      final newPhone = countryCode + phoneController.text;
+                      final encryptedPassword =
+                          MyEncryptionDecryption.encryptFernet(
+                              passwordController.text);
+                      bloc.add(RegisterScreenEventOnVerification(
+                          verificationId: newState.verificationId,
+                          otpCode: otpCode,
+                          phoneNumber: newPhone,
+                          password: encryptedPassword.base64));
+                    },
+                    onTapSendAgain: () {
+                      KheasydevNavigatePage().pop(context);
+                      moveToOtp(bloc);
+                    },
+                    verificationId: newState.verificationId,
+                  ),
+                );
+              case const (RegisterScreenStateNavToFirstRegister):
+                KheasydevNavigatePage()
+                    .pushAndRemoveUntil(context, FirstRegisterMain());
+            }
+          },
+          builder: (context, state) {
+            final bloc = context.read<RegisterScreenBloc>();
+            return Scaffold(
+              appBar: appAppBar(
+                title: t.register_screen,
+                actions: [
+                  LanguageDropdown(onLanguageChange: () => setState(() {}))
+                ],
+              ),
+              body: state is RegisterScreenLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    t.register,
+                                    style: AppTextStyle().bigTitle,
+                                  ),
+                                  if (MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom ==
+                                      0)
+                                    SvgPicture.asset(registerIllustration,
+                                        height: 300),
+                                  countriesCode(),
+                                ],
+                              ),
+                            ),
+                            buttons(bloc),
+                          ],
+                        ),
+                      ),
+                    ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }

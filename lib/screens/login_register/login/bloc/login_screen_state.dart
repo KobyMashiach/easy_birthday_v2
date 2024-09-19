@@ -5,6 +5,10 @@ abstract class LoginScreenState {}
 
 final class LoginScreenInitial extends LoginScreenState {}
 
+final class LoginScreenLoading extends LoginScreenState {}
+
+final class LoginScreenRefreshUI extends LoginScreenState {}
+
 @immutable
 abstract class LoginScreenStateNavi extends LoginScreenState {}
 
