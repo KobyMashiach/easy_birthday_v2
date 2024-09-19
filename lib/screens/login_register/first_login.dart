@@ -1,8 +1,12 @@
+import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
+import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:easy_birthday/widgets/general/side_menu_v2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class FirstLoginScreen extends StatelessWidget {
   const FirstLoginScreen({super.key});
@@ -13,6 +17,42 @@ class FirstLoginScreen extends StatelessWidget {
       appBar: appAppBar(
           title: t.greeter(context: globalGender, name: globalUser.name)),
       drawer: appSideMenuV2(context, 'home'),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Center(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+                  child: Column(
+                    children: [
+                      Text("Easy Birthday", style: AppTextStyle().bigTitle),
+                      const SizedBox(height: 24),
+                      SvgPicture.asset(
+                        giftIllustration,
+                        height: 200,
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                          t.greeting_first_login(
+                              context: globalGender,
+                              name: globalPartnerUser!.name),
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle().description),
+                      const SizedBox(height: 24),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: AppButtonsBottomNavigationBar(
+        oneButton: true,
+        activeButtonText: t.lets_continue,
+      ),
     );
   }
 }

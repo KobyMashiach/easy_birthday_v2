@@ -41,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _checkNavigationCondition() {
     if (_canNavigate) {
+      // KheasydevNavigatePage().pushAndRemoveUntil(context, const LoginScreen());
       final splashBloc = context.read<SplashScreenBloc>();
       final state = splashBloc.state;
       switch (state.runtimeType) {

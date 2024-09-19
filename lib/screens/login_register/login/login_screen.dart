@@ -3,6 +3,7 @@ import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_login.dart';
@@ -207,9 +208,13 @@ class _LoginScreenState extends State<LoginScreen> {
         RepositoryProvider(
           create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
         ),
+        RepositoryProvider(
+          create: (context) => EventRepo(),
+        ),
       ],
       child: BlocProvider(
-        create: (context) => LoginScreenBloc(context.read<PersonaRepo>()),
+        create: (context) => LoginScreenBloc(
+            context.read<PersonaRepo>(), context.read<EventRepo>()),
         child: BlocConsumer<LoginScreenBloc, LoginScreenState>(
           listenWhen: (previous, current) => current is LoginScreenStateNavi,
           buildWhen: (previous, current) => current is! LoginScreenStateNavi,

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 123
+/// Strings: 126
 ///
-/// Built on 2024-09-19 at 07:40 UTC
+/// Built on 2024-09-19 at 13:26 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -343,6 +343,15 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get new_password => 'סיסמה חדשה';
 	String get new_password_verification => 'אימות סיסמה חדשה';
 	String get phone_verification => 'אימות טלפון';
+	String greeting_first_login({required GenderContext context, required Object name}) {
+		switch (context) {
+			case GenderContext.male:
+				return '${name} הכינה לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצא ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונן, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉';
+			case GenderContext.female:
+				return '${name} הכין לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצאי ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונני, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉';
+		}
+	}
+	String get lets_continue => 'בואו נתקדם!';
 }
 
 /// Flat map(s) containing all translations.
@@ -540,6 +549,15 @@ extension on Translations {
 			case 'new_password': return 'סיסמה חדשה';
 			case 'new_password_verification': return 'אימות סיסמה חדשה';
 			case 'phone_verification': return 'אימות טלפון';
+			case 'greeting_first_login': return ({required GenderContext context, required Object name}) {
+				switch (context) {
+					case GenderContext.male:
+						return '${name} הכינה לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצא ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונן, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉';
+					case GenderContext.female:
+						return '${name} הכין לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצאי ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונני, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉';
+				}
+			};
+			case 'lets_continue': return 'בואו נתקדם!';
 			default: return null;
 		}
 	}

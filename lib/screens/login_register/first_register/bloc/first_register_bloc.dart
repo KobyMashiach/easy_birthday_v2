@@ -52,7 +52,7 @@ class FirstRegisterBloc extends Bloc<FirstRegisterEvent, FirstRegisterState> {
     await personaRepo.newPartnerPersona(event.persona);
     final checkEvent = await eventRepo.getEventFromServer();
     if (checkEvent == null) eventRepo.buildEvent();
-    if (eventId != null && globalUser.eventId != eventId) {
+    if (globalUser.eventId != eventId) {
       await personaRepo.updatePersona(globalUser);
       await personaRepo.updatePartnerPersona(globalPartnerUser!);
     }

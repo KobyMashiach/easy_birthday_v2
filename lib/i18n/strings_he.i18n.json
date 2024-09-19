@@ -143,5 +143,10 @@
   "change_password": "שנה סיסמה",
   "new_password": "סיסמה חדשה",
   "new_password_verification": "אימות סיסמה חדשה",
-  "phone_verification": "אימות טלפון"
+  "phone_verification": "אימות טלפון",
+  "greeting_first_login(context=GenderContext)": {
+    "male": "$name הכינה לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצא ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונן, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉",
+    "female": "$name הכין לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצאי ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונני, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉"
+  },
+  "lets_continue": "בואו נתקדם!"
 }

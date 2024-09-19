@@ -61,6 +61,12 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
           emit(SplashScreenNavigationToFirstRegister());
         }
       } else {
+        final event = await eventRepo.getEventFromServer();
+        final partnerPhone =
+            event!.users.where((user) => user != globalUser.phoneNumber).first;
+        final partnerUser =
+            await personaRepo.getPersona(phoneNumber: partnerPhone);
+        await personaRepo.updatePartnerPersona(partnerUser);
         if (globalUser.registerComplete) {
           emit(SplashScreenNavigationToHomeScreen());
         } else {

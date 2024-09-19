@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/persona_model/persona_model.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
+import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/services/encryption.dart';
 import 'package:easy_birthday/services/firebase/error_translate_firebase.dart';
@@ -16,8 +18,9 @@ part 'login_screen_state.dart';
 
 class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
   final PersonaRepo repo;
+  final EventRepo eventRepo;
 
-  LoginScreenBloc(this.repo) : super(LoginScreenInitial()) {
+  LoginScreenBloc(this.repo, this.eventRepo) : super(LoginScreenInitial()) {
     on<LoginScreenEventNavToRegisterScreen>(
         _loginScreenEventNavToRegisterScreen);
     on<LoginScreenEventOnLoginButtonClick>(_loginScreenEventOnLoginButtonClick);
@@ -115,7 +118,8 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
     }
   }
 
-  void loginToApp(PersonaModel persona, Emitter<LoginScreenState> emit) {
+  Future<void> loginToApp(
+      PersonaModel persona, Emitter<LoginScreenState> emit) async {
     if (persona.role.isNotPartner()) {
       if (persona.registerComplete) {
         emit(LoginScreenStateNavToHomeScreen());
@@ -126,6 +130,11 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
       if (persona.registerComplete) {
         emit(LoginScreenStateNavToHomeScreen());
       } else {
+        final event = await eventRepo.getEventFromServer();
+        final partnerPhone =
+            event!.users.where((user) => user != globalUser.phoneNumber).first;
+        final partnerUser = await repo.getPersona(phoneNumber: partnerPhone);
+        await repo.updatePartnerPersona(partnerUser);
         emit(LoginScreenStateNavToFirstLoginScreen());
       }
     }

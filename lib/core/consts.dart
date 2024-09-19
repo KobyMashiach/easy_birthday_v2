@@ -15,3 +15,4 @@ const wrongLoginIllustration =
     "assets/illustrations/wrong_login_illustration.svg";
 const enterOtpIllustration = "assets/illustrations/enter_otp_illustration.svg";
 const paletteIllustration = "assets/illustrations/palette_illustration.svg";
+const giftIllustration = "assets/illustrations/gift_illustration.svg";
