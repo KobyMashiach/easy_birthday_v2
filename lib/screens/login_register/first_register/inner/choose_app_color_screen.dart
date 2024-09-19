@@ -5,6 +5,7 @@ import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/dialogs/color_picker_dialog.dart';
+import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,10 +13,14 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class ChooseAppColorScreen extends StatefulWidget {
   const ChooseAppColorScreen(
-      {super.key, required this.onContinue, required this.onPrevious});
+      {super.key,
+      required this.onContinue,
+      this.onPrevious,
+      this.settingScreen});
 
   final Function(Color? color) onContinue;
-  final VoidCallback onPrevious;
+  final VoidCallback? onPrevious;
+  final bool? settingScreen;
 
   @override
   State<ChooseAppColorScreen> createState() => _ChooseAppColorScreenState();
@@ -35,9 +40,12 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) => widget.onPrevious(),
+      canPop: widget.settingScreen ?? false,
+      onPopInvokedWithResult: (didPop, result) => widget.onPrevious?.call(),
       child: Scaffold(
+        appBar: widget.settingScreen == true
+            ? appAppBar(title: t.change_color)
+            : null,
         body: Center(
           child: Column(
             children: [
@@ -90,7 +98,11 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
           ),
         ),
         bottomNavigationBar: AppButtonsBottomNavigationBar(
-          activeButtonText: colorChange ? t.continue_ : t.continue_no_change,
+          activeButtonText: widget.settingScreen == true
+              ? t.ok
+              : colorChange
+                  ? t.continue_
+                  : t.continue_no_change,
           activeButtonOnTap: () {
             if (colorChange) {
               widget.onContinue.call(selectedColor);
@@ -98,6 +110,7 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
               widget.onContinue.call(null);
             }
           },
+          oneButton: widget.settingScreen ?? false,
           inactiveButtonText: t.back,
           inactiveButtonOnTap: widget.onPrevious,
         ),

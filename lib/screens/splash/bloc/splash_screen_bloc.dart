@@ -54,7 +54,7 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
         }
       }
 
-      if (!globalUser.role.isPartner()) {
+      if (globalUser.role.isNotPartner()) {
         if (globalUser.registerComplete) {
           emit(SplashScreenNavigationToHomeScreen());
         } else {

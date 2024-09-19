@@ -4,15 +4,16 @@ import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/screens/login_register/first_register/inner/choose_app_color_screen.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/settings/bloc/settings_screen_bloc.dart';
 import 'package:easy_birthday/screens/settings/inner/app_info.dart';
 import 'package:easy_birthday/screens/settings/inner/build_app_page.dart';
 import 'package:easy_birthday/screens/settings/inner/change_language_screen.dart';
-import 'package:easy_birthday/screens/settings/inner/gender_change.dart';
+import 'package:easy_birthday/screens/settings/inner/change_password_screen.dart';
+import 'package:easy_birthday/screens/settings/inner/gender_change_screen.dart';
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
-import 'package:easy_birthday/widgets/dialogs/color_picker_dialog.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/onwillpop.dart';
@@ -50,6 +51,12 @@ class SettingsScreen extends StatelessWidget {
         ),
         'function': () async =>
             bloc.add(SettingsScreenEventNavigateToChangeLanguage()),
+      },
+      {
+        'title': t.change_password,
+        'icon': Icons.password_outlined,
+        'function': () async =>
+            bloc.add(SettingsScreenEventNavToChangePassword()),
       },
       {
         'title': t.app_info,
@@ -97,15 +104,19 @@ class SettingsScreen extends StatelessWidget {
 
               switch (state.runtimeType) {
                 case const (SettingsScreenNavigateOpenColorPicker):
-                  await showDialog(
-                    context: context,
-                    builder: (context) => ColorPickerWidget(
-                      initialColor: AppColors.primaryColor,
-                      onColorChanged: (color) {
-                        bloc.add(SettingsScreenEventChangeColor(color: color));
-                      },
-                    ),
-                  );
+                  KheasydevNavigatePage().push(
+                      context,
+                      ChooseAppColorScreen(
+                          settingScreen: true,
+                          onContinue: (color) {
+                            if (color != null) {
+                              bloc.add(
+                                  SettingsScreenEventChangeColor(color: color));
+                            } else {
+                              KheasydevNavigatePage().pop(context);
+                            }
+                          }));
+
                 case const (SettingsScreenNavigateToBuildAppPage):
                   final newState =
                       state as SettingsScreenNavigateToBuildAppPage;
@@ -114,7 +125,7 @@ class SettingsScreen extends StatelessWidget {
                       BuildAppPage(newState.seconds ?? 1,
                           description: newState.pageText ?? t.change_color));
                 case const (SettingsScreenNavigateToGenderChangePage):
-                  KheasydevNavigatePage().push(context, GenderChange(
+                  KheasydevNavigatePage().push(context, GenderChangeScreen(
                     changeGenderFunction: (genders) {
                       bloc.add(SettingsScreenEventChangeGender(
                           ownerGenerIsMale: genders.$1,
@@ -143,6 +154,14 @@ class SettingsScreen extends StatelessWidget {
                 case const (SettingsScreenNavigateToLoginScreen):
                   KheasydevNavigatePage()
                       .pushAndRemoveUntil(context, LoginScreen());
+                case const (SettingsScreenNavigateToChangePassword):
+                  KheasydevNavigatePage().push(
+                      context,
+                      ChangePasswordScreen(
+                        onPasswordChange: (password) => bloc.add(
+                            SettingsScreenEventChangePassword(
+                                password: password)),
+                      ));
               }
             },
             builder: (context, state) {

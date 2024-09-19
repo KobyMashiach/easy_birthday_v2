@@ -5,10 +5,14 @@ import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/hive_functions.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
+import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/services/encryption.dart';
 import 'package:easy_birthday/services/firebase/firebase_auth.dart';
+import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:flutter/widgets.dart';
 
 part 'settings_screen_event.dart';
@@ -36,6 +40,9 @@ class SettingsScreenBloc
     on<SettingsScreenEventChangeGender>(_settingsScreenEventChangeGender);
     on<SettingsScreenEventLogout>(_settingsScreenEventLogout);
     on<SettingsScreenEventLogoutDialog>(_settingsScreenEventLogoutDialog);
+    on<SettingsScreenEventNavToChangePassword>(
+        _settingsScreenEventNavToChangePassword);
+    on<SettingsScreenEventChangePassword>(_settingsScreenEventChangePassword);
   }
   FutureOr<void> _settingsScreenEventInit(
       SettingsScreenEventInit event, Emitter<SettingsScreenState> emit) async {
@@ -97,6 +104,11 @@ class SettingsScreenBloc
       Emitter<SettingsScreenState> emit) async {
     personaRepo
         .updatePersona(globalUser.copyWith(gender: event.ownerGenerIsMale));
+    changeGender(male: checkIfMaleGender(globalUser.gender));
+    if (globalUser.role.isNotPartner()) {
+      personaRepo.updatePartnerPersona(
+          globalPartnerUser!.copyWith(gender: event.partnerGenerIsMale));
+    }
   }
 
   FutureOr<void> _settingsScreenEventLogoutDialog(
@@ -110,5 +122,19 @@ class SettingsScreenBloc
     await logoutFirestore();
     clearAllHiveBoxes();
     emit(SettingsScreenNavigateToLoginScreen());
+  }
+
+  FutureOr<void> _settingsScreenEventNavToChangePassword(
+      SettingsScreenEventNavToChangePassword event,
+      Emitter<SettingsScreenState> emit) {
+    emit(SettingsScreenNavigateToChangePassword());
+  }
+
+  FutureOr<void> _settingsScreenEventChangePassword(
+      SettingsScreenEventChangePassword event,
+      Emitter<SettingsScreenState> emit) async {
+    final encryptedPassword =
+        MyEncryptionDecryption.encryptFernet(event.password).base64;
+    personaRepo.updatePersona(globalUser.copyWith(password: encryptedPassword));
   }
 }

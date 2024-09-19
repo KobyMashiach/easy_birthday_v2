@@ -6,6 +6,7 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 class AppButtonsBottomNavigationBar extends StatelessWidget {
   final bool oneButton;
   final String? activeButtonText;
+  final bool activeButtonDisable;
   final String? inactiveButtonText;
   final VoidCallback? activeButtonOnTap;
   final VoidCallback? inactiveButtonOnTap;
@@ -13,6 +14,7 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
     super.key,
     this.oneButton = false,
     this.activeButtonText,
+    this.activeButtonDisable = false,
     this.inactiveButtonText,
     this.activeButtonOnTap,
     this.inactiveButtonOnTap,
@@ -53,8 +55,11 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
             Expanded(
                 child: AppButton(
               text: activeButtonText ?? t.ok,
-              onTap: activeButtonOnTap ??
-                  () => KheasydevNavigatePage().pop(context),
+              onTap: activeButtonDisable
+                  ? null
+                  : activeButtonOnTap ??
+                      () => KheasydevNavigatePage().pop(context),
+              disableColors: activeButtonDisable,
             )),
           ],
         ),

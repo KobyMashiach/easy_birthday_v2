@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 118
+/// Strings: 123
 ///
-/// Built on 2024-09-18 at 15:21 UTC
+/// Built on 2024-09-19 at 07:40 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -338,6 +338,11 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'את בטוחה שאת רוצה להתנתק?';
 		}
 	}
+	String get current_plan => 'תוכנית נוכחית';
+	String get change_password => 'שנה סיסמה';
+	String get new_password => 'סיסמה חדשה';
+	String get new_password_verification => 'אימות סיסמה חדשה';
+	String get phone_verification => 'אימות טלפון';
 }
 
 /// Flat map(s) containing all translations.
@@ -530,6 +535,11 @@ extension on Translations {
 						return 'את בטוחה שאת רוצה להתנתק?';
 				}
 			};
+			case 'current_plan': return 'תוכנית נוכחית';
+			case 'change_password': return 'שנה סיסמה';
+			case 'new_password': return 'סיסמה חדשה';
+			case 'new_password_verification': return 'אימות סיסמה חדשה';
+			case 'phone_verification': return 'אימות טלפון';
 			default: return null;
 		}
 	}

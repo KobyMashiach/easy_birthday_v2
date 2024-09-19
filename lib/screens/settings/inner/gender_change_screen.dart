@@ -1,7 +1,9 @@
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
@@ -9,17 +11,22 @@ import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class GenderChange extends StatefulWidget {
+class GenderChangeScreen extends StatefulWidget {
   final Function((String owner, String partner)) changeGenderFunction;
 
-  const GenderChange({super.key, required this.changeGenderFunction});
+  const GenderChangeScreen({super.key, required this.changeGenderFunction});
 
   @override
-  State<GenderChange> createState() => _GenderChangeState();
+  State<GenderChangeScreen> createState() => _GenderChangeScreenState();
 }
 
-class _GenderChangeState extends State<GenderChange> {
-  int ownerIndex = 0, partnerIndex = 1;
+class _GenderChangeScreenState extends State<GenderChangeScreen> {
+  int ownerIndex = checkIfMaleGender(globalUser.gender) ? 0 : 1,
+      partnerIndex = globalUser.role.isNotPartner()
+          ? checkIfMaleGender(globalPartnerUser!.gender)
+              ? 0
+              : 1
+          : 1;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +42,10 @@ class _GenderChangeState extends State<GenderChange> {
                   initIndex: globalUser.gender == "male" ? 0 : 1,
                   partner: false),
               SizedBox(height: 28),
-              Text(t.choose_partner_gender, style: AppTextStyle().title),
-              chooseGenderToggle(initIndex: partnerIndex, partner: true),
+              if (globalUser.role.isNotPartner()) ...[
+                Text(t.choose_partner_gender, style: AppTextStyle().title),
+                chooseGenderToggle(initIndex: partnerIndex, partner: true)
+              ],
             ],
           ),
         ),
@@ -47,7 +56,7 @@ class _GenderChangeState extends State<GenderChange> {
           final own = ownerIndex == 0 ? "male" : "female";
           final partn = partnerIndex == 0 ? "male" : "female";
           widget.changeGenderFunction.call((own, partn));
-          KheasydevNavigatePage().pop(context, value: "male");
+          KheasydevNavigatePage().pop(context);
         },
       ),
     );

@@ -28,7 +28,8 @@ appSideMenuV2(BuildContext context, String pageName) {
         text: t.home_screen,
         enableColor: pageName == 'home',
         icon: Icon(Icons.home),
-        page: !globalUser.role.isPartner() ? HomeScreen() : FirstLoginScreen(),
+        page:
+            globalUser.role.isNotPartner() ? HomeScreen() : FirstLoginScreen(),
       ),
       DrawerButtonModel(
         text: t.settings,

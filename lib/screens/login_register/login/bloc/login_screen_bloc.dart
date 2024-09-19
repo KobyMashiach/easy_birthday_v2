@@ -116,7 +116,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
   }
 
   void loginToApp(PersonaModel persona, Emitter<LoginScreenState> emit) {
-    if (!persona.role.isPartner()) {
+    if (persona.role.isNotPartner()) {
       if (persona.registerComplete) {
         emit(LoginScreenStateNavToHomeScreen());
       } else {

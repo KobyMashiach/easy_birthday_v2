@@ -38,3 +38,11 @@ class SettingsScreenEventNavigateToChangeLanguage extends SettingsScreenEvent {}
 class SettingsScreenEventLogoutDialog extends SettingsScreenEvent {}
 
 class SettingsScreenEventLogout extends SettingsScreenEvent {}
+
+class SettingsScreenEventNavToChangePassword extends SettingsScreenEvent {}
+
+class SettingsScreenEventChangePassword extends SettingsScreenEvent {
+  final String password;
+
+  SettingsScreenEventChangePassword({required this.password});
+}

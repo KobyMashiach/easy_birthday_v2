@@ -10,12 +10,13 @@ class AppInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String, String> appInfo = {
-      t.app_info: globalAppName,
+      t.app_name: globalAppName,
       t.app_version: "v$globalAppVersion",
-      t.event_id: "asdD23Dewr5"
+      t.event_id: globalEvent?.eventId ?? "Empty",
+      t.current_plan: globalEvent?.planSubscribe.title ?? "Free"
     };
     return Scaffold(
-      appBar: appAppBar(title: "App Info"),
+      appBar: appAppBar(title: t.app_info),
       body: Center(
         child: Padding(
             padding: const EdgeInsets.all(24),

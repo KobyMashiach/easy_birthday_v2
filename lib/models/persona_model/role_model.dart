@@ -41,6 +41,10 @@ extension RoleModelExtension on RoleModel {
   bool isPartner() {
     return this == RoleModel.partner;
   }
+
+  bool isNotPartner() {
+    return this != RoleModel.partner;
+  }
 }
 
 class RoleModelConverter implements JsonConverter<RoleModel, String> {

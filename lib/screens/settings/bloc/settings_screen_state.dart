@@ -33,3 +33,6 @@ final class SettingsScreenOpenLogoutDialog
 
 final class SettingsScreenNavigateToLoginScreen
     extends SettingsScreenNavigateState {}
+
+final class SettingsScreenNavigateToChangePassword
+    extends SettingsScreenNavigateState {}

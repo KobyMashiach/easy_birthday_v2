@@ -138,5 +138,10 @@
   "sure_logout(context=GenderContext)": {
     "male": "אתה בטוח שאתה רוצה להתנתק?",
     "female": "את בטוחה שאת רוצה להתנתק?"
-  }
+  },
+  "current_plan": "תוכנית נוכחית",
+  "change_password": "שנה סיסמה",
+  "new_password": "סיסמה חדשה",
+  "new_password_verification": "אימות סיסמה חדשה",
+  "phone_verification": "אימות טלפון"
 }
