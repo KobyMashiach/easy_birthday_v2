@@ -3,11 +3,12 @@ import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/widgets/general/error_message_row.dart';
 import 'package:flutter/material.dart';
 
-class AppDropDown extends StatefulWidget {
-  final void Function(String) onChanged;
-  final List<String> listValues;
+class AppDropDown<T> extends StatefulWidget {
+  final void Function(T) onChanged;
+  final List<T> listValues;
+  final String Function(T objectType)? valueFormatter;
   final String? hintText;
-  final String? value;
+  final T? value;
   final GlobalKey<FormFieldState>? keyToReset;
   final EdgeInsets? padding;
   final bool? showError;
@@ -18,6 +19,7 @@ class AppDropDown extends StatefulWidget {
     Key? key,
     required this.onChanged,
     required this.listValues,
+    this.valueFormatter,
     this.hintText,
     this.value,
     this.keyToReset,
@@ -28,11 +30,11 @@ class AppDropDown extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AppDropDown> createState() => _AppDropDownState();
+  State<AppDropDown<T>> createState() => _AppDropDownState<T>();
 }
 
-class _AppDropDownState extends State<AppDropDown> {
-  late String? value;
+class _AppDropDownState<T> extends State<AppDropDown<T>> {
+  late T? value;
 
   @override
   void initState() {
@@ -48,20 +50,25 @@ class _AppDropDownState extends State<AppDropDown> {
           height: 80,
           child: Padding(
             padding: widget.padding ?? const EdgeInsets.all(12.0),
-            child: DropdownButtonFormField<String>(
+            child: DropdownButtonFormField<T>(
               key: widget.keyToReset,
               value: value,
-              items: widget.listValues.map((String value) {
-                return DropdownMenuItem<String>(
+              items: widget.listValues.map((T value) {
+                return DropdownMenuItem<T>(
                   value: value,
                   child: Text(
-                    value,
+                    widget.valueFormatter != null
+                        ? widget.valueFormatter!(value)
+                        : value.toString(),
                     textAlign: TextAlign.center,
                     style: AppTextStyle().smallDescription,
                   ),
                 );
               }).toList(),
               onChanged: (newValue) {
+                setState(() {
+                  value = newValue;
+                });
                 widget.onChanged(newValue!);
               },
               decoration: InputDecoration(
@@ -89,7 +96,7 @@ class _AppDropDownState extends State<AppDropDown> {
           ),
         ),
         if (widget.showError == true && widget.error != null)
-          errorMessageRow(message: "message"),
+          errorMessageRow(message: widget.error!),
       ],
     );
   }

@@ -2,11 +2,15 @@ import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:easy_birthday/widgets/general/side_menu_v2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class FirstLoginScreen extends StatelessWidget {
   const FirstLoginScreen({super.key});
@@ -50,9 +54,14 @@ class FirstLoginScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(
-        oneButton: true,
-        activeButtonText: t.lets_continue,
-      ),
+          oneButton: true,
+          activeButtonText: t.lets_continue,
+          activeButtonOnTap: () {
+            context
+                .read<PersonaRepo>()
+                .updatePersona(globalUser.copyWith(registerComplete: true));
+            KheasydevNavigatePage().push(context, const HomeScreen());
+          }),
     );
   }
 }

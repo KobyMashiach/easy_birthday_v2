@@ -148,5 +148,40 @@
     "male": "$name הכינה לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצא ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונן, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉",
     "female": "$name הכין לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצאי ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונני, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉"
   },
-  "lets_continue": "בואו נתקדם!"
+  "lets_continue": "בואו נתקדם!",
+  "add(context=GenderContext)": {
+    "male": "הוסף",
+    "female": "הוסיפי"
+  },
+  "remove(context=GenderContext)": {
+    "male": "הסר",
+    "female": "הסירי"
+  },
+  "text": "טקסט",
+  "pictures": "תמונות",
+  "videos": "סרטונים",
+  "quiz_game": "משחק טריוויה",
+  "text_description(context=GenderContext)": {
+    "male": "יאללה, תשלוף ברכה מהלב או כתוב איזה טקסט קורע שתרצה!",
+    "female": "יאללה, תשלפי ברכה מהלב או כתבי איזה טקסט קורע שתרצי!"
+  },
+  "pictures_description(context=GenderContext)": {
+    "male": "הוסף כמה תמונות משותפות שימסו לכם את הלב",
+    "female": "הוסיפי כמה תמונות משותפות שימסו לכם את הלב"
+  },
+  "videos_description(context=GenderContext)": {
+    "male": "הוסף סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד",
+    "female": "הוסיפי סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד"
+  },
+  "quiz_game_description(context=GenderContext)": {
+    "male": "יאללה, תבנה משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!",
+    "female": "יאללה, תבני משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!"
+  },
+  "choose_category(context=GenderContext)": {
+    "male": "בחר קטגוריה",
+    "female": "בחרי קטגוריה"
+  },
+  "please_choose_category": "בחר קטגוריה בבקשה",
+  "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
+  "title_appear_required": "נא למלא את הכותרת"
 }

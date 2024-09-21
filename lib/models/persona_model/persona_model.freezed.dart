@@ -37,12 +37,10 @@ mixin _$PersonaModel {
   @HiveField(6)
   String get gender => throw _privateConstructorUsedError;
   @HiveField(7)
-  String? get partnerGender => throw _privateConstructorUsedError;
-  @HiveField(8)
   bool get registerComplete => throw _privateConstructorUsedError;
-  @HiveField(9)
+  @HiveField(8)
   String? get email => throw _privateConstructorUsedError;
-  @HiveField(10)
+  @HiveField(9)
   String? get eventId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -67,10 +65,9 @@ abstract class $PersonaModelCopyWith<$Res> {
       DateTime? dateOfBirth,
       @HiveField(5) String? profileImage,
       @HiveField(6) String gender,
-      @HiveField(7) String? partnerGender,
-      @HiveField(8) bool registerComplete,
-      @HiveField(9) String? email,
-      @HiveField(10) String? eventId});
+      @HiveField(7) bool registerComplete,
+      @HiveField(8) String? email,
+      @HiveField(9) String? eventId});
 }
 
 /// @nodoc
@@ -93,7 +90,6 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
     Object? dateOfBirth = freezed,
     Object? profileImage = freezed,
     Object? gender = null,
-    Object? partnerGender = freezed,
     Object? registerComplete = null,
     Object? email = freezed,
     Object? eventId = freezed,
@@ -127,10 +123,6 @@ class _$PersonaModelCopyWithImpl<$Res, $Val extends PersonaModel>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      partnerGender: freezed == partnerGender
-          ? _value.partnerGender
-          : partnerGender // ignore: cast_nullable_to_non_nullable
-              as String?,
       registerComplete: null == registerComplete
           ? _value.registerComplete
           : registerComplete // ignore: cast_nullable_to_non_nullable
@@ -165,10 +157,9 @@ abstract class _$$PersonaModelImplCopyWith<$Res>
       DateTime? dateOfBirth,
       @HiveField(5) String? profileImage,
       @HiveField(6) String gender,
-      @HiveField(7) String? partnerGender,
-      @HiveField(8) bool registerComplete,
-      @HiveField(9) String? email,
-      @HiveField(10) String? eventId});
+      @HiveField(7) bool registerComplete,
+      @HiveField(8) String? email,
+      @HiveField(9) String? eventId});
 }
 
 /// @nodoc
@@ -189,7 +180,6 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
     Object? dateOfBirth = freezed,
     Object? profileImage = freezed,
     Object? gender = null,
-    Object? partnerGender = freezed,
     Object? registerComplete = null,
     Object? email = freezed,
     Object? eventId = freezed,
@@ -223,10 +213,6 @@ class __$$PersonaModelImplCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      partnerGender: freezed == partnerGender
-          ? _value.partnerGender
-          : partnerGender // ignore: cast_nullable_to_non_nullable
-              as String?,
       registerComplete: null == registerComplete
           ? _value.registerComplete
           : registerComplete // ignore: cast_nullable_to_non_nullable
@@ -257,10 +243,9 @@ class _$PersonaModelImpl implements _PersonaModel {
       this.dateOfBirth,
       @HiveField(5) this.profileImage,
       @HiveField(6) this.gender = "male",
-      @HiveField(7) this.partnerGender,
-      @HiveField(8) required this.registerComplete,
-      @HiveField(9) this.email,
-      @HiveField(10) this.eventId});
+      @HiveField(7) required this.registerComplete,
+      @HiveField(8) this.email,
+      @HiveField(9) this.eventId});
 
   factory _$PersonaModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonaModelImplFromJson(json);
@@ -291,20 +276,17 @@ class _$PersonaModelImpl implements _PersonaModel {
   final String gender;
   @override
   @HiveField(7)
-  final String? partnerGender;
-  @override
-  @HiveField(8)
   final bool registerComplete;
   @override
-  @HiveField(9)
+  @HiveField(8)
   final String? email;
   @override
-  @HiveField(10)
+  @HiveField(9)
   final String? eventId;
 
   @override
   String toString() {
-    return 'PersonaModel(name: $name, phoneNumber: $phoneNumber, password: $password, role: $role, dateOfBirth: $dateOfBirth, profileImage: $profileImage, gender: $gender, partnerGender: $partnerGender, registerComplete: $registerComplete, email: $email, eventId: $eventId)';
+    return 'PersonaModel(name: $name, phoneNumber: $phoneNumber, password: $password, role: $role, dateOfBirth: $dateOfBirth, profileImage: $profileImage, gender: $gender, registerComplete: $registerComplete, email: $email, eventId: $eventId)';
   }
 
   @override
@@ -323,8 +305,6 @@ class _$PersonaModelImpl implements _PersonaModel {
             (identical(other.profileImage, profileImage) ||
                 other.profileImage == profileImage) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.partnerGender, partnerGender) ||
-                other.partnerGender == partnerGender) &&
             (identical(other.registerComplete, registerComplete) ||
                 other.registerComplete == registerComplete) &&
             (identical(other.email, email) || other.email == email) &&
@@ -342,7 +322,6 @@ class _$PersonaModelImpl implements _PersonaModel {
       dateOfBirth,
       profileImage,
       gender,
-      partnerGender,
       registerComplete,
       email,
       eventId);
@@ -372,10 +351,9 @@ abstract class _PersonaModel implements PersonaModel {
       final DateTime? dateOfBirth,
       @HiveField(5) final String? profileImage,
       @HiveField(6) final String gender,
-      @HiveField(7) final String? partnerGender,
-      @HiveField(8) required final bool registerComplete,
-      @HiveField(9) final String? email,
-      @HiveField(10) final String? eventId}) = _$PersonaModelImpl;
+      @HiveField(7) required final bool registerComplete,
+      @HiveField(8) final String? email,
+      @HiveField(9) final String? eventId}) = _$PersonaModelImpl;
 
   factory _PersonaModel.fromJson(Map<String, dynamic> json) =
       _$PersonaModelImpl.fromJson;
@@ -405,15 +383,12 @@ abstract class _PersonaModel implements PersonaModel {
   String get gender;
   @override
   @HiveField(7)
-  String? get partnerGender;
-  @override
-  @HiveField(8)
   bool get registerComplete;
   @override
-  @HiveField(9)
+  @HiveField(8)
   String? get email;
   @override
-  @HiveField(10)
+  @HiveField(9)
   String? get eventId;
   @override
   @JsonKey(ignore: true)

@@ -25,13 +25,14 @@ class EventModelAdapter extends TypeAdapter<_$EventModelImpl> {
       greeting: fields[5] as String?,
       partnerDateOfBirth: fields[6] as DateTime?,
       choosenTexts: (fields[7] as Map?)?.cast<String, String>(),
+      categories: (fields[8] as List?)?.cast<CategoryModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, _$EventModelImpl obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.eventId)
       ..writeByte(2)
@@ -47,7 +48,9 @@ class EventModelAdapter extends TypeAdapter<_$EventModelImpl> {
       ..writeByte(4)
       ..write(obj.imagesUrl)
       ..writeByte(7)
-      ..write(obj.choosenTexts);
+      ..write(obj.choosenTexts)
+      ..writeByte(8)
+      ..write(obj.categories);
   }
 
   @override
@@ -82,6 +85,10 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
       choosenTexts: (json['choosenTexts'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
+      categories: (json['categories'] as List<dynamic>?)
+          ?.map((e) =>
+              const CategoryConverter().fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
@@ -95,6 +102,8 @@ Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
       'greeting': instance.greeting,
       'partnerDateOfBirth': dateTimeToTimestamp(instance.partnerDateOfBirth),
       'choosenTexts': instance.choosenTexts,
+      'categories':
+          instance.categories?.map(const CategoryConverter().toJson).toList(),
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

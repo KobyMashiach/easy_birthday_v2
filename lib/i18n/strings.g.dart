@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 126
+/// Strings: 147
 ///
-/// Built on 2024-09-19 at 13:26 UTC
+/// Built on 2024-09-20 at 23:56 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -352,6 +352,69 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 		}
 	}
 	String get lets_continue => 'בואו נתקדם!';
+	String add({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הוסף';
+			case GenderContext.female:
+				return 'הוסיפי';
+		}
+	}
+	String remove({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הסר';
+			case GenderContext.female:
+				return 'הסירי';
+		}
+	}
+	String get text => 'טקסט';
+	String get pictures => 'תמונות';
+	String get videos => 'סרטונים';
+	String get quiz_game => 'משחק טריוויה';
+	String text_description({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'יאללה, תשלוף ברכה מהלב או כתוב איזה טקסט קורע שתרצה!';
+			case GenderContext.female:
+				return 'יאללה, תשלפי ברכה מהלב או כתבי איזה טקסט קורע שתרצי!';
+		}
+	}
+	String pictures_description({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הוסף כמה תמונות משותפות שימסו לכם את הלב';
+			case GenderContext.female:
+				return 'הוסיפי כמה תמונות משותפות שימסו לכם את הלב';
+		}
+	}
+	String videos_description({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הוסף סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד';
+			case GenderContext.female:
+				return 'הוסיפי סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד';
+		}
+	}
+	String quiz_game_description({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'יאללה, תבנה משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!';
+			case GenderContext.female:
+				return 'יאללה, תבני משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!';
+		}
+	}
+	String choose_category({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בחר קטגוריה';
+			case GenderContext.female:
+				return 'בחרי קטגוריה';
+		}
+	}
+	String get please_choose_category => 'בחר קטגוריה בבקשה';
+	String get title_appear_category => 'הכותרת שתופיע לקטגוריה זו';
+	String get title_appear_required => 'נא למלא את הכותרת';
 }
 
 /// Flat map(s) containing all translations.
@@ -558,6 +621,69 @@ extension on Translations {
 				}
 			};
 			case 'lets_continue': return 'בואו נתקדם!';
+			case 'add': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הוסף';
+					case GenderContext.female:
+						return 'הוסיפי';
+				}
+			};
+			case 'remove': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הסר';
+					case GenderContext.female:
+						return 'הסירי';
+				}
+			};
+			case 'text': return 'טקסט';
+			case 'pictures': return 'תמונות';
+			case 'videos': return 'סרטונים';
+			case 'quiz_game': return 'משחק טריוויה';
+			case 'text_description': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'יאללה, תשלוף ברכה מהלב או כתוב איזה טקסט קורע שתרצה!';
+					case GenderContext.female:
+						return 'יאללה, תשלפי ברכה מהלב או כתבי איזה טקסט קורע שתרצי!';
+				}
+			};
+			case 'pictures_description': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הוסף כמה תמונות משותפות שימסו לכם את הלב';
+					case GenderContext.female:
+						return 'הוסיפי כמה תמונות משותפות שימסו לכם את הלב';
+				}
+			};
+			case 'videos_description': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הוסף סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד';
+					case GenderContext.female:
+						return 'הוסיפי סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד';
+				}
+			};
+			case 'quiz_game_description': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'יאללה, תבנה משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!';
+					case GenderContext.female:
+						return 'יאללה, תבני משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!';
+				}
+			};
+			case 'choose_category': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בחר קטגוריה';
+					case GenderContext.female:
+						return 'בחרי קטגוריה';
+				}
+			};
+			case 'please_choose_category': return 'בחר קטגוריה בבקשה';
+			case 'title_appear_category': return 'הכותרת שתופיע לקטגוריה זו';
+			case 'title_appear_required': return 'נא למלא את הכותרת';
 			default: return null;
 		}
 	}

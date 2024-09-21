@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/event_model/event_model.dart';
 import 'package:easy_birthday/models/plan_model/plan_model.dart';
 import 'package:easy_birthday/services/firebase/firestore_data.dart';
@@ -46,6 +47,14 @@ class EventRepo {
     globalEvent = event;
     firestoreUpdateDoc(collection,
         docName: event.eventId, values: event.toJson());
+  }
+
+  Future<dynamic> addCategory(CategoryModel category) async {
+    final updatedCategories =
+        List<CategoryModel>.from(globalEvent?.categories ?? [])..add(category);
+    globalEvent = globalEvent!.copyWith(categories: updatedCategories);
+    firestoreUpdateDoc(collection,
+        docName: globalEvent!.eventId, values: globalEvent!.toJson());
   }
 
   // PersonaModel getLocalPersona() {

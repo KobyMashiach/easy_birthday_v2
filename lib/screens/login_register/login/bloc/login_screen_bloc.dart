@@ -46,7 +46,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
           MyEncryptionDecryption.getStringFromEncrypted(persona.password);
       if (firestorePassword == event.password) {
         await repo.updatePersona(persona);
-        loginToApp(persona, emit);
+        await loginToApp(persona, emit);
       } else {
         emit(LoginScreenStateDialogErrorMessage(message: t.wrong_password));
       }
@@ -114,7 +114,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
     } else {
       final persona = await repo.getPersona(phoneNumber: event.phoneNumber);
       await repo.updatePersona(persona);
-      loginToApp(persona, emit);
+      await loginToApp(persona, emit);
     }
   }
 
@@ -127,14 +127,14 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         emit(LoginScreenStateNavToFirstRegisterScreen());
       }
     } else {
+      final event = await eventRepo.getEventFromServer();
+      final partnerPhone =
+          event!.users.where((user) => user != globalUser.phoneNumber).first;
+      final partnerUser = await repo.getPersona(phoneNumber: partnerPhone);
+      await repo.updatePartnerPersona(partnerUser);
       if (persona.registerComplete) {
         emit(LoginScreenStateNavToHomeScreen());
       } else {
-        final event = await eventRepo.getEventFromServer();
-        final partnerPhone =
-            event!.users.where((user) => user != globalUser.phoneNumber).first;
-        final partnerUser = await repo.getPersona(phoneNumber: partnerPhone);
-        await repo.updatePartnerPersona(partnerUser);
         emit(LoginScreenStateNavToFirstLoginScreen());
       }
     }

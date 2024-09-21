@@ -22,6 +22,7 @@ Widget GeneralDialog({
   final Widget? child,
   final double? height,
   final double? width,
+  final VoidCallback? okButtonOnTap,
 }) {
   return KhEasydevDialogV2(
     title: title,
@@ -42,5 +43,6 @@ Widget GeneralDialog({
     child: child,
     height: height,
     width: width,
+    okButtonOnTap: okButtonOnTap,
   );
 }

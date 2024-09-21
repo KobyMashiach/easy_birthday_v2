@@ -24,17 +24,16 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       dateOfBirth: fields[4] as DateTime?,
       profileImage: fields[5] as String?,
       gender: fields[6] as String,
-      partnerGender: fields[7] as String?,
-      registerComplete: fields[8] as bool,
-      email: fields[9] as String?,
-      eventId: fields[10] as String?,
+      registerComplete: fields[7] as bool,
+      email: fields[8] as String?,
+      eventId: fields[9] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$PersonaModelImpl obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -50,12 +49,10 @@ class PersonaModelAdapter extends TypeAdapter<_$PersonaModelImpl> {
       ..writeByte(6)
       ..write(obj.gender)
       ..writeByte(7)
-      ..write(obj.partnerGender)
-      ..writeByte(8)
       ..write(obj.registerComplete)
-      ..writeByte(9)
+      ..writeByte(8)
       ..write(obj.email)
-      ..writeByte(10)
+      ..writeByte(9)
       ..write(obj.eventId);
   }
 
@@ -83,7 +80,6 @@ _$PersonaModelImpl _$$PersonaModelImplFromJson(Map<String, dynamic> json) =>
       dateOfBirth: timestampToDateTime(json['dateOfBirth'] as Timestamp?),
       profileImage: json['profileImage'] as String?,
       gender: json['gender'] as String? ?? "male",
-      partnerGender: json['partnerGender'] as String?,
       registerComplete: json['registerComplete'] as bool,
       email: json['email'] as String?,
       eventId: json['eventId'] as String?,
@@ -98,7 +94,6 @@ Map<String, dynamic> _$$PersonaModelImplToJson(_$PersonaModelImpl instance) =>
       'dateOfBirth': dateTimeToTimestamp(instance.dateOfBirth),
       'profileImage': instance.profileImage,
       'gender': instance.gender,
-      'partnerGender': instance.partnerGender,
       'registerComplete': instance.registerComplete,
       'email': instance.email,
       'eventId': instance.eventId,

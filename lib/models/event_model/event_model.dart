@@ -3,7 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/models/app_settings_model/color_converter.dart';
-import 'package:easy_birthday/models/event_model/plan_converter.dart';
+import 'package:easy_birthday/models/category_model/category_model.dart';
+import 'package:easy_birthday/models/event_model/event_converters_json.dart';
 import 'package:easy_birthday/models/plan_model/plan_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -27,6 +28,7 @@ class EventModel with _$EventModel {
     @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
     DateTime? partnerDateOfBirth,
     @HiveField(7) Map<String, String>? choosenTexts,
+    @HiveField(8) @CategoryConverter() List<CategoryModel>? categories,
   }) = _EventModel;
 
   factory EventModel.fromJson(Map<String, dynamic> json) =>

@@ -1,6 +1,8 @@
 import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/models/persona_model/persona_model.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
+import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class PersonaDataSource {
@@ -27,6 +29,7 @@ class PersonaDataSource {
     box.clear();
     await box.add(persona);
     globalUser = persona;
+    changeGender(male: checkIfMaleGender(globalUser.gender));
   }
 
   PersonaModel getPersona() {

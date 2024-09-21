@@ -23,10 +23,9 @@ class PersonaModel with _$PersonaModel {
     DateTime? dateOfBirth,
     @HiveField(5) String? profileImage,
     @HiveField(6) @Default("male") String gender,
-    @HiveField(7) String? partnerGender,
-    @HiveField(8) required bool registerComplete,
-    @HiveField(9) String? email,
-    @HiveField(10) String? eventId,
+    @HiveField(7) required bool registerComplete,
+    @HiveField(8) String? email,
+    @HiveField(9) String? eventId,
   }) = _PersonaModel;
 
   factory PersonaModel.fromJson(Map<String, dynamic> json) =>

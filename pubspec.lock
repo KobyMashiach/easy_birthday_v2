@@ -802,8 +802,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "811bdddafc51700149efdced95bb7cd0edb591d7"
-      url: "https://github.com/kobymashiach/kh_easy_dev.git"
+      resolved-ref: a0cfd05a70d7f964abbfffecee0c463ae99e0d39
+      url: "https://github.com/kobymashiach/kh_easy_dev"
     source: git
     version: "0.3.1"
   leak_tracker:
