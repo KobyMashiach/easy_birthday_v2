@@ -5,6 +5,8 @@ import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/screens/home/bloc/home_screen_bloc.dart';
+import 'package:easy_birthday/screens/home/inner/main_home_screens.dart/owner_home_screen.dart';
+import 'package:easy_birthday/screens/home/inner/main_home_screens.dart/partner_home_screen.dart';
 import 'package:easy_birthday/widgets/dialogs/choose_category_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/side_menu_v2.dart';
@@ -43,9 +45,16 @@ class HomeScreen extends StatelessWidget {
             return Scaffold(
               appBar: appAppBar(title: t.home_screen),
               drawer: appSideMenuV2(context, 'home'),
-              body: Column(
-                children: [],
-              ),
+              body: state is HomeScreenLoading
+                  ? CircularProgressIndicator()
+                  : Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Center(
+                        child: globalUser.role.isPartner()
+                            ? PartnerHomeScreen()
+                            : OwnerHomeScreen(),
+                      ),
+                    ),
               floatingActionButton: globalUser.role.isNotPartner()
                   ? FloatingActionButton.extended(
                       onPressed: () =>

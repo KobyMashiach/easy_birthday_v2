@@ -28,7 +28,10 @@ class EventModel with _$EventModel {
     @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
     DateTime? partnerDateOfBirth,
     @HiveField(7) Map<String, String>? choosenTexts,
-    @HiveField(8) @CategoryConverter() List<CategoryModel>? categories,
+    @HiveField(8)
+    @Default([])
+    @CategoryConverter()
+    List<CategoryModel> categories,
   }) = _EventModel;
 
   factory EventModel.fromJson(Map<String, dynamic> json) =>

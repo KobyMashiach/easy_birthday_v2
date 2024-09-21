@@ -24,6 +24,8 @@ mixin _$CategoryModel {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String? get titleAppear => throw _privateConstructorUsedError;
+  String? get text => throw _privateConstructorUsedError;
+  List<String>? get urls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,9 @@ abstract class $CategoryModelCopyWith<$Res> {
       {CategoryEnum categoryType,
       String name,
       String description,
-      String? titleAppear});
+      String? titleAppear,
+      String? text,
+      List<String>? urls});
 }
 
 /// @nodoc
@@ -61,6 +65,8 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? name = null,
     Object? description = null,
     Object? titleAppear = freezed,
+    Object? text = freezed,
+    Object? urls = freezed,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -79,6 +85,14 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.titleAppear
           : titleAppear // ignore: cast_nullable_to_non_nullable
               as String?,
+      text: freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      urls: freezed == urls
+          ? _value.urls
+          : urls // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -95,7 +109,9 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       {CategoryEnum categoryType,
       String name,
       String description,
-      String? titleAppear});
+      String? titleAppear,
+      String? text,
+      List<String>? urls});
 }
 
 /// @nodoc
@@ -113,6 +129,8 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? titleAppear = freezed,
+    Object? text = freezed,
+    Object? urls = freezed,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -131,6 +149,14 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value.titleAppear
           : titleAppear // ignore: cast_nullable_to_non_nullable
               as String?,
+      text: freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      urls: freezed == urls
+          ? _value._urls
+          : urls // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -142,7 +168,10 @@ class _$CategoryModelImpl implements _CategoryModel {
       {required this.categoryType,
       required this.name,
       required this.description,
-      this.titleAppear});
+      this.titleAppear,
+      this.text,
+      final List<String>? urls})
+      : _urls = urls;
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryModelImplFromJson(json);
@@ -155,10 +184,21 @@ class _$CategoryModelImpl implements _CategoryModel {
   final String description;
   @override
   final String? titleAppear;
+  @override
+  final String? text;
+  final List<String>? _urls;
+  @override
+  List<String>? get urls {
+    final value = _urls;
+    if (value == null) return null;
+    if (_urls is EqualUnmodifiableListView) return _urls;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, titleAppear: $titleAppear)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, titleAppear: $titleAppear, text: $text, urls: $urls)';
   }
 
   @override
@@ -172,13 +212,15 @@ class _$CategoryModelImpl implements _CategoryModel {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.titleAppear, titleAppear) ||
-                other.titleAppear == titleAppear));
+                other.titleAppear == titleAppear) &&
+            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other._urls, _urls));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, categoryType, name, description, titleAppear);
+  int get hashCode => Object.hash(runtimeType, categoryType, name, description,
+      titleAppear, text, const DeepCollectionEquality().hash(_urls));
 
   @JsonKey(ignore: true)
   @override
@@ -199,7 +241,9 @@ abstract class _CategoryModel implements CategoryModel {
       {required final CategoryEnum categoryType,
       required final String name,
       required final String description,
-      final String? titleAppear}) = _$CategoryModelImpl;
+      final String? titleAppear,
+      final String? text,
+      final List<String>? urls}) = _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
@@ -212,6 +256,10 @@ abstract class _CategoryModel implements CategoryModel {
   String get description;
   @override
   String? get titleAppear;
+  @override
+  String? get text;
+  @override
+  List<String>? get urls;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

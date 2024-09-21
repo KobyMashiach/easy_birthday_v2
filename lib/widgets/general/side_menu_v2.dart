@@ -25,12 +25,10 @@ appSideMenuV2(BuildContext context, String pageName) {
     buttonsTextSize: 24,
     buttons: [
       DrawerButtonModel(
-        text: t.home_screen,
-        enableColor: pageName == 'home',
-        icon: Icon(Icons.home),
-        page:
-            globalUser.role.isNotPartner() ? HomeScreen() : FirstLoginScreen(),
-      ),
+          text: t.home_screen,
+          enableColor: pageName == 'home',
+          icon: Icon(Icons.home),
+          page: const HomeScreen()),
       DrawerButtonModel(
         text: t.settings,
         enableColor: pageName == 'settings',

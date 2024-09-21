@@ -12,6 +12,8 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       description: json['description'] as String,
       titleAppear: json['titleAppear'] as String?,
+      text: json['text'] as String?,
+      urls: (json['urls'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -20,6 +22,8 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'name': instance.name,
       'description': instance.description,
       'titleAppear': instance.titleAppear,
+      'text': instance.text,
+      'urls': instance.urls,
     };
 
 const _$CategoryEnumEnumMap = {

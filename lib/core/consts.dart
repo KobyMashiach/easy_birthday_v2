@@ -16,3 +16,10 @@ const wrongLoginIllustration =
 const enterOtpIllustration = "assets/illustrations/enter_otp_illustration.svg";
 const paletteIllustration = "assets/illustrations/palette_illustration.svg";
 const giftIllustration = "assets/illustrations/gift_illustration.svg";
+const balloonsIllustration = "assets/illustrations/balloons_illustration.svg";
+
+//? categories images - illustration
+const readTextIllustration = "assets/illustrations/read_text_illustration.svg";
+const albumIllustration = "assets/illustrations/album_illustration.svg";
+const videosIllustration = "assets/illustrations/videos_illustration.svg";
+const quizIllustration = "assets/illustrations/quiz_illustration.svg";

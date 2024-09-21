@@ -57,6 +57,8 @@ class _ChooseCategoryDialogState extends State<ChooseCategoryDialog> {
           AppTextField(
             hintText: t.title_appear_category,
             controller: titleAppear,
+            maxLength: 36,
+            counterText: "",
           ),
           const SizedBox(height: 24),
           AppDropDown<CategoryModel>(

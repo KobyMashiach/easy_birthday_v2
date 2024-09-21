@@ -25,7 +25,7 @@ class EventModelAdapter extends TypeAdapter<_$EventModelImpl> {
       greeting: fields[5] as String?,
       partnerDateOfBirth: fields[6] as DateTime?,
       choosenTexts: (fields[7] as Map?)?.cast<String, String>(),
-      categories: (fields[8] as List?)?.cast<CategoryModel>(),
+      categories: (fields[8] as List).cast<CategoryModel>(),
     );
   }
 
@@ -86,9 +86,10 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
         (k, e) => MapEntry(k, e as String),
       ),
       categories: (json['categories'] as List<dynamic>?)
-          ?.map((e) =>
-              const CategoryConverter().fromJson(e as Map<String, dynamic>))
-          .toList(),
+              ?.map((e) =>
+                  const CategoryConverter().fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
@@ -103,7 +104,7 @@ Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
       'partnerDateOfBirth': dateTimeToTimestamp(instance.partnerDateOfBirth),
       'choosenTexts': instance.choosenTexts,
       'categories':
-          instance.categories?.map(const CategoryConverter().toJson).toList(),
+          instance.categories.map(const CategoryConverter().toJson).toList(),
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

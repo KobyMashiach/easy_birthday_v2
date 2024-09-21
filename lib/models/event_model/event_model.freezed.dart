@@ -41,7 +41,7 @@ mixin _$EventModel {
   Map<String, String>? get choosenTexts => throw _privateConstructorUsedError;
   @HiveField(8)
   @CategoryConverter()
-  List<CategoryModel>? get categories => throw _privateConstructorUsedError;
+  List<CategoryModel> get categories => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,7 +66,7 @@ abstract class $EventModelCopyWith<$Res> {
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
       DateTime? partnerDateOfBirth,
       @HiveField(7) Map<String, String>? choosenTexts,
-      @HiveField(8) @CategoryConverter() List<CategoryModel>? categories});
+      @HiveField(8) @CategoryConverter() List<CategoryModel> categories});
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
     Object? greeting = freezed,
     Object? partnerDateOfBirth = freezed,
     Object? choosenTexts = freezed,
-    Object? categories = freezed,
+    Object? categories = null,
   }) {
     return _then(_value.copyWith(
       eventId: null == eventId
@@ -125,10 +125,10 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
           ? _value.choosenTexts
           : choosenTexts // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
-      categories: freezed == categories
+      categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>?,
+              as List<CategoryModel>,
     ) as $Val);
   }
 }
@@ -152,7 +152,7 @@ abstract class _$$EventModelImplCopyWith<$Res>
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
       DateTime? partnerDateOfBirth,
       @HiveField(7) Map<String, String>? choosenTexts,
-      @HiveField(8) @CategoryConverter() List<CategoryModel>? categories});
+      @HiveField(8) @CategoryConverter() List<CategoryModel> categories});
 }
 
 /// @nodoc
@@ -174,7 +174,7 @@ class __$$EventModelImplCopyWithImpl<$Res>
     Object? greeting = freezed,
     Object? partnerDateOfBirth = freezed,
     Object? choosenTexts = freezed,
-    Object? categories = freezed,
+    Object? categories = null,
   }) {
     return _then(_$EventModelImpl(
       eventId: null == eventId
@@ -209,10 +209,10 @@ class __$$EventModelImplCopyWithImpl<$Res>
           ? _value._choosenTexts
           : choosenTexts // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
-      categories: freezed == categories
+      categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>?,
+              as List<CategoryModel>,
     ));
   }
 }
@@ -232,7 +232,9 @@ class _$EventModelImpl implements _EventModel {
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
       this.partnerDateOfBirth,
       @HiveField(7) final Map<String, String>? choosenTexts,
-      @HiveField(8) @CategoryConverter() final List<CategoryModel>? categories})
+      @HiveField(8)
+      @CategoryConverter()
+      final List<CategoryModel> categories = const []})
       : _users = users,
         _imagesUrl = imagesUrl,
         _choosenTexts = choosenTexts,
@@ -290,16 +292,15 @@ class _$EventModelImpl implements _EventModel {
     return EqualUnmodifiableMapView(value);
   }
 
-  final List<CategoryModel>? _categories;
+  final List<CategoryModel> _categories;
   @override
+  @JsonKey()
   @HiveField(8)
   @CategoryConverter()
-  List<CategoryModel>? get categories {
-    final value = _categories;
-    if (value == null) return null;
+  List<CategoryModel> get categories {
     if (_categories is EqualUnmodifiableListView) return _categories;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_categories);
   }
 
   @override
@@ -372,7 +373,7 @@ abstract class _EventModel implements EventModel {
       @HiveField(7) final Map<String, String>? choosenTexts,
       @HiveField(8)
       @CategoryConverter()
-      final List<CategoryModel>? categories}) = _$EventModelImpl;
+      final List<CategoryModel> categories}) = _$EventModelImpl;
 
   factory _EventModel.fromJson(Map<String, dynamic> json) =
       _$EventModelImpl.fromJson;
@@ -407,7 +408,7 @@ abstract class _EventModel implements EventModel {
   @override
   @HiveField(8)
   @CategoryConverter()
-  List<CategoryModel>? get categories;
+  List<CategoryModel> get categories;
   @override
   @JsonKey(ignore: true)
   _$$EventModelImplCopyWith<_$EventModelImpl> get copyWith =>
