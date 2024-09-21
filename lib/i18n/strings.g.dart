@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 147
+/// Strings: 150
 ///
-/// Built on 2024-09-20 at 23:56 UTC
+/// Built on 2024-09-21 at 02:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -415,6 +415,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get please_choose_category => 'בחר קטגוריה בבקשה';
 	String get title_appear_category => 'הכותרת שתופיע לקטגוריה זו';
 	String get title_appear_required => 'נא למלא את הכותרת';
+	String get add_text => 'הוסף טקסט';
+	String write_text_to({required Object title}) => 'רשום טקסט ל: ${title}';
+	String get no_allow_text_empty => 'לא ניתן להשאיר טקסט ריק';
 }
 
 /// Flat map(s) containing all translations.
@@ -684,6 +687,9 @@ extension on Translations {
 			case 'please_choose_category': return 'בחר קטגוריה בבקשה';
 			case 'title_appear_category': return 'הכותרת שתופיע לקטגוריה זו';
 			case 'title_appear_required': return 'נא למלא את הכותרת';
+			case 'add_text': return 'הוסף טקסט';
+			case 'write_text_to': return ({required Object title}) => 'רשום טקסט ל: ${title}';
+			case 'no_allow_text_empty': return 'לא ניתן להשאיר טקסט ריק';
 			default: return null;
 		}
 	}

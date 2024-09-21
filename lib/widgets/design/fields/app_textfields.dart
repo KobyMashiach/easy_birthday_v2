@@ -70,7 +70,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return Column(
       children: [
         SizedBox(
-          height: 80,
+          height: widget.maxLines != null ? null : 80,
           child: Padding(
             padding: widget.padding ?? const EdgeInsets.all(12.0),
             child: TextField(

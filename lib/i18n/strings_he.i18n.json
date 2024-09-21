@@ -183,5 +183,8 @@
   },
   "please_choose_category": "בחר קטגוריה בבקשה",
   "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
-  "title_appear_required": "נא למלא את הכותרת"
+  "title_appear_required": "נא למלא את הכותרת",
+  "add_text": "הוסף טקסט",
+  "write_text_to": "רשום טקסט ל: $title",
+  "no_allow_text_empty": "לא ניתן להשאיר טקסט ריק"
 }

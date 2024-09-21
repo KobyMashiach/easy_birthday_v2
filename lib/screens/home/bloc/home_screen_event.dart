@@ -10,3 +10,9 @@ class HomeScreenEventAddNewCategory extends HomeScreenEvent {
 
   HomeScreenEventAddNewCategory({required this.category});
 }
+
+class HomeScreenEventUpdateCategoryInEvent extends HomeScreenEvent {
+  final CategoryModel category;
+
+  HomeScreenEventUpdateCategoryInEvent({required this.category});
+}

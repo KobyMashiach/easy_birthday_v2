@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:meta/meta.dart';
@@ -13,6 +14,8 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   HomeScreenBloc({required this.eventRepo}) : super(HomeScreenInitial()) {
     on<HomeScreenEventAddButtonClicked>(_homeScreenEventAddButtonClicked);
     on<HomeScreenEventAddNewCategory>(_homeScreenEventAddNewCategory);
+    on<HomeScreenEventUpdateCategoryInEvent>(
+        _homeScreenEventUpdateCategoryInEvent);
   }
 
   FutureOr<void> _homeScreenEventAddButtonClicked(
@@ -23,6 +26,22 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   FutureOr<void> _homeScreenEventAddNewCategory(
       HomeScreenEventAddNewCategory event,
       Emitter<HomeScreenState> emit) async {
-    await eventRepo.addCategory(event.category);
+    final newCategory = await eventRepo.addCategory(event.category);
+    switch (event.category.categoryType) {
+      case CategoryEnum.text:
+        emit(HomeScreenNavToAddText(category: newCategory));
+      case CategoryEnum.pictures:
+        emit(HomeScreenNavToAddPictures(category: newCategory));
+      case CategoryEnum.videos:
+        emit(HomeScreenNavToAddVideos(category: newCategory));
+      case CategoryEnum.quizGame:
+      // emit(HomeScreenNavToAddText());
+    }
+  }
+
+  FutureOr<void> _homeScreenEventUpdateCategoryInEvent(
+      HomeScreenEventUpdateCategoryInEvent event,
+      Emitter<HomeScreenState> emit) async {
+    await eventRepo.updateCategory(event.category);
   }
 }

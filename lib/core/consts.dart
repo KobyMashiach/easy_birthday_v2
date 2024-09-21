@@ -23,3 +23,5 @@ const readTextIllustration = "assets/illustrations/read_text_illustration.svg";
 const albumIllustration = "assets/illustrations/album_illustration.svg";
 const videosIllustration = "assets/illustrations/videos_illustration.svg";
 const quizIllustration = "assets/illustrations/quiz_illustration.svg";
+const writeLetterIllustration =
+    "assets/illustrations/write_letter_illustration.svg";

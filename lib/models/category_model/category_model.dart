@@ -10,6 +10,7 @@ class CategoryModel with _$CategoryModel {
     required CategoryEnum categoryType,
     required String name,
     required String description,
+    String? id,
     String? titleAppear,
     String? text,
     List<String>? urls,

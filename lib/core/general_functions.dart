@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'dart:typed_data';
 import 'dart:convert';
+import 'dart:math' as math;
 
 String cutFilePathWithoutFinish(String videoTitle) =>
     "EasyRingTube${videoTitle}_cut";
@@ -45,4 +46,12 @@ String calculateNextAge() {
     currentAge.years++;
   }
   return currentAge.years.toString();
+}
+
+String getRandomString(int stringLength) {
+  const _chars =
+      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  math.Random _rnd = math.Random();
+  return String.fromCharCodes(Iterable.generate(
+      stringLength, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 }

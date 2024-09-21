@@ -1,6 +1,7 @@
-import 'dart:math' as math;
+import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/event_model/event_model.dart';
@@ -24,12 +25,7 @@ class EventRepo {
     if (globalUser.eventId != null) {
       eventId = globalUser.eventId!;
     } else {
-      const _chars =
-          'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-      const int stringLength = 15;
-      math.Random _rnd = math.Random();
-      eventId = String.fromCharCodes(Iterable.generate(
-          stringLength, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+      eventId = getRandomString(15);
       globalUser = globalUser.copyWith(eventId: eventId);
       globalPartnerUser = globalPartnerUser!.copyWith(eventId: eventId);
     }
@@ -49,12 +45,34 @@ class EventRepo {
         docName: event.eventId, values: event.toJson());
   }
 
-  Future<dynamic> addCategory(CategoryModel category) async {
+  Future<CategoryModel> addCategory(CategoryModel category) async {
+    final randomString = getRandomString(10);
+    final newCategory = category.copyWith(id: randomString);
     final updatedCategories =
-        List<CategoryModel>.from(globalEvent?.categories ?? [])..add(category);
+        List<CategoryModel>.from(globalEvent?.categories ?? [])
+          ..add(newCategory);
     globalEvent = globalEvent!.copyWith(categories: updatedCategories);
     firestoreUpdateDoc(collection,
         docName: globalEvent!.eventId, values: globalEvent!.toJson());
+    return newCategory;
+  }
+
+  Future<dynamic> updateCategory(CategoryModel newCategory) async {
+    final updatedCategories =
+        List<CategoryModel>.from(globalEvent?.categories ?? []);
+
+    final findedCategoryIndex = updatedCategories
+        .indexWhere((category) => category.id == newCategory.id);
+
+    if (findedCategoryIndex != -1) {
+      updatedCategories[findedCategoryIndex] = newCategory;
+      globalEvent = globalEvent!.copyWith(categories: updatedCategories);
+
+      firestoreUpdateDoc(collection,
+          docName: globalEvent!.eventId, values: globalEvent!.toJson());
+    } else {
+      log("Category not found");
+    }
   }
 
   // PersonaModel getLocalPersona() {

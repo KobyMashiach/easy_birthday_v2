@@ -23,6 +23,7 @@ mixin _$CategoryModel {
   CategoryEnum get categoryType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String? get titleAppear => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
   List<String>? get urls => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $CategoryModelCopyWith<$Res> {
       {CategoryEnum categoryType,
       String name,
       String description,
+      String? id,
       String? titleAppear,
       String? text,
       List<String>? urls});
@@ -64,6 +66,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? categoryType = null,
     Object? name = null,
     Object? description = null,
+    Object? id = freezed,
     Object? titleAppear = freezed,
     Object? text = freezed,
     Object? urls = freezed,
@@ -81,6 +84,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       titleAppear: freezed == titleAppear
           ? _value.titleAppear
           : titleAppear // ignore: cast_nullable_to_non_nullable
@@ -109,6 +116,7 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       {CategoryEnum categoryType,
       String name,
       String description,
+      String? id,
       String? titleAppear,
       String? text,
       List<String>? urls});
@@ -128,6 +136,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? categoryType = null,
     Object? name = null,
     Object? description = null,
+    Object? id = freezed,
     Object? titleAppear = freezed,
     Object? text = freezed,
     Object? urls = freezed,
@@ -145,6 +154,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       titleAppear: freezed == titleAppear
           ? _value.titleAppear
           : titleAppear // ignore: cast_nullable_to_non_nullable
@@ -168,6 +181,7 @@ class _$CategoryModelImpl implements _CategoryModel {
       {required this.categoryType,
       required this.name,
       required this.description,
+      this.id,
       this.titleAppear,
       this.text,
       final List<String>? urls})
@@ -182,6 +196,8 @@ class _$CategoryModelImpl implements _CategoryModel {
   final String name;
   @override
   final String description;
+  @override
+  final String? id;
   @override
   final String? titleAppear;
   @override
@@ -198,7 +214,7 @@ class _$CategoryModelImpl implements _CategoryModel {
 
   @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, titleAppear: $titleAppear, text: $text, urls: $urls)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls)';
   }
 
   @override
@@ -211,6 +227,7 @@ class _$CategoryModelImpl implements _CategoryModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.titleAppear, titleAppear) ||
                 other.titleAppear == titleAppear) &&
             (identical(other.text, text) || other.text == text) &&
@@ -220,7 +237,7 @@ class _$CategoryModelImpl implements _CategoryModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, categoryType, name, description,
-      titleAppear, text, const DeepCollectionEquality().hash(_urls));
+      id, titleAppear, text, const DeepCollectionEquality().hash(_urls));
 
   @JsonKey(ignore: true)
   @override
@@ -241,6 +258,7 @@ abstract class _CategoryModel implements CategoryModel {
       {required final CategoryEnum categoryType,
       required final String name,
       required final String description,
+      final String? id,
       final String? titleAppear,
       final String? text,
       final List<String>? urls}) = _$CategoryModelImpl;
@@ -254,6 +272,8 @@ abstract class _CategoryModel implements CategoryModel {
   String get name;
   @override
   String get description;
+  @override
+  String? get id;
   @override
   String? get titleAppear;
   @override

@@ -5,6 +5,7 @@ import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/screens/home/bloc/home_screen_bloc.dart';
+import 'package:easy_birthday/screens/home/inner/add_category/add_text.dart';
 import 'package:easy_birthday/screens/home/inner/main_home_screens.dart/owner_home_screen.dart';
 import 'package:easy_birthday/screens/home/inner/main_home_screens.dart/partner_home_screen.dart';
 import 'package:easy_birthday/widgets/dialogs/choose_category_dialog.dart';
@@ -12,6 +13,7 @@ import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/side_menu_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,6 +39,17 @@ class HomeScreen extends StatelessWidget {
                               HomeScreenEventAddNewCategory(
                                   category: category)),
                         ));
+              case const (HomeScreenNavToAddText):
+                final newState = state as HomeScreenNavToAddText;
+                KheasydevNavigatePage().push(
+                    context,
+                    AddTextScreen(
+                      category: newState.category,
+                      onDone: (text) => bloc.add(
+                          HomeScreenEventUpdateCategoryInEvent(
+                              category:
+                                  newState.category.copyWith(text: text))),
+                    ));
             }
           },
           builder: (context, state) {
@@ -59,10 +72,12 @@ class HomeScreen extends StatelessWidget {
                   ? FloatingActionButton.extended(
                       onPressed: () =>
                           bloc.add(HomeScreenEventAddButtonClicked()),
-                      backgroundColor: AppColors.primaryColor,
+                      backgroundColor: AppColors.disableColor,
                       label: Text(t.add(context: globalGender),
-                          style: AppTextStyle().description),
-                      icon: Icon(Icons.add_rounded),
+                          style: AppTextStyle()
+                              .description
+                              .copyWith(color: Colors.white)),
+                      icon: Icon(Icons.add_rounded, color: Colors.white),
                     )
                   : null,
             );

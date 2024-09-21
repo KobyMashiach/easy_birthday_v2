@@ -35,6 +35,7 @@ class CategoryPartnerCard extends StatelessWidget {
               style: AppTextStyle()
                   .description
                   .copyWith(fontWeight: FontWeight.bold),
+              maxLines: 2,
             ),
           ),
           SvgPicture.asset(

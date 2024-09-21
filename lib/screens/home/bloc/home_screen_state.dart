@@ -13,3 +13,21 @@ final class HomeScreenRefreshUI extends HomeScreenState {}
 abstract class HomeScreenStateNavigate extends HomeScreenState {}
 
 final class HomeScreenStateOpenAddDialog extends HomeScreenStateNavigate {}
+
+final class HomeScreenNavToAddText extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenNavToAddText({required this.category});
+}
+
+final class HomeScreenNavToAddPictures extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenNavToAddPictures({required this.category});
+}
+
+final class HomeScreenNavToAddVideos extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenNavToAddVideos({required this.category});
+}

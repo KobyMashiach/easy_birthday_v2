@@ -12,30 +12,36 @@ class OwnerHomeScreen extends StatelessWidget {
       itemBuilder: (context, index) {
         final category = globalEvent!.categories[index];
         return Container(
-          decoration: BoxDecoration(
-            color: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 6,
-                offset: Offset(0, 3),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 6,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: ListTile(
+              leading: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.7,
+                ),
+                child: Text(
+                  category.titleAppear!,
+                  style: AppTextStyle()
+                      .description
+                      .copyWith(fontWeight: FontWeight.bold),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
               ),
-            ],
-          ),
-          child: ListTile(
-            leading: Text(
-              category.titleAppear!,
-              style: AppTextStyle()
-                  .description
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            trailing: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.remove_red_eye_outlined),
-            ),
-          ),
-        );
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.remove_red_eye_outlined),
+              ),
+            ));
       },
       separatorBuilder: (context, index) => const SizedBox(height: 24),
       itemCount: globalEvent!.categories.length,
