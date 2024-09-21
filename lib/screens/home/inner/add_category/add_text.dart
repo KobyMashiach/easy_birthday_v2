@@ -13,8 +13,9 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 class AddTextScreen extends StatefulWidget {
   final CategoryModel category;
   final Function(String text) onDone;
+  final String? userText;
   const AddTextScreen(
-      {super.key, required this.category, required this.onDone});
+      {super.key, required this.category, required this.onDone, this.userText});
 
   @override
   State<AddTextScreen> createState() => _AddTextScreenState();
@@ -26,6 +27,7 @@ class _AddTextScreenState extends State<AddTextScreen> {
   @override
   void initState() {
     textController = TextEditingController();
+    textController.text = widget.userText ?? "";
     super.initState();
   }
 

@@ -186,5 +186,7 @@
   "title_appear_required": "נא למלא את הכותרת",
   "add_text": "הוסף טקסט",
   "write_text_to": "רשום טקסט ל: $title",
-  "no_allow_text_empty": "לא ניתן להשאיר טקסט ריק"
+  "no_allow_text_empty": "לא ניתן להשאיר טקסט ריק",
+  "edit": "עריכה",
+  "exit": "יציאה"
 }

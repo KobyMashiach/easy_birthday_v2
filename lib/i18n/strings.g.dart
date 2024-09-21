@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 150
+/// Strings: 152
 ///
-/// Built on 2024-09-21 at 02:25 UTC
+/// Built on 2024-09-21 at 23:23 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -418,6 +418,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get add_text => 'הוסף טקסט';
 	String write_text_to({required Object title}) => 'רשום טקסט ל: ${title}';
 	String get no_allow_text_empty => 'לא ניתן להשאיר טקסט ריק';
+	String get edit => 'עריכה';
+	String get exit => 'יציאה';
 }
 
 /// Flat map(s) containing all translations.
@@ -690,6 +692,8 @@ extension on Translations {
 			case 'add_text': return 'הוסף טקסט';
 			case 'write_text_to': return ({required Object title}) => 'רשום טקסט ל: ${title}';
 			case 'no_allow_text_empty': return 'לא ניתן להשאיר טקסט ריק';
+			case 'edit': return 'עריכה';
+			case 'exit': return 'יציאה';
 			default: return null;
 		}
 	}

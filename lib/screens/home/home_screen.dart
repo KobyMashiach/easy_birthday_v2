@@ -65,7 +65,12 @@ class HomeScreen extends StatelessWidget {
                       child: Center(
                         child: globalUser.role.isPartner()
                             ? PartnerHomeScreen()
-                            : OwnerHomeScreen(),
+                            : OwnerHomeScreen(
+                                onDoneEditText: (category, text) => bloc.add(
+                                    HomeScreenEventUpdateCategoryInEvent(
+                                        category:
+                                            category.copyWith(text: text))),
+                              ),
                       ),
                     ),
               floatingActionButton: globalUser.role.isNotPartner()

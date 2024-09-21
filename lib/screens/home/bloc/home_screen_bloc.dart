@@ -43,5 +43,6 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
       HomeScreenEventUpdateCategoryInEvent event,
       Emitter<HomeScreenState> emit) async {
     await eventRepo.updateCategory(event.category);
+    emit(HomeScreenRefreshUI());
   }
 }
