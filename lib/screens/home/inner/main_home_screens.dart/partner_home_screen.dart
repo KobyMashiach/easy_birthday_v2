@@ -3,9 +3,11 @@ import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/text_items_model/text_item_model.dart';
+import 'package:easy_birthday/screens/home/inner/display_to_partner/display_text.dart';
 import 'package:easy_birthday/widgets/cards/category_partner_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class PartnerHomeScreen extends StatelessWidget {
   const PartnerHomeScreen({super.key});
@@ -34,7 +36,12 @@ class PartnerHomeScreen extends StatelessWidget {
             ),
             itemBuilder: (context, index) {
               final category = globalEvent!.categories[index];
-              return CategoryPartnerCard(category: category);
+              return CategoryPartnerCard(
+                category: category,
+                //TODO: navigate by type
+                onTap: () => KheasydevNavigatePage().pushDuration(
+                    context, DisplayTextScreen(category: category)),
+              );
             },
             itemCount: globalEvent!.categories.length,
             physics: NeverScrollableScrollPhysics(),

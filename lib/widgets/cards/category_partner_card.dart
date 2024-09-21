@@ -7,43 +7,48 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class CategoryPartnerCard extends StatelessWidget {
   final CategoryModel category;
-  const CategoryPartnerCard({super.key, required this.category});
+  final VoidCallback onTap;
+  const CategoryPartnerCard(
+      {super.key, required this.category, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.primaryColor,
-        border: Border.all(color: AppColors.shadowColor),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: Offset(0, 4)),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Text(
-              category.titleAppear!,
-              textAlign: TextAlign.center,
-              style: AppTextStyle()
-                  .description
-                  .copyWith(fontWeight: FontWeight.bold),
-              maxLines: 2,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.primaryColor,
+          border: Border.all(color: AppColors.shadowColor),
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 4)),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                category.titleAppear!,
+                textAlign: TextAlign.center,
+                style: AppTextStyle()
+                    .description
+                    .copyWith(fontWeight: FontWeight.bold),
+                maxLines: 2,
+              ),
             ),
-          ),
-          SvgPicture.asset(
-            category.categoryType.getImage(),
-            height: 150,
-          ),
-          Text(category.name)
-        ],
+            SvgPicture.asset(
+              category.categoryType.getImage(),
+              height: 150,
+            ),
+            Text(category.name)
+          ],
+        ),
       ),
     );
   }
