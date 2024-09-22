@@ -185,8 +185,17 @@
   "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
   "title_appear_required": "נא למלא את הכותרת",
   "add_text": "הוסף טקסט",
+  "add_pictures": "הוסף תמונות",
+  "add_videos": "הוסף סרטונים",
   "write_text_to": "רשום טקסט ל: $title",
+  "add_pictures_to": "הוסף תמונות ל: $title",
+  "add_videos_to": "הוסף סרטונים ל: $title",
   "no_allow_text_empty": "לא ניתן להשאיר טקסט ריק",
   "edit": "עריכה",
-  "exit": "יציאה"
+  "exit": "יציאה",
+  "sure_delete_name(context=GenderContext)": {
+    "male": "אתה בטוח שאתה רוצה למחוק את $text",
+    "female": "את בטוחה שאת רוצה למחוק את $text"
+  },
+  "delete": "מחיקה"
 }

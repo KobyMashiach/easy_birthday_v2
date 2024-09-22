@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
+
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
@@ -5,15 +9,13 @@ import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/screens/home/bloc/home_screen_bloc.dart';
-import 'package:easy_birthday/screens/home/inner/add_category/add_text.dart';
+import 'package:easy_birthday/screens/home/inner/add_category/add_pictures_videos_screen.dart';
+import 'package:easy_birthday/screens/home/inner/add_category/add_text_screen.dart';
 import 'package:easy_birthday/screens/home/inner/main_home_screens.dart/owner_home_screen.dart';
 import 'package:easy_birthday/screens/home/inner/main_home_screens.dart/partner_home_screen.dart';
 import 'package:easy_birthday/widgets/dialogs/choose_category_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/side_menu_v2.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -36,12 +38,12 @@ class HomeScreen extends StatelessWidget {
                     context: context,
                     builder: (context) => ChooseCategoryDialog(
                           onChooseCategory: (category) => bloc.add(
-                              HomeScreenEventAddNewCategory(
+                              HomeScreenEventAddOrEditCategory(
                                   category: category)),
                         ));
               case const (HomeScreenNavToAddText):
                 final newState = state as HomeScreenNavToAddText;
-                KheasydevNavigatePage().push(
+                KheasydevNavigatePage().pushDuration(
                     context,
                     AddTextScreen(
                       category: newState.category,
@@ -49,6 +51,17 @@ class HomeScreen extends StatelessWidget {
                           HomeScreenEventUpdateCategoryInEvent(
                               category:
                                   newState.category.copyWith(text: text))),
+                    ));
+              case const (HomeScreenNavToAddPictures):
+                final newState = state as HomeScreenNavToAddPictures;
+                KheasydevNavigatePage().pushDuration(
+                    context,
+                    AddPicturesVideosScreen(
+                      category: newState.category,
+                      isImagesPicker: true,
+                      onAddFiles: (category, files) => bloc.add(
+                          HomeScreenEventUploadFilesInEvent(
+                              category: category, files: files)),
                     ));
             }
           },
@@ -59,18 +72,13 @@ class HomeScreen extends StatelessWidget {
               appBar: appAppBar(title: t.home_screen),
               drawer: appSideMenuV2(context, 'home'),
               body: state is HomeScreenLoading
-                  ? CircularProgressIndicator()
+                  ? Center(child: CircularProgressIndicator())
                   : Padding(
                       padding: const EdgeInsets.all(24),
                       child: Center(
                         child: globalUser.role.isPartner()
                             ? PartnerHomeScreen()
-                            : OwnerHomeScreen(
-                                onDoneEditText: (category, text) => bloc.add(
-                                    HomeScreenEventUpdateCategoryInEvent(
-                                        category:
-                                            category.copyWith(text: text))),
-                              ),
+                            : OwnerHomeScreen(),
                       ),
                     ),
               floatingActionButton: globalUser.role.isNotPartner()

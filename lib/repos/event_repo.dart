@@ -20,7 +20,7 @@ class EventRepo {
     return null;
   }
 
-  Future<dynamic> buildEvent() async {
+  void buildEvent() {
     String eventId = "";
     if (globalUser.eventId != null) {
       eventId = globalUser.eventId!;
@@ -39,13 +39,13 @@ class EventRepo {
     firestoreNewDoc(collection, docName: eventId, values: event.toJson());
   }
 
-  Future<dynamic> updateEvent(EventModel event) async {
+  void updateEvent(EventModel event) {
     globalEvent = event;
     firestoreUpdateDoc(collection,
         docName: event.eventId, values: event.toJson());
   }
 
-  Future<CategoryModel> addCategory(CategoryModel category) async {
+  CategoryModel addCategory(CategoryModel category) {
     final randomString = getRandomString(10);
     final newCategory = category.copyWith(id: randomString);
     final updatedCategories =
@@ -57,7 +57,7 @@ class EventRepo {
     return newCategory;
   }
 
-  Future<dynamic> updateCategory(CategoryModel newCategory) async {
+  void updateCategory(CategoryModel newCategory) {
     final updatedCategories =
         List<CategoryModel>.from(globalEvent?.categories ?? []);
 
@@ -73,6 +73,19 @@ class EventRepo {
     } else {
       log("Category not found");
     }
+  }
+
+  void deleteCategory(CategoryModel deletedCategory) async {
+    final updatedCategories =
+        List<CategoryModel>.from(globalEvent?.categories ?? []);
+
+    updatedCategories
+        .removeWhere((category) => category.id == deletedCategory.id);
+
+    globalEvent = globalEvent!.copyWith(categories: updatedCategories);
+
+    firestoreUpdateDoc(collection,
+        docName: globalEvent!.eventId, values: globalEvent!.toJson());
   }
 
   // PersonaModel getLocalPersona() {

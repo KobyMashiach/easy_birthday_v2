@@ -35,7 +35,7 @@ class DisplayTextScreen extends StatelessWidget {
                     width: double.infinity,
                     child: SingleChildScrollView(
                       child: Text(
-                        category.text!,
+                        category.text ?? "",
                         textAlign: TextAlign.center,
                       ),
                     ),

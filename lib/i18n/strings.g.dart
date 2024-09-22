@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 152
+/// Strings: 159
 ///
-/// Built on 2024-09-21 at 23:23 UTC
+/// Built on 2024-09-22 at 00:15 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -416,10 +416,23 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get title_appear_category => 'הכותרת שתופיע לקטגוריה זו';
 	String get title_appear_required => 'נא למלא את הכותרת';
 	String get add_text => 'הוסף טקסט';
+	String get add_pictures => 'הוסף תמונות';
+	String get add_videos => 'הוסף סרטונים';
 	String write_text_to({required Object title}) => 'רשום טקסט ל: ${title}';
+	String add_pictures_to({required Object title}) => 'הוסף תמונות ל: ${title}';
+	String add_videos_to({required Object title}) => 'הוסף סרטונים ל: ${title}';
 	String get no_allow_text_empty => 'לא ניתן להשאיר טקסט ריק';
 	String get edit => 'עריכה';
 	String get exit => 'יציאה';
+	String sure_delete_name({required GenderContext context, required Object text}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'אתה בטוח שאתה רוצה למחוק את ${text}';
+			case GenderContext.female:
+				return 'את בטוחה שאת רוצה למחוק את ${text}';
+		}
+	}
+	String get delete => 'מחיקה';
 }
 
 /// Flat map(s) containing all translations.
@@ -690,10 +703,23 @@ extension on Translations {
 			case 'title_appear_category': return 'הכותרת שתופיע לקטגוריה זו';
 			case 'title_appear_required': return 'נא למלא את הכותרת';
 			case 'add_text': return 'הוסף טקסט';
+			case 'add_pictures': return 'הוסף תמונות';
+			case 'add_videos': return 'הוסף סרטונים';
 			case 'write_text_to': return ({required Object title}) => 'רשום טקסט ל: ${title}';
+			case 'add_pictures_to': return ({required Object title}) => 'הוסף תמונות ל: ${title}';
+			case 'add_videos_to': return ({required Object title}) => 'הוסף סרטונים ל: ${title}';
 			case 'no_allow_text_empty': return 'לא ניתן להשאיר טקסט ריק';
 			case 'edit': return 'עריכה';
 			case 'exit': return 'יציאה';
+			case 'sure_delete_name': return ({required GenderContext context, required Object text}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'אתה בטוח שאתה רוצה למחוק את ${text}';
+					case GenderContext.female:
+						return 'את בטוחה שאת רוצה למחוק את ${text}';
+				}
+			};
+			case 'delete': return 'מחיקה';
 			default: return null;
 		}
 	}

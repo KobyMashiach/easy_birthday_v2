@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -89,21 +90,21 @@ Future<bool> firestoreCheckIfDocExists(
   }
 }
 
-// Future<String> uploadImageToStorage(
-//     {required String path,
-//     required XFile imageFile,
-//     required String imageName}) async {
-//   String downloadUrl = "";
+Future<String> firestoreUploadImageToStorage(
+    {required String path,
+    required File imageFile,
+    required String imageName}) async {
+  String downloadUrl = "";
 
-//   Reference storageReference =
-//       FirebaseStorage.instance.ref().child('$path/$imageName');
-//   UploadTask uploadTask = storageReference.putFile(File(imageFile.path));
-//   await uploadTask.whenComplete(
-//       () async => downloadUrl = await storageReference.getDownloadURL());
-//   return downloadUrl;
-// }
+  Reference storageReference =
+      FirebaseStorage.instance.ref().child('$path/$imageName');
+  UploadTask uploadTask = storageReference.putFile(imageFile);
+  await uploadTask.whenComplete(
+      () async => downloadUrl = await storageReference.getDownloadURL());
+  return downloadUrl;
+}
 
-Future<void> deleteFilesFromFolderOnStorage(String folderPath) async {
+Future<void> firestoreDeleteFilesFromFolderOnStorage(String folderPath) async {
   final FirebaseStorage storage = FirebaseStorage.instance;
   final ListResult result = await storage.ref(folderPath).listAll();
   for (final Reference ref in result.items) {

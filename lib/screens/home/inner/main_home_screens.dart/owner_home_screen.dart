@@ -1,21 +1,92 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kh_easy_dev/kh_easy_dev.dart';
+
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/core/enums.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
-import 'package:easy_birthday/screens/home/inner/add_category/add_text.dart';
+import 'package:easy_birthday/screens/home/bloc/home_screen_bloc.dart';
+import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
-import 'package:flutter/material.dart';
-import 'package:kh_easy_dev/kh_easy_dev.dart';
-import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class OwnerHomeScreen extends StatelessWidget {
-  final Function(CategoryModel category, String text) onDoneEditText;
-  const OwnerHomeScreen({super.key, required this.onDoneEditText});
+  const OwnerHomeScreen({super.key});
+
+  Widget getCategoryWidget(CategoryModel category, double screenWidth) {
+    return switch (category.categoryType) {
+      CategoryEnum.text => textWidget(category),
+      CategoryEnum.pictures => picturesWidget(category, screenWidth),
+      CategoryEnum.videos => Text("videos"),
+      CategoryEnum.quizGame => Text("quizGame"),
+    };
+  }
+
+  Widget picturesWidget(CategoryModel category, double screenWidth) {
+    return SizedBox(
+      width: screenWidth * 0.8,
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
+        ),
+        itemCount: category.urls?.length ?? 0,
+        itemBuilder: (context, index) {
+          final mediaUrl = category.urls?[index] ?? "";
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: Colors.black,
+                width: 2,
+              ),
+            ),
+            clipBehavior: Clip.hardEdge,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(22),
+              child: CachedNetworkImage(
+                imageUrl: mediaUrl,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey,
+                  child: Icon(
+                    Icons.image_not_supported,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Scrollbar textWidget(CategoryModel category) {
+    return Scrollbar(
+      child: SizedBox(
+        width: double.infinity,
+        child: SingleChildScrollView(
+          child: Text(
+            category.text ?? "",
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<HomeScreenBloc>();
     return ListView.separated(
       itemBuilder: (context, index) {
         final category = globalEvent!.categories[index];
@@ -47,43 +118,60 @@ class OwnerHomeScreen extends StatelessWidget {
               ),
               trailing: IconButton(
                 onPressed: () async {
-                  final editPress = await showDialog(
+                  final screenHeight = MediaQuery.of(context).size.height;
+                  final screenWidth = MediaQuery.of(context).size.height;
+                  final selectedAction = await showDialog(
                     context: context,
                     builder: (context) => GeneralDialog(
                       title: category.titleAppear!,
                       child: SingleChildScrollView(
                         child: SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.7,
+                          height: screenHeight * 0.7,
                           child: Column(
                             children: [
                               kheasydevDivider(black: true),
-                              Expanded(child: getCategoryWidget(category)),
+                              Expanded(
+                                  child:
+                                      getCategoryWidget(category, screenWidth)),
                             ],
                           ),
                         ),
                       ),
-                      okButtonText: t.edit,
-                      cancelButtonText: t.exit,
+                      buttons: [
+                        AppButton(
+                          text: t.edit,
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          onTap: () =>
+                              Navigator.of(context).pop(ActionsEnum.edit),
+                        ),
+                        AppButton(
+                          text: t.delete,
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          onTap: () =>
+                              Navigator.of(context).pop(ActionsEnum.delete),
+                        ),
+                        AppButton(
+                          text: t.exit,
+                          unfillColors: true,
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                        ),
+                      ],
                     ),
                   );
-                  if (editPress) {
-                    switch (category.categoryType) {
-                      case CategoryEnum.text:
-                        KheasydevNavigatePage().push(
-                            context,
-                            AddTextScreen(
-                                category: category,
-                                onDone: (text) =>
-                                    onDoneEditText.call(category, text),
-                                userText: category.text));
-                      case CategoryEnum.pictures:
-                        Text("pictures");
-                      case CategoryEnum.videos:
-                        Text("videos");
-                      case CategoryEnum.quizGame:
-                        Text("quizGame");
+                  if (selectedAction == ActionsEnum.edit) {
+                    bloc.add(HomeScreenEventAddOrEditCategory(
+                        category: category, edit: true));
+                  } else if (selectedAction == ActionsEnum.delete) {
+                    final userChoise = await showDialog(
+                        context: context,
+                        builder: (context) => GeneralDialog(
+                            title: t.sure_delete_name(
+                                context: globalGender,
+                                text: category.titleAppear!)));
+                    if (userChoise == true) {
+                      bloc.add(HomeScreenEventDeleteCategoryInEvent(
+                          category: category));
                     }
-                    ;
                   }
                 },
                 icon: Icon(Icons.remove_red_eye_outlined),
@@ -93,24 +181,5 @@ class OwnerHomeScreen extends StatelessWidget {
       separatorBuilder: (context, index) => const SizedBox(height: 24),
       itemCount: globalEvent!.categories.length,
     );
-  }
-
-  Widget getCategoryWidget(CategoryModel category) {
-    return switch (category.categoryType) {
-      CategoryEnum.text => Scrollbar(
-          child: SizedBox(
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: Text(
-                category.text!,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ),
-      CategoryEnum.pictures => Text("pictures"),
-      CategoryEnum.videos => Text("videos"),
-      CategoryEnum.quizGame => Text("quizGame"),
-    };
   }
 }

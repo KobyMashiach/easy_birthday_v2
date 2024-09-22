@@ -25,3 +25,8 @@ const videosIllustration = "assets/illustrations/videos_illustration.svg";
 const quizIllustration = "assets/illustrations/quiz_illustration.svg";
 const writeLetterIllustration =
     "assets/illustrations/write_letter_illustration.svg";
+const uploadImageIllustration = "assets/illustrations/upload_image_illustration.svg";
+const uploadVideoIllustration = "assets/illustrations/upload_video_illustration.svg";
+const uploadQuizIllustration = "assets/illustrations/upload_quiz_illustration.svg";
+
+

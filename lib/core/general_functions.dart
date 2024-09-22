@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:age_calculator/age_calculator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'dart:typed_data';
@@ -54,4 +57,17 @@ String getRandomString(int stringLength) {
   math.Random _rnd = math.Random();
   return String.fromCharCodes(Iterable.generate(
       stringLength, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+}
+
+Future<List<File>> pickMultipleFiles({bool? videos}) async {
+  FileType fileType = videos == true ? FileType.video : FileType.image;
+
+  FilePickerResult? result =
+      await FilePicker.platform.pickFiles(type: fileType, allowMultiple: true);
+
+  if (result != null) {
+    return result.paths.map((path) => File(path!)).toList();
+  } else {
+    return [];
+  }
 }
