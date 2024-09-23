@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
@@ -20,13 +21,16 @@ class OwnerHomeScreen extends StatelessWidget {
   Widget getCategoryWidget(CategoryModel category, double screenWidth) {
     return switch (category.categoryType) {
       CategoryEnum.text => textWidget(category),
-      CategoryEnum.pictures => picturesWidget(category, screenWidth),
-      CategoryEnum.videos => Text("videos"),
+      CategoryEnum.pictures =>
+        picturesVideosWidget(category, screenWidth, pictures: true),
+      CategoryEnum.videos =>
+        picturesVideosWidget(category, screenWidth, pictures: false),
       CategoryEnum.quizGame => Text("quizGame"),
     };
   }
 
-  Widget picturesWidget(CategoryModel category, double screenWidth) {
+  Widget picturesVideosWidget(CategoryModel category, double screenWidth,
+      {required bool pictures}) {
     return SizedBox(
       width: screenWidth * 0.8,
       child: GridView.builder(
@@ -49,20 +53,22 @@ class OwnerHomeScreen extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(22),
-              child: CachedNetworkImage(
-                imageUrl: mediaUrl,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Center(
-                  child: CircularProgressIndicator(),
-                ),
-                errorWidget: (context, url, error) => Container(
-                  color: Colors.grey,
-                  child: Icon(
-                    Icons.image_not_supported,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+              child: pictures
+                  ? CachedNetworkImage(
+                      imageUrl: mediaUrl,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      errorWidget: (context, url, error) => Container(
+                        color: Colors.grey,
+                        child: Icon(
+                          Icons.image_not_supported,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : VideoThumbnailWidget(videoUrl: mediaUrl),
             ),
           );
         },

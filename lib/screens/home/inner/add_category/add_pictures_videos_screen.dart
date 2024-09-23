@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
@@ -200,20 +201,9 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
                           });
                         },
                         child: imageContainer(
-                          CachedNetworkImage(
-                            imageUrl: mediaUrl,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                            errorWidget: (context, url, error) => Container(
-                              color: Colors.grey,
-                              child: Icon(
-                                Icons.image_not_supported,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
+                          widget.isImagesPicker
+                              ? imageCacheDisplay(mediaUrl)
+                              : VideoThumbnailWidget(videoUrl: mediaUrl),
                           index,
                         ),
                       );
@@ -228,19 +218,9 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
                           });
                         },
                         child: imageContainer(
-                          Image.file(
-                            newImageFile,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: Colors.grey,
-                                child: Icon(
-                                  Icons.image_not_supported,
-                                  color: Colors.white,
-                                ),
-                              );
-                            },
-                          ),
+                          widget.isImagesPicker
+                              ? imageFileDisplay(newImageFile)
+                              : VideoThumbnailWidget(videoFile: newImageFile),
                           index,
                         ),
                       );
@@ -272,13 +252,47 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
         },
         inactiveButtonText: t.add(context: globalGender),
         inactiveButtonOnTap: () async {
-          final List<File> pickedMediaFiles = await pickMultipleFiles();
+          final List<File> pickedMediaFiles =
+              await pickMultipleFiles(videos: !widget.isImagesPicker);
           if (pickedMediaFiles.isNotEmpty) {
             setState(() {
               newFiles.addAll(pickedMediaFiles);
             });
           }
         },
+      ),
+    );
+  }
+
+  Image imageFileDisplay(File newImageFile) {
+    return Image.file(
+      newImageFile,
+      fit: BoxFit.cover,
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          color: Colors.grey,
+          child: Icon(
+            Icons.image_not_supported,
+            color: Colors.white,
+          ),
+        );
+      },
+    );
+  }
+
+  CachedNetworkImage imageCacheDisplay(String mediaUrl) {
+    return CachedNetworkImage(
+      imageUrl: mediaUrl,
+      fit: BoxFit.cover,
+      placeholder: (context, url) => Center(
+        child: CircularProgressIndicator(),
+      ),
+      errorWidget: (context, url, error) => Container(
+        color: Colors.grey,
+        child: Icon(
+          Icons.image_not_supported,
+          color: Colors.white,
+        ),
       ),
     );
   }

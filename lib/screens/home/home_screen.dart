@@ -1,3 +1,4 @@
+import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
@@ -56,17 +57,14 @@ class HomeScreen extends StatelessWidget {
                 final newState = state as HomeScreenNavToAddPictures;
                 KheasydevNavigatePage().pushDuration(
                     context,
-                    AddPicturesVideosScreen(
-                      category: newState.category,
-                      isImagesPicker: true,
-                      onAddFiles: (category, files) => bloc.add(
-                          HomeScreenEventUploadFilesInEvent(
-                              category: category, files: files)),
-                      onDeleteFiles: (category, indexes) => bloc.add(
-                          HomeScreenEventDeleteFilesInEvent(
-                              category: category, filesIndexes: indexes)),
-                    ));
-
+                    navToPicturesVideosScreen(newState.category, bloc,
+                        isImagesPicker: true));
+              case const (HomeScreenNavToAddVideos):
+                final newState = state as HomeScreenNavToAddVideos;
+                KheasydevNavigatePage().pushDuration(
+                    context,
+                    navToPicturesVideosScreen(newState.category, bloc,
+                        isImagesPicker: false));
               case const (HomeScreenOpenEditAgain):
                 final newState = state as HomeScreenOpenEditAgain;
                 KheasydevNavigatePage().pop(context);
@@ -107,6 +105,20 @@ class HomeScreen extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  AddPicturesVideosScreen navToPicturesVideosScreen(
+      CategoryModel category, HomeScreenBloc bloc,
+      {required bool isImagesPicker}) {
+    return AddPicturesVideosScreen(
+      category: category,
+      isImagesPicker: isImagesPicker,
+      onAddFiles: (category, files) => bloc.add(
+          HomeScreenEventUploadFilesInEvent(category: category, files: files)),
+      onDeleteFiles: (category, indexes) => bloc.add(
+          HomeScreenEventDeleteFilesInEvent(
+              category: category, filesIndexes: indexes)),
     );
   }
 }
