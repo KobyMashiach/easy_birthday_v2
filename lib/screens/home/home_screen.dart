@@ -62,7 +62,16 @@ class HomeScreen extends StatelessWidget {
                       onAddFiles: (category, files) => bloc.add(
                           HomeScreenEventUploadFilesInEvent(
                               category: category, files: files)),
+                      onDeleteFiles: (category, indexes) => bloc.add(
+                          HomeScreenEventDeleteFilesInEvent(
+                              category: category, filesIndexes: indexes)),
                     ));
+
+              case const (HomeScreenOpenEditAgain):
+                final newState = state as HomeScreenOpenEditAgain;
+                KheasydevNavigatePage().pop(context);
+                bloc.add(HomeScreenEventAddOrEditCategory(
+                    category: newState.category, edit: true));
             }
           },
           builder: (context, state) {
@@ -81,18 +90,19 @@ class HomeScreen extends StatelessWidget {
                             : OwnerHomeScreen(),
                       ),
                     ),
-              floatingActionButton: globalUser.role.isNotPartner()
-                  ? FloatingActionButton.extended(
-                      onPressed: () =>
-                          bloc.add(HomeScreenEventAddButtonClicked()),
-                      backgroundColor: AppColors.disableColor,
-                      label: Text(t.add(context: globalGender),
-                          style: AppTextStyle()
-                              .description
-                              .copyWith(color: Colors.white)),
-                      icon: Icon(Icons.add_rounded, color: Colors.white),
-                    )
-                  : null,
+              floatingActionButton:
+                  globalUser.role.isNotPartner() && state is! HomeScreenLoading
+                      ? FloatingActionButton.extended(
+                          onPressed: () =>
+                              bloc.add(HomeScreenEventAddButtonClicked()),
+                          backgroundColor: AppColors.disableColor,
+                          label: Text(t.add(context: globalGender),
+                              style: AppTextStyle()
+                                  .description
+                                  .copyWith(color: Colors.white)),
+                          icon: Icon(Icons.add_rounded, color: Colors.white),
+                        )
+                      : null,
             );
           },
         ),

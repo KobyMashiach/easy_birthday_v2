@@ -104,6 +104,31 @@ Future<String> firestoreUploadImageToStorage(
   return downloadUrl;
 }
 
+Future<void> firestoreRemoveFromStorage(String imagePath) async {
+  try {
+    Reference storageReference =
+        FirebaseStorage.instance.ref().child(imagePath);
+
+    await storageReference.delete();
+
+    print('File deleted successfully');
+  } catch (e) {
+    print('Error occurred while deleting the file: $e');
+  }
+}
+
+Future<void> firestoreRemoveFromStorageUrl(String fileUrl) async {
+  try {
+    Reference storageReference = FirebaseStorage.instance.refFromURL(fileUrl);
+
+    await storageReference.delete();
+
+    print('File deleted successfully from URL');
+  } catch (e) {
+    print('Error occurred while deleting the file from URL: $e');
+  }
+}
+
 Future<void> firestoreDeleteFilesFromFolderOnStorage(String folderPath) async {
   final FirebaseStorage storage = FirebaseStorage.instance;
   final ListResult result = await storage.ref(folderPath).listAll();

@@ -31,3 +31,11 @@ class HomeScreenEventUploadFilesInEvent extends HomeScreenEvent {
   HomeScreenEventUploadFilesInEvent(
       {required this.category, required this.files});
 }
+
+class HomeScreenEventDeleteFilesInEvent extends HomeScreenEvent {
+  final CategoryModel category;
+  final List<int> filesIndexes;
+
+  HomeScreenEventDeleteFilesInEvent(
+      {required this.category, required this.filesIndexes});
+}

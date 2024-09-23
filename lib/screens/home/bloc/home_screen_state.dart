@@ -31,3 +31,9 @@ final class HomeScreenNavToAddVideos extends HomeScreenStateNavigate {
 
   HomeScreenNavToAddVideos({required this.category});
 }
+
+final class HomeScreenOpenEditAgain extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenOpenEditAgain({required this.category});
+}

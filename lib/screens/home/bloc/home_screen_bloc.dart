@@ -23,6 +23,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     on<HomeScreenEventDeleteCategoryInEvent>(
         _homeScreenEventDeleteCategoryInEvent);
     on<HomeScreenEventUploadFilesInEvent>(_homeScreenEventUploadFilesInEvent);
+    on<HomeScreenEventDeleteFilesInEvent>(_homeScreenEventDeleteFilesInEvent);
   }
 
   FutureOr<void> _homeScreenEventAddButtonClicked(
@@ -79,5 +80,23 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     updatesUrls.addAll(filesUrls);
     eventRepo.updateCategory(event.category.copyWith(urls: updatesUrls));
     emit(HomeScreenRefreshUI());
+  }
+
+  Future<void> _homeScreenEventDeleteFilesInEvent(
+      HomeScreenEventDeleteFilesInEvent event,
+      Emitter<HomeScreenState> emit) async {
+    final List<String> newUrls = List.from(event.category.urls!);
+
+    for (int index in event.filesIndexes) {
+      if (index >= 0 && index < newUrls.length) {
+        firestoreRemoveFromStorageUrl(newUrls[index]);
+        newUrls.removeAt(index);
+      }
+    }
+    final newCategory = event.category.copyWith(urls: newUrls);
+    eventRepo.updateCategory(newCategory);
+    emit(HomeScreenRefreshUI());
+
+    emit(HomeScreenOpenEditAgain(category: newCategory));
   }
 }

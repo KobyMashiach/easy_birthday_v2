@@ -22,11 +22,13 @@ class AddPicturesVideosScreen extends StatefulWidget {
     required this.category,
     required this.isImagesPicker,
     required this.onAddFiles,
+    required this.onDeleteFiles,
   });
 
   final CategoryModel category;
   final bool isImagesPicker;
   final Function(CategoryModel category, List<File> files) onAddFiles;
+  final Function(CategoryModel category, List<int> indexes) onDeleteFiles;
 
   @override
   State<AddPicturesVideosScreen> createState() =>
@@ -38,6 +40,27 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
   bool isMarkingMode = false;
   List<File> newFiles = [];
   Set<int> selectedIndexes = {};
+
+  void onDeleteFiles() {
+    List<int> deletedFiles = [];
+    setState(() {
+      List<int> sortedIndexes = selectedIndexes.toList()
+        ..sort((a, b) => b.compareTo(a));
+
+      for (int index in sortedIndexes) {
+        if (index < widget.category.urls!.length) {
+          deletedFiles.add(index);
+        } else {
+          newFiles.removeAt(index - widget.category.urls!.length);
+        }
+      }
+
+      selectedIndexes.clear();
+      isMarkingMode = false;
+      isMarkAllChecked = false;
+    });
+    widget.onDeleteFiles.call(widget.category, deletedFiles);
+  }
 
   Widget imageContainer(Widget child, int index) {
     return GestureDetector(
@@ -231,7 +254,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
       ),
       floatingActionButton: isMarkingMode
           ? FloatingActionButton(
-              onPressed: () {},
+              onPressed: onDeleteFiles,
               backgroundColor: AppColors.primaryColor,
               shape: RoundedRectangleBorder(
                 side: BorderSide(width: 1, color: Colors.black),
