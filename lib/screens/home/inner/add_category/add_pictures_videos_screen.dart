@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_birthday/core/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
@@ -16,11 +17,12 @@ import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons
 import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddPicturesVideosScreen extends StatefulWidget {
-  const AddPicturesVideosScreen(
-      {super.key,
-      required this.category,
-      required this.isImagesPicker,
-      required this.onAddFiles});
+  const AddPicturesVideosScreen({
+    super.key,
+    required this.category,
+    required this.isImagesPicker,
+    required this.onAddFiles,
+  });
 
   final CategoryModel category;
   final bool isImagesPicker;
@@ -32,17 +34,15 @@ class AddPicturesVideosScreen extends StatefulWidget {
 }
 
 class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
+  bool isMarkAllChecked = false;
+  bool isMarkingMode = false;
   List<File> newFiles = [];
   Set<int> selectedIndexes = {};
-
-  bool isMarkingMode = false;
-  bool isMarkAllChecked = false;
 
   Widget imageContainer(Widget child, int index) {
     return GestureDetector(
       onTap: isMarkingMode
-          ? () {
-              setState(() {
+          ? () => setState(() {
                 if (selectedIndexes.contains(index)) {
                   selectedIndexes.remove(index);
                 } else {
@@ -59,8 +59,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
                 if (selectedIndexes.isEmpty) {
                   isMarkingMode = false;
                 }
-              });
-            }
+              })
           : null,
       child: Stack(
         children: [
@@ -90,21 +89,20 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: selectedIndexes.contains(index)
-                      ? Colors.blue // Checked state color
-                      : Colors.transparent, // Unchecked state color
+                      ? AppColors.primaryColor
+                      : Colors.transparent,
                   border: Border.all(
+                    width: 1,
                     color: selectedIndexes.contains(index)
-                        ? Colors.blue
-                        : Colors.grey, // Border color for unchecked state
+                        ? Colors.black
+                        : Colors.transparent,
                   ),
                 ),
-                width: 30, // Circle size
+                width: 30,
                 height: 30,
                 child: selectedIndexes.contains(index)
-                    ? Icon(Icons.check,
-                        size: 20,
-                        color: Colors.white) // Checkmark icon when selected
-                    : null, // No icon when not selected
+                    ? Icon(Icons.check, size: 20, color: Colors.white)
+                    : null,
               ),
             ),
         ],
@@ -231,6 +229,17 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
           ),
         ),
       ),
+      floatingActionButton: isMarkingMode
+          ? FloatingActionButton(
+              onPressed: () {},
+              backgroundColor: AppColors.primaryColor,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(width: 1, color: Colors.black),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Icon(Icons.delete),
+            )
+          : null,
       bottomNavigationBar: AppButtonsBottomNavigationBar(
         activeButtonOnTap: () {
           if (newFiles.isNotEmpty) {
