@@ -79,7 +79,17 @@ class HomeScreen extends StatelessWidget {
               appBar: appAppBar(title: t.home_screen),
               drawer: appSideMenuV2(context, 'home'),
               body: state is HomeScreenLoading
-                  ? Center(child: CircularProgressIndicator())
+                  ? Center(
+                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                        if (state.text != null) ...[
+                          const SizedBox(height: 12),
+                          Text(state.text!),
+                        ],
+                      ],
+                    ))
                   : Padding(
                       padding: const EdgeInsets.all(24),
                       child: Center(

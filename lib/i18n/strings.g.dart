@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 161
+/// Strings: 162
 ///
-/// Built on 2024-09-22 at 03:45 UTC
+/// Built on 2024-09-23 at 02:38 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -435,6 +435,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get delete => 'מחיקה';
 	String get mark_all => 'סמן הכל';
 	String get cancel_marking => 'בטל סימון';
+	String upload_files_count({required Object file, required Object files}) => 'הועלו ${file} מתוך ${files} קבצים';
 }
 
 /// Flat map(s) containing all translations.
@@ -724,6 +725,7 @@ extension on Translations {
 			case 'delete': return 'מחיקה';
 			case 'mark_all': return 'סמן הכל';
 			case 'cancel_marking': return 'בטל סימון';
+			case 'upload_files_count': return ({required Object file, required Object files}) => 'הועלו ${file} מתוך ${files} קבצים';
 			default: return null;
 		}
 	}

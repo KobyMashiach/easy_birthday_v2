@@ -199,5 +199,6 @@
   },
   "delete": "מחיקה",
   "mark_all": "סמן הכל",
-  "cancel_marking": "בטל סימון"
+  "cancel_marking": "בטל סימון",
+  "upload_files_count": "הועלו $file מתוך $files קבצים"
 }

@@ -5,7 +5,11 @@ abstract class HomeScreenState {}
 
 final class HomeScreenInitial extends HomeScreenState {}
 
-final class HomeScreenLoading extends HomeScreenState {}
+final class HomeScreenLoading extends HomeScreenState {
+  final String? text;
+
+  HomeScreenLoading({this.text});
+}
 
 final class HomeScreenRefreshUI extends HomeScreenState {}
 

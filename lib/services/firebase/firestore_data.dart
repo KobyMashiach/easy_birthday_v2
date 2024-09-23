@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_birthday/core/format_function.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 Future<dynamic> firestoreGetCollection(
@@ -135,4 +136,40 @@ Future<void> firestoreDeleteFilesFromFolderOnStorage(String folderPath) async {
   for (final Reference ref in result.items) {
     await ref.delete();
   }
+}
+
+Future<String> firestoreUploadMediaToStorage({
+  required String path,
+  required File file,
+  required String fileName,
+}) async {
+  String downloadUrl = "";
+
+  const int maxImageSize = 500 * 1024;
+  const int maxVideoSize = 3 * 1024 * 1024;
+
+  File? processedFile;
+
+  String fileExtension = file.path.split('.').last.toLowerCase();
+
+  if (isImageFile(fileExtension)) {
+    processedFile = await resizeImageIfNeeded(file, maxImageSize);
+  } else if (isVideoFile(fileExtension)) {
+    processedFile = await compressVideoIfNeeded(file, maxVideoSize);
+  }
+
+  if (processedFile != null) {
+    if (processedFile.lengthSync() >
+        (fileExtension.contains('mp4') ? maxVideoSize : maxImageSize)) {
+      return Future.error("File size exceeds the allowed limit");
+    }
+
+    Reference storageReference =
+        FirebaseStorage.instance.ref().child('$path/$fileName');
+    UploadTask uploadTask = storageReference.putFile(processedFile);
+    await uploadTask.whenComplete(
+        () async => downloadUrl = await storageReference.getDownloadURL());
+  }
+
+  return downloadUrl;
 }
