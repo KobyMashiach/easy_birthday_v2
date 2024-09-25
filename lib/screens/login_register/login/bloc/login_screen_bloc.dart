@@ -120,6 +120,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
 
   Future<void> loginToApp(
       PersonaModel persona, Emitter<LoginScreenState> emit) async {
+    globalEvent = await eventRepo.getEventFromServer();
     if (persona.role.isNotPartner()) {
       if (persona.registerComplete) {
         emit(LoginScreenStateNavToHomeScreen());
@@ -127,9 +128,9 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         emit(LoginScreenStateNavToFirstRegisterScreen());
       }
     } else {
-      final event = await eventRepo.getEventFromServer();
-      final partnerPhone =
-          event!.users.where((user) => user != globalUser.phoneNumber).first;
+      final partnerPhone = globalEvent!.users
+          .where((user) => user != globalUser.phoneNumber)
+          .first;
       final partnerUser = await repo.getPersona(phoneNumber: partnerPhone);
       await repo.updatePartnerPersona(partnerUser);
       if (persona.registerComplete) {
