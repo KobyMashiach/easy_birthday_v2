@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/hive/hive_functions.dart';
-import 'package:easy_birthday/dev/chat_gpt_try.dart';
+import 'package:easy_birthday/dev/gemini_try.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
@@ -58,10 +58,10 @@ class DeveloperScreen extends StatelessWidget {
         }
       },
       {
-        'title': "Navigate to Chat GPT try",
+        'title': "Navigate to GEMINI try",
         'icon': Icons.navigation_outlined,
         'function': () {
-          KheasydevNavigatePage().push(context, ChatGptTry());
+          KheasydevNavigatePage().push(context, GeminiTry());
         }
       },
     ];

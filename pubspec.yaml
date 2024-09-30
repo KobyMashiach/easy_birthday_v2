@@ -71,7 +71,7 @@ dependencies:
   # Network and API
   http: ^1.1.0
   dio: ^5.5.0+1
-  chat_gpt_sdk: ^3.1.2
+  google_generative_ai: ^0.4.6
 
   # Security and Encryption
   encrypt: ^5.0.3
