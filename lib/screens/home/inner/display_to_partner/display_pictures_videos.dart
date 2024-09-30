@@ -1,0 +1,130 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kh_easy_dev/kh_easy_dev.dart';
+
+import 'package:easy_birthday/core/consts.dart';
+import 'package:easy_birthday/core/text_styles.dart';
+import 'package:easy_birthday/models/category_model/category_model.dart';
+import 'package:easy_birthday/widgets/general/appbar.dart';
+
+class DisplayPicturesVideosScreen extends StatefulWidget {
+  const DisplayPicturesVideosScreen({
+    super.key,
+    required this.category,
+    required this.isImages,
+  });
+
+  final CategoryModel category;
+  final bool isImages;
+
+  @override
+  State<DisplayPicturesVideosScreen> createState() =>
+      _DisplayPicturesVideosScreenState();
+}
+
+class _DisplayPicturesVideosScreenState
+    extends State<DisplayPicturesVideosScreen> {
+  Widget imageContainer(Widget child, int index) {
+    return SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: Colors.black,
+            width: 2,
+          ),
+        ),
+        clipBehavior: Clip.hardEdge,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(22),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaUrls = widget.category.urls ?? [];
+
+    return Scaffold(
+      appBar: appAppBar(title: widget.category.titleAppear!),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                widget.category.titleAppear!,
+                style: AppTextStyle().title,
+                textAlign: TextAlign.center,
+              ),
+              SvgPicture.asset(readTextIllustration, height: 200),
+              kheasydevDivider(black: true),
+              const SizedBox(height: 12),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 8.0,
+                  ),
+                  itemCount: mediaUrls.length,
+                  itemBuilder: (context, index) {
+                    final mediaUrl = mediaUrls[index];
+                    return imageContainer(
+                      widget.isImages
+                          ? imageCacheDisplay(mediaUrl)
+                          : VideoThumbnailWidget(videoUrl: mediaUrl),
+                      index,
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Image imageFileDisplay(File newImageFile) {
+    return Image.file(
+      newImageFile,
+      fit: BoxFit.cover,
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          color: Colors.grey,
+          child: Icon(
+            Icons.image_not_supported,
+            color: Colors.white,
+          ),
+        );
+      },
+    );
+  }
+
+  CachedNetworkImage imageCacheDisplay(String mediaUrl) {
+    return CachedNetworkImage(
+      imageUrl: mediaUrl,
+      fit: BoxFit.cover,
+      placeholder: (context, url) => Center(
+        child: CircularProgressIndicator(),
+      ),
+      errorWidget: (context, url, error) => Container(
+        color: Colors.grey,
+        child: Icon(
+          Icons.image_not_supported,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}

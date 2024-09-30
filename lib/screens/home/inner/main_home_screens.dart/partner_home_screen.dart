@@ -2,7 +2,9 @@ import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/text_items_model/text_item_model.dart';
+import 'package:easy_birthday/screens/home/inner/display_to_partner/display_pictures_videos.dart';
 import 'package:easy_birthday/screens/home/inner/display_to_partner/display_text.dart';
 import 'package:easy_birthday/widgets/cards/category_partner_card.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +41,24 @@ class PartnerHomeScreen extends StatelessWidget {
               return CategoryPartnerCard(
                 category: category,
                 //TODO: navigate by type
-                onTap: () => KheasydevNavigatePage().pushDuration(
-                    context, DisplayTextScreen(category: category)),
+                onTap: () {
+                  switch (category.categoryType) {
+                    case CategoryEnum.text:
+                      KheasydevNavigatePage().pushDuration(
+                          context, DisplayTextScreen(category: category));
+                    case CategoryEnum.pictures:
+                      KheasydevNavigatePage().pushDuration(
+                          context,
+                          DisplayPicturesVideosScreen(
+                              category: category, isImages: true));
+                    case CategoryEnum.videos:
+                      KheasydevNavigatePage().pushDuration(
+                          context,
+                          DisplayPicturesVideosScreen(
+                              category: category, isImages: false));
+                    case CategoryEnum.quizGame:
+                  }
+                },
               );
             },
             itemCount: globalEvent!.categories.length,
