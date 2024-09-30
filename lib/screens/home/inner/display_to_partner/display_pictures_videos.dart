@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,21 +30,24 @@ class DisplayPicturesVideosScreen extends StatefulWidget {
 class _DisplayPicturesVideosScreenState
     extends State<DisplayPicturesVideosScreen> {
   Widget imageContainer(Widget child, int index) {
-    return SizedBox(
-      width: double.infinity,
-      height: double.infinity,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: Colors.black,
-            width: 2,
+    return GestureDetector(
+      onTap: () => _showImageDialog(index),
+      child: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              color: Colors.black,
+              width: 2,
+            ),
           ),
-        ),
-        clipBehavior: Clip.hardEdge,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(22),
-          child: child,
+          clipBehavior: Clip.hardEdge,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(22),
+            child: child,
+          ),
         ),
       ),
     );
@@ -125,6 +129,34 @@ class _DisplayPicturesVideosScreenState
           color: Colors.white,
         ),
       ),
+    );
+  }
+
+  void _showImageDialog(int initialIndex) {
+    final Size screenSize = MediaQuery.of(context).size;
+    showDialog(
+      context: context,
+      builder: (context) {
+        return GeneralDialog(
+          title: "",
+          noButtons: true,
+          child: Container(
+            width: screenSize.width,
+            height: screenSize.height * 0.7,
+            padding: const EdgeInsets.all(12),
+            child: PageView.builder(
+              controller: PageController(initialPage: initialIndex),
+              itemCount: widget.category.urls?.length ?? 0,
+              itemBuilder: (context, index) {
+                final mediaUrl = widget.category.urls![index];
+                return widget.isImages
+                    ? imageCacheDisplay(mediaUrl)
+                    : VideoThumbnailWidget(videoUrl: mediaUrl);
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }
