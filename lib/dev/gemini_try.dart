@@ -42,6 +42,8 @@ class _GeminiTryState extends State<GeminiTry> {
     final response = await model.generateContent(content);
 
     print(response.text);
-    geminiText = response.text ?? 'Empty';
+    setState(() {
+      geminiText = response.text ?? 'Empty';
+    });
   }
 }

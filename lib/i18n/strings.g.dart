@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 162
+/// Strings: 170
 ///
-/// Built on 2024-09-23 at 02:38 UTC
+/// Built on 2024-09-30 at 03:38 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -436,6 +436,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get mark_all => 'סמן הכל';
 	String get cancel_marking => 'בטל סימון';
 	String upload_files_count({required Object file, required Object files}) => 'הועלו ${file} מתוך ${files} קבצים';
+	String get use_emojis => 'שימוש באימוג׳ים';
+	String get lines_number => 'מספר שורות';
+	String get max_words_in_line => 'מקסימום מילים בשורה';
+	String get add_free_text => 'הוספת טקסט חופשי';
+	String get yes => 'כן';
+	String get no => 'לא';
+	String get no_required => 'לא חובה';
+	String generate_text_description({required Object relationship, required Object name, required Object myName, required Object lineNumber, required Object wordsInLineNumebr}) => 'רשום ברכת יום הולדת ל${relationship}, השם הוא ${name}\nהשם שלי הוא: ${myName}\nמספר השורות של הברכה: ${lineNumber}\nמספר המילים בשורה:${wordsInLineNumebr}';
 }
 
 /// Flat map(s) containing all translations.
@@ -726,6 +734,14 @@ extension on Translations {
 			case 'mark_all': return 'סמן הכל';
 			case 'cancel_marking': return 'בטל סימון';
 			case 'upload_files_count': return ({required Object file, required Object files}) => 'הועלו ${file} מתוך ${files} קבצים';
+			case 'use_emojis': return 'שימוש באימוג׳ים';
+			case 'lines_number': return 'מספר שורות';
+			case 'max_words_in_line': return 'מקסימום מילים בשורה';
+			case 'add_free_text': return 'הוספת טקסט חופשי';
+			case 'yes': return 'כן';
+			case 'no': return 'לא';
+			case 'no_required': return 'לא חובה';
+			case 'generate_text_description': return ({required Object relationship, required Object name, required Object myName, required Object lineNumber, required Object wordsInLineNumebr}) => 'רשום ברכת יום הולדת ל${relationship}, השם הוא ${name}\nהשם שלי הוא: ${myName}\nמספר השורות של הברכה: ${lineNumber}\nמספר המילים בשורה:${wordsInLineNumebr}';
 			default: return null;
 		}
 	}

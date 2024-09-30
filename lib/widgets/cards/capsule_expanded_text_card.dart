@@ -11,6 +11,8 @@ class CapsuleExpandedTextCard extends StatefulWidget {
     required this.onTextChoosen,
     required this.textItems,
     required this.textChoose,
+    this.titleSize,
+    this.isNumbers,
   }) : super(key: key);
 
   final bool isExpanded;
@@ -18,6 +20,8 @@ class CapsuleExpandedTextCard extends StatefulWidget {
   final VoidCallback onTap;
   final Function(String value) onTextChoosen;
   final bool textChoose;
+  final double? titleSize;
+  final bool? isNumbers;
 
   @override
   State<CapsuleExpandedTextCard> createState() =>
@@ -46,7 +50,8 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
               widget.onTap();
             },
             child: Container(
-              constraints: BoxConstraints(minWidth: 100),
+              constraints:
+                  BoxConstraints(minWidth: widget.isNumbers != true ? 100 : 30),
               margin: const EdgeInsets.symmetric(horizontal: 5),
               child: Center(
                 child: Text(values[index],
@@ -61,6 +66,7 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
 
   @override
   Widget build(BuildContext context) {
+    final titleSize = widget.titleSize ?? 150;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -84,11 +90,11 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
                 height: 80,
                 width: widget.isExpanded
                     ? MediaQuery.of(context).size.width - 24
-                    : 150,
+                    : titleSize,
                 child: Row(
                   children: [
                     SizedBox(
-                      width: 150,
+                      width: titleSize,
                       child: Row(
                         children: [
                           Padding(

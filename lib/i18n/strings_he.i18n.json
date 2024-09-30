@@ -200,5 +200,13 @@
   "delete": "מחיקה",
   "mark_all": "סמן הכל",
   "cancel_marking": "בטל סימון",
-  "upload_files_count": "הועלו $file מתוך $files קבצים"
+  "upload_files_count": "הועלו $file מתוך $files קבצים",
+  "use_emojis": "שימוש באימוג׳ים",
+  "lines_number": "מספר שורות",
+  "max_words_in_line": "מקסימום מילים בשורה",
+  "add_free_text": "הוספת טקסט חופשי",
+  "yes": "כן",
+  "no": "לא",
+  "no_required": "לא חובה",
+  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumebr"
 }
