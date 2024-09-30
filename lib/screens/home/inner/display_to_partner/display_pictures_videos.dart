@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
+import 'package:easy_birthday/widgets/general/video_player_widget.dart';
 import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -151,7 +152,7 @@ class _DisplayPicturesVideosScreenState
                 final mediaUrl = widget.category.urls![index];
                 return widget.isImages
                     ? imageCacheDisplay(mediaUrl)
-                    : VideoThumbnailWidget(videoUrl: mediaUrl);
+                    : VideoPlayerWidget(videoUrl: mediaUrl);
               },
             ),
           ),
