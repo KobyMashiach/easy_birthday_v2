@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +29,8 @@ class OwnerHomeScreen extends StatelessWidget {
       //TODO: change bottom 3 lines
       CategoryEnum.quizGame => const Text("quizGame"),
       CategoryEnum.birthdayCalender => const Text("birthdayCalender"),
-      CategoryEnum.birthdaySuprise => const Text("birthdaySuprise"),
+      CategoryEnum.birthdaySuprise =>
+        Column(children: supriseMapToWidgets(category.supriseMap)),
     };
   }
 

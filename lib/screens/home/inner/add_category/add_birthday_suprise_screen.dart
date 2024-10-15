@@ -35,25 +35,7 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
   @override
   void initState() {
     lock = widget.category.lock;
-    if (widget.category.supriseMap != null) {
-      Map<int, Map<String, String>> sortedMap = Map.fromEntries(
-        widget.category.supriseMap!.entries.toList()
-          ..sort((e1, e2) => e1.key.compareTo(e2.key)),
-      );
-      sortedMap.forEach(
-        (key, value) {
-          final element = value.entries.first;
-          switch (element.key) {
-            case "title":
-              items.add(Text(element.value, style: AppTextStyle().subTitle));
-            case "description":
-              items.add(Text(element.value, style: AppTextStyle().description));
-            case "image":
-              items.add(Image.network(element.value, height: 150));
-          }
-        },
-      );
-    }
+    items = supriseMapToWidgets(widget.category.supriseMap);
     super.initState();
   }
 
@@ -251,4 +233,31 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
       ),
     );
   }
+
+  // void itemsUpdateFromServer() {
+  //   if (widget.category.supriseMap != null) {
+  //     Map<int, Map<String, String>> sortedMap = Map.fromEntries(
+  //       widget.category.supriseMap!.entries.toList()
+  //         ..sort((e1, e2) => e1.key.compareTo(e2.key)),
+  //     );
+  //     Map<int, Map<String, String>> updatedMap = {
+  //       for (int i = 0; i < sortedMap.length; i++)
+  //         i + 1: sortedMap.values.elementAt(i)
+  //     };
+
+  //     updatedMap.forEach(
+  //       (key, value) {
+  //         final element = value.entries.first;
+  //         switch (element.key) {
+  //           case "title":
+  //             items.add(Text(element.value, style: AppTextStyle().subTitle));
+  //           case "description":
+  //             items.add(Text(element.value, style: AppTextStyle().description));
+  //           case "image":
+  //             items.add(Image.network(element.value, height: 150));
+  //         }
+  //       },
+  //     );
+  //   }
+  // }
 }

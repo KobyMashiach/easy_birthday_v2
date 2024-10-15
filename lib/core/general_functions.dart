@@ -4,9 +4,11 @@ import 'package:age_calculator/age_calculator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'dart:typed_data';
 import 'dart:convert';
@@ -83,4 +85,32 @@ Future<List<File>> pickMultipleFiles({bool? videos}) async {
   } else {
     return [];
   }
+}
+
+List<Widget> supriseMapToWidgets(Map<int, Map<String, String>>? widgetsMap) {
+  List<Widget> items = [];
+  if (widgetsMap != null) {
+    Map<int, Map<String, String>> sortedMap = Map.fromEntries(
+      widgetsMap.entries.toList()..sort((e1, e2) => e1.key.compareTo(e2.key)),
+    );
+    Map<int, Map<String, String>> updatedMap = {
+      for (int i = 0; i < sortedMap.length; i++)
+        i + 1: sortedMap.values.elementAt(i)
+    };
+
+    updatedMap.forEach(
+      (key, value) {
+        final element = value.entries.first;
+        switch (element.key) {
+          case "title":
+            items.add(Text(element.value, style: AppTextStyle().subTitle));
+          case "description":
+            items.add(Text(element.value, style: AppTextStyle().description));
+          case "image":
+            items.add(Image.network(element.value, height: 150));
+        }
+      },
+    );
+  }
+  return items;
 }

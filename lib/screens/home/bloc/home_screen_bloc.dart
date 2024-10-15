@@ -11,7 +11,6 @@ import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/services/firebase/firestore_data.dart';
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 
 part 'home_screen_event.dart';
 part 'home_screen_state.dart';
@@ -143,6 +142,10 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
               file: file,
               fileName: getRandomString(5));
           items[i] = {"image": fileUrl};
+        } else if (currentWidget.image is NetworkImage) {
+          NetworkImage networkImage = currentWidget.image as NetworkImage;
+          String path = networkImage.url;
+          items[i] = {"image": path};
         }
       }
     }
