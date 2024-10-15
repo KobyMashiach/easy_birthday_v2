@@ -4,7 +4,7 @@ import 'package:easy_birthday/models/plan_model/plan_model.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
 class PurchaseServices {
-  Set<String> _kIds = <String>{'platinum_plan', 'standard_plan'};
+  final Set<String> _kIds = <String>{'platinum_plan', 'standard_plan'};
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
   late StreamSubscription<List<PurchaseDetails>> _subscription;
   final Function(PurchaseStatus status, String productId)?

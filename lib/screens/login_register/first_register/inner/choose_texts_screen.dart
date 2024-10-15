@@ -86,7 +86,7 @@ class _ChooseTextsScreenState extends State<ChooseTextsScreen> {
                 ),
               ),
               const SizedBox(height: 28),
-              AppButton(
+              appButton(
                 margin: const EdgeInsets.symmetric(horizontal: 100),
                 text: t.display_result,
                 onTap: choosenItems.length != items.length
@@ -94,7 +94,7 @@ class _ChooseTextsScreenState extends State<ChooseTextsScreen> {
                     : () async {
                         await showDialog(
                           context: context,
-                          builder: (context) => GeneralDialog(
+                          builder: (context) => generalDialog(
                               title: t.display_result,
                               oneButton: true,
                               description: t.we_use,

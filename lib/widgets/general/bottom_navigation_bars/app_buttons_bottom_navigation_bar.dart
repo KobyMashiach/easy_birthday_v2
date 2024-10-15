@@ -43,7 +43,7 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
           children: [
             if (!oneButton) ...[
               Expanded(
-                child: AppButton(
+                child: appButton(
                   text: inactiveButtonText ?? t.cancel,
                   unfillColors: true,
                   onTap: inactiveButtonOnTap ??
@@ -53,7 +53,7 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
               const SizedBox(width: 40),
             ],
             Expanded(
-                child: AppButton(
+                child: appButton(
               text: activeButtonText ?? t.ok,
               onTap: activeButtonDisable
                   ? null

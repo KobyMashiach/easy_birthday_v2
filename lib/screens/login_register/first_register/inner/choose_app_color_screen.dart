@@ -53,9 +53,9 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
                   style: AppTextStyle().title, textAlign: TextAlign.center),
               SvgPicture.asset(paletteIllustration, height: 200),
               const SizedBox(height: 24),
-              AppButton(
+              appButton(
                 text: t.choose_color(context: globalGender),
-                margin: EdgeInsets.symmetric(horizontal: 60),
+                margin: const EdgeInsets.symmetric(horizontal: 60),
                 onTap: () async {
                   await showDialog(
                     context: context,
@@ -77,7 +77,8 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: recommendedColors.length,
-                  separatorBuilder: (context, index) => SizedBox(width: 12),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 12),
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () => changeColor(recommendedColors[index]),
                     child: CircleAvatar(
@@ -120,11 +121,11 @@ class _ChooseAppColorScreenState extends State<ChooseAppColorScreen> {
 }
 
 List<Color> recommendedColors = [
-  Color.fromARGB(255, 220, 155, 155),
-  Color.fromARGB(255, 220, 194, 155),
-  Color.fromARGB(255, 220, 217, 155),
-  Color.fromARGB(255, 188, 220, 155),
-  Color.fromARGB(255, 155, 220, 214),
-  Color.fromARGB(255, 205, 155, 220),
-  Color.fromARGB(255, 220, 155, 200),
+  const Color.fromARGB(255, 220, 155, 155),
+  const Color.fromARGB(255, 220, 194, 155),
+  const Color.fromARGB(255, 220, 217, 155),
+  const Color.fromARGB(255, 188, 220, 155),
+  const Color.fromARGB(255, 155, 220, 214),
+  const Color.fromARGB(255, 205, 155, 220),
+  const Color.fromARGB(255, 220, 155, 200),
 ];

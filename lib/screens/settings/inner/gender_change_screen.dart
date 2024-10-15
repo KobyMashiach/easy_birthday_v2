@@ -41,7 +41,7 @@ class _GenderChangeScreenState extends State<GenderChangeScreen> {
               chooseGenderToggle(
                   initIndex: globalUser.gender == "male" ? 0 : 1,
                   partner: false),
-              SizedBox(height: 28),
+              const SizedBox(height: 28),
               if (globalUser.role.isNotPartner()) ...[
                 Text(t.choose_partner_gender, style: AppTextStyle().title),
                 chooseGenderToggle(initIndex: partnerIndex, partner: true)

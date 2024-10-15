@@ -206,7 +206,7 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
                           isRequired: true,
                           child: IconButton(
                               onPressed: () => onDateOfBirthTap(),
-                              icon: Icon(Icons.calendar_month)),
+                              icon: const Icon(Icons.calendar_month)),
                         ),
                         AppTextField(
                           hintText: t.password,

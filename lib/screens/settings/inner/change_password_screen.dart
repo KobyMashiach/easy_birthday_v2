@@ -107,9 +107,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           loading = true;
         });
         await Future.any([
-          Future.delayed(Duration(seconds: 5)),
+          Future.delayed(const Duration(seconds: 5)),
           Future.doWhile(() async {
-            await Future.delayed(Duration(milliseconds: 100));
+            await Future.delayed(const Duration(milliseconds: 100));
             return verificationId == "";
           })
         ]);
@@ -140,7 +140,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 setState(() {
                   loading = true;
                 });
-                await Future.delayed(Duration(milliseconds: 500));
+                await Future.delayed(const Duration(milliseconds: 500));
                 setState(() {
                   loading = false;
                 });
@@ -166,7 +166,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         padding: const EdgeInsets.all(12),
         child: Center(
           child: loading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : Column(
                   children: [
                     Text(t.change_password,
@@ -174,7 +174,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         textAlign: TextAlign.center),
                     SvgPicture.asset(registerIllustration, height: 200),
                     const SizedBox(height: 24),
-                    AppButton(
+                    appButton(
                         text: t.phone_verification,
                         margin: const EdgeInsets.symmetric(horizontal: 100),
                         onTap: verificationOtp

@@ -37,25 +37,24 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
         canPop: false,
         child: Padding(
           padding: const EdgeInsets.all(24),
-          child: Container(
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                final language = languages[index];
-                return ChangeLanguageCard(
-                  language: language,
-                  onLanguageChange: (languageCodeVal) {
-                    setState(() {
-                      languageCode = languageCodeVal;
-                    });
-                  },
-                );
-              },
-              separatorBuilder: (context, index) =>
-                  kheasydevDivider(black: true),
-              itemCount: languages.length,
-            ),
+          // child: Container(
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              final language = languages[index];
+              return ChangeLanguageCard(
+                language: language,
+                onLanguageChange: (languageCodeVal) {
+                  setState(() {
+                    languageCode = languageCodeVal;
+                  });
+                },
+              );
+            },
+            separatorBuilder: (context, index) => kheasydevDivider(black: true),
+            itemCount: languages.length,
           ),
+          // ),
         ),
       ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(

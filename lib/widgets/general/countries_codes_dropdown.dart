@@ -98,7 +98,7 @@ class _CountriesCodesDropdownState extends State<CountriesCodesDropdown> {
                   ),
                   kheasydevDivider(black: true),
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: 200),
+                    constraints: const BoxConstraints(maxHeight: 200),
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: filteredCountries.length,

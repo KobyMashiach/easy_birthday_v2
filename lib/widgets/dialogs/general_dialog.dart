@@ -3,7 +3,7 @@ import 'package:kh_easy_dev/widgets/general/dialog_v2.dart';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 
-Widget GeneralDialog({
+Widget generalDialog({
   required final String title,
   final String? description,
   final bool shouldDisplayX = true,
@@ -40,9 +40,9 @@ Widget GeneralDialog({
     okButtonText: okButtonText ?? t.ok,
     cancelButtonText: cancelButtonText ?? t.cancel,
     childBeforeTitle: childBeforeTitle,
-    child: child,
     height: height,
     width: width,
     okButtonOnTap: okButtonOnTap,
+    child: child,
   );
 }

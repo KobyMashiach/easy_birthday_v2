@@ -38,7 +38,7 @@ class ChangeLanguageCard extends StatelessWidget {
       leading: SvgPicture.asset(
         colorFilter: language.enable
             ? null
-            : ColorFilter.mode(Colors.grey, BlendMode.darken),
+            : const ColorFilter.mode(Colors.grey, BlendMode.darken),
         width: 50,
         getFlag(language.flag),
       ),

@@ -29,7 +29,7 @@ class CircleWithChild extends StatelessWidget {
                     fillColor == true ? Colors.white : AppColors.primaryColor,
               )
             : Text((child as Text).data ?? '',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 )),

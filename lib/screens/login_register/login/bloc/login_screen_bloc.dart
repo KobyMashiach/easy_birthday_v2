@@ -81,9 +81,9 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         );
         emit(LoginScreenLoading());
         await Future.any([
-          Future.delayed(Duration(seconds: 5)),
+          Future.delayed(const Duration(seconds: 5)),
           Future.doWhile(() async {
-            await Future.delayed(Duration(milliseconds: 100));
+            await Future.delayed(const Duration(milliseconds: 100));
             return verificationId == "";
           })
         ]);
@@ -101,7 +101,9 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         emit(LoginScreenStateDialogErrorMessage(
             message: t.phone_not_exist_system));
       }
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   FutureOr<void> _loginScreenEventOnVerification(

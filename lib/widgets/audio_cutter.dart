@@ -10,12 +10,11 @@ class AudioCutterWidget extends StatefulWidget {
   final VoidCallback onSetRingtone;
   final bool? onCutDownload;
   const AudioCutterWidget(
-      {Key? key,
+      {super.key,
       required this.file,
       required this.onDoneCut,
       required this.onCutDownload,
-      required this.onSetRingtone})
-      : super(key: key);
+      required this.onSetRingtone});
 
   @override
   State<AudioCutterWidget> createState() => _AudioCutterWidgetState();
@@ -85,7 +84,7 @@ class _AudioCutterWidgetState extends State<AudioCutterWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                AppButton(
+                appButton(
                   text: "חתוך ושמור",
                   textSize: 16,
                   unfillColors: widget.onCutDownload ?? false,
@@ -93,7 +92,7 @@ class _AudioCutterWidgetState extends State<AudioCutterWidget> {
                       (_formatDuration(start), _formatDuration(end))),
                 ),
                 if (widget.onCutDownload ?? false)
-                  AppButton(
+                  appButton(
                     text: "הפוך לצלצול",
                     textSize: 16,
                     onTap: () => widget.onSetRingtone.call(),
@@ -197,7 +196,7 @@ class _AudioCutterWidgetState extends State<AudioCutterWidget> {
           children: [
             Text(
               isPlaying ? "Pause" : "Play",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             IconButton(
               onPressed: _onPlayPause,
@@ -208,7 +207,7 @@ class _AudioCutterWidgetState extends State<AudioCutterWidget> {
         ),
         IconButton(
           onPressed: _resetDuration,
-          icon: Icon(Icons.restart_alt_rounded),
+          icon: const Icon(Icons.restart_alt_rounded),
         ),
       ],
     );

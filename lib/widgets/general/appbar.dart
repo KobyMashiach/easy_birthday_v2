@@ -19,10 +19,10 @@ appAppBar({
     shadowColor: AppColors.shadowColor,
     titleColor: Colors.white,
     actions: actions,
-    developerPage: developerPage ?? DeveloperScreen(),
+    developerPage: developerPage ?? const DeveloperScreen(),
     leading: onBackButtonPreesed != null
         ? IconButton(
-            onPressed: onBackButtonPreesed, icon: Icon(Icons.arrow_back))
+            onPressed: onBackButtonPreesed, icon: const Icon(Icons.arrow_back))
         : null,
     context: context ?? NavigationContextService.navigatorKey.currentContext,
     searchAppBar: searchAppBar,

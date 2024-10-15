@@ -68,13 +68,13 @@ class MyApp extends StatelessWidget {
                 GoogleFonts.amaticSc(fontWeight: FontWeight.bold).fontFamily,
             textTheme: TextTheme(
               bodyLarge: GoogleFonts.amaticSc(
-                textStyle: TextStyle(fontSize: 28),
+                textStyle: const TextStyle(fontSize: 28),
               ),
               bodyMedium: GoogleFonts.amaticSc(
-                textStyle: TextStyle(fontSize: 24),
+                textStyle: const TextStyle(fontSize: 24),
               ),
               bodySmall: GoogleFonts.amaticSc(
-                textStyle: TextStyle(fontSize: 20),
+                textStyle: const TextStyle(fontSize: 20),
               ),
             ),
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),

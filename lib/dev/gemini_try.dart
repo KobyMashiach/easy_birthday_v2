@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +25,7 @@ class _GeminiTryState extends State<GeminiTry> {
         child: Column(
           children: <Widget>[
             Text(geminiText),
-            AppButton(text: "Generete text", onTap: getText)
+            appButton(text: "Generete text", onTap: getText)
           ],
         ),
       ),
@@ -41,7 +43,7 @@ class _GeminiTryState extends State<GeminiTry> {
     final content = [Content.text(prompt)];
     final response = await model.generateContent(content);
 
-    print(response.text);
+    log(response.text ?? "");
     setState(() {
       geminiText = response.text ?? 'Empty';
     });

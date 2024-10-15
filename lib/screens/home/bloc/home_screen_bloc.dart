@@ -36,7 +36,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
       HomeScreenEventAddOrEditCategory event,
       Emitter<HomeScreenState> emit) async {
     final newCategory = event.edit != true
-        ? await eventRepo.addCategory(event.category)
+        ? eventRepo.addCategory(event.category)
         : event.category;
     switch (event.category.categoryType) {
       case CategoryEnum.text:
@@ -46,6 +46,8 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
       case CategoryEnum.videos:
         emit(HomeScreenNavToAddVideos(category: newCategory));
       case CategoryEnum.quizGame:
+      case CategoryEnum.birthdayCalender:
+      case CategoryEnum.birthdaySuprise:
       // emit(HomeScreenNavToAddText());
     }
   }
@@ -84,7 +86,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
           text: t.upload_files_count(
               file: count.toString(), files: event.files.length)));
     }
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 500));
     List<String> updatesUrls = List<String>.from(event.category.urls ?? []);
     updatesUrls.addAll(filesUrls);
     eventRepo.updateCategory(event.category.copyWith(urls: updatesUrls));

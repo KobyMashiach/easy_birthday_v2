@@ -11,9 +11,9 @@ Future<dynamic> firestoreGetCollection(
       await collection.get();
   if (querySnapshot.docs.isNotEmpty) {
     Map<String, Map<String, dynamic>> dataMap = {};
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       dataMap[doc.id] = doc.data();
-    });
+    }
     return dataMap;
   }
 }
@@ -75,7 +75,9 @@ Future<void> firestoreDeleteDoc(
   try {
     await collection.doc(docName).delete();
     log('Document $docName deleted successfully');
-  } catch (e) {}
+  } catch (e) {
+    log(e.toString());
+  }
 }
 
 Future<bool> firestoreCheckIfDocExists(
@@ -112,9 +114,9 @@ Future<void> firestoreRemoveFromStorage(String imagePath) async {
 
     await storageReference.delete();
 
-    print('File deleted successfully');
+    log('File deleted successfully');
   } catch (e) {
-    print('Error occurred while deleting the file: $e');
+    log('Error occurred while deleting the file: $e');
   }
 }
 
@@ -124,9 +126,9 @@ Future<void> firestoreRemoveFromStorageUrl(String fileUrl) async {
 
     await storageReference.delete();
 
-    print('File deleted successfully from URL');
+    log('File deleted successfully from URL');
   } catch (e) {
-    print('Error occurred while deleting the file from URL: $e');
+    log('Error occurred while deleting the file from URL: $e');
   }
 }
 

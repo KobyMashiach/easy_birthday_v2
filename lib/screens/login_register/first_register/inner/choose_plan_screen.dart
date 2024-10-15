@@ -46,9 +46,9 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
               bool isSelected = _selectedPlanIndex == index;
               final currentPlan = appPlans.entries.elementAt(index).value;
               return AnimatedContainer(
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
-                margin: EdgeInsets.symmetric(horizontal: 8.0).copyWith(
+                margin: const EdgeInsets.symmetric(horizontal: 8.0).copyWith(
                   top: isSelected ? 0 : 40,
                   bottom: isSelected ? 0 : 40,
                 ),
@@ -56,7 +56,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                 decoration: BoxDecoration(
                   color: isSelected ? Colors.blueGrey : Colors.white,
                   borderRadius: BorderRadius.circular(24.0),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black26,
                       blurRadius: 8.0,
@@ -71,7 +71,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                       _selectedPlanIndex = index;
                       _pageController.animateToPage(
                         index,
-                        duration: Duration(milliseconds: 800),
+                        duration: const Duration(milliseconds: 800),
                         curve: Curves.easeInOut,
                       );
                     });

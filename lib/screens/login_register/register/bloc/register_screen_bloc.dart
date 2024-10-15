@@ -50,9 +50,9 @@ class RegisterScreenBloc
       );
       emit(RegisterScreenLoading());
       await Future.any([
-        Future.delayed(Duration(seconds: 5)),
+        Future.delayed(const Duration(seconds: 5)),
         Future.doWhile(() async {
-          await Future.delayed(Duration(milliseconds: 100));
+          await Future.delayed(const Duration(milliseconds: 100));
           return verificationId == "";
         })
       ]);

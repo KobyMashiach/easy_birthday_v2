@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color primaryColor = Color.fromARGB(255, 220, 155, 155);
+  static Color primaryColor = const Color.fromARGB(255, 220, 155, 155);
   static Color shadowColor = darkenColor(primaryColor, 0.2);
   static Color disableColor = darkenColor(primaryColor, 0.4);
 

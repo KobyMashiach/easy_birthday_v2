@@ -13,12 +13,12 @@ class ChoosePlanCard extends StatelessWidget {
   final Function(String?)? onPurchasePlan;
 
   const ChoosePlanCard({
-    Key? key,
+    super.key,
     required this.plan,
     required this.isSelected,
     this.onPurchasePlan,
     this.currentPlan = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +29,18 @@ class ChoosePlanCard extends StatelessWidget {
             style: AppTextStyle().bigTitle.copyWith(
                   color: isSelected ? Colors.white : Colors.black,
                 )),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
         Text("${plan.price.toStringAsFixed(2)}₪",
             style: AppTextStyle().title.copyWith(
                   color: isSelected ? Colors.white : Colors.black,
                 )),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) => futuresList(index),
-            separatorBuilder: (context, index) => SizedBox(height: 12),
+            separatorBuilder: (context, index) => const SizedBox(height: 12),
             itemCount: plan.features.length),
-        Spacer(),
+        const Spacer(),
         if (plan.title != "Free" && !currentPlan) cartButton(),
         if (currentPlan) checkIcon(),
       ],
@@ -53,8 +53,8 @@ class ChoosePlanCard extends StatelessWidget {
         color: Colors.greenAccent,
         borderRadius: BorderRadius.circular(30.0),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-      child: Icon(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+      child: const Icon(
         Icons.check,
         color: Colors.white,
       ),
@@ -68,7 +68,7 @@ class ChoosePlanCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       ),
       onPressed: () async {
         await PurchaseServices().purchaseProduct(plan);
@@ -82,7 +82,7 @@ class ChoosePlanCard extends StatelessWidget {
           },
         );
       },
-      child: Icon(
+      child: const Icon(
         Icons.shopping_cart,
         color: Colors.white,
       ),
@@ -102,7 +102,7 @@ class ChoosePlanCard extends StatelessWidget {
               color: isSelected ? Colors.pink : Colors.grey,
             ),
           ),
-          SizedBox(width: 8.0),
+          const SizedBox(width: 8.0),
           Expanded(
             flex: 8,
             child: Text(

@@ -10,10 +10,9 @@ class VideoThumbnailWidget extends StatefulWidget {
   final String? videoUrl;
   final File? videoFile;
 
-  const VideoThumbnailWidget({Key? key, this.videoUrl, this.videoFile})
+  const VideoThumbnailWidget({super.key, this.videoUrl, this.videoFile})
       : assert(videoUrl != null || videoFile != null,
-            'Either videoUrl or videoFile must be provided'),
-        super(key: key);
+            'Either videoUrl or videoFile must be provided');
 
   @override
   _VideoThumbnailWidgetState createState() => _VideoThumbnailWidgetState();
@@ -78,7 +77,7 @@ class _VideoThumbnailWidgetState extends State<VideoThumbnailWidget> {
             _thumbnail!,
             fit: BoxFit.cover,
           )
-        : Center(
+        : const Center(
             child: CircularProgressIndicator(),
           );
   }

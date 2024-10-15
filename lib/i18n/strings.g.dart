@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 170
+/// Strings: 178
 ///
-/// Built on 2024-09-30 at 03:38 UTC
+/// Built on 2024-10-15 at 08:16 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -372,6 +372,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get pictures => 'תמונות';
 	String get videos => 'סרטונים';
 	String get quiz_game => 'משחק טריוויה';
+	String get birthday_calender => 'לו"ז יום הולדת';
+	String get birthday_suprise => 'הפתעת יום הולדת';
 	String text_description({required GenderContext context}) {
 		switch (context) {
 			case GenderContext.male:
@@ -412,6 +414,22 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'בחרי קטגוריה';
 		}
 	}
+	String birthday_calender_description({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בוא לבנות את הלו"ז הכי מגניב וכיפי ליום ההולדת של בת הזוג שלך! תכנן לה יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.';
+			case GenderContext.female:
+				return 'בואי לבנות את הלו"ז הכי מגניב וכיפי ליום ההולדת של בן הזוג שלך! תכנני לו יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.';
+		}
+	}
+	String birthday_suprise_description({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בוא לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתפתח את זה, זה יישאר נעול אצל בת הזוג שלך!';
+			case GenderContext.female:
+				return 'בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!';
+		}
+	}
 	String get please_choose_category => 'בחר קטגוריה בבקשה';
 	String get title_appear_category => 'הכותרת שתופיע לקטגוריה זו';
 	String get title_appear_required => 'נא למלא את הכותרת';
@@ -444,6 +462,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get no => 'לא';
 	String get no_required => 'לא חובה';
 	String generate_text_description({required Object relationship, required Object name, required Object myName, required Object lineNumber, required Object wordsInLineNumebr}) => 'רשום ברכת יום הולדת ל${relationship}, השם הוא ${name}\nהשם שלי הוא: ${myName}\nמספר השורות של הברכה: ${lineNumber}\nמספר המילים בשורה:${wordsInLineNumebr}';
+	String get partner_info => 'מידע על הבן/בת זוג';
+	String get info => 'מידע';
 }
 
 /// Flat map(s) containing all translations.
@@ -670,6 +690,8 @@ extension on Translations {
 			case 'pictures': return 'תמונות';
 			case 'videos': return 'סרטונים';
 			case 'quiz_game': return 'משחק טריוויה';
+			case 'birthday_calender': return 'לו"ז יום הולדת';
+			case 'birthday_suprise': return 'הפתעת יום הולדת';
 			case 'text_description': return ({required GenderContext context}) {
 				switch (context) {
 					case GenderContext.male:
@@ -710,6 +732,22 @@ extension on Translations {
 						return 'בחרי קטגוריה';
 				}
 			};
+			case 'birthday_calender_description': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בוא לבנות את הלו"ז הכי מגניב וכיפי ליום ההולדת של בת הזוג שלך! תכנן לה יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.';
+					case GenderContext.female:
+						return 'בואי לבנות את הלו"ז הכי מגניב וכיפי ליום ההולדת של בן הזוג שלך! תכנני לו יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.';
+				}
+			};
+			case 'birthday_suprise_description': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בוא לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתפתח את זה, זה יישאר נעול אצל בת הזוג שלך!';
+					case GenderContext.female:
+						return 'בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!';
+				}
+			};
 			case 'please_choose_category': return 'בחר קטגוריה בבקשה';
 			case 'title_appear_category': return 'הכותרת שתופיע לקטגוריה זו';
 			case 'title_appear_required': return 'נא למלא את הכותרת';
@@ -742,6 +780,8 @@ extension on Translations {
 			case 'no': return 'לא';
 			case 'no_required': return 'לא חובה';
 			case 'generate_text_description': return ({required Object relationship, required Object name, required Object myName, required Object lineNumber, required Object wordsInLineNumebr}) => 'רשום ברכת יום הולדת ל${relationship}, השם הוא ${name}\nהשם שלי הוא: ${myName}\nמספר השורות של הברכה: ${lineNumber}\nמספר המילים בשורה:${wordsInLineNumebr}';
+			case 'partner_info': return 'מידע על הבן/בת זוג';
+			case 'info': return 'מידע';
 			default: return null;
 		}
 	}

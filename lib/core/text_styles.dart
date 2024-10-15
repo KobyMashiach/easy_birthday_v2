@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class AppTextStyle {
   TextStyle get bigTitle =>
-      TextStyle(fontSize: 48, fontWeight: FontWeight.bold);
-  TextStyle get title => TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
-  TextStyle get description => TextStyle(fontSize: 24);
-  TextStyle get smallDescription => TextStyle(fontSize: 20);
-  TextStyle get error => TextStyle(fontSize: 16, color: Colors.red);
-  TextStyle get dropDownValues => TextStyle(fontSize: 16);
-  TextStyle get mainListValues => TextStyle(fontSize: 28);
+      const TextStyle(fontSize: 48, fontWeight: FontWeight.bold);
+  TextStyle get title => const TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
+  TextStyle get description => const TextStyle(fontSize: 24);
+  TextStyle get smallDescription => const TextStyle(fontSize: 20);
+  TextStyle get error => const TextStyle(fontSize: 16, color: Colors.red);
+  TextStyle get dropDownValues => const TextStyle(fontSize: 16);
+  TextStyle get mainListValues => const TextStyle(fontSize: 28);
   TextStyle get cardTitle =>
-      TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
+      const TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
 }

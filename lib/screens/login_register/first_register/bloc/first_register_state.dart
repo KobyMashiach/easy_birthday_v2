@@ -4,22 +4,22 @@ part of 'first_register_bloc.dart';
 abstract class FirstRegisterState {
   final PlanModel planModel;
 
-  FirstRegisterState({required this.planModel});
+  const FirstRegisterState({required this.planModel});
 }
 
 final class FirstRegisterInitial extends FirstRegisterState {
-  FirstRegisterInitial({required super.planModel});
+  const FirstRegisterInitial({required super.planModel});
 }
 
 final class FirstRegisterRefreshUI extends FirstRegisterState {
-  FirstRegisterRefreshUI({required super.planModel});
+  const FirstRegisterRefreshUI({required super.planModel});
 }
 
 @immutable
 abstract class FirstRegisterStateNav extends FirstRegisterState {
-  FirstRegisterStateNav({required super.planModel});
+  const FirstRegisterStateNav({required super.planModel});
 }
 
 final class FirstRegisterStateNavHomeScreen extends FirstRegisterStateNav {
-  FirstRegisterStateNavHomeScreen({required super.planModel});
+  const FirstRegisterStateNavHomeScreen({required super.planModel});
 }

@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
               .pushAndRemoveUntil(context, const HomeScreen());
         case const (SplashScreenNavigationToFirstRegister):
           KheasydevNavigatePage()
-              .pushAndRemoveUntil(context, FirstRegisterMain());
+              .pushAndRemoveUntil(context, const FirstRegisterMain());
         case const (SplashScreenNavigationToLoginScreen):
           KheasydevNavigatePage()
               .pushAndRemoveUntil(context, const LoginScreen());

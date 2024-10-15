@@ -41,35 +41,35 @@ class DeveloperScreen extends StatelessWidget {
         'title': "Navigate to Home screen",
         'icon': Icons.navigation_outlined,
         'function': () {
-          KheasydevNavigatePage().push(context, HomeScreen());
+          KheasydevNavigatePage().push(context, const HomeScreen());
         }
       },
       {
         'title': "Navigate to Login screen",
         'icon': Icons.navigation_outlined,
         'function': () {
-          KheasydevNavigatePage().push(context, LoginScreen());
+          KheasydevNavigatePage().push(context, const LoginScreen());
         }
       },
       {
         'title': "Navigate to First register screen",
         'icon': Icons.navigation_outlined,
         'function': () {
-          KheasydevNavigatePage().push(context, FirstRegisterMain());
+          KheasydevNavigatePage().push(context, const FirstRegisterMain());
         }
       },
       {
         'title': "Navigate to GEMINI try",
         'icon': Icons.navigation_outlined,
         'function': () {
-          KheasydevNavigatePage().push(context, GeminiTry());
+          KheasydevNavigatePage().push(context, const GeminiTry());
         }
       },
       {
         'title': "Navigate to Generate Greeting ",
         'icon': Icons.navigation_outlined,
         'function': () {
-          KheasydevNavigatePage().push(context, GenerateGreeting());
+          KheasydevNavigatePage().push(context, const GenerateGreeting());
         }
       },
     ];
@@ -79,14 +79,14 @@ class DeveloperScreen extends StatelessWidget {
   Future<dynamic> clearLocalStorageDialog(BuildContext context) {
     return showDialog(
       context: context,
-      builder: (context) => GeneralDialog(title: "Delete all local storage?"),
+      builder: (context) => generalDialog(title: "Delete all local storage?"),
     );
   }
 
   Future<dynamic> changeRoleFunction(BuildContext context) {
     return showDialog(
       context: context,
-      builder: (context) => GeneralDialog(
+      builder: (context) => generalDialog(
         title: "Choose role to change",
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -109,7 +109,7 @@ class DeveloperScreen extends StatelessWidget {
                             vertical: 8.0, horizontal: 16.0),
                         child: Text(
                           role.getName(),
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ),

@@ -5,7 +5,7 @@ import 'package:kh_easy_dev/kh_easy_dev.dart';
 
 class CapsuleExpandedTextCard extends StatefulWidget {
   const CapsuleExpandedTextCard({
-    Key? key,
+    super.key,
     required this.isExpanded,
     required this.onTap,
     required this.onTextChoosen,
@@ -13,7 +13,7 @@ class CapsuleExpandedTextCard extends StatefulWidget {
     required this.textChoose,
     this.titleSize,
     this.isNumbers,
-  }) : super(key: key);
+  });
 
   final bool isExpanded;
   final TextItemModel textItems;
@@ -42,7 +42,7 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
         scrollDirection: Axis.horizontal,
         itemCount: values.length,
         separatorBuilder: (context, index) => kheasydevVerticalDivider(
-            black: true, padding: EdgeInsets.symmetric(vertical: 24)),
+            black: true, padding: const EdgeInsets.symmetric(vertical: 24)),
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
@@ -77,9 +77,9 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
             curve: Curves.easeInOut,
             child: ClipRRect(
               borderRadius: BorderRadius.only(
-                topLeft: widget.isExpanded ? Radius.circular(30) : Radius.zero,
+                topLeft: widget.isExpanded ? const Radius.circular(30) : Radius.zero,
                 bottomLeft:
-                    widget.isExpanded ? Radius.circular(30) : Radius.zero,
+                    widget.isExpanded ? const Radius.circular(30) : Radius.zero,
                 topRight: const Radius.circular(30),
                 bottomRight: const Radius.circular(30),
               ),
@@ -104,16 +104,16 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
                               style: const TextStyle(color: Colors.white),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           if (!widget.isExpanded)
                             Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: widget.textChoose
-                                  ? Icon(
+                                  ? const Icon(
                                       Icons.check,
                                       color: Colors.greenAccent,
                                     )
-                                  : Icon(Icons.arrow_forward),
+                                  : const Icon(Icons.arrow_forward),
                             ),
                           if (widget.isExpanded)
                             kheasydevVerticalDivider(black: true)
@@ -123,7 +123,7 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
                     Expanded(
                       flex: 5,
                       child: widget.isExpanded
-                          ? Container(
+                          ? SizedBox(
                               height: 100,
                               child: TweenAnimationBuilder<Offset>(
                                 duration: const Duration(milliseconds: 300),

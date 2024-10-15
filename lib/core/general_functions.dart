@@ -52,11 +52,11 @@ String calculateNextAge() {
 }
 
 String getRandomString(int stringLength) {
-  const _chars =
+  const chars =
       'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-  math.Random _rnd = math.Random();
+  math.Random rnd = math.Random();
   return String.fromCharCodes(Iterable.generate(
-      stringLength, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+      stringLength, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
 }
 
 Future<List<File>> pickMultipleFiles({bool? videos}) async {

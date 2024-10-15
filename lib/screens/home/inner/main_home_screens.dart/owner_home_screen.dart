@@ -25,7 +25,10 @@ class OwnerHomeScreen extends StatelessWidget {
         picturesVideosWidget(category, screenWidth, pictures: true),
       CategoryEnum.videos =>
         picturesVideosWidget(category, screenWidth, pictures: false),
-      CategoryEnum.quizGame => Text("quizGame"),
+      //TODO: change bottom 3 lines
+      CategoryEnum.quizGame => const Text("quizGame"),
+      CategoryEnum.birthdayCalender => const Text("birthdayCalender"),
+      CategoryEnum.birthdaySuprise => const Text("birthdaySuprise"),
     };
   }
 
@@ -34,7 +37,7 @@ class OwnerHomeScreen extends StatelessWidget {
     return SizedBox(
       width: screenWidth * 0.8,
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,
@@ -57,12 +60,12 @@ class OwnerHomeScreen extends StatelessWidget {
                   ? CachedNetworkImage(
                       imageUrl: mediaUrl,
                       fit: BoxFit.cover,
-                      placeholder: (context, url) => Center(
+                      placeholder: (context, url) => const Center(
                         child: CircularProgressIndicator(),
                       ),
                       errorWidget: (context, url, error) => Container(
                         color: Colors.grey,
-                        child: Icon(
+                        child: const Icon(
                           Icons.image_not_supported,
                           color: Colors.white,
                         ),
@@ -100,7 +103,7 @@ class OwnerHomeScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.primaryColor,
               borderRadius: BorderRadius.circular(12),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 6,
@@ -126,51 +129,15 @@ class OwnerHomeScreen extends StatelessWidget {
                 onPressed: () async {
                   final screenHeight = MediaQuery.of(context).size.height;
                   final screenWidth = MediaQuery.of(context).size.height;
-                  final selectedAction = await showDialog(
-                    context: context,
-                    builder: (context) => GeneralDialog(
-                      title: category.titleAppear!,
-                      child: SingleChildScrollView(
-                        child: SizedBox(
-                          height: screenHeight * 0.7,
-                          child: Column(
-                            children: [
-                              kheasydevDivider(black: true),
-                              Expanded(
-                                  child:
-                                      getCategoryWidget(category, screenWidth)),
-                            ],
-                          ),
-                        ),
-                      ),
-                      buttons: [
-                        AppButton(
-                          text: t.edit,
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          onTap: () =>
-                              Navigator.of(context).pop(ActionsEnum.edit),
-                        ),
-                        AppButton(
-                          text: t.delete,
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          onTap: () =>
-                              Navigator.of(context).pop(ActionsEnum.delete),
-                        ),
-                        AppButton(
-                          text: t.exit,
-                          unfillColors: true,
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                        ),
-                      ],
-                    ),
-                  );
+                  final selectedAction = await selectedActionOnEyeDialog(
+                      context, category, screenHeight, screenWidth);
                   if (selectedAction == ActionsEnum.edit) {
                     bloc.add(HomeScreenEventAddOrEditCategory(
                         category: category, edit: true));
                   } else if (selectedAction == ActionsEnum.delete) {
                     final userChoise = await showDialog(
                         context: context,
-                        builder: (context) => GeneralDialog(
+                        builder: (context) => generalDialog(
                             title: t.sure_delete_name(
                                 context: globalGender,
                                 text: category.titleAppear!)));
@@ -180,12 +147,51 @@ class OwnerHomeScreen extends StatelessWidget {
                     }
                   }
                 },
-                icon: Icon(Icons.remove_red_eye_outlined),
+                icon: const Icon(Icons.remove_red_eye_outlined),
               ),
             ));
       },
       separatorBuilder: (context, index) => const SizedBox(height: 24),
       itemCount: globalEvent!.categories.length,
+    );
+  }
+
+  Future<dynamic> selectedActionOnEyeDialog(BuildContext context,
+      CategoryModel category, double screenHeight, double screenWidth) {
+    return showDialog(
+      context: context,
+      builder: (context) => generalDialog(
+        title: category.titleAppear!,
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: screenHeight * 0.7,
+            child: Column(
+              children: [
+                kheasydevDivider(black: true),
+                Expanded(child: getCategoryWidget(category, screenWidth)),
+              ],
+            ),
+          ),
+        ),
+        buttons: [
+          appButton(
+            text: t.edit,
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            onTap: () => Navigator.of(context).pop(ActionsEnum.edit),
+          ),
+          appButton(
+            text: t.delete,
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            onTap: () => Navigator.of(context).pop(ActionsEnum.delete),
+          ),
+          appButton(
+            text: t.exit,
+            unfillColors: true,
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            onTap: () => Navigator.of(context).pop(),
+          ),
+        ],
+      ),
     );
   }
 }

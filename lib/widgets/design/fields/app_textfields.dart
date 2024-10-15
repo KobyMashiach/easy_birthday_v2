@@ -3,7 +3,7 @@ import 'package:easy_birthday/widgets/general/error_message_row.dart';
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatefulWidget {
-  final controller;
+  final TextEditingController? controller;
   final bool? enable;
   final String hintText;
   final TextInputType? keyboard;
@@ -26,7 +26,7 @@ class AppTextField extends StatefulWidget {
   final Widget? child;
   final bool isRequired;
 
-  AppTextField({
+  const AppTextField({
     super.key,
     this.controller,
     this.enable,
@@ -156,7 +156,7 @@ class _AppTextFieldState extends State<AppTextField> {
                         },
                         child: FractionallySizedBox(
                           heightFactor: widget.xIconHalf == true ? 0.1 : 0.2,
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             backgroundColor: Colors.grey,
                             child: FittedBox(
                               child: Padding(

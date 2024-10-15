@@ -46,12 +46,12 @@ class _GenerateGreetingState extends State<GenerateGreeting> {
       "lines_number": TextItemModel(
         title: "lines_number",
         text: t.lines_number,
-        items: List.generate(45, (num) => (num + 6).toString()),
+        items: List.generate(45, (number) => (number + 6).toString()),
       ),
       "max_words_in_line": TextItemModel(
         title: "max_words_in_line",
         text: t.max_words_in_line,
-        items: List.generate(10, (num) => (num + 3).toString()),
+        items: List.generate(10, (number) => (number + 3).toString()),
       ),
       "use_emojis": TextItemModel(
         title: "use_emojis",
@@ -73,7 +73,7 @@ class _GenerateGreetingState extends State<GenerateGreeting> {
             const SizedBox(height: 24),
             ListView.separated(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: items.length,
               separatorBuilder: (context, index) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
@@ -131,9 +131,9 @@ class _GenerateGreetingState extends State<GenerateGreeting> {
                   .firstWhere((e) => e.key == "use_emojis")
                   .value ==
               t.yes) {
-            message += "\n" + t.use_emojis;
+            message += "\n${t.use_emojis}";
           }
-          message += "\n" + freeTextController.text;
+          message += "\n${freeTextController.text}";
           log(message);
         },
       ),

@@ -14,7 +14,7 @@ class RegisterStepRow extends StatelessWidget {
         child: Container(
             decoration: BoxDecoration(
               color: AppColors.greyDisableColor,
-              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
             ),
             height: 1.5),
       ),

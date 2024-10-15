@@ -35,7 +35,7 @@ class _BuildAppPageState extends State<BuildAppPage>
 
         if (_percentage == 100) {
           KheasydevNavigatePage()
-              .pushAndRemoveUntil(context, widget.page ?? SettingsScreen());
+              .pushAndRemoveUntil(context, widget.page ?? const SettingsScreen());
         }
       });
 
@@ -58,7 +58,7 @@ class _BuildAppPageState extends State<BuildAppPage>
           children: [
             Text(
               t.build_app_description,
-              style: TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 20),
             Stack(
@@ -77,14 +77,14 @@ class _BuildAppPageState extends State<BuildAppPage>
                 ),
                 Text(
                   '${_percentage.toStringAsFixed(1)}%',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             const SizedBox(height: 20),
             Text(
               widget.description ?? "",
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
             ),
           ],
         ),

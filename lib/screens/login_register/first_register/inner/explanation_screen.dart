@@ -25,7 +25,7 @@ class ExplanationScreen extends StatelessWidget {
                       children: [
                         Text("Easy Birthday", style: AppTextStyle().bigTitle),
                         const SizedBox(height: 24),
-                        Text(firstRegisterHE, textAlign: TextAlign.center),
+                        const Text(firstRegisterHE, textAlign: TextAlign.center),
                         const SizedBox(height: 24),
                       ],
                     ),

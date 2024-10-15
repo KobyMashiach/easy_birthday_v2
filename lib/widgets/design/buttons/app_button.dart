@@ -2,7 +2,7 @@ import 'package:easy_birthday/core/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/widgets/input/app_button_widget.dart';
 
-Widget AppButton({
+Widget appButton({
   Function()? onTap,
   required String text,
   bool unfillColors = false,

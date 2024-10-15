@@ -8,12 +8,12 @@ class AppRadioListTile extends StatefulWidget {
   final int? crossAxisCount;
 
   const AppRadioListTile({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.listValues,
     this.hintText,
     this.crossAxisCount,
-  }) : super(key: key);
+  });
 
   @override
   State<AppRadioListTile> createState() => _AppRadioListTileState();
@@ -38,7 +38,7 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
       children: widget.listValues.map((String pictureSize) {
         return RadioListTile<String>(
             title: Text(pictureSize),
-            contentPadding: EdgeInsets.all(0),
+            contentPadding: const EdgeInsets.all(0),
             activeColor: AppColors.primaryColor,
             value: pictureSize,
             groupValue: value,

@@ -161,6 +161,8 @@
   "pictures": "תמונות",
   "videos": "סרטונים",
   "quiz_game": "משחק טריוויה",
+  "birthday_calender": "לו\"ז יום הולדת",
+  "birthday_suprise": "הפתעת יום הולדת",
   "text_description(context=GenderContext)": {
     "male": "יאללה, תשלוף ברכה מהלב או כתוב איזה טקסט קורע שתרצה!",
     "female": "יאללה, תשלפי ברכה מהלב או כתבי איזה טקסט קורע שתרצי!"
@@ -180,6 +182,14 @@
   "choose_category(context=GenderContext)": {
     "male": "בחר קטגוריה",
     "female": "בחרי קטגוריה"
+  },
+  "birthday_calender_description(context=GenderContext)": {
+    "male": "בוא לבנות את הלו\"ז הכי מגניב וכיפי ליום ההולדת של בת הזוג שלך! תכנן לה יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.",
+    "female": "בואי לבנות את הלו\"ז הכי מגניב וכיפי ליום ההולדת של בן הזוג שלך! תכנני לו יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות."
+  },
+  "birthday_suprise_description(context=GenderContext)": {
+    "male": "בוא לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתפתח את זה, זה יישאר נעול אצל בת הזוג שלך!",
+    "female": "בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!"
   },
   "please_choose_category": "בחר קטגוריה בבקשה",
   "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
@@ -208,5 +218,7 @@
   "yes": "כן",
   "no": "לא",
   "no_required": "לא חובה",
-  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumebr"
+  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumebr",
+  "partner_info": "מידע על הבן/בת זוג",
+  "info": "מידע"
 }

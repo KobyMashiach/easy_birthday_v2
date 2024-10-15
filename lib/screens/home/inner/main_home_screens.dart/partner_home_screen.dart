@@ -57,12 +57,14 @@ class PartnerHomeScreen extends StatelessWidget {
                           DisplayPicturesVideosScreen(
                               category: category, isImages: false));
                     case CategoryEnum.quizGame:
+                    case CategoryEnum.birthdayCalender:
+                    case CategoryEnum.birthdaySuprise:
                   }
                 },
               );
             },
             itemCount: globalEvent!.categories.length,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
           ),
           const SizedBox(height: 24),
         ],

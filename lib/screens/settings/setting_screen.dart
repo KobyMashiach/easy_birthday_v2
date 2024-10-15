@@ -38,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
       {
         'title': t.change_gender,
         'icon': Icons.man_2_outlined,
-        'hintWidget': Icon(Icons.male, color: Colors.blue),
+        'hintWidget': const Icon(Icons.male, color: Colors.blue),
         'function': () async =>
             bloc.add(SettingsScreenEventNavigateToGenderChange()),
       },
@@ -59,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
             bloc.add(SettingsScreenEventNavToChangePassword()),
       },
       {
-        'title': t.app_info,
+        'title': t.info,
         'icon': Icons.info_outline,
         'function': () async =>
             bloc.add(SettingsScreenEventNavigateToAppInfo()),
@@ -141,11 +141,11 @@ class SettingsScreen extends StatelessWidget {
                                 languageCode: languageCode)),
                       ));
                 case const (SettingsScreenNavigateToAppInfoPage):
-                  KheasydevNavigatePage().push(context, AppInfo());
+                  KheasydevNavigatePage().push(context, const AppInfo());
                 case const (SettingsScreenOpenLogoutDialog):
                   final userChoise = await showDialog(
                     context: context,
-                    builder: (context) => GeneralDialog(
+                    builder: (context) => generalDialog(
                         title: t.sure_logout(context: globalGender)),
                   );
                   if (userChoise == true) {
@@ -153,7 +153,7 @@ class SettingsScreen extends StatelessWidget {
                   }
                 case const (SettingsScreenNavigateToLoginScreen):
                   KheasydevNavigatePage()
-                      .pushAndRemoveUntil(context, LoginScreen());
+                      .pushAndRemoveUntil(context, const LoginScreen());
                 case const (SettingsScreenNavigateToChangePassword):
                   KheasydevNavigatePage().push(
                       context,

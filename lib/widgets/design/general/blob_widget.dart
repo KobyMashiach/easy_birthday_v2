@@ -16,7 +16,7 @@ class BlobWidget extends StatelessWidget {
           gradient: LinearGradient(colors: [
         AppColors.primaryColor.withOpacity(0.2),
         AppColors.primaryColor.withOpacity(0.8),
-      ]).createShader(Rect.fromLTRB(0, 0, 300, 300))),
+      ]).createShader(const Rect.fromLTRB(0, 0, 300, 300))),
       child: Center(
         child: child,
       ),

@@ -4,7 +4,14 @@ import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 
-enum CategoryEnum { text, pictures, videos, quizGame }
+enum CategoryEnum {
+  text,
+  pictures,
+  videos,
+  quizGame,
+  birthdayCalender,
+  birthdaySuprise,
+}
 
 List<CategoryModel> categoriesList = [
   CategoryModel(
@@ -27,6 +34,16 @@ List<CategoryModel> categoriesList = [
     name: t.quiz_game,
     description: t.quiz_game_description(context: globalGender),
   ),
+  CategoryModel(
+    categoryType: CategoryEnum.birthdayCalender,
+    name: t.birthday_calender,
+    description: t.birthday_calender_description(context: globalGender),
+  ),
+  CategoryModel(
+    categoryType: CategoryEnum.birthdaySuprise,
+    name: t.birthday_suprise,
+    description: t.birthday_suprise_description(context: globalGender),
+  ),
 ];
 
 extension CategoryEnumX on CategoryEnum {
@@ -36,6 +53,8 @@ extension CategoryEnumX on CategoryEnum {
       CategoryEnum.pictures => albumIllustration,
       CategoryEnum.videos => videosIllustration,
       CategoryEnum.quizGame => quizIllustration,
+      CategoryEnum.birthdayCalender => calenderIllustration,
+      CategoryEnum.birthdaySuprise => supriseIllustration,
     };
   }
 }

@@ -35,9 +35,9 @@ class _ChooseCategoryDialogState extends State<ChooseCategoryDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return GeneralDialog(
+    return generalDialog(
       title: t.choose_category(context: globalGender),
-      description: choosenCategory?.description ?? null,
+      description: choosenCategory?.description,
       okButtonOnTap: () {
         if (choosenCategory != null) {
           if (titleAppear.text.isNotEmpty) {

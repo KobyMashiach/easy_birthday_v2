@@ -16,7 +16,7 @@ class AppDropDown<T> extends StatefulWidget {
   final bool isRequired;
 
   const AppDropDown({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.listValues,
     this.valueFormatter,
@@ -27,7 +27,7 @@ class AppDropDown<T> extends StatefulWidget {
     this.showError,
     this.error,
     this.isRequired = false,
-  }) : super(key: key);
+  });
 
   @override
   State<AppDropDown<T>> createState() => _AppDropDownState<T>();
@@ -69,7 +69,7 @@ class _AppDropDownState<T> extends State<AppDropDown<T>> {
                 setState(() {
                   value = newValue;
                 });
-                widget.onChanged(newValue!);
+                widget.onChanged(newValue as T);
               },
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(

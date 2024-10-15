@@ -125,7 +125,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
                 width: 30,
                 height: 30,
                 child: selectedIndexes.contains(index)
-                    ? Icon(Icons.check, size: 20, color: Colors.white)
+                    ? const Icon(Icons.check, size: 20, color: Colors.white)
                     : null,
               ),
             ),
@@ -184,7 +184,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
               const SizedBox(height: 12),
               Expanded(
                 child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     crossAxisSpacing: 8.0,
                     mainAxisSpacing: 8.0,
@@ -237,10 +237,10 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
               onPressed: onDeleteFiles,
               backgroundColor: AppColors.primaryColor,
               shape: RoundedRectangleBorder(
-                side: BorderSide(width: 1, color: Colors.black),
+                side: const BorderSide(width: 1, color: Colors.black),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Icon(Icons.delete),
+              child: const Icon(Icons.delete),
             )
           : null,
       bottomNavigationBar: AppButtonsBottomNavigationBar(
@@ -271,7 +271,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
       errorBuilder: (context, error, stackTrace) {
         return Container(
           color: Colors.grey,
-          child: Icon(
+          child: const Icon(
             Icons.image_not_supported,
             color: Colors.white,
           ),
@@ -284,12 +284,12 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
     return CachedNetworkImage(
       imageUrl: mediaUrl,
       fit: BoxFit.cover,
-      placeholder: (context, url) => Center(
+      placeholder: (context, url) => const Center(
         child: CircularProgressIndicator(),
       ),
       errorWidget: (context, url, error) => Container(
         color: Colors.grey,
-        child: Icon(
+        child: const Icon(
           Icons.image_not_supported,
           color: Colors.white,
         ),

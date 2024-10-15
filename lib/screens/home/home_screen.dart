@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircularProgressIndicator(),
+                        const CircularProgressIndicator(),
                         if (state.text != null) ...[
                           const SizedBox(height: 12),
                           Text(state.text!),
@@ -94,8 +94,8 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(24),
                       child: Center(
                         child: globalUser.role.isPartner()
-                            ? PartnerHomeScreen()
-                            : OwnerHomeScreen(),
+                            ? const PartnerHomeScreen()
+                            : const OwnerHomeScreen(),
                       ),
                     ),
               floatingActionButton:
@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                               style: AppTextStyle()
                                   .description
                                   .copyWith(color: Colors.white)),
-                          icon: Icon(Icons.add_rounded, color: Colors.white),
+                          icon: const Icon(Icons.add_rounded, color: Colors.white),
                         )
                       : null,
             );

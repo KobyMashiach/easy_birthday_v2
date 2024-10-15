@@ -93,16 +93,16 @@ class _OtpPhoneVerificationScreenState
                       if (_remainingTime > 0) circularNumber(),
                       if (_remainingTime == 0)
                         TextButton(
+                          onPressed: widget.onTapSendAgain,
                           child: Text(
                             t.send_again,
                             style: AppTextStyle()
                                 .description
                                 .copyWith(color: Colors.black),
                           ),
-                          onPressed: widget.onTapSendAgain,
                         ),
                       const Spacer(),
-                      AppButton(
+                      appButton(
                         text: t.ok,
                         disableColors: pinCodeController.text.length < 6,
                         onTap: pinCodeController.text.length < 6

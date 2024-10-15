@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          AppButton(
+          appButton(
             text: loginWithPassword ? t.login : t.send_code,
             onTap: () {
               final formValid = formValidation(loginWithPassword);
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
             },
           ),
           const SizedBox(height: 12),
-          AppButton(
+          appButton(
             text: loginWithPassword
                 ? t.login_with_otp_code
                 : t.login_with_password,
@@ -126,8 +126,8 @@ class _LoginScreenState extends State<LoginScreen> {
               text: t.no_account,
               style: AppTextStyle().smallDescription,
               children: [
-                TextSpan(text: "?"),
-                TextSpan(text: " "),
+                const TextSpan(text: "?"),
+                const TextSpan(text: " "),
                 TextSpan(
                     text: t.click_here,
                     style: AppTextStyle()
@@ -222,20 +222,20 @@ class _LoginScreenState extends State<LoginScreen> {
             final bloc = context.read<LoginScreenBloc>();
             switch (state.runtimeType) {
               case const (LoginScreenStateNaviRegister):
-                KheasydevNavigatePage()
-                    .pushAndRemoveUntilDuration(context, RegisterScreen());
+                KheasydevNavigatePage().pushAndRemoveUntilDuration(
+                    context, const RegisterScreen());
 
               case const (LoginScreenStateNavToHomeScreen):
                 KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, HomeScreen());
+                    .pushAndRemoveUntil(context, const HomeScreen());
 
               case const (LoginScreenStateNavToFirstRegisterScreen):
                 KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, FirstRegisterMain());
+                    .pushAndRemoveUntil(context, const FirstRegisterMain());
 
               case const (LoginScreenStateNavToFirstLoginScreen):
                 KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, FirstLoginScreen());
+                    .pushAndRemoveUntil(context, const FirstLoginScreen());
 
               case const (LoginScreenStateDialogErrorMessage):
                 final newState = state as LoginScreenStateDialogErrorMessage;
@@ -277,7 +277,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Center(
                   child: state is LoginScreenLoading
-                      ? CircularProgressIndicator()
+                      ? const CircularProgressIndicator()
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

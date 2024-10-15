@@ -96,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          AppButton(
+          appButton(
             text: t.register,
             onTap: () {
               final formValid = formValidation();
@@ -114,8 +114,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               text: t.have_account,
               style: AppTextStyle().smallDescription,
               children: [
-                TextSpan(text: "?"),
-                TextSpan(text: " "),
+                const TextSpan(text: "?"),
+                const TextSpan(text: " "),
                 TextSpan(
                     text: t.click_here,
                     style: AppTextStyle()
@@ -216,7 +216,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             switch (state.runtimeType) {
               case const (RegisterScreenStateNaviLogin):
                 KheasydevNavigatePage()
-                    .pushAndRemoveUntilDuration(context, LoginScreen());
+                    .pushAndRemoveUntilDuration(context, const LoginScreen());
               case const (RegisterScreenStateDialogPhoneExist):
                 openWrongDialog(phoneExists: true);
 
@@ -250,7 +250,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 );
               case const (RegisterScreenStateNavToFirstRegister):
                 KheasydevNavigatePage()
-                    .pushAndRemoveUntil(context, FirstRegisterMain());
+                    .pushAndRemoveUntil(context, const FirstRegisterMain());
             }
           },
           builder: (context, state) {
@@ -263,7 +263,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ],
               ),
               body: state is RegisterScreenLoading
-                  ? Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator())
                   : Padding(
                       padding: const EdgeInsets.symmetric(vertical: 24),
                       child: Center(

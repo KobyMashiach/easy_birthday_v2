@@ -76,7 +76,7 @@ class _DisplayPicturesVideosScreenState
               const SizedBox(height: 12),
               Expanded(
                 child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     crossAxisSpacing: 8.0,
                     mainAxisSpacing: 8.0,
@@ -107,7 +107,7 @@ class _DisplayPicturesVideosScreenState
       errorBuilder: (context, error, stackTrace) {
         return Container(
           color: Colors.grey,
-          child: Icon(
+          child: const Icon(
             Icons.image_not_supported,
             color: Colors.white,
           ),
@@ -120,12 +120,12 @@ class _DisplayPicturesVideosScreenState
     return CachedNetworkImage(
       imageUrl: mediaUrl,
       fit: BoxFit.cover,
-      placeholder: (context, url) => Center(
+      placeholder: (context, url) => const Center(
         child: CircularProgressIndicator(),
       ),
       errorWidget: (context, url, error) => Container(
         color: Colors.grey,
-        child: Icon(
+        child: const Icon(
           Icons.image_not_supported,
           color: Colors.white,
         ),
@@ -138,7 +138,7 @@ class _DisplayPicturesVideosScreenState
     showDialog(
       context: context,
       builder: (context) {
-        return GeneralDialog(
+        return generalDialog(
           title: "",
           noButtons: true,
           child: Container(
