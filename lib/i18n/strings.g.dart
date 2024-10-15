@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 190
+/// Strings: 193
 ///
-/// Built on 2024-10-15 at 11:20 UTC
+/// Built on 2024-10-15 at 11:48 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -434,6 +434,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get title_appear_category => 'הכותרת שתופיע לקטגוריה זו';
 	String get title_appear_required => 'נא למלא את הכותרת';
 	String get add_text => 'הוסף טקסט';
+	String get add_picture => 'הוסף תמונה';
 	String get add_pictures => 'הוסף תמונות';
 	String get add_videos => 'הוסף סרטונים';
 	String write_text_to({required Object title}) => 'רשום טקסט ל: ${title}';
@@ -476,6 +477,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get generate_new_greeting => 'ליצור ברכה חדשה';
 	String get edit_greeting => 'עריכת הברכה';
 	String get create_greeting_using_ai => 'צור ברכה באמצעות AI';
+	String suprise_screen_description({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הוסף טקסט או תמונות, שחק עם הסדר ביניהם ותיצור את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליט שהיא מוכנה לבת הזוג שלך!';
+			case GenderContext.female:
+				return 'הוסיפי טקסט או תמונות, שחקי עם הסדר ביניהם וצרי את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליטי שהיא מוכנה לבן הזוג שלך!';
+		}
+	}
 }
 
 /// Flat map(s) containing all translations.
@@ -764,6 +773,7 @@ extension on Translations {
 			case 'title_appear_category': return 'הכותרת שתופיע לקטגוריה זו';
 			case 'title_appear_required': return 'נא למלא את הכותרת';
 			case 'add_text': return 'הוסף טקסט';
+			case 'add_picture': return 'הוסף תמונה';
 			case 'add_pictures': return 'הוסף תמונות';
 			case 'add_videos': return 'הוסף סרטונים';
 			case 'write_text_to': return ({required Object title}) => 'רשום טקסט ל: ${title}';
@@ -806,6 +816,14 @@ extension on Translations {
 			case 'generate_new_greeting': return 'ליצור ברכה חדשה';
 			case 'edit_greeting': return 'עריכת הברכה';
 			case 'create_greeting_using_ai': return 'צור ברכה באמצעות AI';
+			case 'suprise_screen_description': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הוסף טקסט או תמונות, שחק עם הסדר ביניהם ותיצור את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליט שהיא מוכנה לבת הזוג שלך!';
+					case GenderContext.female:
+						return 'הוסיפי טקסט או תמונות, שחקי עם הסדר ביניהם וצרי את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליטי שהיא מוכנה לבן הזוג שלך!';
+				}
+			};
 			default: return null;
 		}
 	}

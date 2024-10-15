@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/screens/home/inner/add_category/add_birthday_suprise_screen.dart';
 import 'package:flutter/material.dart';
@@ -80,10 +78,6 @@ class HomeScreen extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            if (state is HomeScreenRefreshUI) {
-              log("asdsadasdasd");
-            }
-
             final bloc = context.read<HomeScreenBloc>();
             return Scaffold(
               appBar: appAppBar(title: t.home_screen),

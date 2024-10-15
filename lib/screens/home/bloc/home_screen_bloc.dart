@@ -56,14 +56,18 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   FutureOr<void> _homeScreenEventUpdateCategoryInEvent(
       HomeScreenEventUpdateCategoryInEvent event,
       Emitter<HomeScreenState> emit) async {
+    emit(HomeScreenLoading());
     eventRepo.updateCategory(event.category);
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(HomeScreenRefreshUI());
   }
 
   FutureOr<void> _homeScreenEventDeleteCategoryInEvent(
       HomeScreenEventDeleteCategoryInEvent event,
-      Emitter<HomeScreenState> emit) {
+      Emitter<HomeScreenState> emit) async {
+    emit(HomeScreenLoading());
     eventRepo.deleteCategory(event.category);
+    await Future.delayed(const Duration(milliseconds: 200));
     emit(HomeScreenRefreshUI());
   }
 
@@ -91,12 +95,12 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     List<String> updatesUrls = List<String>.from(event.category.urls ?? []);
     updatesUrls.addAll(filesUrls);
     eventRepo.updateCategory(event.category.copyWith(urls: updatesUrls));
+
     emit(HomeScreenRefreshUI());
   }
 
-  Future<void> _homeScreenEventDeleteFilesInEvent(
-      HomeScreenEventDeleteFilesInEvent event,
-      Emitter<HomeScreenState> emit) async {
+  FutureOr<void> _homeScreenEventDeleteFilesInEvent(
+      HomeScreenEventDeleteFilesInEvent event, Emitter<HomeScreenState> emit) {
     final List<String> newUrls = List.from(event.category.urls!);
 
     for (int index in event.filesIndexes) {
@@ -108,7 +112,6 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     final newCategory = event.category.copyWith(urls: newUrls);
     eventRepo.updateCategory(newCategory);
     emit(HomeScreenRefreshUI());
-
     emit(HomeScreenOpenEditAgain(category: newCategory));
   }
 }

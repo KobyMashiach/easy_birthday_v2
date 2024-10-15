@@ -195,6 +195,7 @@
   "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
   "title_appear_required": "נא למלא את הכותרת",
   "add_text": "הוסף טקסט",
+  "add_picture": "הוסף תמונה",
   "add_pictures": "הוסף תמונות",
   "add_videos": "הוסף סרטונים",
   "write_text_to": "רשום טקסט ל: $title",
@@ -232,5 +233,9 @@
   "generate_greeting": "ליצור ברכה",
   "generate_new_greeting": "ליצור ברכה חדשה",
   "edit_greeting": "עריכת הברכה",
-  "create_greeting_using_ai": "צור ברכה באמצעות AI"
+  "create_greeting_using_ai": "צור ברכה באמצעות AI",
+  "suprise_screen_description(context=GenderContext)": {
+    "male": "הוסף טקסט או תמונות, שחק עם הסדר ביניהם ותיצור את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליט שהיא מוכנה לבת הזוג שלך!",
+    "female": "הוסיפי טקסט או תמונות, שחקי עם הסדר ביניהם וצרי את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליטי שהיא מוכנה לבן הזוג שלך!"
+  }
 }
