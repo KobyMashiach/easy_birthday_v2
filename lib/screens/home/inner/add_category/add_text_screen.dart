@@ -71,8 +71,8 @@ class _AddTextScreenState extends State<AddTextScreen> {
                   hintText: t.add_text,
                   maxLines: 12,
                   keyboard: TextInputType.multiline,
-                  controller: textController,
                   textInputAction: TextInputAction.newline,
+                  controller: textController,
                 )
               ],
             ),

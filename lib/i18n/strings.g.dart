@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 193
+/// Strings: 195
 ///
-/// Built on 2024-10-15 at 11:48 UTC
+/// Built on 2024-10-15 at 11:58 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -433,6 +433,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get please_choose_category => 'בחר קטגוריה בבקשה';
 	String get title_appear_category => 'הכותרת שתופיע לקטגוריה זו';
 	String get title_appear_required => 'נא למלא את הכותרת';
+	String get text_appear_required => 'נא למלא את הטקסט';
+	String get write_text => 'רשום טקסט';
 	String get add_text => 'הוסף טקסט';
 	String get add_picture => 'הוסף תמונה';
 	String get add_pictures => 'הוסף תמונות';
@@ -772,6 +774,8 @@ extension on Translations {
 			case 'please_choose_category': return 'בחר קטגוריה בבקשה';
 			case 'title_appear_category': return 'הכותרת שתופיע לקטגוריה זו';
 			case 'title_appear_required': return 'נא למלא את הכותרת';
+			case 'text_appear_required': return 'נא למלא את הטקסט';
+			case 'write_text': return 'רשום טקסט';
 			case 'add_text': return 'הוסף טקסט';
 			case 'add_picture': return 'הוסף תמונה';
 			case 'add_pictures': return 'הוסף תמונות';
