@@ -101,6 +101,11 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: ListTile(
                           title: items[index],
+                          onTap: () async => showDialog(
+                            context: context,
+                            builder: (context) => generalDialog(
+                                child: items[index], noButtons: true),
+                          ),
                           trailing: ReorderableDragStartListener(
                             index: index,
                             child: const Icon(Icons.drag_handle),

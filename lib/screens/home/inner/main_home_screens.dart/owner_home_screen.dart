@@ -105,54 +105,54 @@ class OwnerHomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               boxShadow: const [
                 BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 6,
-                  offset: Offset(0, 3),
-                ),
+                    color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
               ],
             ),
-            child: ListTile(
-              leading: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.7,
-                ),
-                child: Text(
-                  category.titleAppear!,
-                  style: AppTextStyle()
-                      .description
-                      .copyWith(fontWeight: FontWeight.bold),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-              ),
-              trailing: IconButton(
-                onPressed: () async {
-                  final screenHeight = MediaQuery.of(context).size.height;
-                  final screenWidth = MediaQuery.of(context).size.height;
-                  final selectedAction = await selectedActionOnEyeDialog(
-                      context, category, screenHeight, screenWidth);
-                  if (selectedAction == ActionsEnum.edit) {
-                    bloc.add(HomeScreenEventAddOrEditCategory(
-                        category: category, edit: true));
-                  } else if (selectedAction == ActionsEnum.delete) {
-                    final userChoise = await showDialog(
-                        context: context,
-                        builder: (context) => generalDialog(
-                            title: t.sure_delete_name(
-                                context: globalGender,
-                                text: category.titleAppear!)));
-                    if (userChoise == true) {
-                      bloc.add(HomeScreenEventDeleteCategoryInEvent(
-                          category: category));
-                    }
-                  }
-                },
-                icon: const Icon(Icons.remove_red_eye_outlined),
-              ),
-            ));
+            child: categoryCardWidget(context, category, bloc));
       },
       separatorBuilder: (context, index) => const SizedBox(height: 24),
       itemCount: globalEvent!.categories.length,
+    );
+  }
+
+  ListTile categoryCardWidget(
+      BuildContext context, CategoryModel category, HomeScreenBloc bloc) {
+    return ListTile(
+      leading: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width * 0.7,
+        ),
+        child: Text(
+          category.titleAppear!,
+          style:
+              AppTextStyle().description.copyWith(fontWeight: FontWeight.bold),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+      ),
+      trailing: IconButton(
+        onPressed: () async {
+          final screenHeight = MediaQuery.of(context).size.height;
+          final screenWidth = MediaQuery.of(context).size.height;
+          final selectedAction = await selectedActionOnEyeDialog(
+              context, category, screenHeight, screenWidth);
+          if (selectedAction == ActionsEnum.edit) {
+            bloc.add(HomeScreenEventAddOrEditCategory(
+                category: category, edit: true));
+          } else if (selectedAction == ActionsEnum.delete) {
+            final userChoise = await showDialog(
+                context: context,
+                builder: (context) => generalDialog(
+                    title: t.sure_delete_name(
+                        context: globalGender, text: category.titleAppear!)));
+            if (userChoise == true) {
+              bloc.add(
+                  HomeScreenEventDeleteCategoryInEvent(category: category));
+            }
+          }
+        },
+        icon: const Icon(Icons.remove_red_eye_outlined),
+      ),
     );
   }
 

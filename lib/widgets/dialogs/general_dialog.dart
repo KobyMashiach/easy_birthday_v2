@@ -4,7 +4,7 @@ import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 
 Widget generalDialog({
-  required final String title,
+  final String? title,
   final String? description,
   final bool shouldDisplayX = true,
   final Color? backgroundColor,
