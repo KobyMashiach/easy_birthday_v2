@@ -15,6 +15,7 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       titleAppear: json['titleAppear'] as String?,
       text: json['text'] as String?,
       urls: (json['urls'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      lock: json['lock'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'titleAppear': instance.titleAppear,
       'text': instance.text,
       'urls': instance.urls,
+      'lock': instance.lock,
     };
 
 const _$CategoryEnumEnumMap = {
@@ -33,4 +35,6 @@ const _$CategoryEnumEnumMap = {
   CategoryEnum.pictures: 'pictures',
   CategoryEnum.videos: 'videos',
   CategoryEnum.quizGame: 'quizGame',
+  CategoryEnum.birthdayCalender: 'birthdayCalender',
+  CategoryEnum.birthdaySuprise: 'birthdaySuprise',
 };

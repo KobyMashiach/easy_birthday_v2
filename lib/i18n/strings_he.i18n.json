@@ -200,6 +200,11 @@
   "write_text_to": "רשום טקסט ל: $title",
   "add_pictures_to": "הוסף תמונות ל: $title",
   "add_videos_to": "הוסף סרטונים ל: $title",
+  "add_text_pictures_title": "הוסף טקסט ותמונות",
+  "add_text_pictures_description": "הוסף טקסט ותמונות ל: $title",
+  "add_suprise": "הוספת הפתעה",
+  "lock": "נעול",
+  "unlock": "לא נעול",
   "no_allow_text_empty": "לא ניתן להשאיר טקסט ריק",
   "edit": "עריכה",
   "exit": "יציאה",
@@ -222,5 +227,10 @@
   "partner_info": "מידע על הבן/בת זוג",
   "info": "מידע",
   "gender": "מין",
-  "greeting_notes": "* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו"
+  "greeting_notes": "* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו",
+  "greeting_before_edit": "ברכה לפני עריכה",
+  "generate_greeting": "ליצור ברכה",
+  "generate_new_greeting": "ליצור ברכה חדשה",
+  "edit_greeting": "עריכת הברכה",
+  "create_greeting_using_ai": "צור ברכה באמצעות AI"
 }

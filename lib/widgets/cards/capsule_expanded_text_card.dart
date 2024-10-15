@@ -13,6 +13,8 @@ class CapsuleExpandedTextCard extends StatefulWidget {
     required this.textChoose,
     this.titleSize,
     this.isNumbers,
+    this.displayResult = false,
+    this.currentValue,
   });
 
   final bool isExpanded;
@@ -22,6 +24,8 @@ class CapsuleExpandedTextCard extends StatefulWidget {
   final bool textChoose;
   final double? titleSize;
   final bool? isNumbers;
+  final bool displayResult;
+  final String? currentValue;
 
   @override
   State<CapsuleExpandedTextCard> createState() =>
@@ -77,7 +81,8 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
             curve: Curves.easeInOut,
             child: ClipRRect(
               borderRadius: BorderRadius.only(
-                topLeft: widget.isExpanded ? const Radius.circular(30) : Radius.zero,
+                topLeft:
+                    widget.isExpanded ? const Radius.circular(30) : Radius.zero,
                 bottomLeft:
                     widget.isExpanded ? const Radius.circular(30) : Radius.zero,
                 topRight: const Radius.circular(30),
@@ -109,10 +114,12 @@ class _CapsuleExpandedTextCardState extends State<CapsuleExpandedTextCard>
                             Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: widget.textChoose
-                                  ? const Icon(
-                                      Icons.check,
-                                      color: Colors.greenAccent,
-                                    )
+                                  ? widget.displayResult
+                                      ? Text(widget.currentValue!)
+                                      : const Icon(
+                                          Icons.check,
+                                          color: Colors.greenAccent,
+                                        )
                                   : const Icon(Icons.arrow_forward),
                             ),
                           if (widget.isExpanded)

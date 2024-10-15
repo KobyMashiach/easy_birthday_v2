@@ -1,7 +1,9 @@
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/text_styles.dart';
+import 'package:easy_birthday/dev/generate_greeting.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
+import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
@@ -53,6 +55,18 @@ class _AddTextScreenState extends State<AddTextScreen> {
                   style: AppTextStyle().title,
                   textAlign: TextAlign.center,
                 ),
+                appButton(
+                    text: t.create_greeting_using_ai,
+                    margin: const EdgeInsets.all(12),
+                    onTap: () =>
+                        KheasydevNavigatePage().push(context, GenerateGreeting(
+                          generateGreeting: (generateText) {
+                            KheasydevNavigatePage().pop(context);
+                            if (generateText != null) {
+                              textController.text = generateText;
+                            }
+                          },
+                        ))),
                 AppTextField(
                   hintText: t.add_text,
                   maxLines: 12,

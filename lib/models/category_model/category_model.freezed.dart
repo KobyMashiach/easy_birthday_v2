@@ -27,6 +27,7 @@ mixin _$CategoryModel {
   String? get titleAppear => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
   List<String>? get urls => throw _privateConstructorUsedError;
+  bool get lock => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,8 @@ abstract class $CategoryModelCopyWith<$Res> {
       String? id,
       String? titleAppear,
       String? text,
-      List<String>? urls});
+      List<String>? urls,
+      bool lock});
 }
 
 /// @nodoc
@@ -70,6 +72,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? titleAppear = freezed,
     Object? text = freezed,
     Object? urls = freezed,
+    Object? lock = null,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -100,6 +103,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      lock: null == lock
+          ? _value.lock
+          : lock // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -119,7 +126,8 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       String? id,
       String? titleAppear,
       String? text,
-      List<String>? urls});
+      List<String>? urls,
+      bool lock});
 }
 
 /// @nodoc
@@ -140,6 +148,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? titleAppear = freezed,
     Object? text = freezed,
     Object? urls = freezed,
+    Object? lock = null,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -170,6 +179,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value._urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      lock: null == lock
+          ? _value.lock
+          : lock // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -184,7 +197,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       this.id,
       this.titleAppear,
       this.text,
-      final List<String>? urls})
+      final List<String>? urls,
+      this.lock = false})
       : _urls = urls;
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -213,8 +227,12 @@ class _$CategoryModelImpl implements _CategoryModel {
   }
 
   @override
+  @JsonKey()
+  final bool lock;
+
+  @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock)';
   }
 
   @override
@@ -231,13 +249,14 @@ class _$CategoryModelImpl implements _CategoryModel {
             (identical(other.titleAppear, titleAppear) ||
                 other.titleAppear == titleAppear) &&
             (identical(other.text, text) || other.text == text) &&
-            const DeepCollectionEquality().equals(other._urls, _urls));
+            const DeepCollectionEquality().equals(other._urls, _urls) &&
+            (identical(other.lock, lock) || other.lock == lock));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, categoryType, name, description,
-      id, titleAppear, text, const DeepCollectionEquality().hash(_urls));
+      id, titleAppear, text, const DeepCollectionEquality().hash(_urls), lock);
 
   @JsonKey(ignore: true)
   @override
@@ -261,7 +280,8 @@ abstract class _CategoryModel implements CategoryModel {
       final String? id,
       final String? titleAppear,
       final String? text,
-      final List<String>? urls}) = _$CategoryModelImpl;
+      final List<String>? urls,
+      final bool lock}) = _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
@@ -280,6 +300,8 @@ abstract class _CategoryModel implements CategoryModel {
   String? get text;
   @override
   List<String>? get urls;
+  @override
+  bool get lock;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

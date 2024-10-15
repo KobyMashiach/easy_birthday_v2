@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'category_enum.dart'; // Import the CategoryEnum and extension
+import 'category_enum.dart';
 
 part 'category_model.freezed.dart';
 part 'category_model.g.dart';
@@ -14,6 +14,7 @@ class CategoryModel with _$CategoryModel {
     String? titleAppear,
     String? text,
     List<String>? urls,
+    @Default(false) bool lock,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

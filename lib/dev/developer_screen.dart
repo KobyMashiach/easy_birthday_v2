@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/hive/hive_functions.dart';
-import 'package:easy_birthday/dev/gemini_try.dart';
 import 'package:easy_birthday/dev/generate_greeting.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
@@ -71,17 +70,14 @@ class DeveloperScreen extends StatelessWidget {
         }
       },
       {
-        'title': "Navigate to GEMINI try",
-        'icon': Icons.navigation_outlined,
-        'function': () {
-          KheasydevNavigatePage().push(context, const GeminiTry());
-        }
-      },
-      {
         'title': "Navigate to Generate Greeting ",
         'icon': Icons.navigation_outlined,
         'function': () {
-          KheasydevNavigatePage().push(context, const GenerateGreeting());
+          KheasydevNavigatePage().push(
+              context,
+              GenerateGreeting(
+                generateGreeting: (generateText) {},
+              ));
         }
       },
       {

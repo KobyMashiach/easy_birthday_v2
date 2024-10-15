@@ -48,6 +48,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
       case CategoryEnum.quizGame:
       case CategoryEnum.birthdayCalender:
       case CategoryEnum.birthdaySuprise:
+        emit(HomeScreenNavToAddBirthdaySuprise(category: newCategory));
       // emit(HomeScreenNavToAddText());
     }
   }

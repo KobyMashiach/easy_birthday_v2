@@ -36,6 +36,12 @@ final class HomeScreenNavToAddVideos extends HomeScreenStateNavigate {
   HomeScreenNavToAddVideos({required this.category});
 }
 
+final class HomeScreenNavToAddBirthdaySuprise extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenNavToAddBirthdaySuprise({required this.category});
+}
+
 final class HomeScreenOpenEditAgain extends HomeScreenStateNavigate {
   final CategoryModel category;
 

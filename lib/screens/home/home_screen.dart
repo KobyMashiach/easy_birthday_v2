@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:easy_birthday/models/category_model/category_model.dart';
+import 'package:easy_birthday/screens/home/inner/add_category/add_birthday_suprise_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
@@ -65,6 +68,10 @@ class HomeScreen extends StatelessWidget {
                     context,
                     navToPicturesVideosScreen(newState.category, bloc,
                         isImagesPicker: false));
+              case const (HomeScreenNavToAddBirthdaySuprise):
+                final newState = state as HomeScreenNavToAddBirthdaySuprise;
+                KheasydevNavigatePage().pushDuration(
+                    context, AddBirthdaySupriseScreen(newState.category));
               case const (HomeScreenOpenEditAgain):
                 final newState = state as HomeScreenOpenEditAgain;
                 KheasydevNavigatePage().pop(context);
@@ -73,8 +80,11 @@ class HomeScreen extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            final bloc = context.read<HomeScreenBloc>();
+            if (state is HomeScreenRefreshUI) {
+              log("asdsadasdasd");
+            }
 
+            final bloc = context.read<HomeScreenBloc>();
             return Scaffold(
               appBar: appAppBar(title: t.home_screen),
               drawer: appSideMenuV2(context, 'home'),
@@ -98,19 +108,19 @@ class HomeScreen extends StatelessWidget {
                             : const OwnerHomeScreen(),
                       ),
                     ),
-              floatingActionButton:
-                  globalUser.role.isNotPartner() && state is! HomeScreenLoading
-                      ? FloatingActionButton.extended(
-                          onPressed: () =>
-                              bloc.add(HomeScreenEventAddButtonClicked()),
-                          backgroundColor: AppColors.disableColor,
-                          label: Text(t.add(context: globalGender),
-                              style: AppTextStyle()
-                                  .description
-                                  .copyWith(color: Colors.white)),
-                          icon: const Icon(Icons.add_rounded, color: Colors.white),
-                        )
-                      : null,
+              floatingActionButton: globalUser.role.isNotPartner() &&
+                      state is! HomeScreenLoading
+                  ? FloatingActionButton.extended(
+                      onPressed: () =>
+                          bloc.add(HomeScreenEventAddButtonClicked()),
+                      backgroundColor: AppColors.disableColor,
+                      label: Text(t.add(context: globalGender),
+                          style: AppTextStyle()
+                              .description
+                              .copyWith(color: Colors.white)),
+                      icon: const Icon(Icons.add_rounded, color: Colors.white),
+                    )
+                  : null,
             );
           },
         ),

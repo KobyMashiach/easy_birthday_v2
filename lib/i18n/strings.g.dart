@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 180
+/// Strings: 190
 ///
-/// Built on 2024-10-15 at 09:27 UTC
+/// Built on 2024-10-15 at 11:20 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -439,6 +439,11 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String write_text_to({required Object title}) => 'רשום טקסט ל: ${title}';
 	String add_pictures_to({required Object title}) => 'הוסף תמונות ל: ${title}';
 	String add_videos_to({required Object title}) => 'הוסף סרטונים ל: ${title}';
+	String get add_text_pictures_title => 'הוסף טקסט ותמונות';
+	String add_text_pictures_description({required Object title}) => 'הוסף טקסט ותמונות ל: ${title}';
+	String get add_suprise => 'הוספת הפתעה';
+	String get lock => 'נעול';
+	String get unlock => 'לא נעול';
 	String get no_allow_text_empty => 'לא ניתן להשאיר טקסט ריק';
 	String get edit => 'עריכה';
 	String get exit => 'יציאה';
@@ -466,6 +471,11 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get info => 'מידע';
 	String get gender => 'מין';
 	String get greeting_notes => '* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו';
+	String get greeting_before_edit => 'ברכה לפני עריכה';
+	String get generate_greeting => 'ליצור ברכה';
+	String get generate_new_greeting => 'ליצור ברכה חדשה';
+	String get edit_greeting => 'עריכת הברכה';
+	String get create_greeting_using_ai => 'צור ברכה באמצעות AI';
 }
 
 /// Flat map(s) containing all translations.
@@ -759,6 +769,11 @@ extension on Translations {
 			case 'write_text_to': return ({required Object title}) => 'רשום טקסט ל: ${title}';
 			case 'add_pictures_to': return ({required Object title}) => 'הוסף תמונות ל: ${title}';
 			case 'add_videos_to': return ({required Object title}) => 'הוסף סרטונים ל: ${title}';
+			case 'add_text_pictures_title': return 'הוסף טקסט ותמונות';
+			case 'add_text_pictures_description': return ({required Object title}) => 'הוסף טקסט ותמונות ל: ${title}';
+			case 'add_suprise': return 'הוספת הפתעה';
+			case 'lock': return 'נעול';
+			case 'unlock': return 'לא נעול';
 			case 'no_allow_text_empty': return 'לא ניתן להשאיר טקסט ריק';
 			case 'edit': return 'עריכה';
 			case 'exit': return 'יציאה';
@@ -786,6 +801,11 @@ extension on Translations {
 			case 'info': return 'מידע';
 			case 'gender': return 'מין';
 			case 'greeting_notes': return '* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו';
+			case 'greeting_before_edit': return 'ברכה לפני עריכה';
+			case 'generate_greeting': return 'ליצור ברכה';
+			case 'generate_new_greeting': return 'ליצור ברכה חדשה';
+			case 'edit_greeting': return 'עריכת הברכה';
+			case 'create_greeting_using_ai': return 'צור ברכה באמצעות AI';
 			default: return null;
 		}
 	}
