@@ -218,7 +218,9 @@
   "yes": "כן",
   "no": "לא",
   "no_required": "לא חובה",
-  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumebr",
+  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumebr\nהגיל  הוא $age",
   "partner_info": "מידע על הבן/בת זוג",
-  "info": "מידע"
+  "info": "מידע",
+  "gender": "מין",
+  "greeting_notes": "* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו"
 }

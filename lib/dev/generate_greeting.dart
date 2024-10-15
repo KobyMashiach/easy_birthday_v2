@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:easy_birthday/core/consts.dart';
+import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/core/text_styles.dart';
@@ -21,6 +22,7 @@ class GenerateGreeting extends StatefulWidget {
 }
 
 class _GenerateGreetingState extends State<GenerateGreeting> {
+  bool loading = false;
   String generateText = "";
   final GenderContext gender = getPartnerGender();
   int? expandedIndex;
@@ -61,55 +63,67 @@ class _GenerateGreetingState extends State<GenerateGreeting> {
     };
     return Scaffold(
       appBar: appAppBar(title: "Generate Text"),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text("Easy Birthday", style: AppTextStyle().bigTitle),
-            const SizedBox(height: 24),
-            SvgPicture.asset(
-              textWriteIllustration,
-              height: 200,
+      body: loading
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text("Easy Birthday", style: AppTextStyle().bigTitle),
+                  const SizedBox(height: 24),
+                  SvgPicture.asset(
+                    textWriteIllustration,
+                    height: 200,
+                  ),
+                  const SizedBox(height: 24),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: items.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
+                    itemBuilder: (context, index) {
+                      final TextItemModel textItems =
+                          items.entries.elementAt(index).value;
+                      return CapsuleExpandedTextCard(
+                        textItems: textItems,
+                        isExpanded: expandedIndex == index,
+                        onTap: () {
+                          setState(() {
+                            if (expandedIndex == index) {
+                              expandedIndex = null;
+                            } else {
+                              expandedIndex = index;
+                            }
+                          });
+                        },
+                        titleSize: 200,
+                        isNumbers: index <= 1,
+                        onTextChoosen: (value) =>
+                            choosenItems[textItems.title] = value,
+                        textChoose: choosenItems.keys
+                            .any((key) => textItems.title == key),
+                      );
+                    },
+                  ),
+                  AppTextField(
+                    hintText: "${t.add_free_text} (${t.no_required})",
+                    controller: freeTextController,
+                    maxLines: 5,
+                    textInputAction: TextInputAction.newline,
+                    keyboard: TextInputType.multiline,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      children: [
+                        Text(t.greeting_notes,
+                            style: AppTextStyle().smallDescription),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-            const SizedBox(height: 24),
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: items.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 12),
-              itemBuilder: (context, index) {
-                final TextItemModel textItems =
-                    items.entries.elementAt(index).value;
-                return CapsuleExpandedTextCard(
-                  textItems: textItems,
-                  isExpanded: expandedIndex == index,
-                  onTap: () {
-                    setState(() {
-                      if (expandedIndex == index) {
-                        expandedIndex = null;
-                      } else {
-                        expandedIndex = index;
-                      }
-                    });
-                  },
-                  titleSize: 200,
-                  isNumbers: index <= 1,
-                  onTextChoosen: (value) =>
-                      choosenItems[textItems.title] = value,
-                  textChoose:
-                      choosenItems.keys.any((key) => textItems.title == key),
-                );
-              },
-            ),
-            AppTextField(
-              hintText: "${t.add_free_text} (${t.no_required})",
-              controller: freeTextController,
-              maxLines: 5,
-              textInputAction: TextInputAction.newline,
-              keyboard: TextInputType.multiline,
-            )
-          ],
-        ),
-      ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(
         activeButtonText: t.continue_,
         activeButtonOnTap: () {
@@ -120,6 +134,7 @@ class _GenerateGreetingState extends State<GenerateGreeting> {
                 .value,
             name: globalPartnerUser!.name,
             myName: globalUser.name,
+            age: calculateNextAge(),
             lineNumber: choosenItems.entries
                 .firstWhere((e) => e.key == "lines_number")
                 .value,
@@ -127,6 +142,7 @@ class _GenerateGreetingState extends State<GenerateGreeting> {
                 .firstWhere((e) => e.key == "max_words_in_line")
                 .value,
           );
+
           if (choosenItems.entries
                   .firstWhere((e) => e.key == "use_emojis")
                   .value ==

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 178
+/// Strings: 180
 ///
-/// Built on 2024-10-15 at 08:16 UTC
+/// Built on 2024-10-15 at 09:27 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -461,9 +461,11 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get yes => 'כן';
 	String get no => 'לא';
 	String get no_required => 'לא חובה';
-	String generate_text_description({required Object relationship, required Object name, required Object myName, required Object lineNumber, required Object wordsInLineNumebr}) => 'רשום ברכת יום הולדת ל${relationship}, השם הוא ${name}\nהשם שלי הוא: ${myName}\nמספר השורות של הברכה: ${lineNumber}\nמספר המילים בשורה:${wordsInLineNumebr}';
+	String generate_text_description({required Object relationship, required Object name, required Object myName, required Object lineNumber, required Object wordsInLineNumebr, required Object age}) => 'רשום ברכת יום הולדת ל${relationship}, השם הוא ${name}\nהשם שלי הוא: ${myName}\nמספר השורות של הברכה: ${lineNumber}\nמספר המילים בשורה:${wordsInLineNumebr}\nהגיל  הוא ${age}';
 	String get partner_info => 'מידע על הבן/בת זוג';
 	String get info => 'מידע';
+	String get gender => 'מין';
+	String get greeting_notes => '* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו';
 }
 
 /// Flat map(s) containing all translations.
@@ -779,9 +781,11 @@ extension on Translations {
 			case 'yes': return 'כן';
 			case 'no': return 'לא';
 			case 'no_required': return 'לא חובה';
-			case 'generate_text_description': return ({required Object relationship, required Object name, required Object myName, required Object lineNumber, required Object wordsInLineNumebr}) => 'רשום ברכת יום הולדת ל${relationship}, השם הוא ${name}\nהשם שלי הוא: ${myName}\nמספר השורות של הברכה: ${lineNumber}\nמספר המילים בשורה:${wordsInLineNumebr}';
+			case 'generate_text_description': return ({required Object relationship, required Object name, required Object myName, required Object lineNumber, required Object wordsInLineNumebr, required Object age}) => 'רשום ברכת יום הולדת ל${relationship}, השם הוא ${name}\nהשם שלי הוא: ${myName}\nמספר השורות של הברכה: ${lineNumber}\nמספר המילים בשורה:${wordsInLineNumebr}\nהגיל  הוא ${age}';
 			case 'partner_info': return 'מידע על הבן/בת זוג';
 			case 'info': return 'מידע';
+			case 'gender': return 'מין';
+			case 'greeting_notes': return '* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו';
 			default: return null;
 		}
 	}

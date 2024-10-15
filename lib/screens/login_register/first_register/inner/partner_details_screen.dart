@@ -129,6 +129,7 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
       initialDate: initialDate,
       firstDate: DateTime(1900),
       lastDate: DateTime(DateTime.now().year + 1),
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
     );
 
     if (selectedDate != null) {

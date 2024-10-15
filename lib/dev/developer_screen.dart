@@ -10,6 +10,7 @@ import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/first_register_main.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
+import 'package:easy_birthday/services/firebase/firebase_auth.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +26,20 @@ class DeveloperScreen extends StatelessWidget {
         'title': "Clear all hive boxes",
         'icon': Icons.storage_rounded,
         'function': () async {
-          final userChoise = await clearLocalStorageDialog(context);
+          final userChoise = await deleteSomethingDialog(context);
           if (userChoise == true) {
             clearAllHiveBoxes();
+            log("All local storage deleted!");
+          }
+        }
+      },
+      {
+        'title': "Remove all catch and storage",
+        'icon': Icons.storage_rounded,
+        'function': () async {
+          final userChoise = await deleteSomethingDialog(context);
+          if (userChoise == true) {
+            removeAllStorageAndCatch();
             log("All local storage deleted!");
           }
         }
@@ -72,14 +84,26 @@ class DeveloperScreen extends StatelessWidget {
           KheasydevNavigatePage().push(context, const GenerateGreeting());
         }
       },
+      {
+        'title': "Logout from user",
+        'icon': Icons.navigation_outlined,
+        'function': () async {
+          final userChoise =
+              await deleteSomethingDialog(context, text: "Logout from user?");
+          if (userChoise == true) {
+            await logoutFirestore();
+          }
+        }
+      },
     ];
     return settingOptions;
   }
 
-  Future<dynamic> clearLocalStorageDialog(BuildContext context) {
+  Future<dynamic> deleteSomethingDialog(BuildContext context, {String? text}) {
     return showDialog(
       context: context,
-      builder: (context) => generalDialog(title: "Delete all local storage?"),
+      builder: (context) =>
+          generalDialog(title: text ?? "Delete all local storage?"),
     );
   }
 
