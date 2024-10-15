@@ -69,7 +69,13 @@ class HomeScreen extends StatelessWidget {
               case const (HomeScreenNavToAddBirthdaySuprise):
                 final newState = state as HomeScreenNavToAddBirthdaySuprise;
                 KheasydevNavigatePage().pushDuration(
-                    context, AddBirthdaySupriseScreen(newState.category));
+                    context,
+                    AddBirthdaySupriseScreen(
+                      category: newState.category,
+                      onDone: (category, widgets) => bloc.add(
+                          HomeScreenEventUploadSupriseInEvent(
+                              category: category, widgets: widgets)),
+                    ));
               case const (HomeScreenOpenEditAgain):
                 final newState = state as HomeScreenOpenEditAgain;
                 KheasydevNavigatePage().pop(context);

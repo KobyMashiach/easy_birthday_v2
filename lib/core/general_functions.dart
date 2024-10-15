@@ -59,6 +59,19 @@ String getRandomString(int stringLength) {
       stringLength, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
 }
 
+Future<File?> pickSingleImage() async {
+  FilePickerResult? result = await FilePicker.platform.pickFiles(
+    type: FileType.image,
+    allowMultiple: false,
+  );
+
+  if (result != null && result.files.isNotEmpty) {
+    return File(result.files.single.path!);
+  } else {
+    return null;
+  }
+}
+
 Future<List<File>> pickMultipleFiles({bool? videos}) async {
   FileType fileType = videos == true ? FileType.video : FileType.image;
 

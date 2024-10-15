@@ -4,11 +4,13 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/services/firebase/firestore_data.dart';
+import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 
 part 'home_screen_event.dart';
@@ -25,6 +27,8 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
         _homeScreenEventDeleteCategoryInEvent);
     on<HomeScreenEventUploadFilesInEvent>(_homeScreenEventUploadFilesInEvent);
     on<HomeScreenEventDeleteFilesInEvent>(_homeScreenEventDeleteFilesInEvent);
+    on<HomeScreenEventUploadSupriseInEvent>(
+        _homeScreenEventUploadSupriseInEvent);
   }
 
   FutureOr<void> _homeScreenEventAddButtonClicked(
@@ -113,5 +117,39 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     eventRepo.updateCategory(newCategory);
     emit(HomeScreenRefreshUI());
     emit(HomeScreenOpenEditAgain(category: newCategory));
+  }
+
+  FutureOr<void> _homeScreenEventUploadSupriseInEvent(
+      HomeScreenEventUploadSupriseInEvent event,
+      Emitter<HomeScreenState> emit) async {
+    Map<int, Map<String, String>> items = {};
+    emit(HomeScreenLoading());
+    for (int i = 0; i < event.widgets.length; i++) {
+      emit(HomeScreenLoading(
+          text: t.upload_files_count(file: i, files: event.widgets.length)));
+      final currentWidget = event.widgets[i];
+      if (currentWidget is Text) {
+        if (currentWidget.style! == AppTextStyle().subTitle) {
+          items[i] = {"title": currentWidget.data ?? ""};
+        } else {
+          items[i] = {"description": currentWidget.data ?? ""};
+        }
+      } else if (currentWidget is Image) {
+        if (currentWidget.image is FileImage) {
+          FileImage fileImage = currentWidget.image as FileImage;
+          File file = fileImage.file;
+          final fileUrl = await firestoreUploadMediaToStorage(
+              path: "${globalEvent!.eventId}/${event.category.id}",
+              file: file,
+              fileName: getRandomString(5));
+          items[i] = {"image": fileUrl};
+        }
+      }
+    }
+
+    await Future.delayed(const Duration(milliseconds: 200));
+    eventRepo.updateCategory(event.category.copyWith(supriseMap: items));
+
+    emit(HomeScreenRefreshUI());
   }
 }

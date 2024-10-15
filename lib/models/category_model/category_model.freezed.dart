@@ -28,6 +28,8 @@ mixin _$CategoryModel {
   String? get text => throw _privateConstructorUsedError;
   List<String>? get urls => throw _privateConstructorUsedError;
   bool get lock => throw _privateConstructorUsedError;
+  Map<int, Map<String, String>>? get supriseMap =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +51,8 @@ abstract class $CategoryModelCopyWith<$Res> {
       String? titleAppear,
       String? text,
       List<String>? urls,
-      bool lock});
+      bool lock,
+      Map<int, Map<String, String>>? supriseMap});
 }
 
 /// @nodoc
@@ -73,6 +76,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? text = freezed,
     Object? urls = freezed,
     Object? lock = null,
+    Object? supriseMap = freezed,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -107,6 +111,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.lock
           : lock // ignore: cast_nullable_to_non_nullable
               as bool,
+      supriseMap: freezed == supriseMap
+          ? _value.supriseMap
+          : supriseMap // ignore: cast_nullable_to_non_nullable
+              as Map<int, Map<String, String>>?,
     ) as $Val);
   }
 }
@@ -127,7 +135,8 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       String? titleAppear,
       String? text,
       List<String>? urls,
-      bool lock});
+      bool lock,
+      Map<int, Map<String, String>>? supriseMap});
 }
 
 /// @nodoc
@@ -149,6 +158,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? text = freezed,
     Object? urls = freezed,
     Object? lock = null,
+    Object? supriseMap = freezed,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -183,6 +193,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value.lock
           : lock // ignore: cast_nullable_to_non_nullable
               as bool,
+      supriseMap: freezed == supriseMap
+          ? _value._supriseMap
+          : supriseMap // ignore: cast_nullable_to_non_nullable
+              as Map<int, Map<String, String>>?,
     ));
   }
 }
@@ -198,8 +212,10 @@ class _$CategoryModelImpl implements _CategoryModel {
       this.titleAppear,
       this.text,
       final List<String>? urls,
-      this.lock = false})
-      : _urls = urls;
+      this.lock = false,
+      final Map<int, Map<String, String>>? supriseMap})
+      : _urls = urls,
+        _supriseMap = supriseMap;
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryModelImplFromJson(json);
@@ -229,10 +245,19 @@ class _$CategoryModelImpl implements _CategoryModel {
   @override
   @JsonKey()
   final bool lock;
+  final Map<int, Map<String, String>>? _supriseMap;
+  @override
+  Map<int, Map<String, String>>? get supriseMap {
+    final value = _supriseMap;
+    if (value == null) return null;
+    if (_supriseMap is EqualUnmodifiableMapView) return _supriseMap;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap)';
   }
 
   @override
@@ -250,13 +275,24 @@ class _$CategoryModelImpl implements _CategoryModel {
                 other.titleAppear == titleAppear) &&
             (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality().equals(other._urls, _urls) &&
-            (identical(other.lock, lock) || other.lock == lock));
+            (identical(other.lock, lock) || other.lock == lock) &&
+            const DeepCollectionEquality()
+                .equals(other._supriseMap, _supriseMap));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, categoryType, name, description,
-      id, titleAppear, text, const DeepCollectionEquality().hash(_urls), lock);
+  int get hashCode => Object.hash(
+      runtimeType,
+      categoryType,
+      name,
+      description,
+      id,
+      titleAppear,
+      text,
+      const DeepCollectionEquality().hash(_urls),
+      lock,
+      const DeepCollectionEquality().hash(_supriseMap));
 
   @JsonKey(ignore: true)
   @override
@@ -281,7 +317,8 @@ abstract class _CategoryModel implements CategoryModel {
       final String? titleAppear,
       final String? text,
       final List<String>? urls,
-      final bool lock}) = _$CategoryModelImpl;
+      final bool lock,
+      final Map<int, Map<String, String>>? supriseMap}) = _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
@@ -302,6 +339,8 @@ abstract class _CategoryModel implements CategoryModel {
   List<String>? get urls;
   @override
   bool get lock;
+  @override
+  Map<int, Map<String, String>>? get supriseMap;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

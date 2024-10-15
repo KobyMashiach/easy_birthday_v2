@@ -15,6 +15,7 @@ class CategoryModel with _$CategoryModel {
     String? text,
     List<String>? urls,
     @Default(false) bool lock,
+    Map<int, Map<String, String>>? supriseMap,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

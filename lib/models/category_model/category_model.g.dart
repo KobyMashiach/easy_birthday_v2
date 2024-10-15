@@ -16,6 +16,9 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String?,
       urls: (json['urls'] as List<dynamic>?)?.map((e) => e as String).toList(),
       lock: json['lock'] as bool? ?? false,
+      supriseMap: (json['supriseMap'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(int.parse(k), Map<String, String>.from(e as Map)),
+      ),
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -28,6 +31,8 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'text': instance.text,
       'urls': instance.urls,
       'lock': instance.lock,
+      'supriseMap':
+          instance.supriseMap?.map((k, e) => MapEntry(k.toString(), e)),
     };
 
 const _$CategoryEnumEnumMap = {

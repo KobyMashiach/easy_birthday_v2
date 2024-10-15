@@ -59,6 +59,7 @@ dependencies:
   blobs: ^2.0.0
   pin_code_fields: ^8.0.1
   cupertino_icons: ^1.0.6
+  getwidget: ^4.0.0
 
   # State Management and Utilities
   flutter_bloc: ^8.1.4
