@@ -144,6 +144,7 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
   }
 
   ListTile widgetsCard(int index, BuildContext context) {
+    final widgetText = getWidgetText(items[index]);
     return ListTile(
       title: items[index],
       onTap: () async => showDialog(
@@ -160,8 +161,8 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
             final userChoise = await showDialog(
                 context: context,
                 builder: (context) => generalDialog(
-                      title: "sure delete?",
-                    ));
+                    title: t.sure_delete_name(
+                        context: globalGender, text: widgetText)));
             if (userChoise == true) {
               setState(() => items.removeAt(index));
             }
@@ -234,30 +235,19 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
     );
   }
 
-  // void itemsUpdateFromServer() {
-  //   if (widget.category.supriseMap != null) {
-  //     Map<int, Map<String, String>> sortedMap = Map.fromEntries(
-  //       widget.category.supriseMap!.entries.toList()
-  //         ..sort((e1, e2) => e1.key.compareTo(e2.key)),
-  //     );
-  //     Map<int, Map<String, String>> updatedMap = {
-  //       for (int i = 0; i < sortedMap.length; i++)
-  //         i + 1: sortedMap.values.elementAt(i)
-  //     };
+  getWidgetText(Widget item) {
+    if (item is Text) {
+      return item.data != null ? shortenString(item.data!) : t.the_text;
+    } else if (item is Image) {
+      return t.the_image;
+    }
+  }
 
-  //     updatedMap.forEach(
-  //       (key, value) {
-  //         final element = value.entries.first;
-  //         switch (element.key) {
-  //           case "title":
-  //             items.add(Text(element.value, style: AppTextStyle().subTitle));
-  //           case "description":
-  //             items.add(Text(element.value, style: AppTextStyle().description));
-  //           case "image":
-  //             items.add(Image.network(element.value, height: 150));
-  //         }
-  //       },
-  //     );
-  //   }
-  // }
+  String shortenString(String input) {
+    if (input.length <= 15) {
+      return input;
+    } else {
+      return '${input.substring(0, 15)}...';
+    }
+  }
 }

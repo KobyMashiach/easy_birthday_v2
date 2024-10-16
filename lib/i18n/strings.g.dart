@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 195
+/// Strings: 197
 ///
-/// Built on 2024-10-15 at 11:58 UTC
+/// Built on 2024-10-16 at 09:02 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -453,9 +453,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String sure_delete_name({required GenderContext context, required Object text}) {
 		switch (context) {
 			case GenderContext.male:
-				return 'אתה בטוח שאתה רוצה למחוק את ${text}';
+				return 'אתה בטוח שאתה רוצה למחוק את ${text}?';
 			case GenderContext.female:
-				return 'את בטוחה שאת רוצה למחוק את ${text}';
+				return 'את בטוחה שאת רוצה למחוק את ${text}?';
 		}
 	}
 	String get delete => 'מחיקה';
@@ -487,6 +487,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'הוסיפי טקסט או תמונות, שחקי עם הסדר ביניהם וצרי את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליטי שהיא מוכנה לבן הזוג שלך!';
 		}
 	}
+	String get the_image => 'התמונה';
+	String get the_text => 'הטקסט';
 }
 
 /// Flat map(s) containing all translations.
@@ -794,9 +796,9 @@ extension on Translations {
 			case 'sure_delete_name': return ({required GenderContext context, required Object text}) {
 				switch (context) {
 					case GenderContext.male:
-						return 'אתה בטוח שאתה רוצה למחוק את ${text}';
+						return 'אתה בטוח שאתה רוצה למחוק את ${text}?';
 					case GenderContext.female:
-						return 'את בטוחה שאת רוצה למחוק את ${text}';
+						return 'את בטוחה שאת רוצה למחוק את ${text}?';
 				}
 			};
 			case 'delete': return 'מחיקה';
@@ -828,6 +830,8 @@ extension on Translations {
 						return 'הוסיפי טקסט או תמונות, שחקי עם הסדר ביניהם וצרי את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליטי שהיא מוכנה לבן הזוג שלך!';
 				}
 			};
+			case 'the_image': return 'התמונה';
+			case 'the_text': return 'הטקסט';
 			default: return null;
 		}
 	}
