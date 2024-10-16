@@ -1,15 +1,12 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_birthday/widgets/design/display_screens_top.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/video_player_widget.dart';
 import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:kh_easy_dev/kh_easy_dev.dart';
 
-import 'package:easy_birthday/core/consts.dart';
-import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 
@@ -66,14 +63,7 @@ class _DisplayPicturesVideosScreenState
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                widget.category.titleAppear!,
-                style: AppTextStyle().title,
-                textAlign: TextAlign.center,
-              ),
-              SvgPicture.asset(readTextIllustration, height: 200),
-              kheasydevDivider(black: true),
-              const SizedBox(height: 12),
+              DisplayScreensTop(category: widget.category),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

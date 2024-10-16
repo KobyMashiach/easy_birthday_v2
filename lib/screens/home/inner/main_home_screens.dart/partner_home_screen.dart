@@ -4,6 +4,7 @@ import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/text_items_model/text_item_model.dart';
+import 'package:easy_birthday/screens/home/inner/display_to_partner/display_birthday_suprise.dart';
 import 'package:easy_birthday/screens/home/inner/display_to_partner/display_pictures_videos.dart';
 import 'package:easy_birthday/screens/home/inner/display_to_partner/display_text.dart';
 import 'package:easy_birthday/widgets/cards/category_partner_card.dart';
@@ -56,9 +57,12 @@ class PartnerHomeScreen extends StatelessWidget {
                           context,
                           DisplayPicturesVideosScreen(
                               category: category, isImages: false));
+
                     case CategoryEnum.quizGame:
                     case CategoryEnum.birthdayCalender:
                     case CategoryEnum.birthdaySuprise:
+                      KheasydevNavigatePage().pushDuration(
+                          context, DisplayBirthdaySuprise(category: category));
                   }
                 },
               );
