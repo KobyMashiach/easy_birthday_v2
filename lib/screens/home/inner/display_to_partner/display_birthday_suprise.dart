@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/widgets/design/display_screens_top.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +22,16 @@ class DisplayBirthdaySuprise extends StatefulWidget {
 }
 
 class _DisplayBirthdaySupriseState extends State<DisplayBirthdaySuprise> {
+  List<Widget> items = [];
+
+  @override
+  void initState() {
+    super.initState();
+    items = supriseMapToWidgets(widget.category.supriseMap);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // final mediaUrls = widget.category.urls ?? [];
-
     return Scaffold(
       appBar: appAppBar(title: widget.category.titleAppear!),
       body: Padding(
@@ -34,6 +41,12 @@ class _DisplayBirthdaySupriseState extends State<DisplayBirthdaySuprise> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               DisplayScreensTop(category: widget.category),
+              ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => items[index],
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 12),
+                  itemCount: items.length)
             ],
           ),
         ),

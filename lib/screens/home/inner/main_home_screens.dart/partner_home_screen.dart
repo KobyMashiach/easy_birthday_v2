@@ -8,6 +8,7 @@ import 'package:easy_birthday/screens/home/inner/display_to_partner/display_birt
 import 'package:easy_birthday/screens/home/inner/display_to_partner/display_pictures_videos.dart';
 import 'package:easy_birthday/screens/home/inner/display_to_partner/display_text.dart';
 import 'package:easy_birthday/widgets/cards/category_partner_card.dart';
+import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
@@ -61,8 +62,21 @@ class PartnerHomeScreen extends StatelessWidget {
                     case CategoryEnum.quizGame:
                     case CategoryEnum.birthdayCalender:
                     case CategoryEnum.birthdaySuprise:
-                      KheasydevNavigatePage().pushDuration(
-                          context, DisplayBirthdaySuprise(category: category));
+                      if (category.lock) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => generalDialog(
+                              title: t.secret_dialog(context: globalGender),
+                              child: SvgPicture.asset(secretIllustrations,
+                                  height: 150),
+                              childBeforeTitle: true,
+                              oneButton: true,
+                              okButtonText: t.exit),
+                        );
+                      } else {
+                        KheasydevNavigatePage().pushDuration(context,
+                            DisplayBirthdaySuprise(category: category));
+                      }
                   }
                 },
               );

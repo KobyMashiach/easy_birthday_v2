@@ -33,14 +33,7 @@ class CategoryPartnerCard extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 8),
-              child: Text(
-                category.titleAppear!,
-                textAlign: TextAlign.center,
-                style: AppTextStyle()
-                    .description
-                    .copyWith(fontWeight: FontWeight.bold),
-                maxLines: 2,
-              ),
+              child: titleAndLockIcon(),
             ),
             SvgPicture.asset(
               category.categoryType.getImage(),
@@ -50,6 +43,29 @@ class CategoryPartnerCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Stack titleAndLockIcon() {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            category.titleAppear!,
+            textAlign: TextAlign.center,
+            style: AppTextStyle()
+                .description
+                .copyWith(fontWeight: FontWeight.bold),
+            maxLines: 2,
+          ),
+        ),
+        if (category.lock)
+          const Positioned(
+            left: 0,
+            child: Icon(Icons.lock),
+          ),
+      ],
     );
   }
 }

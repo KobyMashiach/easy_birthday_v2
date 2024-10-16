@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 197
+/// Strings: 199
 ///
-/// Built on 2024-10-16 at 09:02 UTC
+/// Built on 2024-10-16 at 09:37 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -489,6 +489,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	}
 	String get the_image => 'התמונה';
 	String get the_text => 'הטקסט';
+	String secret_dialog({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'ההפתעה נעולה עד שהבת זוג שלך תיתן לך את ההרשאה לפתוח אותה!';
+			case GenderContext.female:
+				return 'ההפתעה נעולה עד שהבן זוג שלך יתן לך את ההרשאה לפתוח אותה!';
+		}
+	}
 }
 
 /// Flat map(s) containing all translations.
@@ -832,6 +840,14 @@ extension on Translations {
 			};
 			case 'the_image': return 'התמונה';
 			case 'the_text': return 'הטקסט';
+			case 'secret_dialog': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'ההפתעה נעולה עד שהבת זוג שלך תיתן לך את ההרשאה לפתוח אותה!';
+					case GenderContext.female:
+						return 'ההפתעה נעולה עד שהבן זוג שלך יתן לך את ההרשאה לפתוח אותה!';
+				}
+			};
 			default: return null;
 		}
 	}
