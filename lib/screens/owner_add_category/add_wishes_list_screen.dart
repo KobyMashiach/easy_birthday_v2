@@ -16,7 +16,7 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddWishesListScreen extends StatefulWidget {
   final CategoryModel category;
-  final Function(String text) onDone;
+  final Function(String text, bool edit) onDone;
   final VoidCallback deleteWishes;
   const AddWishesListScreen(
       {super.key,
@@ -114,7 +114,8 @@ class _AddWishesListScreenState extends State<AddWishesListScreen> {
         oneButton: true,
         activeButtonOnTap: () {
           if (textController.text.isNotEmpty) {
-            widget.onDone.call(textController.text);
+            widget.onDone
+                .call(textController.text, widget.category.wishesList != null);
             KheasydevNavigatePage().pop(context);
           } else {
             kheasydevAppToast(t.no_allow_text_empty);

@@ -84,12 +84,15 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddWishesListScreen(
                       category: newState.category,
-                      onDone: (text) => bloc.add(
+                      onDone: (text, edit) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
                               category: newState.category.copyWith(
                                   // ignore: prefer_const_constructors
-                                  wishesList: WishesModel(
-                                      lock: false, contract: text)))),
+                                  wishesList: edit
+                                      ? newState.category.wishesList!
+                                          .copyWith(contract: text)
+                                      : WishesModel(
+                                          lock: false, contract: text)))),
                       deleteWishes: () => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
                               category: newState.category.copyWith(
