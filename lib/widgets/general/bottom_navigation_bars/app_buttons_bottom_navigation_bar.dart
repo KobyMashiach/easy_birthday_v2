@@ -7,9 +7,12 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
   final bool oneButton;
   final String? activeButtonText;
   final bool activeButtonDisable;
-  final String? inactiveButtonText;
   final VoidCallback? activeButtonOnTap;
+  final String? inactiveButtonText;
   final VoidCallback? inactiveButtonOnTap;
+  final bool middleButton;
+  final String? middleButtonText;
+  final VoidCallback? middleButtonOnTap;
   const AppButtonsBottomNavigationBar({
     super.key,
     this.oneButton = false,
@@ -18,6 +21,9 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
     this.inactiveButtonText,
     this.activeButtonOnTap,
     this.inactiveButtonOnTap,
+    this.middleButton = false,
+    this.middleButtonText,
+    this.middleButtonOnTap,
   });
 
   @override
@@ -47,6 +53,17 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
                   text: inactiveButtonText ?? t.cancel,
                   unfillColors: true,
                   onTap: inactiveButtonOnTap ??
+                      () => KheasydevNavigatePage().pop(context),
+                ),
+              ),
+              const SizedBox(width: 40),
+            ],
+            if (middleButton) ...[
+              Expanded(
+                child: appButton(
+                  text: middleButtonText ?? t.cancel,
+                  unfillColors: true,
+                  onTap: middleButtonOnTap ??
                       () => KheasydevNavigatePage().pop(context),
                 ),
               ),

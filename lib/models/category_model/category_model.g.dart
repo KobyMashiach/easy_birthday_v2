@@ -19,6 +19,8 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       supriseMap: (json['supriseMap'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(int.parse(k), Map<String, String>.from(e as Map)),
       ),
+      wishesList: _$JsonConverterFromJson<Map<String, dynamic>, WishesModel>(
+          json['wishesList'], const WishesConverter().fromJson),
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -33,6 +35,8 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'lock': instance.lock,
       'supriseMap':
           instance.supriseMap?.map((k, e) => MapEntry(k.toString(), e)),
+      'wishesList': _$JsonConverterToJson<Map<String, dynamic>, WishesModel>(
+          instance.wishesList, const WishesConverter().toJson),
     };
 
 const _$CategoryEnumEnumMap = {
@@ -42,4 +46,17 @@ const _$CategoryEnumEnumMap = {
   CategoryEnum.quizGame: 'quizGame',
   CategoryEnum.birthdayCalender: 'birthdayCalender',
   CategoryEnum.birthdaySuprise: 'birthdaySuprise',
+  CategoryEnum.wishesList: 'wishesList',
 };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

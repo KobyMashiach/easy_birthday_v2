@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 200
+/// Strings: 221
 ///
-/// Built on 2024-10-18 at 23:58 UTC
+/// Built on 2024-10-19 at 03:21 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -431,6 +431,22 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!';
 		}
 	}
+	String wishes_list_description({required GenderContext context, required Object name}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הוסף אפשרות ל${name} לבחור 3 משאלות:\nרשום לה "חוזה" קטן, ככה שהיא לא תוכל להגזים!';
+			case GenderContext.female:
+				return 'הוספי אפשרות ל${name} לבחור 3 משאלות:\nרשמי לו "חוזה" קטן, ככה שהוא לא יוכל להגזים!';
+		}
+	}
+	String wishes_list_display_description({required GenderContext context, required Object name}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בחר 3 משאלות ש${name} חייבת להגשים!';
+			case GenderContext.female:
+				return 'בחרי 3 משאלות ש${name} חייב להגשים!';
+		}
+	}
 	String get please_choose_category => 'בחר קטגוריה בבקשה';
 	String get title_appear_category => 'הכותרת שתופיע לקטגוריה זו';
 	String get title_appear_required => 'נא למלא את הכותרת';
@@ -498,6 +514,35 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'ההפתעה נעולה עד ש${name} יתן לך את ההרשאה לפתוח אותה!';
 		}
 	}
+	String get wishes_list => 'רשימת משאלות';
+	String get write_contract => 'רשום חוזה';
+	String write_contract_to({required Object title}) => 'רשום חוזה ל: ${title}';
+	String get display_wishes => 'הצג משאלות';
+	String get delete_wishes => 'מחיקת המשאלות';
+	String delete_wishes_description({required GenderContext context, required Object name}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'אם המשאלות לא עומדות בחוזה ניתן למחוק ואז ${name} תוכל למלא מחדש';
+			case GenderContext.female:
+				return 'אם המשאלות לא עומדות בחוזה ניתן למחוק ואז ${name} יוכל למלא מחדש';
+		}
+	}
+	String get first_wish => 'משאלה ראשוונה';
+	String get second_wish => 'משאלה שנייה';
+	String get third_wish => 'משאלה שלישית';
+	String get save => 'שמור';
+	String get save_and_lock => 'שמור ונעל';
+	String get wish_list_lock_title => 'רשימת המשאלות נעולה';
+	String get wish_list_lock_description => 'כדי לפתוח אותה אנא בקשו מהפרטנר שלכם הזדמנות חדשה';
+	String please_read_contract({required GenderContext context, required Object name}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'חוזה ש${name} כתבה במיוחד בשבילך';
+			case GenderContext.female:
+				return 'חוזה ש${name} כתב במיוחד בשבילך';
+		}
+	}
+	String get no_wish_yet => 'אין עדיין משאלות';
 }
 
 /// Flat map(s) containing all translations.
@@ -783,6 +828,22 @@ extension on Translations {
 						return 'בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!';
 				}
 			};
+			case 'wishes_list_description': return ({required GenderContext context, required Object name}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הוסף אפשרות ל${name} לבחור 3 משאלות:\nרשום לה "חוזה" קטן, ככה שהיא לא תוכל להגזים!';
+					case GenderContext.female:
+						return 'הוספי אפשרות ל${name} לבחור 3 משאלות:\nרשמי לו "חוזה" קטן, ככה שהוא לא יוכל להגזים!';
+				}
+			};
+			case 'wishes_list_display_description': return ({required GenderContext context, required Object name}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בחר 3 משאלות ש${name} חייבת להגשים!';
+					case GenderContext.female:
+						return 'בחרי 3 משאלות ש${name} חייב להגשים!';
+				}
+			};
 			case 'please_choose_category': return 'בחר קטגוריה בבקשה';
 			case 'title_appear_category': return 'הכותרת שתופיע לקטגוריה זו';
 			case 'title_appear_required': return 'נא למלא את הכותרת';
@@ -850,6 +911,35 @@ extension on Translations {
 						return 'ההפתעה נעולה עד ש${name} יתן לך את ההרשאה לפתוח אותה!';
 				}
 			};
+			case 'wishes_list': return 'רשימת משאלות';
+			case 'write_contract': return 'רשום חוזה';
+			case 'write_contract_to': return ({required Object title}) => 'רשום חוזה ל: ${title}';
+			case 'display_wishes': return 'הצג משאלות';
+			case 'delete_wishes': return 'מחיקת המשאלות';
+			case 'delete_wishes_description': return ({required GenderContext context, required Object name}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'אם המשאלות לא עומדות בחוזה ניתן למחוק ואז ${name} תוכל למלא מחדש';
+					case GenderContext.female:
+						return 'אם המשאלות לא עומדות בחוזה ניתן למחוק ואז ${name} יוכל למלא מחדש';
+				}
+			};
+			case 'first_wish': return 'משאלה ראשוונה';
+			case 'second_wish': return 'משאלה שנייה';
+			case 'third_wish': return 'משאלה שלישית';
+			case 'save': return 'שמור';
+			case 'save_and_lock': return 'שמור ונעל';
+			case 'wish_list_lock_title': return 'רשימת המשאלות נעולה';
+			case 'wish_list_lock_description': return 'כדי לפתוח אותה אנא בקשו מהפרטנר שלכם הזדמנות חדשה';
+			case 'please_read_contract': return ({required GenderContext context, required Object name}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'חוזה ש${name} כתבה במיוחד בשבילך';
+					case GenderContext.female:
+						return 'חוזה ש${name} כתב במיוחד בשבילך';
+				}
+			};
+			case 'no_wish_yet': return 'אין עדיין משאלות';
 			default: return null;
 		}
 	}

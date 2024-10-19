@@ -3,10 +3,12 @@ import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
+import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/text_items_model/text_item_model.dart';
-import 'package:easy_birthday/screens/home/inner/display_to_partner/display_birthday_suprise.dart';
-import 'package:easy_birthday/screens/home/inner/display_to_partner/display_pictures_videos.dart';
-import 'package:easy_birthday/screens/home/inner/display_to_partner/display_text.dart';
+import 'package:easy_birthday/screens/partner_display_screens/display_birthday_suprise.dart';
+import 'package:easy_birthday/screens/partner_display_screens/display_pictures_videos.dart';
+import 'package:easy_birthday/screens/partner_display_screens/display_text.dart';
+import 'package:easy_birthday/screens/partner_display_screens/display_wishes_list.dart';
 import 'package:easy_birthday/widgets/cards/category_partner_card.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class PartnerHomeScreen extends StatelessWidget {
-  const PartnerHomeScreen({super.key});
+  final Function(CategoryModel category) onChangeCategory;
+  const PartnerHomeScreen({super.key, required this.onChangeCategory});
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +82,14 @@ class PartnerHomeScreen extends StatelessWidget {
                         KheasydevNavigatePage().pushDuration(context,
                             DisplayBirthdaySuprise(category: category));
                       }
+                    case CategoryEnum.wishesList:
+                      KheasydevNavigatePage().pushDuration(
+                          context,
+                          DisplayWishesList(
+                            category: category,
+                            onDone: (wishesList) => onChangeCategory.call(
+                                category.copyWith(wishesList: wishesList)),
+                          ));
                   }
                 },
               );

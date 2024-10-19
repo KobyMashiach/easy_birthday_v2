@@ -38,6 +38,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
   Future<void> _loginScreenEventOnLoginButtonClick(
       LoginScreenEventOnLoginButtonClick event,
       Emitter<LoginScreenState> emit) async {
+    emit(LoginScreenLoading());
     final personaExist =
         await repo.checkIfHaveDetails(phoneNumber: event.phoneNumber);
     if (personaExist) {
@@ -48,9 +49,11 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         await repo.updatePersona(persona);
         await loginToApp(persona, emit);
       } else {
+        emit(LoginScreenRefreshUI());
         emit(LoginScreenStateDialogErrorMessage(message: t.wrong_password));
       }
     } else {
+      emit(LoginScreenRefreshUI());
       emit(LoginScreenStateDialogErrorMessage(
           message: t.phone_not_exist_system));
     }

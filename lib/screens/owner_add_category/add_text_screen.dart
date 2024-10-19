@@ -56,17 +56,20 @@ class _AddTextScreenState extends State<AddTextScreen> {
                   textAlign: TextAlign.center,
                 ),
                 appButton(
-                    text: t.create_greeting_using_ai,
-                    margin: const EdgeInsets.all(12),
-                    onTap: () =>
-                        KheasydevNavigatePage().push(context, GenerateGreeting(
-                          generateGreeting: (generateText) {
-                            KheasydevNavigatePage().pop(context);
-                            if (generateText != null) {
-                              textController.text = generateText;
-                            }
-                          },
-                        ))),
+                  text: t.create_greeting_using_ai,
+                  margin: const EdgeInsets.all(12),
+                  onTap: () => KheasydevNavigatePage().push(
+                    context,
+                    GenerateGreeting(
+                      generateGreeting: (generateText) {
+                        KheasydevNavigatePage().pop(context);
+                        if (generateText != null) {
+                          textController.text = generateText;
+                        }
+                      },
+                    ),
+                  ),
+                ),
                 AppTextField(
                   hintText: t.add_text,
                   maxLines: 12,

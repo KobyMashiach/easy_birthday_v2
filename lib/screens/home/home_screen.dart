@@ -1,5 +1,7 @@
 import 'package:easy_birthday/models/category_model/category_model.dart';
-import 'package:easy_birthday/screens/home/inner/add_category/add_birthday_suprise_screen.dart';
+import 'package:easy_birthday/models/wishes_model/wishes_model.dart';
+import 'package:easy_birthday/screens/owner_add_category/add_birthday_suprise_screen.dart';
+import 'package:easy_birthday/screens/owner_add_category/add_wishes_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
@@ -11,8 +13,8 @@ import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/screens/home/bloc/home_screen_bloc.dart';
-import 'package:easy_birthday/screens/home/inner/add_category/add_pictures_videos_screen.dart';
-import 'package:easy_birthday/screens/home/inner/add_category/add_text_screen.dart';
+import 'package:easy_birthday/screens/owner_add_category/add_pictures_videos_screen.dart';
+import 'package:easy_birthday/screens/owner_add_category/add_text_screen.dart';
 import 'package:easy_birthday/screens/home/inner/main_home_screens.dart/owner_home_screen.dart';
 import 'package:easy_birthday/screens/home/inner/main_home_screens.dart/partner_home_screen.dart';
 import 'package:easy_birthday/widgets/dialogs/choose_category_dialog.dart';
@@ -76,6 +78,29 @@ class HomeScreen extends StatelessWidget {
                           HomeScreenEventUploadSupriseInEvent(
                               category: category, widgets: widgets)),
                     ));
+              case const (HomeScreenNavToAddWishesList):
+                final newState = state as HomeScreenNavToAddWishesList;
+                KheasydevNavigatePage().pushDuration(
+                    context,
+                    AddWishesListScreen(
+                      category: newState.category,
+                      onDone: (text) => bloc.add(
+                          HomeScreenEventUpdateCategoryInEvent(
+                              category: newState.category.copyWith(
+                                  // ignore: prefer_const_constructors
+                                  wishesList: WishesModel(
+                                      lock: false, contract: text)))),
+                      deleteWishes: () => bloc.add(
+                          HomeScreenEventUpdateCategoryInEvent(
+                              category: newState.category.copyWith(
+                                  // ignore: prefer_const_constructors
+                                  wishesList: newState.category.wishesList!
+                                      .copyWith(
+                                          first: null,
+                                          second: null,
+                                          third: null,
+                                          lock: false)))),
+                    ));
               case const (HomeScreenOpenEditAgain):
                 final newState = state as HomeScreenOpenEditAgain;
                 KheasydevNavigatePage().pop(context);
@@ -104,7 +129,11 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(24),
                       child: Center(
                         child: globalUser.role.isPartner()
-                            ? const PartnerHomeScreen()
+                            ? PartnerHomeScreen(
+                                onChangeCategory: (category) => bloc.add(
+                                    HomeScreenEventUpdateCategoryInEvent(
+                                        category: category)),
+                              )
                             : const OwnerHomeScreen(),
                       ),
                     ),

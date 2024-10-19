@@ -31,6 +31,20 @@ class OwnerHomeScreen extends StatelessWidget {
       CategoryEnum.birthdayCalender => const Text("birthdayCalender"),
       CategoryEnum.birthdaySuprise =>
         Column(children: supriseMapToWidgets(category.supriseMap)),
+      CategoryEnum.wishesList => category.wishesList?.lock ?? false
+          ? Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("1. ${category.wishesList?.first ?? ""}"),
+                    Text("2. ${category.wishesList?.second ?? ""}"),
+                    Text("3. ${category.wishesList?.third ?? ""}"),
+                  ],
+                ),
+              ],
+            )
+          : Text(t.no_wish_yet),
     };
   }
 

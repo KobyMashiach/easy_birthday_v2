@@ -192,6 +192,14 @@
     "male": "בוא לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתפתח את זה, זה יישאר נעול אצל בת הזוג שלך!",
     "female": "בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!"
   },
+  "wishes_list_description(context=GenderContext)": {
+    "male": "הוסף אפשרות ל$name לבחור 3 משאלות:\nרשום לה \"חוזה\" קטן, ככה שהיא לא תוכל להגזים!",
+    "female": "הוספי אפשרות ל$name לבחור 3 משאלות:\nרשמי לו \"חוזה\" קטן, ככה שהוא לא יוכל להגזים!"
+  },
+  "wishes_list_display_description(context=GenderContext)": {
+    "male": "בחר 3 משאלות ש$name חייבת להגשים!",
+    "female": "בחרי 3 משאלות ש$name חייב להגשים!"
+  },
   "please_choose_category": "בחר קטגוריה בבקשה",
   "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
   "title_appear_required": "נא למלא את הכותרת",
@@ -246,5 +254,26 @@
   "secret_dialog(context=GenderContext)": {
     "male": "ההפתעה נעולה עד ש$name תיתן לך את ההרשאה לפתוח אותה!",
     "female": "ההפתעה נעולה עד ש$name יתן לך את ההרשאה לפתוח אותה!"
-  }
+  },
+  "wishes_list": "רשימת משאלות",
+  "write_contract": "רשום חוזה",
+  "write_contract_to": "רשום חוזה ל: $title",
+  "display_wishes": "הצג משאלות",
+  "delete_wishes": "מחיקת המשאלות",
+  "delete_wishes_description(context=GenderContext)": {
+    "male": "אם המשאלות לא עומדות בחוזה ניתן למחוק ואז $name תוכל למלא מחדש",
+    "female": "אם המשאלות לא עומדות בחוזה ניתן למחוק ואז $name יוכל למלא מחדש"
+  },
+  "first_wish": "משאלה ראשוונה",
+  "second_wish": "משאלה שנייה",
+  "third_wish": "משאלה שלישית",
+  "save": "שמור",
+  "save_and_lock": "שמור ונעל",
+  "wish_list_lock_title": "רשימת המשאלות נעולה",
+  "wish_list_lock_description": "כדי לפתוח אותה אנא בקשו מהפרטנר שלכם הזדמנות חדשה",
+  "please_read_contract(context=GenderContext)": {
+    "male": "חוזה ש$name כתבה במיוחד בשבילך",
+    "female": "חוזה ש$name כתב במיוחד בשבילך"
+  },
+  "no_wish_yet": "אין עדיין משאלות"
 }

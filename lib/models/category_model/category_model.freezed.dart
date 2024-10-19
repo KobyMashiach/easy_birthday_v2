@@ -30,6 +30,8 @@ mixin _$CategoryModel {
   bool get lock => throw _privateConstructorUsedError;
   Map<int, Map<String, String>>? get supriseMap =>
       throw _privateConstructorUsedError;
+  @WishesConverter()
+  WishesModel? get wishesList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +54,10 @@ abstract class $CategoryModelCopyWith<$Res> {
       String? text,
       List<String>? urls,
       bool lock,
-      Map<int, Map<String, String>>? supriseMap});
+      Map<int, Map<String, String>>? supriseMap,
+      @WishesConverter() WishesModel? wishesList});
+
+  $WishesModelCopyWith<$Res>? get wishesList;
 }
 
 /// @nodoc
@@ -77,6 +82,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? urls = freezed,
     Object? lock = null,
     Object? supriseMap = freezed,
+    Object? wishesList = freezed,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -115,7 +121,23 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.supriseMap
           : supriseMap // ignore: cast_nullable_to_non_nullable
               as Map<int, Map<String, String>>?,
+      wishesList: freezed == wishesList
+          ? _value.wishesList
+          : wishesList // ignore: cast_nullable_to_non_nullable
+              as WishesModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WishesModelCopyWith<$Res>? get wishesList {
+    if (_value.wishesList == null) {
+      return null;
+    }
+
+    return $WishesModelCopyWith<$Res>(_value.wishesList!, (value) {
+      return _then(_value.copyWith(wishesList: value) as $Val);
+    });
   }
 }
 
@@ -136,7 +158,11 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       String? text,
       List<String>? urls,
       bool lock,
-      Map<int, Map<String, String>>? supriseMap});
+      Map<int, Map<String, String>>? supriseMap,
+      @WishesConverter() WishesModel? wishesList});
+
+  @override
+  $WishesModelCopyWith<$Res>? get wishesList;
 }
 
 /// @nodoc
@@ -159,6 +185,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? urls = freezed,
     Object? lock = null,
     Object? supriseMap = freezed,
+    Object? wishesList = freezed,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -197,6 +224,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value._supriseMap
           : supriseMap // ignore: cast_nullable_to_non_nullable
               as Map<int, Map<String, String>>?,
+      wishesList: freezed == wishesList
+          ? _value.wishesList
+          : wishesList // ignore: cast_nullable_to_non_nullable
+              as WishesModel?,
     ));
   }
 }
@@ -213,7 +244,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       this.text,
       final List<String>? urls,
       this.lock = false,
-      final Map<int, Map<String, String>>? supriseMap})
+      final Map<int, Map<String, String>>? supriseMap,
+      @WishesConverter() this.wishesList})
       : _urls = urls,
         _supriseMap = supriseMap;
 
@@ -256,8 +288,12 @@ class _$CategoryModelImpl implements _CategoryModel {
   }
 
   @override
+  @WishesConverter()
+  final WishesModel? wishesList;
+
+  @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList)';
   }
 
   @override
@@ -277,7 +313,9 @@ class _$CategoryModelImpl implements _CategoryModel {
             const DeepCollectionEquality().equals(other._urls, _urls) &&
             (identical(other.lock, lock) || other.lock == lock) &&
             const DeepCollectionEquality()
-                .equals(other._supriseMap, _supriseMap));
+                .equals(other._supriseMap, _supriseMap) &&
+            (identical(other.wishesList, wishesList) ||
+                other.wishesList == wishesList));
   }
 
   @JsonKey(ignore: true)
@@ -292,7 +330,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       text,
       const DeepCollectionEquality().hash(_urls),
       lock,
-      const DeepCollectionEquality().hash(_supriseMap));
+      const DeepCollectionEquality().hash(_supriseMap),
+      wishesList);
 
   @JsonKey(ignore: true)
   @override
@@ -318,7 +357,8 @@ abstract class _CategoryModel implements CategoryModel {
       final String? text,
       final List<String>? urls,
       final bool lock,
-      final Map<int, Map<String, String>>? supriseMap}) = _$CategoryModelImpl;
+      final Map<int, Map<String, String>>? supriseMap,
+      @WishesConverter() final WishesModel? wishesList}) = _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
@@ -341,6 +381,9 @@ abstract class _CategoryModel implements CategoryModel {
   bool get lock;
   @override
   Map<int, Map<String, String>>? get supriseMap;
+  @override
+  @WishesConverter()
+  WishesModel? get wishesList;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

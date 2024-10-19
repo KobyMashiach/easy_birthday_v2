@@ -47,3 +47,9 @@ final class HomeScreenOpenEditAgain extends HomeScreenStateNavigate {
 
   HomeScreenOpenEditAgain({required this.category});
 }
+
+final class HomeScreenNavToAddWishesList extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenNavToAddWishesList({required this.category});
+}
