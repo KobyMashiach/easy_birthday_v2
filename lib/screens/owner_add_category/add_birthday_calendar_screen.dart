@@ -38,7 +38,6 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
     super.dispose();
   }
 
-  // Function to open a dialog for adding events
   Future<void> _addEvent(BuildContext context, DateTime selectedDay) async {
     final TextEditingController eventController = TextEditingController();
     TimeOfDay? selectedTime;
@@ -122,7 +121,9 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
                     setState(() {
                       _selectedDay = selectedDay;
                     });
-                    _addEvent(context, selectedDay); // Open dialog to add event
+                  },
+                  onDayLongPressed: (selectedDay, focusedDay) {
+                    _addEvent(context, selectedDay);
                   },
                   daysOfWeekHeight: 30,
                   eventLoader: (day) {
@@ -144,7 +145,7 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
                 const SizedBox(height: 8.0),
                 if (_selectedDay != null) ...[
                   Text(
-                    'Events for ${_selectedDay!.toLocal()}'.split(' ')[0],
+                    'Events for ${_selectedDay!.toLocal().day}/${_selectedDay!.toLocal().month}',
                     style: AppTextStyle().title,
                   ),
                   ..._getEventsForDay(_selectedDay!).map((event) => ListTile(
@@ -158,9 +159,7 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
       ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(
         oneButton: true,
-        activeButtonOnTap: () {
-          // Handle your button logic
-        },
+        activeButtonOnTap: () {},
       ),
     );
   }
