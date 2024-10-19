@@ -63,7 +63,7 @@ class PartnerHomeScreen extends StatelessWidget {
                               category: category, isImages: false));
 
                     case CategoryEnum.quizGame:
-                    case CategoryEnum.birthdayCalender:
+                    case CategoryEnum.birthdayCalendar:
                     case CategoryEnum.birthdaySuprise:
                       if (category.lock) {
                         showDialog(

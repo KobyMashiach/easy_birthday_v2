@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 221
+/// Strings: 226
 ///
-/// Built on 2024-10-19 at 03:21 UTC
+/// Built on 2024-10-19 at 15:57 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -373,7 +373,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get pictures => 'תמונות';
 	String get videos => 'סרטונים';
 	String get quiz_game => 'משחק טריוויה';
-	String get birthday_calender => 'לו"ז יום הולדת';
+	String get birthday_calendar => 'לו"ז יום הולדת';
 	String get birthday_suprise => 'הפתעת יום הולדת';
 	String text_description({required GenderContext context}) {
 		switch (context) {
@@ -415,7 +415,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'בחרי קטגוריה';
 		}
 	}
-	String birthday_calender_description({required GenderContext context}) {
+	String birthday_calendar_description({required GenderContext context}) {
 		switch (context) {
 			case GenderContext.male:
 				return 'בוא לבנות את הלו"ז הכי מגניב וכיפי ליום ההולדת של בת הזוג שלך! תכנן לה יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.';
@@ -543,6 +543,11 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 		}
 	}
 	String get no_wish_yet => 'אין עדיין משאלות';
+	String get calendar_time => 'לו"ז';
+	String write_calendar_time_to({required Object title}) => 'רשום לו"ז ל: ${title}';
+	String get month => 'חודש';
+	String get week => 'שבוע';
+	String get two_weeks => 'שבועיים';
 }
 
 /// Flat map(s) containing all translations.
@@ -770,7 +775,7 @@ extension on Translations {
 			case 'pictures': return 'תמונות';
 			case 'videos': return 'סרטונים';
 			case 'quiz_game': return 'משחק טריוויה';
-			case 'birthday_calender': return 'לו"ז יום הולדת';
+			case 'birthday_calendar': return 'לו"ז יום הולדת';
 			case 'birthday_suprise': return 'הפתעת יום הולדת';
 			case 'text_description': return ({required GenderContext context}) {
 				switch (context) {
@@ -812,7 +817,7 @@ extension on Translations {
 						return 'בחרי קטגוריה';
 				}
 			};
-			case 'birthday_calender_description': return ({required GenderContext context}) {
+			case 'birthday_calendar_description': return ({required GenderContext context}) {
 				switch (context) {
 					case GenderContext.male:
 						return 'בוא לבנות את הלו"ז הכי מגניב וכיפי ליום ההולדת של בת הזוג שלך! תכנן לה יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.';
@@ -940,6 +945,11 @@ extension on Translations {
 				}
 			};
 			case 'no_wish_yet': return 'אין עדיין משאלות';
+			case 'calendar_time': return 'לו"ז';
+			case 'write_calendar_time_to': return ({required Object title}) => 'רשום לו"ז ל: ${title}';
+			case 'month': return 'חודש';
+			case 'week': return 'שבוע';
+			case 'two_weeks': return 'שבועיים';
 			default: return null;
 		}
 	}

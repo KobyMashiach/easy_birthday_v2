@@ -42,14 +42,20 @@ final class HomeScreenNavToAddBirthdaySuprise extends HomeScreenStateNavigate {
   HomeScreenNavToAddBirthdaySuprise({required this.category});
 }
 
-final class HomeScreenOpenEditAgain extends HomeScreenStateNavigate {
+final class HomeScreenNavToAddBirthdayCalendar extends HomeScreenStateNavigate {
   final CategoryModel category;
 
-  HomeScreenOpenEditAgain({required this.category});
+  HomeScreenNavToAddBirthdayCalendar({required this.category});
 }
 
 final class HomeScreenNavToAddWishesList extends HomeScreenStateNavigate {
   final CategoryModel category;
 
   HomeScreenNavToAddWishesList({required this.category});
+}
+
+final class HomeScreenOpenEditAgain extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenOpenEditAgain({required this.category});
 }

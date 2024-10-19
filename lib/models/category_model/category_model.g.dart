@@ -44,7 +44,7 @@ const _$CategoryEnumEnumMap = {
   CategoryEnum.pictures: 'pictures',
   CategoryEnum.videos: 'videos',
   CategoryEnum.quizGame: 'quizGame',
-  CategoryEnum.birthdayCalender: 'birthdayCalender',
+  CategoryEnum.birthdayCalendar: 'birthdayCalendar',
   CategoryEnum.birthdaySuprise: 'birthdaySuprise',
   CategoryEnum.wishesList: 'wishesList',
 };

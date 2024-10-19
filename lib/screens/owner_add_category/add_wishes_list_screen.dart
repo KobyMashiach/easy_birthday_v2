@@ -62,42 +62,7 @@ class _AddWishesListScreenState extends State<AddWishesListScreen> {
                   textAlign: TextAlign.center,
                 ),
                 if (widget.category.wishesList?.lock ?? false)
-                  appButton(
-                    text: t.display_wishes,
-                    margin: const EdgeInsets.all(12),
-                    onTap: () async {
-                      final wishesList = widget.category.wishesList!;
-                      await showDialog(
-                        context: context,
-                        builder: (context) => generalDialog(
-                          title: t.wishes_list,
-                          description: t.delete_wishes_description(
-                              context: globalGender,
-                              name: globalPartnerUser!.name),
-                          okButtonText: t.delete_wishes,
-                          okButtonOnTap: () {
-                            widget.deleteWishes.call();
-                            Navigator.of(context).pop();
-                            Navigator.of(context).maybePop();
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("1. ${wishesList.first}"),
-                                ],
-                              ),
-                              Text("2. ${wishesList.second}"),
-                              Text("3. ${wishesList.third}"),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                  displayWishesButton(context),
                 AppTextField(
                   hintText: t.write_contract,
                   maxLines: 12,
@@ -122,6 +87,44 @@ class _AddWishesListScreenState extends State<AddWishesListScreen> {
           }
         },
       ),
+    );
+  }
+
+  Widget displayWishesButton(BuildContext context) {
+    return appButton(
+      text: t.display_wishes,
+      margin: const EdgeInsets.all(12),
+      onTap: () async {
+        final wishesList = widget.category.wishesList!;
+        await showDialog(
+          context: context,
+          builder: (context) => generalDialog(
+            title: t.wishes_list,
+            description: t.delete_wishes_description(
+                context: globalGender, name: globalPartnerUser!.name),
+            okButtonText: t.delete_wishes,
+            okButtonOnTap: () {
+              widget.deleteWishes.call();
+              Navigator.of(context).pop();
+              Navigator.of(context).maybePop();
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text("1. ${wishesList.first}"),
+                  ],
+                ),
+                Text("2. ${wishesList.second}"),
+                Text("3. ${wishesList.third}"),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

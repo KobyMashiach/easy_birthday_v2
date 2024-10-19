@@ -28,7 +28,7 @@ class OwnerHomeScreen extends StatelessWidget {
         picturesVideosWidget(category, screenWidth, pictures: false),
       //TODO: change bottom 3 lines
       CategoryEnum.quizGame => const Text("quizGame"),
-      CategoryEnum.birthdayCalender => const Text("birthdayCalender"),
+      CategoryEnum.birthdayCalendar => const Text("birthdayCalendar"),
       CategoryEnum.birthdaySuprise =>
         Column(children: supriseMapToWidgets(category.supriseMap)),
       CategoryEnum.wishesList => category.wishesList?.lock ?? false

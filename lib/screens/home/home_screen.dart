@@ -1,5 +1,6 @@
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/wishes_model/wishes_model.dart';
+import 'package:easy_birthday/screens/owner_add_category/add_birthday_calendar_screen.dart';
 import 'package:easy_birthday/screens/owner_add_category/add_birthday_suprise_screen.dart';
 import 'package:easy_birthday/screens/owner_add_category/add_wishes_list_screen.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,11 @@ class HomeScreen extends StatelessWidget {
                     context,
                     navToPicturesVideosScreen(newState.category, bloc,
                         isImagesPicker: false));
+              case const (HomeScreenNavToAddBirthdayCalendar):
+                final newState = state as HomeScreenNavToAddBirthdayCalendar;
+
+                KheasydevNavigatePage().pushDuration(context,
+                    AddBirthdayCalendarScreen(category: newState.category));
               case const (HomeScreenNavToAddBirthdaySuprise):
                 final newState = state as HomeScreenNavToAddBirthdaySuprise;
                 KheasydevNavigatePage().pushDuration(

@@ -162,7 +162,7 @@
   "pictures": "תמונות",
   "videos": "סרטונים",
   "quiz_game": "משחק טריוויה",
-  "birthday_calender": "לו\"ז יום הולדת",
+  "birthday_calendar": "לו\"ז יום הולדת",
   "birthday_suprise": "הפתעת יום הולדת",
   "text_description(context=GenderContext)": {
     "male": "יאללה, תשלוף ברכה מהלב או כתוב איזה טקסט קורע שתרצה!",
@@ -184,7 +184,7 @@
     "male": "בחר קטגוריה",
     "female": "בחרי קטגוריה"
   },
-  "birthday_calender_description(context=GenderContext)": {
+  "birthday_calendar_description(context=GenderContext)": {
     "male": "בוא לבנות את הלו\"ז הכי מגניב וכיפי ליום ההולדת של בת הזוג שלך! תכנן לה יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.",
     "female": "בואי לבנות את הלו\"ז הכי מגניב וכיפי ליום ההולדת של בן הזוג שלך! תכנני לו יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות."
   },
@@ -275,5 +275,10 @@
     "male": "חוזה ש$name כתבה במיוחד בשבילך",
     "female": "חוזה ש$name כתב במיוחד בשבילך"
   },
-  "no_wish_yet": "אין עדיין משאלות"
+  "no_wish_yet": "אין עדיין משאלות",
+  "calendar_time": "לו\"ז",
+  "write_calendar_time_to": "רשום לו\"ז ל: $title",
+  "month": "חודש",
+  "week": "שבוע",
+  "two_weeks": "שבועיים"
 }

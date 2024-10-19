@@ -9,7 +9,7 @@ enum CategoryEnum {
   pictures,
   videos,
   quizGame,
-  birthdayCalender,
+  birthdayCalendar,
   birthdaySuprise,
   wishesList
 }
@@ -36,9 +36,9 @@ List<CategoryModel> categoriesList = [
     description: t.quiz_game_description(context: globalGender),
   ),
   CategoryModel(
-    categoryType: CategoryEnum.birthdayCalender,
-    name: t.birthday_calender,
-    description: t.birthday_calender_description(context: globalGender),
+    categoryType: CategoryEnum.birthdayCalendar,
+    name: t.birthday_calendar,
+    description: t.birthday_calendar_description(context: globalGender),
   ),
   CategoryModel(
     categoryType: CategoryEnum.birthdaySuprise,
@@ -60,7 +60,7 @@ extension CategoryEnumX on CategoryEnum {
       CategoryEnum.pictures => albumIllustration,
       CategoryEnum.videos => videosIllustration,
       CategoryEnum.quizGame => quizIllustration,
-      CategoryEnum.birthdayCalender => calenderIllustration,
+      CategoryEnum.birthdayCalendar => calendarIllustration,
       CategoryEnum.birthdaySuprise => supriseIllustration,
       CategoryEnum.wishesList => wishIllustrations,
     };
