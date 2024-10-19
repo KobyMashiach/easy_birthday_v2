@@ -61,7 +61,7 @@ class _AddWishesListScreenState extends State<AddWishesListScreen> {
                   style: AppTextStyle().title,
                   textAlign: TextAlign.center,
                 ),
-                if (widget.category.wishesList!.lock)
+                if (widget.category.wishesList?.lock ?? false)
                   appButton(
                     text: t.display_wishes,
                     margin: const EdgeInsets.all(12),
