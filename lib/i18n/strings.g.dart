@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 199
+/// Strings: 200
 ///
-/// Built on 2024-10-16 at 09:37 UTC
+/// Built on 2024-10-18 at 23:58 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -236,6 +236,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get add_notes => 'הוספת הערות';
 	String get contact_phone => 'מספר טלפון ליצירת קשר';
 	String get full_name => 'שם מלא';
+	String get first_name => 'שם פרטי';
 	String get otp_code => 'קוד אימות';
 	String get otp_code_description => 'קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור';
 	String get send_again => 'שלח שוב';
@@ -489,12 +490,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	}
 	String get the_image => 'התמונה';
 	String get the_text => 'הטקסט';
-	String secret_dialog({required GenderContext context}) {
+	String secret_dialog({required GenderContext context, required Object name}) {
 		switch (context) {
 			case GenderContext.male:
-				return 'ההפתעה נעולה עד שהבת זוג שלך תיתן לך את ההרשאה לפתוח אותה!';
+				return 'ההפתעה נעולה עד ש${name} תיתן לך את ההרשאה לפתוח אותה!';
 			case GenderContext.female:
-				return 'ההפתעה נעולה עד שהבן זוג שלך יתן לך את ההרשאה לפתוח אותה!';
+				return 'ההפתעה נעולה עד ש${name} יתן לך את ההרשאה לפתוח אותה!';
 		}
 	}
 }
@@ -587,6 +588,7 @@ extension on Translations {
 			case 'add_notes': return 'הוספת הערות';
 			case 'contact_phone': return 'מספר טלפון ליצירת קשר';
 			case 'full_name': return 'שם מלא';
+			case 'first_name': return 'שם פרטי';
 			case 'otp_code': return 'קוד אימות';
 			case 'otp_code_description': return 'קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור';
 			case 'send_again': return 'שלח שוב';
@@ -840,12 +842,12 @@ extension on Translations {
 			};
 			case 'the_image': return 'התמונה';
 			case 'the_text': return 'הטקסט';
-			case 'secret_dialog': return ({required GenderContext context}) {
+			case 'secret_dialog': return ({required GenderContext context, required Object name}) {
 				switch (context) {
 					case GenderContext.male:
-						return 'ההפתעה נעולה עד שהבת זוג שלך תיתן לך את ההרשאה לפתוח אותה!';
+						return 'ההפתעה נעולה עד ש${name} תיתן לך את ההרשאה לפתוח אותה!';
 					case GenderContext.female:
-						return 'ההפתעה נעולה עד שהבן זוג שלך יתן לך את ההרשאה לפתוח אותה!';
+						return 'ההפתעה נעולה עד ש${name} יתן לך את ההרשאה לפתוח אותה!';
 				}
 			};
 			default: return null;

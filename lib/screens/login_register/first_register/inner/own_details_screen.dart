@@ -95,7 +95,7 @@ class _OwnDetailsScreenState extends State<OwnDetailsScreen> {
                           readOnly: true,
                         ),
                         AppTextField(
-                          hintText: t.full_name,
+                          hintText: t.first_name,
                           controller: fullNameController,
                           keyboard: TextInputType.name,
                           showError: errorsMap["name"],

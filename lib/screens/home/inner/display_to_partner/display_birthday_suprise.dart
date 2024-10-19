@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/widgets/design/display_screens_top.dart';
@@ -41,12 +39,33 @@ class _DisplayBirthdaySupriseState extends State<DisplayBirthdaySuprise> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               DisplayScreensTop(category: widget.category),
-              ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => items[index],
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 12),
-                  itemCount: items.length)
+              Expanded(
+                child: ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      final currentWidget = items[index];
+                      String? path;
+                      if (currentWidget is Image) {
+                        if (currentWidget.image is NetworkImage) {
+                          final networkImage =
+                              currentWidget.image as NetworkImage;
+                          path = networkImage.url;
+                        }
+                      }
+                      return GestureDetector(
+                          onTap: path != null
+                              ? () => _showImageDialog(path!)
+                              : null,
+                          child: Center(
+                            child: path != null
+                                ? imageCacheDisplay(path)
+                                : currentWidget,
+                          ));
+                    },
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
+                    itemCount: items.length),
+              )
             ],
           ),
         ),
@@ -54,25 +73,10 @@ class _DisplayBirthdaySupriseState extends State<DisplayBirthdaySuprise> {
     );
   }
 
-  Image imageFileDisplay(File newImageFile) {
-    return Image.file(
-      newImageFile,
-      fit: BoxFit.cover,
-      errorBuilder: (context, error, stackTrace) {
-        return Container(
-          color: Colors.grey,
-          child: const Icon(
-            Icons.image_not_supported,
-            color: Colors.white,
-          ),
-        );
-      },
-    );
-  }
-
   CachedNetworkImage imageCacheDisplay(String mediaUrl) {
     return CachedNetworkImage(
       imageUrl: mediaUrl,
+      height: 200,
       fit: BoxFit.cover,
       placeholder: (context, url) => const Center(
         child: CircularProgressIndicator(),
@@ -87,7 +91,7 @@ class _DisplayBirthdaySupriseState extends State<DisplayBirthdaySuprise> {
     );
   }
 
-  void _showImageDialog(int initialIndex) {
+  void _showImageDialog(String mediaUrl) {
     final Size screenSize = MediaQuery.of(context).size;
     showDialog(
       context: context,
@@ -99,14 +103,7 @@ class _DisplayBirthdaySupriseState extends State<DisplayBirthdaySuprise> {
             width: screenSize.width,
             height: screenSize.height * 0.7,
             padding: const EdgeInsets.all(12),
-            child: PageView.builder(
-              controller: PageController(initialPage: initialIndex),
-              itemCount: widget.category.urls?.length ?? 0,
-              itemBuilder: (context, index) {
-                final mediaUrl = widget.category.urls![index];
-                return imageCacheDisplay(mediaUrl);
-              },
-            ),
+            child: imageCacheDisplay(mediaUrl),
           ),
         );
       },

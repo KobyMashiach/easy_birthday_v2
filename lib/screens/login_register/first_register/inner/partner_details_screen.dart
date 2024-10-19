@@ -179,7 +179,7 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
                         const SizedBox(height: 24),
                         phoneNumberFields(),
                         AppTextField(
-                          hintText: t.full_name,
+                          hintText: t.first_name,
                           controller: fullNameController,
                           keyboard: TextInputType.name,
                           showError: errorsMap["name"],

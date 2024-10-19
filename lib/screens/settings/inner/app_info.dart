@@ -20,7 +20,7 @@ class AppInfo extends StatelessWidget {
       t.current_plan: globalEvent?.planSubscribe.title ?? "Free"
     };
     Map<String, String> partnerInfo = {
-      t.full_name: globalPartnerUser?.name ?? "Empty",
+      t.first_name: globalPartnerUser?.name ?? "Empty",
       t.phone: globalPartnerUser?.phoneNumber ?? "Empty",
       t.date_of_birth: globalPartnerUser?.dateOfBirth != null
           ? dateTimeToString(globalPartnerUser!.dateOfBirth!)
