@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 226
+/// Strings: 239
 ///
-/// Built on 2024-10-19 at 15:57 UTC
+/// Built on 2024-10-23 at 07:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -475,6 +475,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'את בטוחה שאת רוצה למחוק את ${text}?';
 		}
 	}
+	String sure_delete({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'אתה בטוח שאתה רוצה למחוק את האירוע הזה?';
+			case GenderContext.female:
+				return 'את בטוחה שאת רוצה למחוק את האירוע הזה?';
+		}
+	}
 	String get delete => 'מחיקה';
 	String get mark_all => 'סמן הכל';
 	String get cancel_marking => 'בטל סימון';
@@ -548,6 +556,29 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get month => 'חודש';
 	String get week => 'שבוע';
 	String get two_weeks => 'שבועיים';
+	String get pick_start_date => 'בחר תאריך התחלה';
+	String get pick_end_date => 'בחר תאריך סיום';
+	String get pick_date_range => 'בחר טווח תאריכים';
+	String event_in_date({required Object date}) => 'אירועים בתאריך ${date}';
+	String add_event({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הוסף אירוע';
+			case GenderContext.female:
+				return 'הוסיפי אירוע';
+		}
+	}
+	String add_event_date({required GenderContext context, required Object date}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הוסף אירוע לתאריך ${date}';
+			case GenderContext.female:
+				return 'הוסיפי אירוע לתאריך ${date}';
+		}
+	}
+	String get event_description => 'תיאור אירוע';
+	String get select_time => 'בחירת שעה';
+	String selected_time({required Object time}) => 'שעה שנבחרה: ${time}';
 }
 
 /// Flat map(s) containing all translations.
@@ -877,6 +908,14 @@ extension on Translations {
 						return 'את בטוחה שאת רוצה למחוק את ${text}?';
 				}
 			};
+			case 'sure_delete': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'אתה בטוח שאתה רוצה למחוק את האירוע הזה?';
+					case GenderContext.female:
+						return 'את בטוחה שאת רוצה למחוק את האירוע הזה?';
+				}
+			};
 			case 'delete': return 'מחיקה';
 			case 'mark_all': return 'סמן הכל';
 			case 'cancel_marking': return 'בטל סימון';
@@ -950,6 +989,29 @@ extension on Translations {
 			case 'month': return 'חודש';
 			case 'week': return 'שבוע';
 			case 'two_weeks': return 'שבועיים';
+			case 'pick_start_date': return 'בחר תאריך התחלה';
+			case 'pick_end_date': return 'בחר תאריך סיום';
+			case 'pick_date_range': return 'בחר טווח תאריכים';
+			case 'event_in_date': return ({required Object date}) => 'אירועים בתאריך ${date}';
+			case 'add_event': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הוסף אירוע';
+					case GenderContext.female:
+						return 'הוסיפי אירוע';
+				}
+			};
+			case 'add_event_date': return ({required GenderContext context, required Object date}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הוסף אירוע לתאריך ${date}';
+					case GenderContext.female:
+						return 'הוסיפי אירוע לתאריך ${date}';
+				}
+			};
+			case 'event_description': return 'תיאור אירוע';
+			case 'select_time': return 'בחירת שעה';
+			case 'selected_time': return ({required Object time}) => 'שעה שנבחרה: ${time}';
 			default: return null;
 		}
 	}

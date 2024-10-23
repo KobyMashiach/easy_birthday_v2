@@ -1,8 +1,12 @@
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
+import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
+import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
+import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +27,7 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
   late TextEditingController textController;
 
   DateTime? _selectedDay;
+  DateTimeRange? rangeDateTime;
   final Map<DateTime, List<String>> _events = {};
 
   @override
@@ -38,65 +43,6 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
     super.dispose();
   }
 
-  Future<void> _addEvent(BuildContext context, DateTime selectedDay) async {
-    final TextEditingController eventController = TextEditingController();
-    TimeOfDay? selectedTime;
-
-    await showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Add Event for ${selectedDay.toLocal()}'.split(' ')[0]),
-              TextField(
-                controller: eventController,
-                decoration: const InputDecoration(
-                  labelText: 'Event description',
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  final TimeOfDay? time = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.now(),
-                  );
-                  if (time != null) {
-                    setState(() {
-                      selectedTime = time;
-                    });
-                  }
-                },
-                child: Text(selectedTime == null
-                    ? 'Select Time'
-                    : 'Selected Time: ${selectedTime!.format(context)}'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (eventController.text.isNotEmpty && selectedTime != null) {
-                    setState(() {
-                      final eventText =
-                          '${eventController.text} at ${selectedTime!.format(context)}';
-                      if (_events[selectedDay] != null) {
-                        _events[selectedDay]!.add(eventText);
-                      } else {
-                        _events[selectedDay] = [eventText];
-                      }
-                    });
-                    Navigator.pop(context);
-                  }
-                },
-                child: const Text('Add Event'),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,49 +54,77 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
             child: Column(
               children: [
                 ...topWidgets,
-                TableCalendar(
-                  locale: getLanguageCode(),
-                  firstDay: DateTime.utc(2024, 11, 17),
-                  lastDay: DateTime.utc(2024, 11, 20),
-                  focusedDay: DateTime.utc(2024, 11, 17),
-                  selectedDayPredicate: (day) {
-                    return isSameDay(_selectedDay, day);
-                  },
-                  calendarFormat: _calendarFormat,
-                  onDaySelected: (selectedDay, focusedDay) {
-                    setState(() {
-                      _selectedDay = selectedDay;
-                    });
-                  },
-                  onDayLongPressed: (selectedDay, focusedDay) {
-                    _addEvent(context, selectedDay);
-                  },
-                  daysOfWeekHeight: 30,
-                  eventLoader: (day) {
-                    return _events[day] ?? [];
-                  },
-                  availableCalendarFormats: {
-                    CalendarFormat.week: t.month,
-                    CalendarFormat.twoWeeks: t.week,
-                    CalendarFormat.month: t.two_weeks,
-                  },
-                  onFormatChanged: (format) {
-                    if (_calendarFormat != format) {
+                pickRangeDateButton(context),
+                if (rangeDateTime != null)
+                  TableCalendar(
+                    locale: getLanguageCode(),
+                    focusedDay: _selectedDay ?? rangeDateTime!.start,
+                    firstDay: rangeDateTime!.start,
+                    lastDay: rangeDateTime!.end,
+                    availableGestures: AvailableGestures.horizontalSwipe,
+                    selectedDayPredicate: (day) {
+                      return isSameDay(_selectedDay, day);
+                    },
+                    calendarFormat: _calendarFormat,
+                    onDaySelected: (selectedDay, focusedDay) {
                       setState(() {
-                        _calendarFormat = format;
+                        _selectedDay = selectedDay;
                       });
-                    }
-                  },
-                ),
+                    },
+                    onDayLongPressed: (selectedDay, focusedDay) {
+                      _addEvent(context, selectedDay);
+                    },
+                    daysOfWeekHeight: 30,
+                    eventLoader: (day) {
+                      return _events[day] ?? [];
+                    },
+                    availableCalendarFormats: {
+                      CalendarFormat.week: t.month,
+                      CalendarFormat.twoWeeks: t.week,
+                      CalendarFormat.month: t.two_weeks,
+                    },
+                    onFormatChanged: (format) {
+                      if (_calendarFormat != format) {
+                        setState(() {
+                          _calendarFormat = format;
+                        });
+                      }
+                    },
+                  ),
                 const SizedBox(height: 8.0),
                 if (_selectedDay != null) ...[
                   Text(
-                    'Events for ${_selectedDay!.toLocal().day}/${_selectedDay!.toLocal().month}',
+                    t.event_in_date(date: getDateString()),
                     style: AppTextStyle().title,
                   ),
                   ..._getEventsForDay(_selectedDay!).map((event) => ListTile(
-                        title: Text(event),
+                        leading: Text(
+                          event,
+                          style: AppTextStyle().description,
+                        ),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () async {
+                            final userChoise = await showDialog(
+                              context: context,
+                              builder: (context) => generalDialog(
+                                  title: t.sure_delete(context: globalGender)),
+                            );
+                            if (userChoise) {
+                              setState(() {
+                                _events[_selectedDay]!.remove(event);
+                                if (_events[_selectedDay]!.isEmpty) {
+                                  _events.remove(_selectedDay);
+                                }
+                              });
+                            }
+                          },
+                        ),
                       )),
+                  appButton(
+                      text: t.add_event(context: globalGender),
+                      unfillColors: true,
+                      onTap: () => _addEvent(context, _selectedDay!)),
                 ]
               ],
             ),
@@ -161,6 +135,27 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
         oneButton: true,
         activeButtonOnTap: () {},
       ),
+    );
+  }
+
+  Widget pickRangeDateButton(BuildContext context) {
+    return appButton(
+      text: t.pick_date_range,
+      margin: const EdgeInsets.all(12),
+      onTap: () async {
+        final DateTimeRange? pickedRange = await showDateRangePicker(
+          context: context,
+          firstDate: DateTime.now().subtract(const Duration(days: 30)),
+          lastDate: DateTime.now().add(const Duration(days: 365)),
+        );
+
+        if (pickedRange != null) {
+          setState(() {
+            _selectedDay = null;
+            rangeDateTime = pickedRange;
+          });
+        }
+      },
     );
   }
 
@@ -179,4 +174,93 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
       ),
     ];
   }
+
+  Future<void> _addEvent(BuildContext context, DateTime selectedDay) async {
+    final TextEditingController eventController = TextEditingController();
+    TimeOfDay? selectedTime;
+
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            top: 16.0,
+            left: 16.0,
+            right: 16.0,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(t.add_event_date(
+                    context: globalGender, date: getDateString())),
+                AppTextField(
+                  hintText: t.event_description,
+                  controller: eventController,
+                  textInputAction: TextInputAction.newline,
+                  keyboard: TextInputType.multiline,
+                  maxLines: 2,
+                  maxLength: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: appButton(
+                          unfillColors: true,
+                          onTap: () async {
+                            final TimeOfDay? time = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                            );
+                            if (time != null) {
+                              setState(() {
+                                selectedTime = time;
+                              });
+                            }
+                          },
+                          text: selectedTime == null
+                              ? t.select_time
+                              : t.selected_time(
+                                  time: selectedTime!.format(context))),
+                    ),
+                    const SizedBox(width: 24),
+                    Expanded(
+                      child: appButton(
+                        disableColors: !(eventController.text.isNotEmpty &&
+                            selectedTime != null),
+                        onTap: () {
+                          if (eventController.text.isNotEmpty &&
+                              selectedTime != null) {
+                            setState(() {
+                              final eventText =
+                                  '${selectedTime!.format(context)} - ${eventController.text}';
+                              if (_events[selectedDay] != null) {
+                                _events[selectedDay]!.add(eventText);
+                              } else {
+                                _events[selectedDay] = [eventText];
+                              }
+                            });
+                            Navigator.pop(context);
+                          }
+                        },
+                        text: t.add_event(context: globalGender),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  String getDateString() =>
+      "${_selectedDay!.toLocal().day}/${_selectedDay!.toLocal().month}";
 }

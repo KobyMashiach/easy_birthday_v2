@@ -224,6 +224,10 @@
     "male": "אתה בטוח שאתה רוצה למחוק את $text?",
     "female": "את בטוחה שאת רוצה למחוק את $text?"
   },
+  "sure_delete(context=GenderContext)": {
+    "male": "אתה בטוח שאתה רוצה למחוק את האירוע הזה?",
+    "female": "את בטוחה שאת רוצה למחוק את האירוע הזה?"
+  },
   "delete": "מחיקה",
   "mark_all": "סמן הכל",
   "cancel_marking": "בטל סימון",
@@ -280,5 +284,20 @@
   "write_calendar_time_to": "רשום לו\"ז ל: $title",
   "month": "חודש",
   "week": "שבוע",
-  "two_weeks": "שבועיים"
+  "two_weeks": "שבועיים",
+  "pick_start_date": "בחר תאריך התחלה",
+  "pick_end_date": "בחר תאריך סיום",
+  "pick_date_range": "בחר טווח תאריכים",
+  "event_in_date": "אירועים בתאריך $date",
+  "add_event(context=GenderContext)": {
+    "male": "הוסף אירוע",
+    "female": "הוסיפי אירוע"
+  },
+  "add_event_date(context=GenderContext)": {
+    "male": "הוסף אירוע לתאריך $date",
+    "female": "הוסיפי אירוע לתאריך $date"
+  },
+  "event_description": "תיאור אירוע",
+  "select_time": "בחירת שעה",
+  "selected_time": "שעה שנבחרה: $time"
 }
