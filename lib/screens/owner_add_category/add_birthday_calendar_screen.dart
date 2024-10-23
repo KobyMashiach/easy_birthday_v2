@@ -55,77 +55,9 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
               children: [
                 ...topWidgets,
                 pickRangeDateButton(context),
-                if (rangeDateTime != null)
-                  TableCalendar(
-                    locale: getLanguageCode(),
-                    focusedDay: _selectedDay ?? rangeDateTime!.start,
-                    firstDay: rangeDateTime!.start,
-                    lastDay: rangeDateTime!.end,
-                    availableGestures: AvailableGestures.horizontalSwipe,
-                    selectedDayPredicate: (day) {
-                      return isSameDay(_selectedDay, day);
-                    },
-                    calendarFormat: _calendarFormat,
-                    onDaySelected: (selectedDay, focusedDay) {
-                      setState(() {
-                        _selectedDay = selectedDay;
-                      });
-                    },
-                    onDayLongPressed: (selectedDay, focusedDay) {
-                      _addEvent(context, selectedDay);
-                    },
-                    daysOfWeekHeight: 30,
-                    eventLoader: (day) {
-                      return _events[day] ?? [];
-                    },
-                    availableCalendarFormats: {
-                      CalendarFormat.week: t.month,
-                      CalendarFormat.twoWeeks: t.week,
-                      CalendarFormat.month: t.two_weeks,
-                    },
-                    onFormatChanged: (format) {
-                      if (_calendarFormat != format) {
-                        setState(() {
-                          _calendarFormat = format;
-                        });
-                      }
-                    },
-                  ),
+                if (rangeDateTime != null) tableCalendar(context),
                 const SizedBox(height: 8.0),
-                if (_selectedDay != null) ...[
-                  Text(
-                    t.event_in_date(date: getDateString()),
-                    style: AppTextStyle().title,
-                  ),
-                  ..._getEventsForDay(_selectedDay!).map((event) => ListTile(
-                        leading: Text(
-                          event,
-                          style: AppTextStyle().description,
-                        ),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete, color: Colors.red),
-                          onPressed: () async {
-                            final userChoise = await showDialog(
-                              context: context,
-                              builder: (context) => generalDialog(
-                                  title: t.sure_delete(context: globalGender)),
-                            );
-                            if (userChoise) {
-                              setState(() {
-                                _events[_selectedDay]!.remove(event);
-                                if (_events[_selectedDay]!.isEmpty) {
-                                  _events.remove(_selectedDay);
-                                }
-                              });
-                            }
-                          },
-                        ),
-                      )),
-                  appButton(
-                      text: t.add_event(context: globalGender),
-                      unfillColors: true,
-                      onTap: () => _addEvent(context, _selectedDay!)),
-                ]
+                if (_selectedDay != null) ...displaySelectedDateEvents(context)
               ],
             ),
           ),
@@ -135,6 +67,81 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
         oneButton: true,
         activeButtonOnTap: () {},
       ),
+    );
+  }
+
+  List<Widget> displaySelectedDateEvents(BuildContext context) {
+    return [
+      Text(
+        t.event_in_date(date: getDateString()),
+        style: AppTextStyle().title,
+      ),
+      ..._getEventsForDay(_selectedDay!).map((event) => ListTile(
+            leading: Text(
+              event,
+              style: AppTextStyle().description,
+            ),
+            trailing: IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: () async {
+                final userChoise = await showDialog(
+                  context: context,
+                  builder: (context) => generalDialog(
+                      title: t.sure_delete(context: globalGender)),
+                );
+                if (userChoise) {
+                  setState(() {
+                    _events[_selectedDay]!.remove(event);
+                    if (_events[_selectedDay]!.isEmpty) {
+                      _events.remove(_selectedDay);
+                    }
+                  });
+                }
+              },
+            ),
+          )),
+      appButton(
+          text: t.add_event(context: globalGender),
+          unfillColors: true,
+          onTap: () => _addEvent(context, _selectedDay!)),
+    ];
+  }
+
+  TableCalendar<dynamic> tableCalendar(BuildContext context) {
+    return TableCalendar(
+      locale: getLanguageCode(),
+      focusedDay: _selectedDay ?? rangeDateTime!.start,
+      firstDay: rangeDateTime!.start,
+      lastDay: rangeDateTime!.end,
+      availableGestures: AvailableGestures.horizontalSwipe,
+      selectedDayPredicate: (day) {
+        return isSameDay(_selectedDay, day);
+      },
+      calendarFormat: _calendarFormat,
+      onDaySelected: (selectedDay, focusedDay) {
+        setState(() {
+          _selectedDay = selectedDay;
+        });
+      },
+      onDayLongPressed: (selectedDay, focusedDay) {
+        _addEvent(context, selectedDay);
+      },
+      daysOfWeekHeight: 30,
+      eventLoader: (day) {
+        return _events[day] ?? [];
+      },
+      availableCalendarFormats: {
+        CalendarFormat.week: t.month,
+        CalendarFormat.twoWeeks: t.week,
+        CalendarFormat.month: t.two_weeks,
+      },
+      onFormatChanged: (format) {
+        if (_calendarFormat != format) {
+          setState(() {
+            _calendarFormat = format;
+          });
+        }
+      },
     );
   }
 
