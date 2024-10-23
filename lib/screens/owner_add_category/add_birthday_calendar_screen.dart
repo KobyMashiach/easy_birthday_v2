@@ -124,7 +124,16 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
       },
       daysOfWeekHeight: 30,
       eventLoader: (day) {
-        return _events.dateEventMap[day] ?? [];
+        DateTime eventDate = DateTime(day.year, day.month, day.day);
+        return _events.dateEventMap.entries
+            .where((entry) =>
+                entry.key.year == eventDate.year &&
+                entry.key.month == eventDate.month &&
+                entry.key.day == eventDate.day)
+            .map((entry) => entry.value)
+            .expand((eventList) =>
+                eventList) // Flatten the list if there are multiple events
+            .toList();
       },
       availableCalendarFormats: {
         CalendarFormat.week: t.month,

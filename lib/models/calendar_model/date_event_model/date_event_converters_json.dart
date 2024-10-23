@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class TimeOfDayConverter implements JsonConverter<TimeOfDay, Map<String, int>> {
+class TimeOfDayConverter
+    implements JsonConverter<TimeOfDay, Map<String, dynamic>> {
   const TimeOfDayConverter();
 
   @override
-  TimeOfDay fromJson(Map<String, int> json) {
+  TimeOfDay fromJson(Map<String, dynamic> json) {
     return TimeOfDay(hour: json['hour']!, minute: json['minute']!);
   }
 
   @override
-  Map<String, int> toJson(TimeOfDay time) {
+  Map<String, dynamic> toJson(TimeOfDay time) {
     return {'hour': time.hour, 'minute': time.minute};
   }
 }

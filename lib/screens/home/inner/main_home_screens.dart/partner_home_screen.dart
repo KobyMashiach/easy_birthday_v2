@@ -5,6 +5,7 @@ import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/text_items_model/text_item_model.dart';
+import 'package:easy_birthday/screens/partner_display_screens/display_birthday_calendar.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_birthday_suprise.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_pictures_videos.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_text.dart';
@@ -64,6 +65,9 @@ class PartnerHomeScreen extends StatelessWidget {
 
                     case CategoryEnum.quizGame:
                     case CategoryEnum.birthdayCalendar:
+                      KheasydevNavigatePage().pushDuration(
+                          context, DisplayBirthdayCalendar(category: category));
+
                     case CategoryEnum.birthdaySuprise:
                       if (category.lock) {
                         showDialog(

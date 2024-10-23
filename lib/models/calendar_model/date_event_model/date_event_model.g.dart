@@ -8,8 +8,8 @@ part of 'date_event_model.dart';
 
 _$DateEventModelImpl _$$DateEventModelImplFromJson(Map<String, dynamic> json) =>
     _$DateEventModelImpl(
-      time:
-          const TimeOfDayConverter().fromJson(json['time'] as Map<String, int>),
+      time: const TimeOfDayConverter()
+          .fromJson(json['time'] as Map<String, dynamic>),
       description: json['description'] as String,
     );
 
