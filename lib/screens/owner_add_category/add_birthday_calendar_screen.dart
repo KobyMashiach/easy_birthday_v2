@@ -1,6 +1,8 @@
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/models/calendar_model/calendar_model.dart';
+import 'package:easy_birthday/models/calendar_model/date_event_model/date_event_model.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
@@ -15,7 +17,9 @@ import 'package:table_calendar/table_calendar.dart';
 
 class AddBirthdayCalendarScreen extends StatefulWidget {
   final CategoryModel category;
-  const AddBirthdayCalendarScreen({super.key, required this.category, s});
+  final Function(CalendarModel calendar) onDone;
+  const AddBirthdayCalendarScreen(
+      {super.key, required this.category, required this.onDone});
 
   @override
   State<AddBirthdayCalendarScreen> createState() =>
@@ -24,23 +28,14 @@ class AddBirthdayCalendarScreen extends StatefulWidget {
 
 class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  late TextEditingController textController;
 
   DateTime? _selectedDay;
-  DateTimeRange? rangeDateTime;
-  final Map<DateTime, List<String>> _events = {};
+  late CalendarModel _events;
 
   @override
   void initState() {
-    textController = TextEditingController();
-    textController.text = widget.category.wishesList?.contract ?? "";
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
+    _events = widget.category.calendarEvents ?? const CalendarModel();
   }
 
   @override
@@ -55,7 +50,7 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
               children: [
                 ...topWidgets,
                 pickRangeDateButton(context),
-                if (rangeDateTime != null) tableCalendar(context),
+                if (_events.startDate != null) tableCalendar(context),
                 const SizedBox(height: 8.0),
                 if (_selectedDay != null) ...displaySelectedDateEvents(context)
               ],
@@ -65,7 +60,13 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
       ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(
         oneButton: true,
-        activeButtonOnTap: () {},
+        activeButtonDisable: _events.startDate == null,
+        activeButtonOnTap: _events.startDate != null
+            ? () {
+                widget.onDone.call(_events);
+                Navigator.of(context).pop();
+              }
+            : null,
       ),
     );
   }
@@ -78,7 +79,7 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
       ),
       ..._getEventsForDay(_selectedDay!).map((event) => ListTile(
             leading: Text(
-              event,
+              "${event.time.format(context)} - ${event.description}",
               style: AppTextStyle().description,
             ),
             trailing: IconButton(
@@ -90,12 +91,7 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
                       title: t.sure_delete(context: globalGender)),
                 );
                 if (userChoise) {
-                  setState(() {
-                    _events[_selectedDay]!.remove(event);
-                    if (_events[_selectedDay]!.isEmpty) {
-                      _events.remove(_selectedDay);
-                    }
-                  });
+                  setState(() => removeEvent(_selectedDay!, event));
                 }
               },
             ),
@@ -110,9 +106,9 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
   TableCalendar<dynamic> tableCalendar(BuildContext context) {
     return TableCalendar(
       locale: getLanguageCode(),
-      focusedDay: _selectedDay ?? rangeDateTime!.start,
-      firstDay: rangeDateTime!.start,
-      lastDay: rangeDateTime!.end,
+      focusedDay: _selectedDay ?? _events.startDate!,
+      firstDay: _events.startDate!,
+      lastDay: _events.endDate!,
       availableGestures: AvailableGestures.horizontalSwipe,
       selectedDayPredicate: (day) {
         return isSameDay(_selectedDay, day);
@@ -128,7 +124,7 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
       },
       daysOfWeekHeight: 30,
       eventLoader: (day) {
-        return _events[day] ?? [];
+        return _events.dateEventMap[day] ?? [];
       },
       availableCalendarFormats: {
         CalendarFormat.week: t.month,
@@ -159,15 +155,18 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
         if (pickedRange != null) {
           setState(() {
             _selectedDay = null;
-            rangeDateTime = pickedRange;
+            _events = _events.copyWith(
+                startDate: pickedRange.start,
+                endDate: pickedRange.end,
+                dateEventMap: {});
           });
         }
       },
     );
   }
 
-  List<String> _getEventsForDay(DateTime day) {
-    return _events[day] ?? [];
+  List<DateEventModel> _getEventsForDay(DateTime day) {
+    return _events.dateEventMap[day] ?? [];
   }
 
   List<Widget> get topWidgets {
@@ -239,21 +238,8 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
                       child: appButton(
                         disableColors: !(eventController.text.isNotEmpty &&
                             selectedTime != null),
-                        onTap: () {
-                          if (eventController.text.isNotEmpty &&
-                              selectedTime != null) {
-                            setState(() {
-                              final eventText =
-                                  '${selectedTime!.format(context)} - ${eventController.text}';
-                              if (_events[selectedDay] != null) {
-                                _events[selectedDay]!.add(eventText);
-                              } else {
-                                _events[selectedDay] = [eventText];
-                              }
-                            });
-                            Navigator.pop(context);
-                          }
-                        },
+                        onTap: () => addNewEvent(eventController, selectedTime,
+                            selectedDay, context),
                         text: t.add_event(context: globalGender),
                       ),
                     ),
@@ -266,6 +252,54 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
         );
       },
     );
+  }
+
+  void addNewEvent(TextEditingController eventController,
+      TimeOfDay? selectedTime, DateTime selectedDay, BuildContext context) {
+    if (eventController.text.isNotEmpty && selectedTime != null) {
+      setState(() {
+        final newEvent = DateEventModel(
+          time: selectedTime,
+          description: eventController.text,
+        );
+
+        final updatedDateEventMap =
+            Map<DateTime, List<DateEventModel>>.from(_events.dateEventMap);
+
+        if (updatedDateEventMap[selectedDay] != null) {
+          updatedDateEventMap[selectedDay]!.add(newEvent);
+        } else {
+          updatedDateEventMap[selectedDay] = [newEvent];
+        }
+        updatedDateEventMap[selectedDay]!.sort((a, b) {
+          final timeA = a.time;
+          final timeB = b.time;
+          return timeA.hour.compareTo(timeB.hour) != 0
+              ? timeA.hour.compareTo(timeB.hour)
+              : timeA.minute.compareTo(timeB.minute);
+        });
+
+        _events = _events.copyWith(dateEventMap: updatedDateEventMap);
+      });
+
+      Navigator.pop(context);
+    }
+  }
+
+  void removeEvent(DateTime selectedDay, DateEventModel event) {
+    setState(() {
+      final updatedDateEventMap =
+          Map<DateTime, List<DateEventModel>>.from(_events.dateEventMap);
+
+      if (updatedDateEventMap[selectedDay] != null) {
+        updatedDateEventMap[selectedDay]!.remove(event);
+        if (updatedDateEventMap[selectedDay]!.isEmpty) {
+          updatedDateEventMap.remove(selectedDay);
+        }
+
+        _events = _events.copyWith(dateEventMap: updatedDateEventMap);
+      }
+    });
   }
 
   String getDateString() =>

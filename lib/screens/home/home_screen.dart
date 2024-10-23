@@ -71,9 +71,15 @@ class HomeScreen extends StatelessWidget {
                         isImagesPicker: false));
               case const (HomeScreenNavToAddBirthdayCalendar):
                 final newState = state as HomeScreenNavToAddBirthdayCalendar;
-
-                KheasydevNavigatePage().pushDuration(context,
-                    AddBirthdayCalendarScreen(category: newState.category));
+                KheasydevNavigatePage().pushDuration(
+                    context,
+                    AddBirthdayCalendarScreen(
+                      category: newState.category,
+                      onDone: (calendar) => bloc.add(
+                          HomeScreenEventUpdateCategoryInEvent(
+                              category: newState.category
+                                  .copyWith(calendarEvents: calendar))),
+                    ));
               case const (HomeScreenNavToAddBirthdaySuprise):
                 final newState = state as HomeScreenNavToAddBirthdaySuprise;
                 KheasydevNavigatePage().pushDuration(

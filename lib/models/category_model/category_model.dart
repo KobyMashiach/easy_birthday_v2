@@ -1,3 +1,4 @@
+import 'package:easy_birthday/models/calendar_model/calendar_model.dart';
 import 'package:easy_birthday/models/category_model/category_converters_json.dart';
 import 'package:easy_birthday/models/wishes_model/wishes_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -19,6 +20,7 @@ class CategoryModel with _$CategoryModel {
     @Default(false) bool lock,
     Map<int, Map<String, String>>? supriseMap,
     @WishesConverter() WishesModel? wishesList,
+    @CalendarModelConverter() CalendarModel? calendarEvents,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

@@ -1,20 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_birthday/core/general_functions.dart';
-import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
 
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/enums.dart';
+import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/main.dart';
+import 'package:easy_birthday/models/calendar_model/date_event_model/date_event_model.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/screens/home/bloc/home_screen_bloc.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
+import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 
 class OwnerHomeScreen extends StatelessWidget {
   const OwnerHomeScreen({super.key});
@@ -26,9 +29,41 @@ class OwnerHomeScreen extends StatelessWidget {
         picturesVideosWidget(category, screenWidth, pictures: true),
       CategoryEnum.videos =>
         picturesVideosWidget(category, screenWidth, pictures: false),
-      //TODO: change bottom 3 lines
       CategoryEnum.quizGame => const Text("quizGame"),
-      CategoryEnum.birthdayCalendar => const Text("birthdayCalendar"),
+      CategoryEnum.birthdayCalendar => Row(
+          children: [
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: category.calendarEvents != null
+                    ? category.calendarEvents!.dateEventMap.entries
+                        .map((entry) {
+                        DateTime dateTime = entry.key;
+                        List<DateEventModel> eventList = entry.value;
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                DateFormat('dd/MM/yyyy').format(dateTime),
+                                style: AppTextStyle()
+                                    .description
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 4),
+                              ...eventList.map((event) {
+                                return Text(
+                                    '${event.time.format(NavigationContextService.navigatorKey.currentContext!)} - ${event.description}',
+                                    style: AppTextStyle().smallDescription);
+                              }),
+                            ],
+                          ),
+                        );
+                      }).toList()
+                    : []),
+          ],
+        ),
       CategoryEnum.birthdaySuprise =>
         Column(children: supriseMapToWidgets(category.supriseMap)),
       CategoryEnum.wishesList => category.wishesList?.lock ?? false

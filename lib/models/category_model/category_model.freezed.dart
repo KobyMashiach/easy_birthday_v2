@@ -32,6 +32,8 @@ mixin _$CategoryModel {
       throw _privateConstructorUsedError;
   @WishesConverter()
   WishesModel? get wishesList => throw _privateConstructorUsedError;
+  @CalendarModelConverter()
+  CalendarModel? get calendarEvents => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,9 +57,11 @@ abstract class $CategoryModelCopyWith<$Res> {
       List<String>? urls,
       bool lock,
       Map<int, Map<String, String>>? supriseMap,
-      @WishesConverter() WishesModel? wishesList});
+      @WishesConverter() WishesModel? wishesList,
+      @CalendarModelConverter() CalendarModel? calendarEvents});
 
   $WishesModelCopyWith<$Res>? get wishesList;
+  $CalendarModelCopyWith<$Res>? get calendarEvents;
 }
 
 /// @nodoc
@@ -83,6 +87,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? lock = null,
     Object? supriseMap = freezed,
     Object? wishesList = freezed,
+    Object? calendarEvents = freezed,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -125,6 +130,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.wishesList
           : wishesList // ignore: cast_nullable_to_non_nullable
               as WishesModel?,
+      calendarEvents: freezed == calendarEvents
+          ? _value.calendarEvents
+          : calendarEvents // ignore: cast_nullable_to_non_nullable
+              as CalendarModel?,
     ) as $Val);
   }
 
@@ -137,6 +146,18 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
 
     return $WishesModelCopyWith<$Res>(_value.wishesList!, (value) {
       return _then(_value.copyWith(wishesList: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CalendarModelCopyWith<$Res>? get calendarEvents {
+    if (_value.calendarEvents == null) {
+      return null;
+    }
+
+    return $CalendarModelCopyWith<$Res>(_value.calendarEvents!, (value) {
+      return _then(_value.copyWith(calendarEvents: value) as $Val);
     });
   }
 }
@@ -159,10 +180,13 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       List<String>? urls,
       bool lock,
       Map<int, Map<String, String>>? supriseMap,
-      @WishesConverter() WishesModel? wishesList});
+      @WishesConverter() WishesModel? wishesList,
+      @CalendarModelConverter() CalendarModel? calendarEvents});
 
   @override
   $WishesModelCopyWith<$Res>? get wishesList;
+  @override
+  $CalendarModelCopyWith<$Res>? get calendarEvents;
 }
 
 /// @nodoc
@@ -186,6 +210,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? lock = null,
     Object? supriseMap = freezed,
     Object? wishesList = freezed,
+    Object? calendarEvents = freezed,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -228,6 +253,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value.wishesList
           : wishesList // ignore: cast_nullable_to_non_nullable
               as WishesModel?,
+      calendarEvents: freezed == calendarEvents
+          ? _value.calendarEvents
+          : calendarEvents // ignore: cast_nullable_to_non_nullable
+              as CalendarModel?,
     ));
   }
 }
@@ -245,7 +274,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       final List<String>? urls,
       this.lock = false,
       final Map<int, Map<String, String>>? supriseMap,
-      @WishesConverter() this.wishesList})
+      @WishesConverter() this.wishesList,
+      @CalendarModelConverter() this.calendarEvents})
       : _urls = urls,
         _supriseMap = supriseMap;
 
@@ -290,10 +320,13 @@ class _$CategoryModelImpl implements _CategoryModel {
   @override
   @WishesConverter()
   final WishesModel? wishesList;
+  @override
+  @CalendarModelConverter()
+  final CalendarModel? calendarEvents;
 
   @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents)';
   }
 
   @override
@@ -315,7 +348,9 @@ class _$CategoryModelImpl implements _CategoryModel {
             const DeepCollectionEquality()
                 .equals(other._supriseMap, _supriseMap) &&
             (identical(other.wishesList, wishesList) ||
-                other.wishesList == wishesList));
+                other.wishesList == wishesList) &&
+            (identical(other.calendarEvents, calendarEvents) ||
+                other.calendarEvents == calendarEvents));
   }
 
   @JsonKey(ignore: true)
@@ -331,7 +366,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       const DeepCollectionEquality().hash(_urls),
       lock,
       const DeepCollectionEquality().hash(_supriseMap),
-      wishesList);
+      wishesList,
+      calendarEvents);
 
   @JsonKey(ignore: true)
   @override
@@ -349,16 +385,18 @@ class _$CategoryModelImpl implements _CategoryModel {
 
 abstract class _CategoryModel implements CategoryModel {
   const factory _CategoryModel(
-      {required final CategoryEnum categoryType,
-      required final String name,
-      required final String description,
-      final String? id,
-      final String? titleAppear,
-      final String? text,
-      final List<String>? urls,
-      final bool lock,
-      final Map<int, Map<String, String>>? supriseMap,
-      @WishesConverter() final WishesModel? wishesList}) = _$CategoryModelImpl;
+          {required final CategoryEnum categoryType,
+          required final String name,
+          required final String description,
+          final String? id,
+          final String? titleAppear,
+          final String? text,
+          final List<String>? urls,
+          final bool lock,
+          final Map<int, Map<String, String>>? supriseMap,
+          @WishesConverter() final WishesModel? wishesList,
+          @CalendarModelConverter() final CalendarModel? calendarEvents}) =
+      _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
@@ -384,6 +422,9 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   @WishesConverter()
   WishesModel? get wishesList;
+  @override
+  @CalendarModelConverter()
+  CalendarModel? get calendarEvents;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

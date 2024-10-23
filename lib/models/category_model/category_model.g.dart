@@ -21,6 +21,9 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       ),
       wishesList: _$JsonConverterFromJson<Map<String, dynamic>, WishesModel>(
           json['wishesList'], const WishesConverter().fromJson),
+      calendarEvents:
+          _$JsonConverterFromJson<Map<String, dynamic>, CalendarModel>(
+              json['calendarEvents'], const CalendarModelConverter().fromJson),
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -37,6 +40,9 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
           instance.supriseMap?.map((k, e) => MapEntry(k.toString(), e)),
       'wishesList': _$JsonConverterToJson<Map<String, dynamic>, WishesModel>(
           instance.wishesList, const WishesConverter().toJson),
+      'calendarEvents':
+          _$JsonConverterToJson<Map<String, dynamic>, CalendarModel>(
+              instance.calendarEvents, const CalendarModelConverter().toJson),
     };
 
 const _$CategoryEnumEnumMap = {
