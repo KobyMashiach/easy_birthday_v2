@@ -41,7 +41,7 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appAppBar(title: t.write_contract),
+      appBar: appAppBar(title: t.birthday_calendar),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Center(

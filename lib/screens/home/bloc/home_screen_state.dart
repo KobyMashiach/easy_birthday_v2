@@ -42,6 +42,12 @@ final class HomeScreenNavToAddBirthdaySuprise extends HomeScreenStateNavigate {
   HomeScreenNavToAddBirthdaySuprise({required this.category});
 }
 
+final class HomeScreenNavToAddQuizGame extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenNavToAddQuizGame({required this.category});
+}
+
 final class HomeScreenNavToAddBirthdayCalendar extends HomeScreenStateNavigate {
   final CategoryModel category;
 

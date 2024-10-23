@@ -34,6 +34,8 @@ mixin _$CategoryModel {
   WishesModel? get wishesList => throw _privateConstructorUsedError;
   @CalendarModelConverter()
   CalendarModel? get calendarEvents => throw _privateConstructorUsedError;
+  @QuestionModelListConverter()
+  List<QuestionModel>? get quizGame => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +60,8 @@ abstract class $CategoryModelCopyWith<$Res> {
       bool lock,
       Map<int, Map<String, String>>? supriseMap,
       @WishesConverter() WishesModel? wishesList,
-      @CalendarModelConverter() CalendarModel? calendarEvents});
+      @CalendarModelConverter() CalendarModel? calendarEvents,
+      @QuestionModelListConverter() List<QuestionModel>? quizGame});
 
   $WishesModelCopyWith<$Res>? get wishesList;
   $CalendarModelCopyWith<$Res>? get calendarEvents;
@@ -88,6 +91,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? supriseMap = freezed,
     Object? wishesList = freezed,
     Object? calendarEvents = freezed,
+    Object? quizGame = freezed,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -134,6 +138,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.calendarEvents
           : calendarEvents // ignore: cast_nullable_to_non_nullable
               as CalendarModel?,
+      quizGame: freezed == quizGame
+          ? _value.quizGame
+          : quizGame // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModel>?,
     ) as $Val);
   }
 
@@ -181,7 +189,8 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       bool lock,
       Map<int, Map<String, String>>? supriseMap,
       @WishesConverter() WishesModel? wishesList,
-      @CalendarModelConverter() CalendarModel? calendarEvents});
+      @CalendarModelConverter() CalendarModel? calendarEvents,
+      @QuestionModelListConverter() List<QuestionModel>? quizGame});
 
   @override
   $WishesModelCopyWith<$Res>? get wishesList;
@@ -211,6 +220,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? supriseMap = freezed,
     Object? wishesList = freezed,
     Object? calendarEvents = freezed,
+    Object? quizGame = freezed,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -257,6 +267,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value.calendarEvents
           : calendarEvents // ignore: cast_nullable_to_non_nullable
               as CalendarModel?,
+      quizGame: freezed == quizGame
+          ? _value._quizGame
+          : quizGame // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModel>?,
     ));
   }
 }
@@ -275,9 +289,11 @@ class _$CategoryModelImpl implements _CategoryModel {
       this.lock = false,
       final Map<int, Map<String, String>>? supriseMap,
       @WishesConverter() this.wishesList,
-      @CalendarModelConverter() this.calendarEvents})
+      @CalendarModelConverter() this.calendarEvents,
+      @QuestionModelListConverter() final List<QuestionModel>? quizGame})
       : _urls = urls,
-        _supriseMap = supriseMap;
+        _supriseMap = supriseMap,
+        _quizGame = quizGame;
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryModelImplFromJson(json);
@@ -323,10 +339,20 @@ class _$CategoryModelImpl implements _CategoryModel {
   @override
   @CalendarModelConverter()
   final CalendarModel? calendarEvents;
+  final List<QuestionModel>? _quizGame;
+  @override
+  @QuestionModelListConverter()
+  List<QuestionModel>? get quizGame {
+    final value = _quizGame;
+    if (value == null) return null;
+    if (_quizGame is EqualUnmodifiableListView) return _quizGame;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame)';
   }
 
   @override
@@ -350,7 +376,8 @@ class _$CategoryModelImpl implements _CategoryModel {
             (identical(other.wishesList, wishesList) ||
                 other.wishesList == wishesList) &&
             (identical(other.calendarEvents, calendarEvents) ||
-                other.calendarEvents == calendarEvents));
+                other.calendarEvents == calendarEvents) &&
+            const DeepCollectionEquality().equals(other._quizGame, _quizGame));
   }
 
   @JsonKey(ignore: true)
@@ -367,7 +394,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       lock,
       const DeepCollectionEquality().hash(_supriseMap),
       wishesList,
-      calendarEvents);
+      calendarEvents,
+      const DeepCollectionEquality().hash(_quizGame));
 
   @JsonKey(ignore: true)
   @override
@@ -395,7 +423,8 @@ abstract class _CategoryModel implements CategoryModel {
           final bool lock,
           final Map<int, Map<String, String>>? supriseMap,
           @WishesConverter() final WishesModel? wishesList,
-          @CalendarModelConverter() final CalendarModel? calendarEvents}) =
+          @CalendarModelConverter() final CalendarModel? calendarEvents,
+          @QuestionModelListConverter() final List<QuestionModel>? quizGame}) =
       _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
@@ -425,6 +454,9 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   @CalendarModelConverter()
   CalendarModel? get calendarEvents;
+  @override
+  @QuestionModelListConverter()
+  List<QuestionModel>? get quizGame;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

@@ -282,6 +282,7 @@
   "no_wish_yet": "אין עדיין משאלות",
   "calendar_time": "לו\"ז",
   "write_calendar_time_to": "רשום לו\"ז ל: $title",
+  "add_quiz_to": "הוסף משחק טריוויה ל: $title",
   "month": "חודש",
   "week": "שבוע",
   "two_weeks": "שבועיים",
@@ -299,5 +300,36 @@
   },
   "event_description": "תיאור אירוע",
   "select_time": "בחירת שעה",
-  "selected_time": "שעה שנבחרה: $time"
+  "selected_time": "שעה שנבחרה: $time",
+  "add_question(context=GenderContext)": {
+    "male": "הוסף שאלה",
+    "female": "הוסיפי שאלה"
+  },
+  "remove_question(context=GenderContext)": {
+    "male": "הסר שאלה",
+    "female": "הסירי שאלה"
+  },
+  "num_of_questions": "יש לך כרגע $number שאלות",
+  "show_questions": "הצגת השאלות",
+  "true_": "נכון",
+  "false_": "לא נכון",
+  "true_false_question": "שאלת נכון או לא נכון",
+  "four_answers_question": "שאלת 4 תשובות",
+  "question": "שאלה",
+  "questions": "שאלות",
+  "choose_currect_answer(context=GenderContext)": {
+    "male": "בחר את התשובה הנכונה",
+    "female": "בחרי את התשובה הנכונה"
+  },
+  "add_image": "הוספת תמונה",
+  "first_question": "שאלה ראשונה",
+  "second_question": "שאלה שנייה",
+  "third_question": "שאלה שלישית",
+  "fourth_question": "שאלה רביעית",
+  "required_fill_question": "חובה למלא את השאלה",
+  "required_fill_all_answer": "חובה למלא את כל התשובות",
+  "choose_question_delete(context=GenderContext)": {
+    "male": "בחר את השאלות שתרצה למחוק",
+    "female": "בחרי את השאלות שתרצי למחוק"
+  }
 }

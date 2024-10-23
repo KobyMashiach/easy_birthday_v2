@@ -1,5 +1,9 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
+
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/hive/hive_functions.dart';
@@ -12,9 +16,6 @@ import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/services/firebase/firebase_auth.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class DeveloperScreen extends StatelessWidget {
   const DeveloperScreen({super.key});

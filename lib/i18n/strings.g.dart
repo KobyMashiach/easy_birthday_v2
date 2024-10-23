@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 239
+/// Strings: 263
 ///
-/// Built on 2024-10-23 at 07:25 UTC
+/// Built on 2024-10-23 at 12:03 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -553,6 +553,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get no_wish_yet => 'אין עדיין משאלות';
 	String get calendar_time => 'לו"ז';
 	String write_calendar_time_to({required Object title}) => 'רשום לו"ז ל: ${title}';
+	String add_quiz_to({required Object title}) => 'הוסף משחק טריוויה ל: ${title}';
 	String get month => 'חודש';
 	String get week => 'שבוע';
 	String get two_weeks => 'שבועיים';
@@ -579,6 +580,53 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get event_description => 'תיאור אירוע';
 	String get select_time => 'בחירת שעה';
 	String selected_time({required Object time}) => 'שעה שנבחרה: ${time}';
+	String add_question({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הוסף שאלה';
+			case GenderContext.female:
+				return 'הוסיפי שאלה';
+		}
+	}
+	String remove_question({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'הסר שאלה';
+			case GenderContext.female:
+				return 'הסירי שאלה';
+		}
+	}
+	String num_of_questions({required Object number}) => 'יש לך כרגע ${number} שאלות';
+	String get show_questions => 'הצגת השאלות';
+	String get true_ => 'נכון';
+	String get false_ => 'לא נכון';
+	String get true_false_question => 'שאלת נכון או לא נכון';
+	String get four_answers_question => 'שאלת 4 תשובות';
+	String get question => 'שאלה';
+	String get questions => 'שאלות';
+	String choose_currect_answer({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בחר את התשובה הנכונה';
+			case GenderContext.female:
+				return 'בחרי את התשובה הנכונה';
+		}
+	}
+	String get add_image => 'הוספת תמונה';
+	String get first_question => 'שאלה ראשונה';
+	String get second_question => 'שאלה שנייה';
+	String get third_question => 'שאלה שלישית';
+	String get fourth_question => 'שאלה רביעית';
+	String get required_fill_question => 'חובה למלא את השאלה';
+	String get required_fill_all_answer => 'חובה למלא את כל התשובות';
+	String choose_question_delete({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בחר את השאלות שתרצה למחוק';
+			case GenderContext.female:
+				return 'בחרי את השאלות שתרצי למחוק';
+		}
+	}
 }
 
 /// Flat map(s) containing all translations.
@@ -986,6 +1034,7 @@ extension on Translations {
 			case 'no_wish_yet': return 'אין עדיין משאלות';
 			case 'calendar_time': return 'לו"ז';
 			case 'write_calendar_time_to': return ({required Object title}) => 'רשום לו"ז ל: ${title}';
+			case 'add_quiz_to': return ({required Object title}) => 'הוסף משחק טריוויה ל: ${title}';
 			case 'month': return 'חודש';
 			case 'week': return 'שבוע';
 			case 'two_weeks': return 'שבועיים';
@@ -1012,6 +1061,53 @@ extension on Translations {
 			case 'event_description': return 'תיאור אירוע';
 			case 'select_time': return 'בחירת שעה';
 			case 'selected_time': return ({required Object time}) => 'שעה שנבחרה: ${time}';
+			case 'add_question': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הוסף שאלה';
+					case GenderContext.female:
+						return 'הוסיפי שאלה';
+				}
+			};
+			case 'remove_question': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'הסר שאלה';
+					case GenderContext.female:
+						return 'הסירי שאלה';
+				}
+			};
+			case 'num_of_questions': return ({required Object number}) => 'יש לך כרגע ${number} שאלות';
+			case 'show_questions': return 'הצגת השאלות';
+			case 'true_': return 'נכון';
+			case 'false_': return 'לא נכון';
+			case 'true_false_question': return 'שאלת נכון או לא נכון';
+			case 'four_answers_question': return 'שאלת 4 תשובות';
+			case 'question': return 'שאלה';
+			case 'questions': return 'שאלות';
+			case 'choose_currect_answer': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בחר את התשובה הנכונה';
+					case GenderContext.female:
+						return 'בחרי את התשובה הנכונה';
+				}
+			};
+			case 'add_image': return 'הוספת תמונה';
+			case 'first_question': return 'שאלה ראשונה';
+			case 'second_question': return 'שאלה שנייה';
+			case 'third_question': return 'שאלה שלישית';
+			case 'fourth_question': return 'שאלה רביעית';
+			case 'required_fill_question': return 'חובה למלא את השאלה';
+			case 'required_fill_all_answer': return 'חובה למלא את כל התשובות';
+			case 'choose_question_delete': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בחר את השאלות שתרצה למחוק';
+					case GenderContext.female:
+						return 'בחרי את השאלות שתרצי למחוק';
+				}
+			};
 			default: return null;
 		}
 	}
