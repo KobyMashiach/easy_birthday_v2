@@ -23,6 +23,7 @@ mixin _$QuestionModel {
   String get text => throw _privateConstructorUsedError;
   @ListOptionsConverter()
   List<OptionModel> get options => throw _privateConstructorUsedError;
+  int? get partnerChoise => throw _privateConstructorUsedError;
   bool get isLocked => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
@@ -41,6 +42,7 @@ abstract class $QuestionModelCopyWith<$Res> {
   $Res call(
       {String text,
       @ListOptionsConverter() List<OptionModel> options,
+      int? partnerChoise,
       bool isLocked,
       String? imageUrl});
 }
@@ -60,6 +62,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
   $Res call({
     Object? text = null,
     Object? options = null,
+    Object? partnerChoise = freezed,
     Object? isLocked = null,
     Object? imageUrl = freezed,
   }) {
@@ -72,6 +75,10 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as List<OptionModel>,
+      partnerChoise: freezed == partnerChoise
+          ? _value.partnerChoise
+          : partnerChoise // ignore: cast_nullable_to_non_nullable
+              as int?,
       isLocked: null == isLocked
           ? _value.isLocked
           : isLocked // ignore: cast_nullable_to_non_nullable
@@ -95,6 +102,7 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
   $Res call(
       {String text,
       @ListOptionsConverter() List<OptionModel> options,
+      int? partnerChoise,
       bool isLocked,
       String? imageUrl});
 }
@@ -112,6 +120,7 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
   $Res call({
     Object? text = null,
     Object? options = null,
+    Object? partnerChoise = freezed,
     Object? isLocked = null,
     Object? imageUrl = freezed,
   }) {
@@ -124,6 +133,10 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value._options
           : options // ignore: cast_nullable_to_non_nullable
               as List<OptionModel>,
+      partnerChoise: freezed == partnerChoise
+          ? _value.partnerChoise
+          : partnerChoise // ignore: cast_nullable_to_non_nullable
+              as int?,
       isLocked: null == isLocked
           ? _value.isLocked
           : isLocked // ignore: cast_nullable_to_non_nullable
@@ -142,6 +155,7 @@ class _$QuestionModelImpl implements _QuestionModel {
   _$QuestionModelImpl(
       {required this.text,
       @ListOptionsConverter() required final List<OptionModel> options,
+      this.partnerChoise,
       this.isLocked = false,
       this.imageUrl})
       : _options = options;
@@ -161,6 +175,8 @@ class _$QuestionModelImpl implements _QuestionModel {
   }
 
   @override
+  final int? partnerChoise;
+  @override
   @JsonKey()
   final bool isLocked;
   @override
@@ -168,7 +184,7 @@ class _$QuestionModelImpl implements _QuestionModel {
 
   @override
   String toString() {
-    return 'QuestionModel(text: $text, options: $options, isLocked: $isLocked, imageUrl: $imageUrl)';
+    return 'QuestionModel(text: $text, options: $options, partnerChoise: $partnerChoise, isLocked: $isLocked, imageUrl: $imageUrl)';
   }
 
   @override
@@ -178,6 +194,8 @@ class _$QuestionModelImpl implements _QuestionModel {
             other is _$QuestionModelImpl &&
             (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality().equals(other._options, _options) &&
+            (identical(other.partnerChoise, partnerChoise) ||
+                other.partnerChoise == partnerChoise) &&
             (identical(other.isLocked, isLocked) ||
                 other.isLocked == isLocked) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -186,8 +204,13 @@ class _$QuestionModelImpl implements _QuestionModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, text,
-      const DeepCollectionEquality().hash(_options), isLocked, imageUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      text,
+      const DeepCollectionEquality().hash(_options),
+      partnerChoise,
+      isLocked,
+      imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -207,6 +230,7 @@ abstract class _QuestionModel implements QuestionModel {
   factory _QuestionModel(
       {required final String text,
       @ListOptionsConverter() required final List<OptionModel> options,
+      final int? partnerChoise,
       final bool isLocked,
       final String? imageUrl}) = _$QuestionModelImpl;
 
@@ -218,6 +242,8 @@ abstract class _QuestionModel implements QuestionModel {
   @override
   @ListOptionsConverter()
   List<OptionModel> get options;
+  @override
+  int? get partnerChoise;
   @override
   bool get isLocked;
   @override

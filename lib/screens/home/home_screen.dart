@@ -97,10 +97,10 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddQuizGameScreen(
                       category: newState.category,
-                      onDone: (questions) => bloc.add(
+                      onDone: (questions, lock) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
                               category: newState.category
-                                  .copyWith(quizGame: questions))),
+                                  .copyWith(quizGame: questions, lock: lock))),
                     ));
               case const (HomeScreenNavToAddWishesList):
                 final newState = state as HomeScreenNavToAddWishesList;

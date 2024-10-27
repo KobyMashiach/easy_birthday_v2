@@ -22,7 +22,7 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddQuizGameScreen extends StatefulWidget {
   final CategoryModel category;
-  final Function(List<QuestionModel> questions) onDone;
+  final Function(List<QuestionModel> questions, bool lock) onDone;
   const AddQuizGameScreen(
       {super.key, required this.category, required this.onDone});
 
@@ -38,6 +38,7 @@ class _AddQuizGameScreenState extends State<AddQuizGameScreen> {
   void initState() {
     super.initState();
     questionsList = widget.category.quizGame ?? [];
+    lock = widget.category.lock;
   }
 
   @override
@@ -76,7 +77,7 @@ class _AddQuizGameScreenState extends State<AddQuizGameScreen> {
             ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(
         activeButtonOnTap: () {
-          widget.onDone.call(questionsList);
+          widget.onDone.call(questionsList, lock);
           KheasydevNavigatePage().pop(context);
         },
       ),
@@ -130,18 +131,8 @@ class _AddQuizGameScreenState extends State<AddQuizGameScreen> {
               ? KheasydevNavigatePage().pushDuration(
                   context,
                   RemoveQuestionScreen(
-                    questionsList: questionsList,
-                    onDone: (indexes) {
-                      indexes.sort((a, b) => b.compareTo(a));
-                      setState(() {
-                        for (int index in indexes) {
-                          if (index >= 0 && index < questionsList.length) {
-                            questionsList.removeAt(index);
-                          }
-                        }
-                      });
-                    },
-                  ),
+                      questionsList: questionsList,
+                      onDone: (indexes) => removeQuestionsDone(indexes)),
                 )
               : kheasydevAppToast(t.no_questions_add),
         ),
@@ -178,7 +169,20 @@ class _AddQuizGameScreenState extends State<AddQuizGameScreen> {
       List<QuestionModel> modifiableList = List.from(questionsList);
       modifiableList.add(question.copyWith(imageUrl: fileUrl));
       questionsList = modifiableList;
-      loading = false;
+      setState(() => loading = false);
     });
+  }
+
+  removeQuestionsDone(List<int> indexes) {
+    setState(() => loading = true);
+    List<QuestionModel> modifiableList = List.from(questionsList);
+    indexes.sort((a, b) => b.compareTo(a));
+    for (int index in indexes) {
+      if (index >= 0 && index < questionsList.length) {
+        modifiableList.removeAt(index);
+      }
+    }
+    questionsList = modifiableList;
+    setState(() => loading = false);
   }
 }

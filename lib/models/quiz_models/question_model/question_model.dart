@@ -10,6 +10,7 @@ class QuestionModel with _$QuestionModel {
   factory QuestionModel({
     required String text,
     @ListOptionsConverter() required List<OptionModel> options,
+    int? partnerChoise,
     @Default(false) bool isLocked,
     String? imageUrl,
   }) = _QuestionModel;
