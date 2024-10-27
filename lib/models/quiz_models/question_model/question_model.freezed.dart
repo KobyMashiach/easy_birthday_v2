@@ -25,6 +25,8 @@ mixin _$QuestionModel {
   List<OptionModel> get options => throw _privateConstructorUsedError;
   int? get partnerChoise => throw _privateConstructorUsedError;
   bool get isLocked => throw _privateConstructorUsedError;
+  @OptionsConverter()
+  OptionModel? get selectedOption => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +46,10 @@ abstract class $QuestionModelCopyWith<$Res> {
       @ListOptionsConverter() List<OptionModel> options,
       int? partnerChoise,
       bool isLocked,
+      @OptionsConverter() OptionModel? selectedOption,
       String? imageUrl});
+
+  $OptionModelCopyWith<$Res>? get selectedOption;
 }
 
 /// @nodoc
@@ -64,6 +69,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? options = null,
     Object? partnerChoise = freezed,
     Object? isLocked = null,
+    Object? selectedOption = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -83,11 +89,27 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.isLocked
           : isLocked // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedOption: freezed == selectedOption
+          ? _value.selectedOption
+          : selectedOption // ignore: cast_nullable_to_non_nullable
+              as OptionModel?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OptionModelCopyWith<$Res>? get selectedOption {
+    if (_value.selectedOption == null) {
+      return null;
+    }
+
+    return $OptionModelCopyWith<$Res>(_value.selectedOption!, (value) {
+      return _then(_value.copyWith(selectedOption: value) as $Val);
+    });
   }
 }
 
@@ -104,7 +126,11 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
       @ListOptionsConverter() List<OptionModel> options,
       int? partnerChoise,
       bool isLocked,
+      @OptionsConverter() OptionModel? selectedOption,
       String? imageUrl});
+
+  @override
+  $OptionModelCopyWith<$Res>? get selectedOption;
 }
 
 /// @nodoc
@@ -122,6 +148,7 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
     Object? options = null,
     Object? partnerChoise = freezed,
     Object? isLocked = null,
+    Object? selectedOption = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_$QuestionModelImpl(
@@ -141,6 +168,10 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.isLocked
           : isLocked // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedOption: freezed == selectedOption
+          ? _value.selectedOption
+          : selectedOption // ignore: cast_nullable_to_non_nullable
+              as OptionModel?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -157,6 +188,7 @@ class _$QuestionModelImpl implements _QuestionModel {
       @ListOptionsConverter() required final List<OptionModel> options,
       this.partnerChoise,
       this.isLocked = false,
+      @OptionsConverter() this.selectedOption,
       this.imageUrl})
       : _options = options;
 
@@ -180,11 +212,14 @@ class _$QuestionModelImpl implements _QuestionModel {
   @JsonKey()
   final bool isLocked;
   @override
+  @OptionsConverter()
+  final OptionModel? selectedOption;
+  @override
   final String? imageUrl;
 
   @override
   String toString() {
-    return 'QuestionModel(text: $text, options: $options, partnerChoise: $partnerChoise, isLocked: $isLocked, imageUrl: $imageUrl)';
+    return 'QuestionModel(text: $text, options: $options, partnerChoise: $partnerChoise, isLocked: $isLocked, selectedOption: $selectedOption, imageUrl: $imageUrl)';
   }
 
   @override
@@ -198,6 +233,8 @@ class _$QuestionModelImpl implements _QuestionModel {
                 other.partnerChoise == partnerChoise) &&
             (identical(other.isLocked, isLocked) ||
                 other.isLocked == isLocked) &&
+            (identical(other.selectedOption, selectedOption) ||
+                other.selectedOption == selectedOption) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl));
   }
@@ -210,6 +247,7 @@ class _$QuestionModelImpl implements _QuestionModel {
       const DeepCollectionEquality().hash(_options),
       partnerChoise,
       isLocked,
+      selectedOption,
       imageUrl);
 
   @JsonKey(ignore: true)
@@ -232,6 +270,7 @@ abstract class _QuestionModel implements QuestionModel {
       @ListOptionsConverter() required final List<OptionModel> options,
       final int? partnerChoise,
       final bool isLocked,
+      @OptionsConverter() final OptionModel? selectedOption,
       final String? imageUrl}) = _$QuestionModelImpl;
 
   factory _QuestionModel.fromJson(Map<String, dynamic> json) =
@@ -246,6 +285,9 @@ abstract class _QuestionModel implements QuestionModel {
   int? get partnerChoise;
   @override
   bool get isLocked;
+  @override
+  @OptionsConverter()
+  OptionModel? get selectedOption;
   @override
   String? get imageUrl;
   @override

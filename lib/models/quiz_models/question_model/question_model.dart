@@ -12,6 +12,7 @@ class QuestionModel with _$QuestionModel {
     @ListOptionsConverter() required List<OptionModel> options,
     int? partnerChoise,
     @Default(false) bool isLocked,
+    @OptionsConverter() OptionModel? selectedOption,
     String? imageUrl,
   }) = _QuestionModel;
 

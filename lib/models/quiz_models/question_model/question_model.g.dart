@@ -12,6 +12,9 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
       options: const ListOptionsConverter().fromJson(json['options'] as List),
       partnerChoise: (json['partnerChoise'] as num?)?.toInt(),
       isLocked: json['isLocked'] as bool? ?? false,
+      selectedOption:
+          _$JsonConverterFromJson<Map<String, dynamic>, OptionModel>(
+              json['selectedOption'], const OptionsConverter().fromJson),
       imageUrl: json['imageUrl'] as String?,
     );
 
@@ -21,5 +24,20 @@ Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
       'options': const ListOptionsConverter().toJson(instance.options),
       'partnerChoise': instance.partnerChoise,
       'isLocked': instance.isLocked,
+      'selectedOption':
+          _$JsonConverterToJson<Map<String, dynamic>, OptionModel>(
+              instance.selectedOption, const OptionsConverter().toJson),
       'imageUrl': instance.imageUrl,
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
