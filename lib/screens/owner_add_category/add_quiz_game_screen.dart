@@ -70,7 +70,7 @@ class _AddQuizGameScreenState extends State<AddQuizGameScreen> {
                             ? imageContainer(index)
                             : null,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

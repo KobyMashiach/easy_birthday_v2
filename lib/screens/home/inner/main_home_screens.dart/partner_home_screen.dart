@@ -8,6 +8,7 @@ import 'package:easy_birthday/models/text_items_model/text_item_model.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_birthday_calendar.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_birthday_suprise.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_pictures_videos.dart';
+import 'package:easy_birthday/screens/partner_display_screens/display_quiz_game.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_text.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_wishes_list.dart';
 import 'package:easy_birthday/widgets/cards/category_partner_card.dart';
@@ -46,7 +47,6 @@ class PartnerHomeScreen extends StatelessWidget {
               final category = globalEvent!.categories[index];
               return CategoryPartnerCard(
                 category: category,
-                //TODO: navigate by type
                 onTap: () {
                   switch (category.categoryType) {
                     case CategoryEnum.text:
@@ -64,6 +64,9 @@ class PartnerHomeScreen extends StatelessWidget {
                               category: category, isImages: false));
 
                     case CategoryEnum.quizGame:
+                      KheasydevNavigatePage().pushDuration(
+                          context, DisplayQuizGame(category: category));
+
                     case CategoryEnum.birthdayCalendar:
                       KheasydevNavigatePage().pushDuration(
                           context, DisplayBirthdayCalendar(category: category));

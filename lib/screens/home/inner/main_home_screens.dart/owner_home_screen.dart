@@ -29,7 +29,9 @@ class OwnerHomeScreen extends StatelessWidget {
         picturesVideosWidget(category, screenWidth, pictures: true),
       CategoryEnum.videos =>
         picturesVideosWidget(category, screenWidth, pictures: false),
-      CategoryEnum.quizGame => const Text("quizGame"),
+      CategoryEnum.quizGame => category.quizGame != null
+          ? quizWidget(category)
+          : const SizedBox.shrink(),
       CategoryEnum.birthdayCalendar => Row(
           children: [
             Column(
@@ -81,6 +83,27 @@ class OwnerHomeScreen extends StatelessWidget {
             )
           : Text(t.no_wish_yet),
     };
+  }
+
+  Column quizWidget(CategoryModel category) {
+    return Column(
+      children: List.generate(
+        category.quizGame!.length * 2 - 1,
+        (index) {
+          if (index.isEven) {
+            int itemIndex = index ~/ 2;
+            return ListTile(
+              title: Text(category.quizGame![itemIndex].text),
+            );
+          } else {
+            return kheasydevDivider(
+              black: true,
+              padding: const EdgeInsets.symmetric(vertical: 4),
+            );
+          }
+        },
+      ),
+    );
   }
 
   Widget picturesVideosWidget(CategoryModel category, double screenWidth,
