@@ -163,6 +163,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
                 children: [
                   Checkbox(
                     value: isMarkAllChecked,
+                    activeColor: AppColors.primaryColor,
                     onChanged: (value) {
                       setState(() {
                         isMarkAllChecked = value!;

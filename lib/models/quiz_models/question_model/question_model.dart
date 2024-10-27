@@ -1,4 +1,5 @@
 import 'package:easy_birthday/models/quiz_models/option_model/option_model.dart';
+import 'package:easy_birthday/models/quiz_models/quiz_converters_json.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'question_model.freezed.dart';
@@ -8,9 +9,8 @@ part 'question_model.g.dart';
 class QuestionModel with _$QuestionModel {
   factory QuestionModel({
     required String text,
-    required List<OptionModel> options,
+    @ListOptionsConverter() required List<OptionModel> options,
     @Default(false) bool isLocked,
-    OptionModel? selectedOption,
     String? imageUrl,
   }) = _QuestionModel;
 

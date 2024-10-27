@@ -1,98 +1,77 @@
-import 'dart:developer';
+import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
+import 'package:flutter/material.dart';
 
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/global_vars.dart';
-import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
-import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/quiz_models/question_model/question_model.dart';
-import 'package:easy_birthday/widgets/design/buttons/next_button.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
-import 'package:flutter/material.dart';
+import 'package:kh_easy_dev/kh_easy_dev.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class RemoveQuestionScreen extends StatefulWidget {
-  final CategoryModel category;
-  final Function(List<QuestionModel> question) onDone;
+  final List<QuestionModel> questionsList;
+  final Function(List<int> indexes) onDone;
 
   const RemoveQuestionScreen(
-      {super.key, required this.category, required this.onDone});
+      {super.key, required this.questionsList, required this.onDone});
 
   @override
   State<RemoveQuestionScreen> createState() => _RemoveQuestionScreenState();
 }
 
 class _RemoveQuestionScreenState extends State<RemoveQuestionScreen> {
-  late List<QuestionModel> questionsInCategory;
   late List<bool> checkBoxes;
 
   @override
   void initState() {
     super.initState();
-    questionsInCategory = widget.category.quizGame ?? [];
-    checkBoxes = List.generate(questionsInCategory.length, (index) => false);
+    checkBoxes = List.generate(widget.questionsList.length, (index) => false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appAppBar(title: t.remove_question(context: globalGender)),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-        child: Stack(
-          children: [
-            Center(
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.add_task_sharp,
-                    size: 60,
-                    color: AppColors.primaryColor,
+      body: PopScope(
+        canPop: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(t.choose_question_delete(context: globalGender)),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.50,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: widget.questionsList.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
+                    itemBuilder: (context, index) => listViewBuilder(index),
                   ),
-                  Text(
-                    "הסר שאלה",
-                    style: AppTextStyle().title.copyWith(fontSize: 40),
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
-            Center(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.55,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(t.choose_question_delete(context: globalGender)),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.50,
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        itemCount: questionsInCategory.length,
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 12),
-                        itemBuilder: (context, index) => listViewBuilder(index),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: NextButton(
-                  onTap: () {
-                    final List<int> indexes = [];
-                    for (int i = 0; i < checkBoxes.length; i++) {
-                      if (checkBoxes[i] == true) indexes.add(i);
-                    }
-                    log(indexes.toString());
-                    Navigator.pop(context, ("remove", indexes));
-                  },
-                  icon: Icons.done),
-            ),
-          ],
+          ),
         ),
+      ),
+      bottomNavigationBar: AppButtonsBottomNavigationBar(
+        activeButtonOnTap: () {
+          List<int> trueIndexes = checkBoxes
+              .asMap()
+              .entries
+              .where((entry) => entry.value == true)
+              .map((entry) => entry.key)
+              .toList();
+          if (trueIndexes.isEmpty) {
+            kheasydevAppToast(t.mark_least_one_question);
+          } else {
+            widget.onDone.call(trueIndexes);
+            KheasydevNavigatePage().pop(context);
+          }
+        },
       ),
     );
   }
@@ -104,6 +83,7 @@ class _RemoveQuestionScreenState extends State<RemoveQuestionScreen> {
             flex: 1,
             child: Checkbox(
                 value: checkBoxes[index],
+                activeColor: AppColors.primaryColor,
                 onChanged: (value) => setState(() {
                       checkBoxes[index] = !checkBoxes[index];
                     }))),
@@ -111,12 +91,12 @@ class _RemoveQuestionScreenState extends State<RemoveQuestionScreen> {
             flex: 9,
             child: Container(
               padding: const EdgeInsets.all(4),
-              height: 30,
+              height: 50,
               decoration: BoxDecoration(
                 border: Border.all(),
                 borderRadius: BorderRadius.circular(30),
               ),
-              child: Text(questionsInCategory.elementAt(index).text),
+              child: Text(widget.questionsList.elementAt(index).text),
             )),
       ],
     );

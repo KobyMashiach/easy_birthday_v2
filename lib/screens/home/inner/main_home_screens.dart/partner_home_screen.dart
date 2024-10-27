@@ -75,6 +75,8 @@ class PartnerHomeScreen extends StatelessWidget {
                           builder: (context) => generalDialog(
                               title: t.secret_dialog(
                                   context: globalGender,
+                                  categoryName:
+                                      category.titleAppear ?? category.name,
                                   name: globalPartnerUser!.name),
                               child: SvgPicture.asset(secretIllustrations,
                                   height: 150),

@@ -21,9 +21,9 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QuestionModel {
   String get text => throw _privateConstructorUsedError;
+  @ListOptionsConverter()
   List<OptionModel> get options => throw _privateConstructorUsedError;
   bool get isLocked => throw _privateConstructorUsedError;
-  OptionModel? get selectedOption => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,12 +40,9 @@ abstract class $QuestionModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String text,
-      List<OptionModel> options,
+      @ListOptionsConverter() List<OptionModel> options,
       bool isLocked,
-      OptionModel? selectedOption,
       String? imageUrl});
-
-  $OptionModelCopyWith<$Res>? get selectedOption;
 }
 
 /// @nodoc
@@ -64,7 +61,6 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? text = null,
     Object? options = null,
     Object? isLocked = null,
-    Object? selectedOption = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -80,27 +76,11 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.isLocked
           : isLocked // ignore: cast_nullable_to_non_nullable
               as bool,
-      selectedOption: freezed == selectedOption
-          ? _value.selectedOption
-          : selectedOption // ignore: cast_nullable_to_non_nullable
-              as OptionModel?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $OptionModelCopyWith<$Res>? get selectedOption {
-    if (_value.selectedOption == null) {
-      return null;
-    }
-
-    return $OptionModelCopyWith<$Res>(_value.selectedOption!, (value) {
-      return _then(_value.copyWith(selectedOption: value) as $Val);
-    });
   }
 }
 
@@ -114,13 +94,9 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String text,
-      List<OptionModel> options,
+      @ListOptionsConverter() List<OptionModel> options,
       bool isLocked,
-      OptionModel? selectedOption,
       String? imageUrl});
-
-  @override
-  $OptionModelCopyWith<$Res>? get selectedOption;
 }
 
 /// @nodoc
@@ -137,7 +113,6 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
     Object? text = null,
     Object? options = null,
     Object? isLocked = null,
-    Object? selectedOption = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_$QuestionModelImpl(
@@ -153,10 +128,6 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.isLocked
           : isLocked // ignore: cast_nullable_to_non_nullable
               as bool,
-      selectedOption: freezed == selectedOption
-          ? _value.selectedOption
-          : selectedOption // ignore: cast_nullable_to_non_nullable
-              as OptionModel?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -170,9 +141,8 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
 class _$QuestionModelImpl implements _QuestionModel {
   _$QuestionModelImpl(
       {required this.text,
-      required final List<OptionModel> options,
+      @ListOptionsConverter() required final List<OptionModel> options,
       this.isLocked = false,
-      this.selectedOption,
       this.imageUrl})
       : _options = options;
 
@@ -183,6 +153,7 @@ class _$QuestionModelImpl implements _QuestionModel {
   final String text;
   final List<OptionModel> _options;
   @override
+  @ListOptionsConverter()
   List<OptionModel> get options {
     if (_options is EqualUnmodifiableListView) return _options;
     // ignore: implicit_dynamic_type
@@ -193,13 +164,11 @@ class _$QuestionModelImpl implements _QuestionModel {
   @JsonKey()
   final bool isLocked;
   @override
-  final OptionModel? selectedOption;
-  @override
   final String? imageUrl;
 
   @override
   String toString() {
-    return 'QuestionModel(text: $text, options: $options, isLocked: $isLocked, selectedOption: $selectedOption, imageUrl: $imageUrl)';
+    return 'QuestionModel(text: $text, options: $options, isLocked: $isLocked, imageUrl: $imageUrl)';
   }
 
   @override
@@ -211,21 +180,14 @@ class _$QuestionModelImpl implements _QuestionModel {
             const DeepCollectionEquality().equals(other._options, _options) &&
             (identical(other.isLocked, isLocked) ||
                 other.isLocked == isLocked) &&
-            (identical(other.selectedOption, selectedOption) ||
-                other.selectedOption == selectedOption) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      text,
-      const DeepCollectionEquality().hash(_options),
-      isLocked,
-      selectedOption,
-      imageUrl);
+  int get hashCode => Object.hash(runtimeType, text,
+      const DeepCollectionEquality().hash(_options), isLocked, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -244,9 +206,8 @@ class _$QuestionModelImpl implements _QuestionModel {
 abstract class _QuestionModel implements QuestionModel {
   factory _QuestionModel(
       {required final String text,
-      required final List<OptionModel> options,
+      @ListOptionsConverter() required final List<OptionModel> options,
       final bool isLocked,
-      final OptionModel? selectedOption,
       final String? imageUrl}) = _$QuestionModelImpl;
 
   factory _QuestionModel.fromJson(Map<String, dynamic> json) =
@@ -255,11 +216,10 @@ abstract class _QuestionModel implements QuestionModel {
   @override
   String get text;
   @override
+  @ListOptionsConverter()
   List<OptionModel> get options;
   @override
   bool get isLocked;
-  @override
-  OptionModel? get selectedOption;
   @override
   String? get imageUrl;
   @override

@@ -6,6 +6,7 @@ import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
+import 'package:easy_birthday/widgets/design/general/button_container.dart';
 import 'package:easy_birthday/widgets/dialogs/add_text_dialog.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
@@ -207,31 +208,6 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
             title: lock ? t.lock : t.unlock,
             onTap: () => setState(() => lock = !lock)),
       ],
-    );
-  }
-
-  Widget buttonContainer(
-      {required IconData icon,
-      required String title,
-      required VoidCallback onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 100.0,
-        height: 100.0,
-        margin: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: Colors.white, size: 40),
-            Text(title, style: AppTextStyle().smallDescription)
-          ],
-        ),
-      ),
     );
   }
 

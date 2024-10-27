@@ -256,8 +256,8 @@
   "the_image": "התמונה",
   "the_text": "הטקסט",
   "secret_dialog(context=GenderContext)": {
-    "male": "ההפתעה נעולה עד ש$name תיתן לך את ההרשאה לפתוח אותה!",
-    "female": "ההפתעה נעולה עד ש$name יתן לך את ההרשאה לפתוח אותה!"
+    "male": "\"$categoryName\" נעול עד ש$name תיתן לך את ההרשאה לפתוח אותה!",
+    "female": "\"$categoryName\" נעול עד ש$name יתן לך את ההרשאה לפתוח אותה!"
   },
   "wishes_list": "רשימת משאלות",
   "write_contract": "רשום חוזה",
@@ -331,5 +331,7 @@
   "choose_question_delete(context=GenderContext)": {
     "male": "בחר את השאלות שתרצה למחוק",
     "female": "בחרי את השאלות שתרצי למחוק"
-  }
+  },
+  "mark_least_one_question": "יש לסמן לפחות שאלה אחת",
+  "no_questions_add": "לא הועלו שאלות עדיין"
 }

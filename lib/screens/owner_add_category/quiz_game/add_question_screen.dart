@@ -1,20 +1,20 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:kh_easy_dev/kh_easy_dev.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
+
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
-import 'package:easy_birthday/widgets/general/appbar.dart';
-import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:kh_easy_dev/kh_easy_dev.dart';
-
 import 'package:easy_birthday/models/quiz_models/option_model/option_model.dart';
 import 'package:easy_birthday/models/quiz_models/question_model/question_model.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
-import 'package:kh_easy_dev/services/navigate_page.dart';
+import 'package:easy_birthday/widgets/general/appbar.dart';
+import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 
 class AddQuestionScreen extends StatefulWidget {
   final CategoryModel category;
@@ -75,15 +75,19 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
                 Row(
                   children: [
                     Checkbox(
-                        value: trueOrFalseQuestion,
-                        onChanged: (value) => setState(() {
-                              trueOrFalseQuestion = !trueOrFalseQuestion;
-                              clearAllControllers();
-                              if (trueOrFalseQuestion) {
-                                firstController.text = t.true_;
-                                secondController.text = t.false_;
-                              }
-                            })),
+                      value: trueOrFalseQuestion,
+                      activeColor: AppColors.primaryColor,
+                      onChanged: (value) => setState(
+                        () {
+                          trueOrFalseQuestion = !trueOrFalseQuestion;
+                          clearAllControllers();
+                          if (trueOrFalseQuestion) {
+                            firstController.text = t.true_;
+                            secondController.text = t.false_;
+                          }
+                        },
+                      ),
+                    ),
                     Text(trueOrFalseQuestion
                         ? t.true_false_question
                         : t.four_answers_question),
@@ -92,10 +96,11 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: ElevatedButton.icon(
                           onPressed: () async {
-                            final image = await pickSingleImage();
-                            if (image != null) {
+                            final choosenImage = await pickSingleImage();
+                            if (choosenImage != null) {
+                              image = choosenImage;
                               setState(() => displayImage =
-                                  Image.file(image, height: 150));
+                                  Image.file(choosenImage, height: 150));
                             }
                           },
                           style: ButtonStyle(
@@ -163,7 +168,6 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
                       isCorrect: currectAnswer == 4),
               ],
               isLocked: false,
-              selectedOption: null,
             );
             widget.onDone.call(question, image);
             KheasydevNavigatePage().pop(context);
@@ -182,6 +186,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
         Expanded(
             flex: 1,
             child: Checkbox(
+                activeColor: AppColors.primaryColor,
                 value: currectAnswer == index,
                 onChanged: (value) => setState(() {
                       currectAnswer = index;
