@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 265
+/// Strings: 271
 ///
-/// Built on 2024-10-27 at 17:45 UTC
+/// Built on 2024-10-28 at 06:13 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -629,6 +629,30 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	}
 	String get mark_least_one_question => 'יש לסמן לפחות שאלה אחת';
 	String get no_questions_add => 'לא הועלו שאלות עדיין';
+	String quiz_game_partner_description({required GenderContext context, required Object name, required Object number}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'ברוך הבא למשחק הטריוויה!\n${name} הכינה לך ${number} שאלות מסקרנות.\nשים ❤️ – אי אפשר לתקן תשובה שנתת, אז ענה בכיף אבל בזהירות 😉\nבהצלחה!';
+			case GenderContext.female:
+				return 'ברוכה הבאה למשחק הטריוויה!\n${name} הכין לך ${number} שאלות מסקרנות.\nשימי ❤️ – אי אפשר לתקן תשובה שנתת, אז תעני בכיף אבל בזהירות 😉\nבהצלחה!';
+		}
+	}
+	String quiz_game_partner_no_questions({required GenderContext context, required Object name}) {
+		switch (context) {
+			case GenderContext.male:
+				return '${name} לא העלתה עדיין שאלות';
+			case GenderContext.female:
+				return '${name} לא העלה עדיין שאלות';
+		}
+	}
+	String click_here_start({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'לחץ כאן להתחלה';
+			case GenderContext.female:
+				return 'לחצי כאן להתחלה';
+		}
+	}
 }
 
 /// Flat map(s) containing all translations.
@@ -1112,6 +1136,30 @@ extension on Translations {
 			};
 			case 'mark_least_one_question': return 'יש לסמן לפחות שאלה אחת';
 			case 'no_questions_add': return 'לא הועלו שאלות עדיין';
+			case 'quiz_game_partner_description': return ({required GenderContext context, required Object name, required Object number}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'ברוך הבא למשחק הטריוויה!\n${name} הכינה לך ${number} שאלות מסקרנות.\nשים ❤️ – אי אפשר לתקן תשובה שנתת, אז ענה בכיף אבל בזהירות 😉\nבהצלחה!';
+					case GenderContext.female:
+						return 'ברוכה הבאה למשחק הטריוויה!\n${name} הכין לך ${number} שאלות מסקרנות.\nשימי ❤️ – אי אפשר לתקן תשובה שנתת, אז תעני בכיף אבל בזהירות 😉\nבהצלחה!';
+				}
+			};
+			case 'quiz_game_partner_no_questions': return ({required GenderContext context, required Object name}) {
+				switch (context) {
+					case GenderContext.male:
+						return '${name} לא העלתה עדיין שאלות';
+					case GenderContext.female:
+						return '${name} לא העלה עדיין שאלות';
+				}
+			};
+			case 'click_here_start': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'לחץ כאן להתחלה';
+					case GenderContext.female:
+						return 'לחצי כאן להתחלה';
+				}
+			};
 			default: return null;
 		}
 	}

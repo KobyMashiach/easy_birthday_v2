@@ -1,9 +1,11 @@
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
+import 'package:easy_birthday/dev/quiz/quiz_widget.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
+import 'package:easy_birthday/models/quiz_models/question_model/question_model.dart';
 import 'package:easy_birthday/models/text_items_model/text_item_model.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_birthday_calendar.dart';
 import 'package:easy_birthday/screens/partner_display_screens/display_birthday_suprise.dart';
@@ -65,7 +67,17 @@ class PartnerHomeScreen extends StatelessWidget {
 
                     case CategoryEnum.quizGame:
                       KheasydevNavigatePage().pushDuration(
-                          context, DisplayQuizGame(category: category));
+                          context,
+                          DisplayQuizGame(
+                            category: category,
+                            saveQuestion: (question, index) {
+                              List<QuestionModel> oldQuestions =
+                                  List.from(category.quizGame ?? []);
+                              oldQuestions[index] = question;
+                              onChangeCategory.call(
+                                  category.copyWith(quizGame: oldQuestions));
+                            },
+                          ));
 
                     case CategoryEnum.birthdayCalendar:
                       KheasydevNavigatePage().pushDuration(

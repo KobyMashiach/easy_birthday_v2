@@ -333,5 +333,17 @@
     "female": "בחרי את השאלות שתרצי למחוק"
   },
   "mark_least_one_question": "יש לסמן לפחות שאלה אחת",
-  "no_questions_add": "לא הועלו שאלות עדיין"
+  "no_questions_add": "לא הועלו שאלות עדיין",
+  "quiz_game_partner_description(context=GenderContext)": {
+    "male": "ברוך הבא למשחק הטריוויה!\n$name הכינה לך $number שאלות מסקרנות.\nשים ❤️ – אי אפשר לתקן תשובה שנתת, אז ענה בכיף אבל בזהירות 😉\nבהצלחה!",
+    "female": "ברוכה הבאה למשחק הטריוויה!\n$name הכין לך $number שאלות מסקרנות.\nשימי ❤️ – אי אפשר לתקן תשובה שנתת, אז תעני בכיף אבל בזהירות 😉\nבהצלחה!"
+  },
+  "quiz_game_partner_no_questions(context=GenderContext)": {
+    "male": "$name לא העלתה עדיין שאלות",
+    "female": "$name לא העלה עדיין שאלות"
+  },
+  "click_here_start(context=GenderContext)": {
+    "male": "לחץ כאן להתחלה",
+    "female": "לחצי כאן להתחלה"
+  }
 }

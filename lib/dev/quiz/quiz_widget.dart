@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:easy_birthday/core/text_styles.dart';
+import 'package:easy_birthday/dev/quiz/done_quiz.dart';
 import 'package:easy_birthday/dev/quiz/options_widget.dart';
 import 'package:easy_birthday/models/quiz_models/question_model/question_model.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +7,10 @@ import 'package:kh_easy_dev/kh_easy_dev.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class QuizWidget extends StatefulWidget {
+  final Function(QuestionModel question, int index) saveQuestion;
   final List<QuestionModel> questionsList;
-  final int currectQuestion;
   const QuizWidget(
-      {super.key, required this.currectQuestion, required this.questionsList});
+      {super.key, required this.questionsList, required this.saveQuestion});
 
   @override
   State<QuizWidget> createState() => _QuizWidgetState();
@@ -22,17 +21,24 @@ class _QuizWidgetState extends State<QuizWidget> {
   int _questionNumber = 1;
   int _score = 0;
   bool _isLocked = false;
-  Random random = Random();
-  late int randomNumberSuccess;
-  late int randomNumberFailed;
+  late List<QuestionModel> questionsList;
 
   @override
   void initState() {
     super.initState();
-    randomNumberSuccess = random.nextInt(14) + 1;
-    randomNumberFailed = random.nextInt(15) + 1;
-    _questionNumber = widget.currectQuestion;
-    _controller = PageController(initialPage: widget.currectQuestion - 1);
+    questionsList = List.from(widget.questionsList);
+
+    for (var element in questionsList) {
+      if (element.isLocked) {
+        _questionNumber++;
+      } else {
+        break;
+      }
+    }
+    if (_questionNumber > questionsList.length) {
+      KheasydevNavigatePage().push(context, DoneQuiz(score: _score));
+    }
+    _controller = PageController(initialPage: _questionNumber - 1);
   }
 
   @override
@@ -44,17 +50,17 @@ class _QuizWidgetState extends State<QuizWidget> {
         children: [
           const SizedBox(height: 32),
           Text(
-            "שאלה $_questionNumber/${widget.questionsList.length}",
+            "שאלה $_questionNumber/${questionsList.length}",
             style: AppTextStyle().title,
           ),
           kheasydevDivider(black: true),
           Expanded(
             child: PageView.builder(
-              itemCount: widget.questionsList.length,
+              itemCount: questionsList.length,
               physics: const NeverScrollableScrollPhysics(),
               controller: _controller,
               itemBuilder: (context, index) {
-                return buildQuestion(widget.questionsList[index], index);
+                return buildQuestion(questionsList[index], index);
               },
             ),
           ),
@@ -75,56 +81,43 @@ class _QuizWidgetState extends State<QuizWidget> {
         Text(question.text, style: const TextStyle(fontSize: 24)),
         const SizedBox(height: 32),
         Expanded(
-            child: OptionsWidget(
-          question: question,
-          onClickedOption: (option) async {
-            if (question.isLocked) {
-              return;
-            } else {
-              setState(() {
-                question =
-                    question.copyWith(isLocked: true, selectedOption: option);
-                widget.questionsList[index] = question;
-              });
-              _isLocked = question.isLocked;
-              if (question.selectedOption!.isCorrect) {
-                // await showDialog(
-                //     context: context,
-                //     builder: (context) => CorrectAnswerDialog(
-                //           imageRandomNumber: randomNumberSuccess,
-                //         ));
-                _score++;
-                moveToNextQuestion();
+          child: OptionsWidget(
+            question: question,
+            onClickedOption: (option) async {
+              if (question.isLocked) {
+                return;
               } else {
-                // await showDialog(
-                //     context: context,
-                //     builder: (context) => WrongAnswerDialog(
-                //           imageRandomNumber: randomNumberFailed,
-                //         ));
-                moveToNextQuestion();
+                setState(() {
+                  question =
+                      question.copyWith(isLocked: true, selectedOption: option);
+                  questionsList[index] = question;
+                });
+                _isLocked = question.isLocked;
+                if (question.selectedOption!.isCorrect) {
+                  _score++;
+                }
+                moveToNextQuestion(question);
               }
-            }
-          },
-        ))
+            },
+          ),
+        )
       ],
     );
   }
 
-  void moveToNextQuestion() {
-    if (_questionNumber < widget.questionsList.length) {
-      randomNumberSuccess = random.nextInt(14) + 1;
-      randomNumberFailed = random.nextInt(15) + 1;
+  void moveToNextQuestion(QuestionModel question) async {
+    await Future.delayed(const Duration(seconds: 1));
+    if (_questionNumber < questionsList.length) {
       _controller.nextPage(
           duration: const Duration(milliseconds: 250),
           curve: Curves.easeInExpo);
       setState(() {
-        _questionNumber++;
         _isLocked = false;
-        // localDb.saveCurrentQuestion(index: _questionNumber);
+        widget.saveQuestion.call(question, _questionNumber - 1);
+        _questionNumber++;
       });
     } else {
-      // KheasydevNavigatePage()
-      //     .pushAndRemoveUntil(context, DoneQuiz(localDb: localDb));
+      KheasydevNavigatePage().push(context, DoneQuiz(score: _score));
     }
   }
 }
