@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
@@ -40,7 +41,7 @@ class PartnerHomeScreen extends StatelessWidget {
           GridView.builder(
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+              crossAxisCount: kIsWeb ? 6 : 2,
               crossAxisSpacing: 24.0,
               mainAxisSpacing: 24.0,
               childAspectRatio: 1 / 1.6,
