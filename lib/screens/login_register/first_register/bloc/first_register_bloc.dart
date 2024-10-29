@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:easy_birthday/core/colors.dart';
@@ -9,6 +10,7 @@ import 'package:easy_birthday/models/persona_model/persona_model.dart';
 import 'package:easy_birthday/models/plan_model/plan_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
+import 'package:easy_birthday/services/firebase/firestore_data.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:flutter/widgets.dart';
 
@@ -31,6 +33,7 @@ class FirstRegisterBloc extends Bloc<FirstRegisterEvent, FirstRegisterState> {
     on<FirstRegisterEventChooseTexts>(_firstRegisterEventChooseTexts);
     on<FirstRegisterEventPlanPurchase>(_firstRegisterEventPlanPurchase);
     on<FirstRegisterEventFinishRegister>(_firstRegisterEventFinishRegister);
+    on<FirstRegisterEventAddProfileImage>(_firstRegisterEventAddProfileImage);
   }
 
   FutureOr<void> _firstRegisterEventInit(
@@ -99,5 +102,15 @@ class FirstRegisterBloc extends Bloc<FirstRegisterEvent, FirstRegisterState> {
         .updatePersona(globalUser.copyWith(registerComplete: true));
     final event = await eventRepo.getEventFromServer();
     emit(FirstRegisterStateNavHomeScreen(planModel: event!.planSubscribe));
+  }
+
+  FutureOr<void> _firstRegisterEventAddProfileImage(
+      FirstRegisterEventAddProfileImage event,
+      Emitter<FirstRegisterState> emit) async {
+    final fileUrl = await firestoreUploadMediaToStorage(
+        path: globalEvent!.eventId,
+        file: event.imageFile,
+        fileName: "profileImage");
+    eventRepo.updateEvent(globalEvent!.copyWith(profileImageUrl: fileUrl));
   }
 }

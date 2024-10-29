@@ -5,6 +5,7 @@ import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/bloc/first_register_bloc.dart';
+import 'package:easy_birthday/screens/login_register/first_register/inner/add_profile_image_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_app_color_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_plan_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_texts_screen.dart';
@@ -153,6 +154,14 @@ class _FirstRegisterMainState extends State<FirstRegisterMain> {
                               onContinue: (choosenTexts) {
                                 bloc.add(FirstRegisterEventChooseTexts(
                                     choosenTexts: choosenTexts));
+                                moveNextPage();
+                              },
+                              onPrevious: () => movePreviousPage(),
+                            ),
+                            AddProfileImageScreen(
+                              onContinue: (image) {
+                                bloc.add(FirstRegisterEventAddProfileImage(
+                                    imageFile: image));
                                 moveNextPage();
                               },
                               onPrevious: () => movePreviousPage(),

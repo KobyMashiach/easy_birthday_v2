@@ -42,6 +42,8 @@ mixin _$EventModel {
   @HiveField(8)
   @CategoryConverter()
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
+  @HiveField(9)
+  String? get profileImageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,7 +68,8 @@ abstract class $EventModelCopyWith<$Res> {
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
       DateTime? partnerDateOfBirth,
       @HiveField(7) Map<String, String>? choosenTexts,
-      @HiveField(8) @CategoryConverter() List<CategoryModel> categories});
+      @HiveField(8) @CategoryConverter() List<CategoryModel> categories,
+      @HiveField(9) String? profileImageUrl});
 }
 
 /// @nodoc
@@ -91,6 +94,7 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
     Object? partnerDateOfBirth = freezed,
     Object? choosenTexts = freezed,
     Object? categories = null,
+    Object? profileImageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       eventId: null == eventId
@@ -129,6 +133,10 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
+      profileImageUrl: freezed == profileImageUrl
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -152,7 +160,8 @@ abstract class _$$EventModelImplCopyWith<$Res>
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
       DateTime? partnerDateOfBirth,
       @HiveField(7) Map<String, String>? choosenTexts,
-      @HiveField(8) @CategoryConverter() List<CategoryModel> categories});
+      @HiveField(8) @CategoryConverter() List<CategoryModel> categories,
+      @HiveField(9) String? profileImageUrl});
 }
 
 /// @nodoc
@@ -175,6 +184,7 @@ class __$$EventModelImplCopyWithImpl<$Res>
     Object? partnerDateOfBirth = freezed,
     Object? choosenTexts = freezed,
     Object? categories = null,
+    Object? profileImageUrl = freezed,
   }) {
     return _then(_$EventModelImpl(
       eventId: null == eventId
@@ -213,6 +223,10 @@ class __$$EventModelImplCopyWithImpl<$Res>
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
+      profileImageUrl: freezed == profileImageUrl
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -234,7 +248,8 @@ class _$EventModelImpl implements _EventModel {
       @HiveField(7) final Map<String, String>? choosenTexts,
       @HiveField(8)
       @CategoryConverter()
-      final List<CategoryModel> categories = const []})
+      final List<CategoryModel> categories = const [],
+      @HiveField(9) this.profileImageUrl})
       : _users = users,
         _imagesUrl = imagesUrl,
         _choosenTexts = choosenTexts,
@@ -304,8 +319,12 @@ class _$EventModelImpl implements _EventModel {
   }
 
   @override
+  @HiveField(9)
+  final String? profileImageUrl;
+
+  @override
   String toString() {
-    return 'EventModel(eventId: $eventId, users: $users, planSubscribe: $planSubscribe, appColor: $appColor, imagesUrl: $imagesUrl, greeting: $greeting, partnerDateOfBirth: $partnerDateOfBirth, choosenTexts: $choosenTexts, categories: $categories)';
+    return 'EventModel(eventId: $eventId, users: $users, planSubscribe: $planSubscribe, appColor: $appColor, imagesUrl: $imagesUrl, greeting: $greeting, partnerDateOfBirth: $partnerDateOfBirth, choosenTexts: $choosenTexts, categories: $categories, profileImageUrl: $profileImageUrl)';
   }
 
   @override
@@ -328,7 +347,9 @@ class _$EventModelImpl implements _EventModel {
             const DeepCollectionEquality()
                 .equals(other._choosenTexts, _choosenTexts) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categories, _categories) &&
+            (identical(other.profileImageUrl, profileImageUrl) ||
+                other.profileImageUrl == profileImageUrl));
   }
 
   @JsonKey(ignore: true)
@@ -343,7 +364,8 @@ class _$EventModelImpl implements _EventModel {
       greeting,
       partnerDateOfBirth,
       const DeepCollectionEquality().hash(_choosenTexts),
-      const DeepCollectionEquality().hash(_categories));
+      const DeepCollectionEquality().hash(_categories),
+      profileImageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -371,9 +393,8 @@ abstract class _EventModel implements EventModel {
       @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
       final DateTime? partnerDateOfBirth,
       @HiveField(7) final Map<String, String>? choosenTexts,
-      @HiveField(8)
-      @CategoryConverter()
-      final List<CategoryModel> categories}) = _$EventModelImpl;
+      @HiveField(8) @CategoryConverter() final List<CategoryModel> categories,
+      @HiveField(9) final String? profileImageUrl}) = _$EventModelImpl;
 
   factory _EventModel.fromJson(Map<String, dynamic> json) =
       _$EventModelImpl.fromJson;
@@ -409,6 +430,9 @@ abstract class _EventModel implements EventModel {
   @HiveField(8)
   @CategoryConverter()
   List<CategoryModel> get categories;
+  @override
+  @HiveField(9)
+  String? get profileImageUrl;
   @override
   @JsonKey(ignore: true)
   _$$EventModelImplCopyWith<_$EventModelImpl> get copyWith =>

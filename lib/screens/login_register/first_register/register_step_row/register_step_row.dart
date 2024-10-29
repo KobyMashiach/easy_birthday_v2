@@ -31,6 +31,7 @@ class RegisterStepRow extends StatelessWidget {
     const textFourthChild = CircleWithChild(child: Text("4"));
     const textFifthChild = CircleWithChild(child: Text("5"));
     const textSixthChild = CircleWithChild(child: Text("6"));
+    const textSeventhChild = CircleWithChild(child: Text("7"));
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -71,6 +72,13 @@ class RegisterStepRow extends StatelessWidget {
           index < 5
               ? textSixthChild
               : index == 5
+                  ? circleIcon
+                  : checkIcon,
+          const SizedBox(width: 4),
+          rowDivider(),
+          index < 6
+              ? textSeventhChild
+              : index == 6
                   ? circleIcon
                   : checkIcon,
           const SizedBox(width: 4),

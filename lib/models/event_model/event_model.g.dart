@@ -26,13 +26,14 @@ class EventModelAdapter extends TypeAdapter<_$EventModelImpl> {
       partnerDateOfBirth: fields[6] as DateTime?,
       choosenTexts: (fields[7] as Map?)?.cast<String, String>(),
       categories: (fields[8] as List).cast<CategoryModel>(),
+      profileImageUrl: fields[9] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$EventModelImpl obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.eventId)
       ..writeByte(2)
@@ -43,6 +44,8 @@ class EventModelAdapter extends TypeAdapter<_$EventModelImpl> {
       ..write(obj.greeting)
       ..writeByte(6)
       ..write(obj.partnerDateOfBirth)
+      ..writeByte(9)
+      ..write(obj.profileImageUrl)
       ..writeByte(1)
       ..write(obj.users)
       ..writeByte(4)
@@ -90,6 +93,7 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
                   const CategoryConverter().fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      profileImageUrl: json['profileImageUrl'] as String?,
     );
 
 Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
@@ -105,6 +109,7 @@ Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
       'choosenTexts': instance.choosenTexts,
       'categories':
           instance.categories.map(const CategoryConverter().toJson).toList(),
+      'profileImageUrl': instance.profileImageUrl,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

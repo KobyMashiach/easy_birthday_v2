@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 273
+/// Strings: 274
 ///
-/// Built on 2024-10-29 at 08:30 UTC
+/// Built on 2024-10-29 at 09:11 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -655,6 +655,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	}
 	String get quiz_game_done => 'משחק הטריוויה נגמר';
 	String you_answer_from({required Object answers, required Object questions}) => 'ענית נכון על ${answers} מתוך ${questions} שאלות';
+	String get choose_couple_profile_image => 'בחר/י תמונת פרופיל זוגית שלכם';
 }
 
 /// Flat map(s) containing all translations.
@@ -1164,6 +1165,7 @@ extension on Translations {
 			};
 			case 'quiz_game_done': return 'משחק הטריוויה נגמר';
 			case 'you_answer_from': return ({required Object answers, required Object questions}) => 'ענית נכון על ${answers} מתוך ${questions} שאלות';
+			case 'choose_couple_profile_image': return 'בחר/י תמונת פרופיל זוגית שלכם';
 			default: return null;
 		}
 	}

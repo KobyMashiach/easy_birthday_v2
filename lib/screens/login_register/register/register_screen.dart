@@ -172,6 +172,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   bool formValidation() {
+    if (phoneController.text.startsWith('0')) {
+      phoneController.text = phoneController.text.substring(1);
+    }
     if (countryCode.isEmpty ||
         phoneController.text.length < 6 ||
         phoneController.text.length > 9) {

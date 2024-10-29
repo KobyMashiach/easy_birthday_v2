@@ -32,6 +32,7 @@ class EventModel with _$EventModel {
     @Default([])
     @CategoryConverter()
     List<CategoryModel> categories,
+    @HiveField(9) String? profileImageUrl,
   }) = _EventModel;
 
   factory EventModel.fromJson(Map<String, dynamic> json) =>

@@ -30,6 +30,12 @@ class FirstRegisterEventChooseTexts extends FirstRegisterEvent {
   FirstRegisterEventChooseTexts({required this.choosenTexts});
 }
 
+class FirstRegisterEventAddProfileImage extends FirstRegisterEvent {
+  final File imageFile;
+
+  FirstRegisterEventAddProfileImage({required this.imageFile});
+}
+
 class FirstRegisterEventPlanPurchase extends FirstRegisterEvent {
   final String? planTitle;
 

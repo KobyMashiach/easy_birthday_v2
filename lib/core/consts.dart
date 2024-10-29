@@ -29,6 +29,8 @@ const infoIllustration = "assets/illustrations/info_illustration.svg";
 const secretIllustrations = "assets/illustrations/secret_illustrations.svg";
 const wishIllustrations = "assets/illustrations/wish_illustrations.svg";
 const partyIllustrations = "assets/illustrations/party_illustrations.svg";
+const profileImageIllustrations =
+    "assets/illustrations/profile_image_illustrations.svg";
 const writeLetterIllustration =
     "assets/illustrations/write_letter_illustration.svg";
 const uploadImageIllustration =

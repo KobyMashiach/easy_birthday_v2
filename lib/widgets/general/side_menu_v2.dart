@@ -11,8 +11,7 @@ import 'package:kh_easy_dev/kh_easy_dev.dart';
 appSideMenuV2(BuildContext context, String pageName) {
   return kheasydevAppDrawerV2(
     name: globalUser.name,
-    profileImage:
-        "https://media.easy.co.il/images/UserPics/10116330_1673229445567.png",
+    profileImage: globalEvent?.profileImageUrl,
     color: AppColors.primaryColor,
     contactsScreenButtomBackground: AppColors.buttomBackground,
     contactsScreenDialogColor: AppColors.primaryColor,

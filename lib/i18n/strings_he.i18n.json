@@ -347,5 +347,6 @@
     "female": "לחצי כאן להתחלה"
   },
   "quiz_game_done": "משחק הטריוויה נגמר",
-  "you_answer_from": "ענית נכון על $answers מתוך $questions שאלות"
+  "you_answer_from": "ענית נכון על $answers מתוך $questions שאלות",
+  "choose_couple_profile_image": "בחר/י תמונת פרופיל זוגית שלכם"
 }

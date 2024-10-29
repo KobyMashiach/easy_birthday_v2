@@ -22,12 +22,14 @@ class AppInfo extends StatelessWidget {
     Map<String, String> partnerInfo = {
       t.first_name: globalPartnerUser?.name ?? "Empty",
       t.phone: globalPartnerUser?.phoneNumber ?? "Empty",
-      t.date_of_birth: globalPartnerUser?.dateOfBirth != null
-          ? dateTimeToString(globalPartnerUser!.dateOfBirth!)
-          : "Empty",
       t.gender: calculateNextAge(),
       t.change_gender: globalPartnerUser?.gender ?? "Empty",
     };
+    if (globalPartnerUser?.dateOfBirth != null) {
+      partnerInfo[t.date_of_birth] =
+          dateTimeToString(globalPartnerUser!.dateOfBirth!);
+    }
+
     if (globalPartnerUser?.email != null) {
       partnerInfo[t.email] = globalPartnerUser!.email!;
     }
