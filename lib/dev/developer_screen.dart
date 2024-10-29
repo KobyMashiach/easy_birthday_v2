@@ -122,9 +122,6 @@ class DeveloperScreen extends StatelessWidget {
           children: appPlans.values
               .map((plan) => GestureDetector(
                     onTap: () async {
-                      // await context
-                      //     .read<PersonaRepo>()
-                      //     .updatePersona(globalUser.copyWith(role: plan));
                       context.read<EventRepo>().updateEvent(
                           globalEvent!.copyWith(planSubscribe: plan));
                       KheasydevNavigatePage().pop(context);
