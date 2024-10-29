@@ -28,6 +28,7 @@ const supriseIllustration = "assets/illustrations/suprise_illustration.svg";
 const infoIllustration = "assets/illustrations/info_illustration.svg";
 const secretIllustrations = "assets/illustrations/secret_illustrations.svg";
 const wishIllustrations = "assets/illustrations/wish_illustrations.svg";
+const partyIllustrations = "assets/illustrations/party_illustrations.svg";
 const writeLetterIllustration =
     "assets/illustrations/write_letter_illustration.svg";
 const uploadImageIllustration =

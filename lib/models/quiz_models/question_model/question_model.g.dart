@@ -16,7 +16,6 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
           _$JsonConverterFromJson<Map<String, dynamic>, OptionModel>(
               json['selectedOption'], const OptionsConverter().fromJson),
       imageUrl: json['imageUrl'] as String?,
-      score: (json['score'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
@@ -29,7 +28,6 @@ Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
           _$JsonConverterToJson<Map<String, dynamic>, OptionModel>(
               instance.selectedOption, const OptionsConverter().toJson),
       'imageUrl': instance.imageUrl,
-      'score': instance.score,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

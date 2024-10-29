@@ -345,5 +345,7 @@
   "click_here_start(context=GenderContext)": {
     "male": "לחץ כאן להתחלה",
     "female": "לחצי כאן להתחלה"
-  }
+  },
+  "quiz_game_done": "משחק הטריוויה נגמר",
+  "you_answer_from": "ענית נכון על $answers מתוך $questions שאלות"
 }

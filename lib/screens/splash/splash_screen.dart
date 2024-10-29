@@ -24,8 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _SplashScreenState() {
     // Ensure the splash screen is visible for at least 3 seconds
-    Timer(const Duration(seconds: 0), () {
-      //TODO: change to 3 seconds
+    Timer(const Duration(seconds: 3), () {
       setState(() {
         _canNavigate = true;
         _checkNavigationCondition();

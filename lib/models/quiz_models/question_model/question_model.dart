@@ -14,7 +14,6 @@ class QuestionModel with _$QuestionModel {
     @Default(false) bool isLocked,
     @OptionsConverter() OptionModel? selectedOption,
     String? imageUrl,
-    @Default(0) int score,
   }) = _QuestionModel;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>

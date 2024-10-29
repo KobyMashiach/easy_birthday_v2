@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_birthday/core/general_functions.dart';
-import 'package:easy_birthday/widgets/design/display_screens_top.dart';
+import 'package:easy_birthday/widgets/design/general/display_screens_top.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easy_birthday/models/category_model/category_model.dart';

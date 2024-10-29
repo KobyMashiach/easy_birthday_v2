@@ -175,7 +175,15 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
   }
 
   List<DateEventModel> _getEventsForDay(DateTime day) {
-    return _events.dateEventMap[day] ?? [];
+    DateTime normalizedDay = DateTime(day.year, day.month, day.day);
+    for (DateTime eventDate in _events.dateEventMap.keys) {
+      DateTime normalizedEventDate =
+          DateTime(eventDate.year, eventDate.month, eventDate.day);
+      if (normalizedEventDate == normalizedDay) {
+        return _events.dateEventMap[eventDate] ?? [];
+      }
+    }
+    return [];
   }
 
   List<Widget> get topWidgets {

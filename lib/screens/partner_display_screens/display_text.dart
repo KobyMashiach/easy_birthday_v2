@@ -1,5 +1,5 @@
 import 'package:easy_birthday/models/category_model/category_model.dart';
-import 'package:easy_birthday/widgets/design/display_screens_top.dart';
+import 'package:easy_birthday/widgets/design/general/display_screens_top.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:flutter/material.dart';
 

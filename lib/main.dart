@@ -1,5 +1,6 @@
 import 'package:easy_birthday/core/hive/adapters_controller.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
+import 'package:easy_birthday/core/hive/category_model_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/firebase_options.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
@@ -51,7 +52,11 @@ class MyApp extends StatelessWidget {
           create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
         ),
         RepositoryProvider(
-          create: (context) => EventRepo(),
+          create: (context) => CategoryModelDataSource(),
+        ),
+        RepositoryProvider(
+          create: (context) =>
+              EventRepo(context.read<CategoryModelDataSource>()),
         ),
       ],
       child: BlocProvider(

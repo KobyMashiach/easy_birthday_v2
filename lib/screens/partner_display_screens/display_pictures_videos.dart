@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_birthday/widgets/design/display_screens_top.dart';
+import 'package:easy_birthday/widgets/design/general/display_screens_top.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/video_player_widget.dart';
 import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';

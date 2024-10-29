@@ -28,7 +28,6 @@ mixin _$QuestionModel {
   @OptionsConverter()
   OptionModel? get selectedOption => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
-  int get score => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,8 +47,7 @@ abstract class $QuestionModelCopyWith<$Res> {
       int? partnerChoise,
       bool isLocked,
       @OptionsConverter() OptionModel? selectedOption,
-      String? imageUrl,
-      int score});
+      String? imageUrl});
 
   $OptionModelCopyWith<$Res>? get selectedOption;
 }
@@ -73,7 +71,6 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? isLocked = null,
     Object? selectedOption = freezed,
     Object? imageUrl = freezed,
-    Object? score = null,
   }) {
     return _then(_value.copyWith(
       text: null == text
@@ -100,10 +97,6 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 
@@ -134,8 +127,7 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
       int? partnerChoise,
       bool isLocked,
       @OptionsConverter() OptionModel? selectedOption,
-      String? imageUrl,
-      int score});
+      String? imageUrl});
 
   @override
   $OptionModelCopyWith<$Res>? get selectedOption;
@@ -158,7 +150,6 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
     Object? isLocked = null,
     Object? selectedOption = freezed,
     Object? imageUrl = freezed,
-    Object? score = null,
   }) {
     return _then(_$QuestionModelImpl(
       text: null == text
@@ -185,10 +176,6 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -202,8 +189,7 @@ class _$QuestionModelImpl implements _QuestionModel {
       this.partnerChoise,
       this.isLocked = false,
       @OptionsConverter() this.selectedOption,
-      this.imageUrl,
-      this.score = 0})
+      this.imageUrl})
       : _options = options;
 
   factory _$QuestionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -230,13 +216,10 @@ class _$QuestionModelImpl implements _QuestionModel {
   final OptionModel? selectedOption;
   @override
   final String? imageUrl;
-  @override
-  @JsonKey()
-  final int score;
 
   @override
   String toString() {
-    return 'QuestionModel(text: $text, options: $options, partnerChoise: $partnerChoise, isLocked: $isLocked, selectedOption: $selectedOption, imageUrl: $imageUrl, score: $score)';
+    return 'QuestionModel(text: $text, options: $options, partnerChoise: $partnerChoise, isLocked: $isLocked, selectedOption: $selectedOption, imageUrl: $imageUrl)';
   }
 
   @override
@@ -253,8 +236,7 @@ class _$QuestionModelImpl implements _QuestionModel {
             (identical(other.selectedOption, selectedOption) ||
                 other.selectedOption == selectedOption) &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.score, score) || other.score == score));
+                other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
@@ -266,8 +248,7 @@ class _$QuestionModelImpl implements _QuestionModel {
       partnerChoise,
       isLocked,
       selectedOption,
-      imageUrl,
-      score);
+      imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -290,8 +271,7 @@ abstract class _QuestionModel implements QuestionModel {
       final int? partnerChoise,
       final bool isLocked,
       @OptionsConverter() final OptionModel? selectedOption,
-      final String? imageUrl,
-      final int score}) = _$QuestionModelImpl;
+      final String? imageUrl}) = _$QuestionModelImpl;
 
   factory _QuestionModel.fromJson(Map<String, dynamic> json) =
       _$QuestionModelImpl.fromJson;
@@ -310,8 +290,6 @@ abstract class _QuestionModel implements QuestionModel {
   OptionModel? get selectedOption;
   @override
   String? get imageUrl;
-  @override
-  int get score;
   @override
   @JsonKey(ignore: true)
   _$$QuestionModelImplCopyWith<_$QuestionModelImpl> get copyWith =>

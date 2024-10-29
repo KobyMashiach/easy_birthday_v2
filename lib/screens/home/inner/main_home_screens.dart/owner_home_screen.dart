@@ -29,9 +29,10 @@ class OwnerHomeScreen extends StatelessWidget {
         picturesVideosWidget(category, screenWidth, pictures: true),
       CategoryEnum.videos =>
         picturesVideosWidget(category, screenWidth, pictures: false),
-      CategoryEnum.quizGame => category.quizGame != null
-          ? quizWidget(category)
-          : const SizedBox.shrink(),
+      CategoryEnum.quizGame =>
+        category.quizGame != null && category.quizGame!.isNotEmpty
+            ? quizWidget(category)
+            : Text(t.no_questions_add),
       CategoryEnum.birthdayCalendar => Row(
           children: [
             Column(

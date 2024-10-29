@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
+
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
-import 'package:easy_birthday/dev/quiz/quiz_widget.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
@@ -15,9 +18,6 @@ import 'package:easy_birthday/screens/partner_display_screens/display_text.dart'
 import 'package:easy_birthday/screens/partner_display_screens/display_wishes_list.dart';
 import 'package:easy_birthday/widgets/cards/category_partner_card.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class PartnerHomeScreen extends StatelessWidget {
   final Function(CategoryModel category) onChangeCategory;
@@ -70,12 +70,13 @@ class PartnerHomeScreen extends StatelessWidget {
                           context,
                           DisplayQuizGame(
                             category: category,
-                            saveQuestion: (question, index) {
+                            saveQuestion: (question, index, score) {
                               List<QuestionModel> oldQuestions =
                                   List.from(category.quizGame ?? []);
                               oldQuestions[index] = question;
-                              onChangeCategory.call(
-                                  category.copyWith(quizGame: oldQuestions));
+                              onChangeCategory.call(category.copyWith(
+                                  quizGame: oldQuestions,
+                                  quizGameScore: score));
                             },
                           ));
 

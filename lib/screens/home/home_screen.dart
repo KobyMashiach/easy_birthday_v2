@@ -1,3 +1,4 @@
+import 'package:easy_birthday/core/hive/category_model_data_source.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/wishes_model/wishes_model.dart';
 import 'package:easy_birthday/screens/owner_add_category/add_birthday_calendar_screen.dart';
@@ -28,8 +29,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => EventRepo(),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) =>
+              EventRepo(context.read<CategoryModelDataSource>()),
+        ),
+        RepositoryProvider(
+          create: (context) => CategoryModelDataSource(),
+        ),
+      ],
       child: BlocProvider(
         create: (context) =>
             HomeScreenBloc(eventRepo: context.read<EventRepo>()),
@@ -137,46 +146,50 @@ class HomeScreen extends StatelessWidget {
           },
           builder: (context, state) {
             final bloc = context.read<HomeScreenBloc>();
-            return Scaffold(
-              appBar: appAppBar(title: t.home_screen),
-              drawer: appSideMenuV2(context, 'home'),
-              body: state is HomeScreenLoading
-                  ? Center(
-                      child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircularProgressIndicator(),
-                        if (state.text != null) ...[
-                          const SizedBox(height: 12),
-                          Text(state.text!),
+            return PopScope(
+              canPop: false,
+              child: Scaffold(
+                appBar: appAppBar(title: t.home_screen),
+                drawer: appSideMenuV2(context, 'home'),
+                body: state is HomeScreenLoading
+                    ? Center(
+                        child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const CircularProgressIndicator(),
+                          if (state.text != null) ...[
+                            const SizedBox(height: 12),
+                            Text(state.text!),
+                          ],
                         ],
-                      ],
-                    ))
-                  : Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Center(
-                        child: globalUser.role.isPartner()
-                            ? PartnerHomeScreen(
-                                onChangeCategory: (category) => bloc.add(
-                                    HomeScreenEventUpdateCategoryInEvent(
-                                        category: category)),
-                              )
-                            : const OwnerHomeScreen(),
+                      ))
+                    : Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Center(
+                          child: globalUser.role.isPartner()
+                              ? PartnerHomeScreen(
+                                  onChangeCategory: (category) => bloc.add(
+                                      HomeScreenEventUpdateCategoryInEvent(
+                                          category: category)),
+                                )
+                              : const OwnerHomeScreen(),
+                        ),
                       ),
-                    ),
-              floatingActionButton: globalUser.role.isNotPartner() &&
-                      state is! HomeScreenLoading
-                  ? FloatingActionButton.extended(
-                      onPressed: () =>
-                          bloc.add(HomeScreenEventAddButtonClicked()),
-                      backgroundColor: AppColors.disableColor,
-                      label: Text(t.add(context: globalGender),
-                          style: AppTextStyle()
-                              .description
-                              .copyWith(color: Colors.white)),
-                      icon: const Icon(Icons.add_rounded, color: Colors.white),
-                    )
-                  : null,
+                floatingActionButton: globalUser.role.isNotPartner() &&
+                        state is! HomeScreenLoading
+                    ? FloatingActionButton.extended(
+                        onPressed: () =>
+                            bloc.add(HomeScreenEventAddButtonClicked()),
+                        backgroundColor: AppColors.disableColor,
+                        label: Text(t.add(context: globalGender),
+                            style: AppTextStyle()
+                                .description
+                                .copyWith(color: Colors.white)),
+                        icon:
+                            const Icon(Icons.add_rounded, color: Colors.white),
+                      )
+                    : null,
+              ),
             );
           },
         ),

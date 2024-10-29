@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart'; // Add Hive package
 import 'package:easy_birthday/models/calendar_model/calendar_model.dart';
 import 'package:easy_birthday/models/category_model/category_converters_json.dart';
 import 'package:easy_birthday/models/quiz_models/question_model/question_model.dart';
@@ -10,19 +11,22 @@ part 'category_model.g.dart';
 
 @freezed
 class CategoryModel with _$CategoryModel {
+  static const String hiveKey = 'CategoryModel';
+  @HiveType(typeId: 104, adapterName: 'CategoryModelAdapter')
   const factory CategoryModel({
-    required CategoryEnum categoryType,
-    required String name,
-    required String description,
-    String? id,
-    String? titleAppear,
-    String? text,
-    List<String>? urls,
-    @Default(false) bool lock,
-    Map<int, Map<String, String>>? supriseMap,
-    @WishesConverter() WishesModel? wishesList,
-    @CalendarModelConverter() CalendarModel? calendarEvents,
-    @QuestionModelListConverter() List<QuestionModel>? quizGame,
+    @HiveField(0) required CategoryEnum categoryType,
+    @HiveField(1) required String name,
+    @HiveField(2) required String description,
+    @HiveField(3) String? id,
+    @HiveField(4) String? titleAppear,
+    @HiveField(5) String? text,
+    @HiveField(6) List<String>? urls,
+    @HiveField(7) @Default(false) bool lock,
+    @HiveField(8) Map<int, Map<String, String>>? supriseMap,
+    @HiveField(9) @WishesConverter() WishesModel? wishesList,
+    @HiveField(10) @CalendarModelConverter() CalendarModel? calendarEvents,
+    @HiveField(11) @QuestionModelListConverter() List<QuestionModel>? quizGame,
+    @HiveField(12) @Default(0) int quizGameScore,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

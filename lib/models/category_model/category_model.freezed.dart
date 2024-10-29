@@ -20,22 +20,36 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CategoryModel {
+  @HiveField(0)
   CategoryEnum get categoryType => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get description => throw _privateConstructorUsedError;
+  @HiveField(3)
   String? get id => throw _privateConstructorUsedError;
+  @HiveField(4)
   String? get titleAppear => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get text => throw _privateConstructorUsedError;
+  @HiveField(6)
   List<String>? get urls => throw _privateConstructorUsedError;
+  @HiveField(7)
   bool get lock => throw _privateConstructorUsedError;
+  @HiveField(8)
   Map<int, Map<String, String>>? get supriseMap =>
       throw _privateConstructorUsedError;
+  @HiveField(9)
   @WishesConverter()
   WishesModel? get wishesList => throw _privateConstructorUsedError;
+  @HiveField(10)
   @CalendarModelConverter()
   CalendarModel? get calendarEvents => throw _privateConstructorUsedError;
+  @HiveField(11)
   @QuestionModelListConverter()
   List<QuestionModel>? get quizGame => throw _privateConstructorUsedError;
+  @HiveField(12)
+  int get quizGameScore => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,18 +64,21 @@ abstract class $CategoryModelCopyWith<$Res> {
       _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
   @useResult
   $Res call(
-      {CategoryEnum categoryType,
-      String name,
-      String description,
-      String? id,
-      String? titleAppear,
-      String? text,
-      List<String>? urls,
-      bool lock,
-      Map<int, Map<String, String>>? supriseMap,
-      @WishesConverter() WishesModel? wishesList,
-      @CalendarModelConverter() CalendarModel? calendarEvents,
-      @QuestionModelListConverter() List<QuestionModel>? quizGame});
+      {@HiveField(0) CategoryEnum categoryType,
+      @HiveField(1) String name,
+      @HiveField(2) String description,
+      @HiveField(3) String? id,
+      @HiveField(4) String? titleAppear,
+      @HiveField(5) String? text,
+      @HiveField(6) List<String>? urls,
+      @HiveField(7) bool lock,
+      @HiveField(8) Map<int, Map<String, String>>? supriseMap,
+      @HiveField(9) @WishesConverter() WishesModel? wishesList,
+      @HiveField(10) @CalendarModelConverter() CalendarModel? calendarEvents,
+      @HiveField(11)
+      @QuestionModelListConverter()
+      List<QuestionModel>? quizGame,
+      @HiveField(12) int quizGameScore});
 
   $WishesModelCopyWith<$Res>? get wishesList;
   $CalendarModelCopyWith<$Res>? get calendarEvents;
@@ -92,6 +109,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? wishesList = freezed,
     Object? calendarEvents = freezed,
     Object? quizGame = freezed,
+    Object? quizGameScore = null,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -142,6 +160,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.quizGame
           : quizGame // ignore: cast_nullable_to_non_nullable
               as List<QuestionModel>?,
+      quizGameScore: null == quizGameScore
+          ? _value.quizGameScore
+          : quizGameScore // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -179,18 +201,21 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {CategoryEnum categoryType,
-      String name,
-      String description,
-      String? id,
-      String? titleAppear,
-      String? text,
-      List<String>? urls,
-      bool lock,
-      Map<int, Map<String, String>>? supriseMap,
-      @WishesConverter() WishesModel? wishesList,
-      @CalendarModelConverter() CalendarModel? calendarEvents,
-      @QuestionModelListConverter() List<QuestionModel>? quizGame});
+      {@HiveField(0) CategoryEnum categoryType,
+      @HiveField(1) String name,
+      @HiveField(2) String description,
+      @HiveField(3) String? id,
+      @HiveField(4) String? titleAppear,
+      @HiveField(5) String? text,
+      @HiveField(6) List<String>? urls,
+      @HiveField(7) bool lock,
+      @HiveField(8) Map<int, Map<String, String>>? supriseMap,
+      @HiveField(9) @WishesConverter() WishesModel? wishesList,
+      @HiveField(10) @CalendarModelConverter() CalendarModel? calendarEvents,
+      @HiveField(11)
+      @QuestionModelListConverter()
+      List<QuestionModel>? quizGame,
+      @HiveField(12) int quizGameScore});
 
   @override
   $WishesModelCopyWith<$Res>? get wishesList;
@@ -221,6 +246,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? wishesList = freezed,
     Object? calendarEvents = freezed,
     Object? quizGame = freezed,
+    Object? quizGameScore = null,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -271,26 +297,34 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value._quizGame
           : quizGame // ignore: cast_nullable_to_non_nullable
               as List<QuestionModel>?,
+      quizGameScore: null == quizGameScore
+          ? _value.quizGameScore
+          : quizGameScore // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 104, adapterName: 'CategoryModelAdapter')
 class _$CategoryModelImpl implements _CategoryModel {
   const _$CategoryModelImpl(
-      {required this.categoryType,
-      required this.name,
-      required this.description,
-      this.id,
-      this.titleAppear,
-      this.text,
-      final List<String>? urls,
-      this.lock = false,
-      final Map<int, Map<String, String>>? supriseMap,
-      @WishesConverter() this.wishesList,
-      @CalendarModelConverter() this.calendarEvents,
-      @QuestionModelListConverter() final List<QuestionModel>? quizGame})
+      {@HiveField(0) required this.categoryType,
+      @HiveField(1) required this.name,
+      @HiveField(2) required this.description,
+      @HiveField(3) this.id,
+      @HiveField(4) this.titleAppear,
+      @HiveField(5) this.text,
+      @HiveField(6) final List<String>? urls,
+      @HiveField(7) this.lock = false,
+      @HiveField(8) final Map<int, Map<String, String>>? supriseMap,
+      @HiveField(9) @WishesConverter() this.wishesList,
+      @HiveField(10) @CalendarModelConverter() this.calendarEvents,
+      @HiveField(11)
+      @QuestionModelListConverter()
+      final List<QuestionModel>? quizGame,
+      @HiveField(12) this.quizGameScore = 0})
       : _urls = urls,
         _supriseMap = supriseMap,
         _quizGame = quizGame;
@@ -299,19 +333,26 @@ class _$CategoryModelImpl implements _CategoryModel {
       _$$CategoryModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final CategoryEnum categoryType;
   @override
+  @HiveField(1)
   final String name;
   @override
+  @HiveField(2)
   final String description;
   @override
+  @HiveField(3)
   final String? id;
   @override
+  @HiveField(4)
   final String? titleAppear;
   @override
+  @HiveField(5)
   final String? text;
   final List<String>? _urls;
   @override
+  @HiveField(6)
   List<String>? get urls {
     final value = _urls;
     if (value == null) return null;
@@ -322,9 +363,11 @@ class _$CategoryModelImpl implements _CategoryModel {
 
   @override
   @JsonKey()
+  @HiveField(7)
   final bool lock;
   final Map<int, Map<String, String>>? _supriseMap;
   @override
+  @HiveField(8)
   Map<int, Map<String, String>>? get supriseMap {
     final value = _supriseMap;
     if (value == null) return null;
@@ -334,13 +377,16 @@ class _$CategoryModelImpl implements _CategoryModel {
   }
 
   @override
+  @HiveField(9)
   @WishesConverter()
   final WishesModel? wishesList;
   @override
+  @HiveField(10)
   @CalendarModelConverter()
   final CalendarModel? calendarEvents;
   final List<QuestionModel>? _quizGame;
   @override
+  @HiveField(11)
   @QuestionModelListConverter()
   List<QuestionModel>? get quizGame {
     final value = _quizGame;
@@ -351,8 +397,13 @@ class _$CategoryModelImpl implements _CategoryModel {
   }
 
   @override
+  @JsonKey()
+  @HiveField(12)
+  final int quizGameScore;
+
+  @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore)';
   }
 
   @override
@@ -377,7 +428,9 @@ class _$CategoryModelImpl implements _CategoryModel {
                 other.wishesList == wishesList) &&
             (identical(other.calendarEvents, calendarEvents) ||
                 other.calendarEvents == calendarEvents) &&
-            const DeepCollectionEquality().equals(other._quizGame, _quizGame));
+            const DeepCollectionEquality().equals(other._quizGame, _quizGame) &&
+            (identical(other.quizGameScore, quizGameScore) ||
+                other.quizGameScore == quizGameScore));
   }
 
   @JsonKey(ignore: true)
@@ -395,7 +448,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       const DeepCollectionEquality().hash(_supriseMap),
       wishesList,
       calendarEvents,
-      const DeepCollectionEquality().hash(_quizGame));
+      const DeepCollectionEquality().hash(_quizGame),
+      quizGameScore);
 
   @JsonKey(ignore: true)
   @override
@@ -413,50 +467,69 @@ class _$CategoryModelImpl implements _CategoryModel {
 
 abstract class _CategoryModel implements CategoryModel {
   const factory _CategoryModel(
-          {required final CategoryEnum categoryType,
-          required final String name,
-          required final String description,
-          final String? id,
-          final String? titleAppear,
-          final String? text,
-          final List<String>? urls,
-          final bool lock,
-          final Map<int, Map<String, String>>? supriseMap,
-          @WishesConverter() final WishesModel? wishesList,
-          @CalendarModelConverter() final CalendarModel? calendarEvents,
-          @QuestionModelListConverter() final List<QuestionModel>? quizGame}) =
-      _$CategoryModelImpl;
+      {@HiveField(0) required final CategoryEnum categoryType,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final String description,
+      @HiveField(3) final String? id,
+      @HiveField(4) final String? titleAppear,
+      @HiveField(5) final String? text,
+      @HiveField(6) final List<String>? urls,
+      @HiveField(7) final bool lock,
+      @HiveField(8) final Map<int, Map<String, String>>? supriseMap,
+      @HiveField(9) @WishesConverter() final WishesModel? wishesList,
+      @HiveField(10)
+      @CalendarModelConverter()
+      final CalendarModel? calendarEvents,
+      @HiveField(11)
+      @QuestionModelListConverter()
+      final List<QuestionModel>? quizGame,
+      @HiveField(12) final int quizGameScore}) = _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   CategoryEnum get categoryType;
   @override
+  @HiveField(1)
   String get name;
   @override
+  @HiveField(2)
   String get description;
   @override
+  @HiveField(3)
   String? get id;
   @override
+  @HiveField(4)
   String? get titleAppear;
   @override
+  @HiveField(5)
   String? get text;
   @override
+  @HiveField(6)
   List<String>? get urls;
   @override
+  @HiveField(7)
   bool get lock;
   @override
+  @HiveField(8)
   Map<int, Map<String, String>>? get supriseMap;
   @override
+  @HiveField(9)
   @WishesConverter()
   WishesModel? get wishesList;
   @override
+  @HiveField(10)
   @CalendarModelConverter()
   CalendarModel? get calendarEvents;
   @override
+  @HiveField(11)
   @QuestionModelListConverter()
   List<QuestionModel>? get quizGame;
+  @override
+  @HiveField(12)
+  int get quizGameScore;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>
