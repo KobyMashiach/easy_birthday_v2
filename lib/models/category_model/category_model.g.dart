@@ -31,13 +31,14 @@ class CategoryModelAdapter extends TypeAdapter<_$CategoryModelImpl> {
       calendarEvents: fields[10] as CalendarModel?,
       quizGame: (fields[11] as List?)?.cast<QuestionModel>(),
       quizGameScore: fields[12] as int,
+      inPlan: fields[13] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$CategoryModelImpl obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(14)
       ..writeByte(0)
       ..write(obj.categoryType)
       ..writeByte(1)
@@ -58,6 +59,8 @@ class CategoryModelAdapter extends TypeAdapter<_$CategoryModelImpl> {
       ..write(obj.calendarEvents)
       ..writeByte(12)
       ..write(obj.quizGameScore)
+      ..writeByte(13)
+      ..write(obj.inPlan)
       ..writeByte(6)
       ..write(obj.urls)
       ..writeByte(8)
@@ -102,6 +105,7 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       quizGame: _$JsonConverterFromJson<List<dynamic>, List<QuestionModel>>(
           json['quizGame'], const QuestionModelListConverter().fromJson),
       quizGameScore: (json['quizGameScore'] as num?)?.toInt() ?? 0,
+      inPlan: json['inPlan'] as String? ?? "Free",
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -124,6 +128,7 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'quizGame': _$JsonConverterToJson<List<dynamic>, List<QuestionModel>>(
           instance.quizGame, const QuestionModelListConverter().toJson),
       'quizGameScore': instance.quizGameScore,
+      'inPlan': instance.inPlan,
     };
 
 const _$CategoryEnumEnumMap = {

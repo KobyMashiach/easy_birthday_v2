@@ -27,6 +27,7 @@ class CategoryModel with _$CategoryModel {
     @HiveField(10) @CalendarModelConverter() CalendarModel? calendarEvents,
     @HiveField(11) @QuestionModelListConverter() List<QuestionModel>? quizGame,
     @HiveField(12) @Default(0) int quizGameScore,
+    @HiveField(13) @Default("Free") String inPlan,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

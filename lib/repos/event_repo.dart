@@ -3,15 +3,14 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/core/global_vars.dart';
-import 'package:easy_birthday/core/hive/category_model_data_source.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/event_model/event_model.dart';
 import 'package:easy_birthday/models/plan_model/plan_model.dart';
 import 'package:easy_birthday/services/firebase/firestore_data.dart';
 
 class EventRepo {
-  final CategoryModelDataSource dataSource;
-  EventRepo(this.dataSource);
+  // final CategoryModelDataSource dataSource;
+  EventRepo();
 
   final collection = FirebaseFirestore.instance.collection('events');
 

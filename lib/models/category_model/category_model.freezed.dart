@@ -50,6 +50,8 @@ mixin _$CategoryModel {
   List<QuestionModel>? get quizGame => throw _privateConstructorUsedError;
   @HiveField(12)
   int get quizGameScore => throw _privateConstructorUsedError;
+  @HiveField(13)
+  String get inPlan => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -78,7 +80,8 @@ abstract class $CategoryModelCopyWith<$Res> {
       @HiveField(11)
       @QuestionModelListConverter()
       List<QuestionModel>? quizGame,
-      @HiveField(12) int quizGameScore});
+      @HiveField(12) int quizGameScore,
+      @HiveField(13) String inPlan});
 
   $WishesModelCopyWith<$Res>? get wishesList;
   $CalendarModelCopyWith<$Res>? get calendarEvents;
@@ -110,6 +113,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? calendarEvents = freezed,
     Object? quizGame = freezed,
     Object? quizGameScore = null,
+    Object? inPlan = null,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -164,6 +168,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.quizGameScore
           : quizGameScore // ignore: cast_nullable_to_non_nullable
               as int,
+      inPlan: null == inPlan
+          ? _value.inPlan
+          : inPlan // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -215,7 +223,8 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       @HiveField(11)
       @QuestionModelListConverter()
       List<QuestionModel>? quizGame,
-      @HiveField(12) int quizGameScore});
+      @HiveField(12) int quizGameScore,
+      @HiveField(13) String inPlan});
 
   @override
   $WishesModelCopyWith<$Res>? get wishesList;
@@ -247,6 +256,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? calendarEvents = freezed,
     Object? quizGame = freezed,
     Object? quizGameScore = null,
+    Object? inPlan = null,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -301,6 +311,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value.quizGameScore
           : quizGameScore // ignore: cast_nullable_to_non_nullable
               as int,
+      inPlan: null == inPlan
+          ? _value.inPlan
+          : inPlan // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -324,7 +338,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       @HiveField(11)
       @QuestionModelListConverter()
       final List<QuestionModel>? quizGame,
-      @HiveField(12) this.quizGameScore = 0})
+      @HiveField(12) this.quizGameScore = 0,
+      @HiveField(13) this.inPlan = "Free"})
       : _urls = urls,
         _supriseMap = supriseMap,
         _quizGame = quizGame;
@@ -400,10 +415,14 @@ class _$CategoryModelImpl implements _CategoryModel {
   @JsonKey()
   @HiveField(12)
   final int quizGameScore;
+  @override
+  @JsonKey()
+  @HiveField(13)
+  final String inPlan;
 
   @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore, inPlan: $inPlan)';
   }
 
   @override
@@ -430,7 +449,8 @@ class _$CategoryModelImpl implements _CategoryModel {
                 other.calendarEvents == calendarEvents) &&
             const DeepCollectionEquality().equals(other._quizGame, _quizGame) &&
             (identical(other.quizGameScore, quizGameScore) ||
-                other.quizGameScore == quizGameScore));
+                other.quizGameScore == quizGameScore) &&
+            (identical(other.inPlan, inPlan) || other.inPlan == inPlan));
   }
 
   @JsonKey(ignore: true)
@@ -449,7 +469,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       wishesList,
       calendarEvents,
       const DeepCollectionEquality().hash(_quizGame),
-      quizGameScore);
+      quizGameScore,
+      inPlan);
 
   @JsonKey(ignore: true)
   @override
@@ -483,7 +504,8 @@ abstract class _CategoryModel implements CategoryModel {
       @HiveField(11)
       @QuestionModelListConverter()
       final List<QuestionModel>? quizGame,
-      @HiveField(12) final int quizGameScore}) = _$CategoryModelImpl;
+      @HiveField(12) final int quizGameScore,
+      @HiveField(13) final String inPlan}) = _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
@@ -530,6 +552,9 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   @HiveField(12)
   int get quizGameScore;
+  @override
+  @HiveField(13)
+  String get inPlan;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

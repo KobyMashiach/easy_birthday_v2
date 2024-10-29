@@ -32,8 +32,7 @@ class HomeScreen extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-          create: (context) =>
-              EventRepo(context.read<CategoryModelDataSource>()),
+          create: (context) => EventRepo(),
         ),
         RepositoryProvider(
           create: (context) => CategoryModelDataSource(),

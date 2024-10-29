@@ -55,8 +55,7 @@ class MyApp extends StatelessWidget {
           create: (context) => CategoryModelDataSource(),
         ),
         RepositoryProvider(
-          create: (context) =>
-              EventRepo(context.read<CategoryModelDataSource>()),
+          create: (context) => EventRepo(),
         ),
       ],
       child: BlocProvider(

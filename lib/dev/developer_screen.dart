@@ -1,5 +1,8 @@
 import 'dart:developer';
 
+import 'package:easy_birthday/models/plan_model/plan_model.dart';
+import 'package:easy_birthday/repos/event_repo.dart';
+import 'package:easy_birthday/screens/login_register/first_register/inner/choose_plan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
@@ -50,6 +53,11 @@ class DeveloperScreen extends StatelessWidget {
         'function': () async => await changeRoleFunction(context)
       },
       {
+        'title': "Change my plan",
+        'icon': Icons.admin_panel_settings_outlined,
+        'function': () async => await changePlanFunction(context)
+      },
+      {
         'title': "Navigate to Home screen",
         'icon': Icons.navigation_outlined,
         'function': () {
@@ -83,7 +91,7 @@ class DeveloperScreen extends StatelessWidget {
       },
       {
         'title': "Logout from user",
-        'icon': Icons.navigation_outlined,
+        'icon': Icons.logout,
         'function': () async {
           final userChoise =
               await deleteSomethingDialog(context, text: "Logout from user?");
@@ -101,6 +109,44 @@ class DeveloperScreen extends StatelessWidget {
       context: context,
       builder: (context) =>
           generalDialog(title: text ?? "Delete all local storage?"),
+    );
+  }
+
+  Future<dynamic> changePlanFunction(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => generalDialog(
+        title: "Choose plan to change",
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: appPlans.values
+              .map((plan) => GestureDetector(
+                    onTap: () async {
+                      // await context
+                      //     .read<PersonaRepo>()
+                      //     .updatePersona(globalUser.copyWith(role: plan));
+                      context.read<EventRepo>().updateEvent(
+                          globalEvent!.copyWith(planSubscribe: plan));
+                      KheasydevNavigatePage().pop(context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: AppColors.primaryColor,
+                            borderRadius: BorderRadius.circular(12)),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16.0),
+                        child: Text(
+                          plan.title,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ))
+              .toList(),
+        ),
+      ),
     );
   }
 

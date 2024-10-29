@@ -29,27 +29,32 @@ List<CategoryModel> categoriesList = [
     categoryType: CategoryEnum.videos,
     name: t.videos,
     description: t.videos_description(context: globalGender),
+    inPlan: "Standard",
   ),
   CategoryModel(
     categoryType: CategoryEnum.quizGame,
     name: t.quiz_game,
     description: t.quiz_game_description(context: globalGender),
+    inPlan: "Platinum",
   ),
   CategoryModel(
     categoryType: CategoryEnum.birthdayCalendar,
     name: t.birthday_calendar,
     description: t.birthday_calendar_description(context: globalGender),
+    inPlan: "Platinum",
   ),
   CategoryModel(
     categoryType: CategoryEnum.birthdaySuprise,
     name: t.birthday_suprise,
     description: t.birthday_suprise_description(context: globalGender),
+    inPlan: "Standard",
   ),
   CategoryModel(
     categoryType: CategoryEnum.wishesList,
     name: t.wishes_list,
     description: t.wishes_list_description(
         context: globalGender, name: globalPartnerUser!.name),
+    inPlan: "Standard",
   ),
 ];
 

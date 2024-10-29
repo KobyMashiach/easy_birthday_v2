@@ -63,12 +63,23 @@ class _ChooseCategoryDialogState extends State<ChooseCategoryDialog> {
           const SizedBox(height: 24),
           AppDropDown<CategoryModel>(
             onChanged: (value) => setState(() => choosenCategory = value),
-            listValues: categoriesList,
+            listValues: categoriesList
+                .where((category) => getPlansTitles().contains(category.inPlan))
+                .toList(),
             hintText: t.choose_category(context: globalGender),
             valueFormatter: (objectType) => objectType.name,
           ),
         ],
       ),
     );
+  }
+
+  List<String> getPlansTitles() {
+    return switch (globalEvent!.planSubscribe.title) {
+      "Free" => ["Free"],
+      "Standard" => ["Free", "Standard"],
+      "Platinum" => ["Free", "Standard", "Platinum"],
+      _ => ["Free"],
+    };
   }
 }
