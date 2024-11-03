@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:easy_birthday/screens/login_register/first_register/inner/choose_plan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
@@ -75,20 +74,6 @@ class DeveloperScreen extends StatelessWidget {
         'icon': Icons.navigation_outlined,
         'function': () {
           KheasydevNavigatePage().push(context, const FirstRegisterMain());
-        }
-      },
-      {
-        'title': "Navigate to Change Plan screen",
-        'icon': Icons.navigation_outlined,
-        'function': () {
-          KheasydevNavigatePage().push(
-              context,
-              ChoosePlanScreen(
-                onContinue: () {},
-                onPrevious: () {},
-                currentPlan: globalEvent!.planSubscribe,
-                onPlanPurchase: (planTitle) {},
-              ));
         }
       },
       {
