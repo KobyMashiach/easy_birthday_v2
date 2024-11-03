@@ -1,4 +1,6 @@
+import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/global_vars.dart';
+import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
@@ -61,13 +63,33 @@ class _ChooseCategoryDialogState extends State<ChooseCategoryDialog> {
             counterText: "",
           ),
           const SizedBox(height: 24),
-          AppDropDown<CategoryModel>(
-            onChanged: (value) => setState(() => choosenCategory = value),
-            listValues: categoriesList
+          // AppDropDown<CategoryModel>(
+          //   onChanged: (value) => setState(() => choosenCategory = value),
+          //   listValues: categoriesList
+          //       .where((category) => getPlansTitles().contains(category.inPlan))
+          //       .toList(),
+          //   hintText: t.choose_category(context: globalGender),
+          //   valueFormatter: (objectType) => objectType.name,
+          // ),
+          Wrap(
+            spacing: 8.0,
+            children: categoriesList
                 .where((category) => getPlansTitles().contains(category.inPlan))
+                .map((category) => ChoiceChip(
+                      label: Text(category.name),
+                      labelStyle: AppTextStyle().dropDownValues,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24)),
+                      selectedColor: AppColors.primaryColor,
+                      backgroundColor: AppColors.greyLightDisableColor,
+                      selected: choosenCategory == category,
+                      onSelected: (selected) {
+                        setState(() {
+                          choosenCategory = selected ? category : null;
+                        });
+                      },
+                    ))
                 .toList(),
-            hintText: t.choose_category(context: globalGender),
-            valueFormatter: (objectType) => objectType.name,
           ),
         ],
       ),
