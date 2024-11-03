@@ -1,6 +1,8 @@
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/dev/developer_screen.dart';
 import 'package:easy_birthday/main.dart';
+import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
 
@@ -19,7 +21,9 @@ appAppBar({
     shadowColor: AppColors.shadowColor,
     titleColor: Colors.white,
     actions: actions,
-    developerPage: developerPage ?? const DeveloperScreen(),
+    developerPage: globalUser.role.isAdmin()
+        ? (developerPage ?? const DeveloperScreen())
+        : null,
     leading: onBackButtonPreesed != null
         ? IconButton(
             onPressed: onBackButtonPreesed, icon: const Icon(Icons.arrow_back))
