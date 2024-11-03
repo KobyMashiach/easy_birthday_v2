@@ -21,10 +21,15 @@ import 'package:easy_birthday/screens/partner_display_screens/display_wishes_lis
 import 'package:easy_birthday/widgets/cards/category_partner_card.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 
-class PartnerHomeScreen extends StatelessWidget {
+class PartnerHomeScreen extends StatefulWidget {
   final Function(CategoryModel category) onChangeCategory;
   const PartnerHomeScreen({super.key, required this.onChangeCategory});
 
+  @override
+  State<PartnerHomeScreen> createState() => _PartnerHomeScreenState();
+}
+
+class _PartnerHomeScreenState extends State<PartnerHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -52,79 +57,81 @@ class PartnerHomeScreen extends StatelessWidget {
               return CategoryPartnerCard(
                 category: category,
                 onTap: () {
-                  switch (category.categoryType) {
-                    case CategoryEnum.text:
-                      KheasydevNavigatePage().pushDuration(
-                          context, DisplayTextScreen(category: category));
-                    case CategoryEnum.pictures:
-                      KheasydevNavigatePage().pushDuration(
-                          context,
-                          DisplayPicturesVideosScreen(
-                              category: category, isImages: true));
-                    case CategoryEnum.videos:
-                      KheasydevNavigatePage().pushDuration(
-                          context,
-                          DisplayPicturesVideosScreen(
-                              category: category, isImages: false));
+                  if (category.lock) {
+                    showDialog(
+                      context: context,
+                      builder: (context) => generalDialog(
+                          title: t.secret_dialog(
+                              context: globalGender,
+                              categoryName:
+                                  category.titleAppear ?? category.name,
+                              name: globalPartnerUser!.name),
+                          child: SvgPicture.asset(secretIllustrations,
+                              height: 150),
+                          childBeforeTitle: true,
+                          oneButton: true,
+                          okButtonText: t.exit),
+                    );
+                  } else {
+                    switch (category.categoryType) {
+                      case CategoryEnum.text:
+                        KheasydevNavigatePage().pushDuration(
+                            context, DisplayTextScreen(category: category));
+                      case CategoryEnum.pictures:
+                        KheasydevNavigatePage().pushDuration(
+                            context,
+                            DisplayPicturesVideosScreen(
+                                category: category, isImages: true));
+                      case CategoryEnum.videos:
+                        KheasydevNavigatePage().pushDuration(
+                            context,
+                            DisplayPicturesVideosScreen(
+                                category: category, isImages: false));
 
-                    case CategoryEnum.quizGame:
-                      KheasydevNavigatePage().pushDuration(
-                          context,
-                          DisplayQuizGame(
-                            category: category,
-                            saveQuestion: (question, index, score) {
-                              List<QuestionModel> oldQuestions =
-                                  List.from(category.quizGame ?? []);
-                              oldQuestions[index] = question;
-                              onChangeCategory.call(category.copyWith(
-                                  quizGame: oldQuestions,
-                                  quizGameScore: score));
-                            },
-                          ));
+                      case CategoryEnum.quizGame:
+                        KheasydevNavigatePage().pushDuration(
+                            context,
+                            DisplayQuizGame(
+                              category: category,
+                              saveQuestion: (question, index, score) {
+                                List<QuestionModel> oldQuestions =
+                                    List.from(category.quizGame ?? []);
+                                oldQuestions[index] = question;
+                                widget.onChangeCategory.call(category.copyWith(
+                                    quizGame: oldQuestions,
+                                    quizGameScore: score));
+                              },
+                            ));
 
-                    case CategoryEnum.birthdayCalendar:
-                      KheasydevNavigatePage().pushDuration(
-                          context, DisplayBirthdayCalendar(category: category));
+                      case CategoryEnum.birthdayCalendar:
+                        KheasydevNavigatePage().pushDuration(context,
+                            DisplayBirthdayCalendar(category: category));
 
-                    case CategoryEnum.birthdaySuprise:
-                      if (category.lock) {
-                        showDialog(
-                          context: context,
-                          builder: (context) => generalDialog(
-                              title: t.secret_dialog(
-                                  context: globalGender,
-                                  categoryName:
-                                      category.titleAppear ?? category.name,
-                                  name: globalPartnerUser!.name),
-                              child: SvgPicture.asset(secretIllustrations,
-                                  height: 150),
-                              childBeforeTitle: true,
-                              oneButton: true,
-                              okButtonText: t.exit),
-                        );
-                      } else {
+                      case CategoryEnum.birthdaySuprise:
                         KheasydevNavigatePage().pushDuration(context,
                             DisplayBirthdaySuprise(category: category));
-                      }
-                    case CategoryEnum.wishesList:
-                      KheasydevNavigatePage().pushDuration(
-                          context,
-                          DisplayWishesList(
-                            category: category,
-                            onDone: (wishesList) => onChangeCategory.call(
-                                category.copyWith(wishesList: wishesList)),
-                          ));
 
-                    case CategoryEnum.memoryGame:
-                      KheasydevNavigatePage().pushDuration(
-                          context,
-                          DisplayMemoryGame(
-                            category: category,
-                            onDone: (score) => onChangeCategory.call(
-                                category.copyWith(
-                                    memoryGame: category.memoryGame!
-                                        .copyWith(score: score, lock: true))),
-                          ));
+                      case CategoryEnum.wishesList:
+                        KheasydevNavigatePage().pushDuration(
+                            context,
+                            DisplayWishesList(
+                              category: category,
+                              onDone: (wishesList) => widget.onChangeCategory
+                                  .call(category.copyWith(
+                                      wishesList: wishesList)),
+                            ));
+
+                      case CategoryEnum.memoryGame:
+                        KheasydevNavigatePage().pushDuration(
+                            context,
+                            DisplayMemoryGame(
+                              category: category,
+                              onDone: (score) => widget.onChangeCategory.call(
+                                  category.copyWith(
+                                      memoryGame: category.memoryGame!
+                                          .copyWith(score: score, lock: true))),
+                            ));
+                    }
                   }
                 },
               );

@@ -176,6 +176,9 @@ class OwnerHomeScreen extends StatelessWidget {
     final bloc = context.read<HomeScreenBloc>();
     return ListView.separated(
       itemBuilder: (context, index) {
+        if (index == globalEvent!.categories.length) {
+          return const SizedBox(height: 28);
+        }
         final category = globalEvent!.categories[index];
         return Container(
             decoration: BoxDecoration(
@@ -189,7 +192,7 @@ class OwnerHomeScreen extends StatelessWidget {
             child: categoryCardWidget(context, category, bloc));
       },
       separatorBuilder: (context, index) => const SizedBox(height: 24),
-      itemCount: globalEvent!.categories.length,
+      itemCount: globalEvent!.categories.length + 1,
     );
   }
 
