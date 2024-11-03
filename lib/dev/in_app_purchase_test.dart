@@ -23,7 +23,7 @@ class _InAppPurchaseTestState extends State<InAppPurchaseTest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appAppBar(title: "In App Purchase"),
+      appBar: appAppBar(title: "In App purchase"),
       body: Center(
         child: Column(
           children: [
