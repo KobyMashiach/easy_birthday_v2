@@ -1,8 +1,5 @@
 import 'dart:developer';
 
-import 'package:easy_birthday/models/plan_model/plan_model.dart';
-import 'package:easy_birthday/repos/event_repo.dart';
-import 'package:easy_birthday/screens/login_register/first_register/inner/choose_plan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
@@ -12,6 +9,8 @@ import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/hive/hive_functions.dart';
 import 'package:easy_birthday/dev/generate_greeting.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
+import 'package:easy_birthday/models/plan_model/plan_model.dart';
+import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_register/first_register_main.dart';

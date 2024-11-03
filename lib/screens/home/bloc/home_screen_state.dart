@@ -60,6 +60,12 @@ final class HomeScreenNavToAddWishesList extends HomeScreenStateNavigate {
   HomeScreenNavToAddWishesList({required this.category});
 }
 
+final class HomeScreenNavToAddMemoryGame extends HomeScreenStateNavigate {
+  final CategoryModel category;
+
+  HomeScreenNavToAddMemoryGame({required this.category});
+}
+
 final class HomeScreenOpenEditAgain extends HomeScreenStateNavigate {
   final CategoryModel category;
 

@@ -1,4 +1,5 @@
 import 'package:easy_birthday/models/calendar_model/calendar_model.dart';
+import 'package:easy_birthday/models/memory_game_model/memory_game_model.dart';
 import 'package:easy_birthday/models/quiz_models/question_model/question_model.dart';
 import 'package:easy_birthday/models/wishes_model/wishes_model.dart'; // Use correct case
 import 'package:json_annotation/json_annotation.dart';
@@ -49,5 +50,20 @@ class QuestionModelListConverter
     return questionModels
         .map((questionModel) => questionModel.toJson())
         .toList();
+  }
+}
+
+class MemoryConverter
+    implements JsonConverter<MemoryGameModel, Map<String, dynamic>> {
+  const MemoryConverter();
+
+  @override
+  MemoryGameModel fromJson(Map<String, dynamic> json) {
+    return MemoryGameModel.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson(MemoryGameModel memoryGame) {
+    return memoryGame.toJson();
   }
 }

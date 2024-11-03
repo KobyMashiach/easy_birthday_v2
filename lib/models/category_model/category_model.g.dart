@@ -32,13 +32,14 @@ class CategoryModelAdapter extends TypeAdapter<_$CategoryModelImpl> {
       quizGame: (fields[11] as List?)?.cast<QuestionModel>(),
       quizGameScore: fields[12] as int,
       inPlan: fields[13] as String,
+      memoryGame: fields[14] as MemoryGameModel?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$CategoryModelImpl obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.categoryType)
       ..writeByte(1)
@@ -61,6 +62,8 @@ class CategoryModelAdapter extends TypeAdapter<_$CategoryModelImpl> {
       ..write(obj.quizGameScore)
       ..writeByte(13)
       ..write(obj.inPlan)
+      ..writeByte(14)
+      ..write(obj.memoryGame)
       ..writeByte(6)
       ..write(obj.urls)
       ..writeByte(8)
@@ -106,6 +109,9 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
           json['quizGame'], const QuestionModelListConverter().fromJson),
       quizGameScore: (json['quizGameScore'] as num?)?.toInt() ?? 0,
       inPlan: json['inPlan'] as String? ?? "Free",
+      memoryGame:
+          _$JsonConverterFromJson<Map<String, dynamic>, MemoryGameModel>(
+              json['memoryGame'], const MemoryConverter().fromJson),
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -129,6 +135,9 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
           instance.quizGame, const QuestionModelListConverter().toJson),
       'quizGameScore': instance.quizGameScore,
       'inPlan': instance.inPlan,
+      'memoryGame':
+          _$JsonConverterToJson<Map<String, dynamic>, MemoryGameModel>(
+              instance.memoryGame, const MemoryConverter().toJson),
     };
 
 const _$CategoryEnumEnumMap = {
@@ -139,6 +148,7 @@ const _$CategoryEnumEnumMap = {
   CategoryEnum.birthdayCalendar: 'birthdayCalendar',
   CategoryEnum.birthdaySuprise: 'birthdaySuprise',
   CategoryEnum.wishesList: 'wishesList',
+  CategoryEnum.memoryGame: 'memoryGame',
 };
 
 Value? _$JsonConverterFromJson<Json, Value>(

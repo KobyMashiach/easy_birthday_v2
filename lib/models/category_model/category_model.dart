@@ -1,3 +1,4 @@
+import 'package:easy_birthday/models/memory_game_model/memory_game_model.dart';
 import 'package:hive/hive.dart'; // Add Hive package
 import 'package:easy_birthday/models/calendar_model/calendar_model.dart';
 import 'package:easy_birthday/models/category_model/category_converters_json.dart';
@@ -28,6 +29,7 @@ class CategoryModel with _$CategoryModel {
     @HiveField(11) @QuestionModelListConverter() List<QuestionModel>? quizGame,
     @HiveField(12) @Default(0) int quizGameScore,
     @HiveField(13) @Default("Free") String inPlan,
+    @HiveField(14) @MemoryConverter() MemoryGameModel? memoryGame,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 274
+/// Strings: 291
 ///
-/// Built on 2024-10-29 at 09:11 UTC
+/// Built on 2024-11-03 at 12:43 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -541,7 +541,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get save => 'שמור';
 	String get save_and_lock => 'שמור ונעל';
 	String get wish_list_lock_title => 'רשימת המשאלות נעולה';
-	String get wish_list_lock_description => 'כדי לפתוח אותה אנא בקשו מהפרטנר שלכם הזדמנות חדשה';
+	String wish_list_lock_description({required Object name}) => 'כדי לפתוח אותה אנא בקשו מ${name} הזדמנות חדשה';
 	String please_read_contract({required GenderContext context, required Object name}) {
 		switch (context) {
 			case GenderContext.male:
@@ -656,6 +656,47 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get quiz_game_done => 'משחק הטריוויה נגמר';
 	String you_answer_from({required Object answers, required Object questions}) => 'ענית נכון על ${answers} מתוך ${questions} שאלות';
 	String get choose_couple_profile_image => 'בחר/י תמונת פרופיל זוגית שלכם';
+	String get memory_game => 'משחק הזיכרון';
+	String get num_mistakes => 'מספר טעויות';
+	String get score => 'תוצאה';
+	String get game_over => 'המשחק נגמר';
+	String you_win({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'אתה ניצחת!';
+			case GenderContext.female:
+				return 'את ניצחת!';
+		}
+	}
+	String upload_six_images({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'העלה 6 תמונות שישמשו למשחק הזיכרון';
+			case GenderContext.female:
+				return 'העלי 6 תמונות שישמשו למשחק הזיכרון';
+		}
+	}
+	String get upload_images => 'העלאת תמונות';
+	String get confirm_images => 'לאשר את התמונות?';
+	String memory_game_description({required GenderContext context}) {
+		switch (context) {
+			case GenderContext.male:
+				return 'בנה משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!';
+			case GenderContext.female:
+				return 'בני משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!';
+		}
+	}
+	String get memory_game_lock_title => 'משחק הזיכרון נעול';
+	String memory_game_lock_description({required Object name}) => 'כדי לפתוח אותו אנא בקשו מ${name} הזדמנות חדשה';
+	String memory_game_done({required GenderContext context, required Object name, required Object score}) {
+		switch (context) {
+			case GenderContext.male:
+				return '${name} סיימה את המשחק עם ניקוד: ${score}';
+			case GenderContext.female:
+				return '${name} סיים את המשחק עם ניקוד: ${score}';
+		}
+	}
+	String get open_new_memory_game => 'פתיחת גישה למשחק חדש';
 }
 
 /// Flat map(s) containing all translations.
@@ -1051,7 +1092,7 @@ extension on Translations {
 			case 'save': return 'שמור';
 			case 'save_and_lock': return 'שמור ונעל';
 			case 'wish_list_lock_title': return 'רשימת המשאלות נעולה';
-			case 'wish_list_lock_description': return 'כדי לפתוח אותה אנא בקשו מהפרטנר שלכם הזדמנות חדשה';
+			case 'wish_list_lock_description': return ({required Object name}) => 'כדי לפתוח אותה אנא בקשו מ${name} הזדמנות חדשה';
 			case 'please_read_contract': return ({required GenderContext context, required Object name}) {
 				switch (context) {
 					case GenderContext.male:
@@ -1166,6 +1207,47 @@ extension on Translations {
 			case 'quiz_game_done': return 'משחק הטריוויה נגמר';
 			case 'you_answer_from': return ({required Object answers, required Object questions}) => 'ענית נכון על ${answers} מתוך ${questions} שאלות';
 			case 'choose_couple_profile_image': return 'בחר/י תמונת פרופיל זוגית שלכם';
+			case 'memory_game': return 'משחק הזיכרון';
+			case 'num_mistakes': return 'מספר טעויות';
+			case 'score': return 'תוצאה';
+			case 'game_over': return 'המשחק נגמר';
+			case 'you_win': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'אתה ניצחת!';
+					case GenderContext.female:
+						return 'את ניצחת!';
+				}
+			};
+			case 'upload_six_images': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'העלה 6 תמונות שישמשו למשחק הזיכרון';
+					case GenderContext.female:
+						return 'העלי 6 תמונות שישמשו למשחק הזיכרון';
+				}
+			};
+			case 'upload_images': return 'העלאת תמונות';
+			case 'confirm_images': return 'לאשר את התמונות?';
+			case 'memory_game_description': return ({required GenderContext context}) {
+				switch (context) {
+					case GenderContext.male:
+						return 'בנה משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!';
+					case GenderContext.female:
+						return 'בני משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!';
+				}
+			};
+			case 'memory_game_lock_title': return 'משחק הזיכרון נעול';
+			case 'memory_game_lock_description': return ({required Object name}) => 'כדי לפתוח אותו אנא בקשו מ${name} הזדמנות חדשה';
+			case 'memory_game_done': return ({required GenderContext context, required Object name, required Object score}) {
+				switch (context) {
+					case GenderContext.male:
+						return '${name} סיימה את המשחק עם ניקוד: ${score}';
+					case GenderContext.female:
+						return '${name} סיים את המשחק עם ניקוד: ${score}';
+				}
+			};
+			case 'open_new_memory_game': return 'פתיחת גישה למשחק חדש';
 			default: return null;
 		}
 	}

@@ -11,7 +11,8 @@ enum CategoryEnum {
   quizGame,
   birthdayCalendar,
   birthdaySuprise,
-  wishesList
+  wishesList,
+  memoryGame
 }
 
 List<CategoryModel> categoriesList = [
@@ -56,6 +57,12 @@ List<CategoryModel> categoriesList = [
         context: globalGender, name: globalPartnerUser!.name),
     inPlan: "Standard",
   ),
+  CategoryModel(
+    categoryType: CategoryEnum.memoryGame,
+    name: t.memory_game,
+    description: t.memory_game_description(context: globalGender),
+    inPlan: "Standard",
+  ),
 ];
 
 extension CategoryEnumX on CategoryEnum {
@@ -68,6 +75,7 @@ extension CategoryEnumX on CategoryEnum {
       CategoryEnum.birthdayCalendar => calendarIllustration,
       CategoryEnum.birthdaySuprise => supriseIllustration,
       CategoryEnum.wishesList => wishIllustrations,
+      CategoryEnum.memoryGame => memoryIllustrations,
     };
   }
 }

@@ -3,6 +3,7 @@ import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/wishes_model/wishes_model.dart';
 import 'package:easy_birthday/screens/owner_add_category/add_birthday_calendar_screen.dart';
 import 'package:easy_birthday/screens/owner_add_category/add_birthday_suprise_screen.dart';
+import 'package:easy_birthday/screens/owner_add_category/add_images_memory_game.dart';
 import 'package:easy_birthday/screens/owner_add_category/add_quiz_game_screen.dart';
 import 'package:easy_birthday/screens/owner_add_category/add_wishes_list_screen.dart';
 import 'package:flutter/material.dart';
@@ -136,6 +137,22 @@ class HomeScreen extends StatelessWidget {
                                           third: null,
                                           lock: false)))),
                     ));
+              case const (HomeScreenNavToAddMemoryGame):
+                final newState = state as HomeScreenNavToAddMemoryGame;
+                KheasydevNavigatePage().pushDuration(
+                    context,
+                    AddImagesMemoryGame(
+                      category: newState.category,
+                      onDone: (files) => bloc.add(
+                          HomeScreenEventUploadImagesToMemoryGame(
+                              category: newState.category, files: files)),
+                      openMemoryAgain: () => bloc.add(
+                          HomeScreenEventUpdateCategoryInEvent(
+                              category: newState.category.copyWith(
+                                  memoryGame: newState.category.memoryGame!
+                                      .copyWith(lock: false, score: 0)))),
+                    ));
+
               case const (HomeScreenOpenEditAgain):
                 final newState = state as HomeScreenOpenEditAgain;
                 KheasydevNavigatePage().pop(context);

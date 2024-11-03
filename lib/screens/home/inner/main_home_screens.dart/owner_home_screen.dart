@@ -83,6 +83,8 @@ class OwnerHomeScreen extends StatelessWidget {
               ],
             )
           : Text(t.no_wish_yet),
+      CategoryEnum.memoryGame => picturesVideosWidget(category, screenWidth,
+          pictures: true, memoryGame: true),
     };
   }
 
@@ -108,7 +110,7 @@ class OwnerHomeScreen extends StatelessWidget {
   }
 
   Widget picturesVideosWidget(CategoryModel category, double screenWidth,
-      {required bool pictures}) {
+      {required bool pictures, bool memoryGame = false}) {
     return SizedBox(
       width: screenWidth * 0.8,
       child: GridView.builder(
@@ -117,9 +119,10 @@ class OwnerHomeScreen extends StatelessWidget {
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,
         ),
-        itemCount: category.urls?.length ?? 0,
+        itemCount: getWidgetCount(memoryGame, category),
         itemBuilder: (context, index) {
-          final mediaUrl = category.urls?[index] ?? "";
+          final mediaUrl = getMediaUrl(memoryGame, category, index);
+
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
@@ -268,5 +271,21 @@ class OwnerHomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String getMediaUrl(bool memoryGame, CategoryModel category, int index) {
+    if (!memoryGame) {
+      return category.urls?[index] ?? "";
+    } else {
+      return category.memoryGame?.imagesUrls[index] ?? "";
+    }
+  }
+
+  int getWidgetCount(bool memoryGame, CategoryModel category) {
+    if (!memoryGame) {
+      return category.urls?.length ?? 0;
+    } else {
+      return category.memoryGame?.imagesUrls.length ?? 0;
+    }
   }
 }

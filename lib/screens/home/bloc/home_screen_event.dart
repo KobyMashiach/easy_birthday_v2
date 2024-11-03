@@ -32,6 +32,14 @@ class HomeScreenEventUploadFilesInEvent extends HomeScreenEvent {
       {required this.category, required this.files});
 }
 
+class HomeScreenEventUploadImagesToMemoryGame extends HomeScreenEvent {
+  final CategoryModel category;
+  final List<File> files;
+
+  HomeScreenEventUploadImagesToMemoryGame(
+      {required this.category, required this.files});
+}
+
 class HomeScreenEventDeleteFilesInEvent extends HomeScreenEvent {
   final CategoryModel category;
   final List<int> filesIndexes;

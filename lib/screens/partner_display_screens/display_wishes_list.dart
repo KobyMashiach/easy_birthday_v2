@@ -73,7 +73,9 @@ class _DisplayWishesListState extends State<DisplayWishesList> {
                               children: [
                                 Text(t.wish_list_lock_title,
                                     style: AppTextStyle().title),
-                                Text(t.wish_list_lock_description,
+                                Text(
+                                    t.wish_list_lock_description(
+                                        name: globalPartnerUser!.name),
                                     style: AppTextStyle().description),
                                 const SizedBox(height: 24),
                                 Text("1. ${wishesList.first!}"),

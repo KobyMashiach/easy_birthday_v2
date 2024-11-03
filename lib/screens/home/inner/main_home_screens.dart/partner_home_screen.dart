@@ -1,3 +1,4 @@
+import 'package:easy_birthday/screens/partner_display_screens/display_memory_game.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -112,6 +113,17 @@ class PartnerHomeScreen extends StatelessWidget {
                             category: category,
                             onDone: (wishesList) => onChangeCategory.call(
                                 category.copyWith(wishesList: wishesList)),
+                          ));
+
+                    case CategoryEnum.memoryGame:
+                      KheasydevNavigatePage().pushDuration(
+                          context,
+                          DisplayMemoryGame(
+                            category: category,
+                            onDone: (score) => onChangeCategory.call(
+                                category.copyWith(
+                                    memoryGame: category.memoryGame!
+                                        .copyWith(score: score, lock: true))),
                           ));
                   }
                 },

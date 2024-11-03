@@ -274,7 +274,7 @@
   "save": "שמור",
   "save_and_lock": "שמור ונעל",
   "wish_list_lock_title": "רשימת המשאלות נעולה",
-  "wish_list_lock_description": "כדי לפתוח אותה אנא בקשו מהפרטנר שלכם הזדמנות חדשה",
+  "wish_list_lock_description": "כדי לפתוח אותה אנא בקשו מ$name הזדמנות חדשה",
   "please_read_contract(context=GenderContext)": {
     "male": "חוזה ש$name כתבה במיוחד בשבילך",
     "female": "חוזה ש$name כתב במיוחד בשבילך"
@@ -348,5 +348,30 @@
   },
   "quiz_game_done": "משחק הטריוויה נגמר",
   "you_answer_from": "ענית נכון על $answers מתוך $questions שאלות",
-  "choose_couple_profile_image": "בחר/י תמונת פרופיל זוגית שלכם"
+  "choose_couple_profile_image": "בחר/י תמונת פרופיל זוגית שלכם",
+  "memory_game": "משחק הזיכרון",
+  "num_mistakes": "מספר טעויות",
+  "score": "תוצאה",
+  "game_over": "המשחק נגמר",
+  "you_win(context=GenderContext)": {
+    "male": "אתה ניצחת!",
+    "female": "את ניצחת!"
+  },
+  "upload_six_images(context=GenderContext)": {
+    "male": "העלה 6 תמונות שישמשו למשחק הזיכרון",
+    "female": "העלי 6 תמונות שישמשו למשחק הזיכרון"
+  },
+  "upload_images": "העלאת תמונות",
+  "confirm_images": "לאשר את התמונות?",
+  "memory_game_description(context=GenderContext)": {
+    "male": "בנה משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!",
+    "female": "בני משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!"
+  },
+  "memory_game_lock_title": "משחק הזיכרון נעול",
+  "memory_game_lock_description": "כדי לפתוח אותו אנא בקשו מ$name הזדמנות חדשה",
+  "memory_game_done(context=GenderContext)": {
+    "male": "$name סיימה את המשחק עם ניקוד: $score",
+    "female": "$name סיים את המשחק עם ניקוד: $score"
+  },
+  "open_new_memory_game": "פתיחת גישה למשחק חדש"
 }

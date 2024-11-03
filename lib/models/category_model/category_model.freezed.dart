@@ -52,6 +52,9 @@ mixin _$CategoryModel {
   int get quizGameScore => throw _privateConstructorUsedError;
   @HiveField(13)
   String get inPlan => throw _privateConstructorUsedError;
+  @HiveField(14)
+  @MemoryConverter()
+  MemoryGameModel? get memoryGame => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -81,10 +84,12 @@ abstract class $CategoryModelCopyWith<$Res> {
       @QuestionModelListConverter()
       List<QuestionModel>? quizGame,
       @HiveField(12) int quizGameScore,
-      @HiveField(13) String inPlan});
+      @HiveField(13) String inPlan,
+      @HiveField(14) @MemoryConverter() MemoryGameModel? memoryGame});
 
   $WishesModelCopyWith<$Res>? get wishesList;
   $CalendarModelCopyWith<$Res>? get calendarEvents;
+  $MemoryGameModelCopyWith<$Res>? get memoryGame;
 }
 
 /// @nodoc
@@ -114,6 +119,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? quizGame = freezed,
     Object? quizGameScore = null,
     Object? inPlan = null,
+    Object? memoryGame = freezed,
   }) {
     return _then(_value.copyWith(
       categoryType: null == categoryType
@@ -172,6 +178,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.inPlan
           : inPlan // ignore: cast_nullable_to_non_nullable
               as String,
+      memoryGame: freezed == memoryGame
+          ? _value.memoryGame
+          : memoryGame // ignore: cast_nullable_to_non_nullable
+              as MemoryGameModel?,
     ) as $Val);
   }
 
@@ -196,6 +206,18 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
 
     return $CalendarModelCopyWith<$Res>(_value.calendarEvents!, (value) {
       return _then(_value.copyWith(calendarEvents: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MemoryGameModelCopyWith<$Res>? get memoryGame {
+    if (_value.memoryGame == null) {
+      return null;
+    }
+
+    return $MemoryGameModelCopyWith<$Res>(_value.memoryGame!, (value) {
+      return _then(_value.copyWith(memoryGame: value) as $Val);
     });
   }
 }
@@ -224,12 +246,15 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       @QuestionModelListConverter()
       List<QuestionModel>? quizGame,
       @HiveField(12) int quizGameScore,
-      @HiveField(13) String inPlan});
+      @HiveField(13) String inPlan,
+      @HiveField(14) @MemoryConverter() MemoryGameModel? memoryGame});
 
   @override
   $WishesModelCopyWith<$Res>? get wishesList;
   @override
   $CalendarModelCopyWith<$Res>? get calendarEvents;
+  @override
+  $MemoryGameModelCopyWith<$Res>? get memoryGame;
 }
 
 /// @nodoc
@@ -257,6 +282,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? quizGame = freezed,
     Object? quizGameScore = null,
     Object? inPlan = null,
+    Object? memoryGame = freezed,
   }) {
     return _then(_$CategoryModelImpl(
       categoryType: null == categoryType
@@ -315,6 +341,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value.inPlan
           : inPlan // ignore: cast_nullable_to_non_nullable
               as String,
+      memoryGame: freezed == memoryGame
+          ? _value.memoryGame
+          : memoryGame // ignore: cast_nullable_to_non_nullable
+              as MemoryGameModel?,
     ));
   }
 }
@@ -339,7 +369,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       @QuestionModelListConverter()
       final List<QuestionModel>? quizGame,
       @HiveField(12) this.quizGameScore = 0,
-      @HiveField(13) this.inPlan = "Free"})
+      @HiveField(13) this.inPlan = "Free",
+      @HiveField(14) @MemoryConverter() this.memoryGame})
       : _urls = urls,
         _supriseMap = supriseMap,
         _quizGame = quizGame;
@@ -419,10 +450,14 @@ class _$CategoryModelImpl implements _CategoryModel {
   @JsonKey()
   @HiveField(13)
   final String inPlan;
+  @override
+  @HiveField(14)
+  @MemoryConverter()
+  final MemoryGameModel? memoryGame;
 
   @override
   String toString() {
-    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore, inPlan: $inPlan)';
+    return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, supriseMap: $supriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore, inPlan: $inPlan, memoryGame: $memoryGame)';
   }
 
   @override
@@ -450,7 +485,9 @@ class _$CategoryModelImpl implements _CategoryModel {
             const DeepCollectionEquality().equals(other._quizGame, _quizGame) &&
             (identical(other.quizGameScore, quizGameScore) ||
                 other.quizGameScore == quizGameScore) &&
-            (identical(other.inPlan, inPlan) || other.inPlan == inPlan));
+            (identical(other.inPlan, inPlan) || other.inPlan == inPlan) &&
+            (identical(other.memoryGame, memoryGame) ||
+                other.memoryGame == memoryGame));
   }
 
   @JsonKey(ignore: true)
@@ -470,7 +507,8 @@ class _$CategoryModelImpl implements _CategoryModel {
       calendarEvents,
       const DeepCollectionEquality().hash(_quizGame),
       quizGameScore,
-      inPlan);
+      inPlan,
+      memoryGame);
 
   @JsonKey(ignore: true)
   @override
@@ -505,7 +543,10 @@ abstract class _CategoryModel implements CategoryModel {
       @QuestionModelListConverter()
       final List<QuestionModel>? quizGame,
       @HiveField(12) final int quizGameScore,
-      @HiveField(13) final String inPlan}) = _$CategoryModelImpl;
+      @HiveField(13) final String inPlan,
+      @HiveField(14)
+      @MemoryConverter()
+      final MemoryGameModel? memoryGame}) = _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
@@ -555,6 +596,10 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   @HiveField(13)
   String get inPlan;
+  @override
+  @HiveField(14)
+  @MemoryConverter()
+  MemoryGameModel? get memoryGame;
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

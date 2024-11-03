@@ -8,6 +8,7 @@ import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
+import 'package:easy_birthday/models/memory_game_model/memory_game_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/services/firebase/firestore_data.dart';
 import 'package:flutter/widgets.dart';
@@ -28,6 +29,8 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     on<HomeScreenEventDeleteFilesInEvent>(_homeScreenEventDeleteFilesInEvent);
     on<HomeScreenEventUploadSupriseInEvent>(
         _homeScreenEventUploadSupriseInEvent);
+    on<HomeScreenEventUploadImagesToMemoryGame>(
+        _homeScreenEventUploadImagesToMemoryGame);
   }
 
   FutureOr<void> _homeScreenEventAddButtonClicked(
@@ -56,7 +59,8 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
         emit(HomeScreenNavToAddBirthdaySuprise(category: newCategory));
       case CategoryEnum.wishesList:
         emit(HomeScreenNavToAddWishesList(category: newCategory));
-      // emit(HomeScreenNavToAddText());
+      case CategoryEnum.memoryGame:
+        emit(HomeScreenNavToAddMemoryGame(category: newCategory));
     }
   }
 
@@ -102,6 +106,35 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     List<String> updatesUrls = List<String>.from(event.category.urls ?? []);
     updatesUrls.addAll(filesUrls);
     eventRepo.updateCategory(event.category.copyWith(urls: updatesUrls));
+
+    emit(HomeScreenRefreshUI());
+  }
+
+  FutureOr<void> _homeScreenEventUploadImagesToMemoryGame(
+      HomeScreenEventUploadImagesToMemoryGame event,
+      Emitter<HomeScreenState> emit) async {
+    emit(HomeScreenLoading(
+        text: t.upload_files_count(file: "0", files: event.files.length)));
+    final List<String> filesUrls = [];
+    int count = 0;
+
+    for (var file in event.files) {
+      final fileUrl = await firestoreUploadMediaToStorage(
+          path: "${globalEvent!.eventId}/${event.category.id}",
+          file: file,
+          fileName: getRandomString(5));
+      filesUrls.add(fileUrl);
+      count++;
+
+      emit(HomeScreenLoading(
+          text: t.upload_files_count(
+              file: count.toString(), files: event.files.length)));
+    }
+    await Future.delayed(const Duration(milliseconds: 500));
+    List<String> updatesUrls = List<String>.from(event.category.urls ?? []);
+    updatesUrls.addAll(filesUrls);
+    eventRepo.updateCategory(event.category
+        .copyWith(memoryGame: MemoryGameModel(imagesUrls: updatesUrls)));
 
     emit(HomeScreenRefreshUI());
   }
