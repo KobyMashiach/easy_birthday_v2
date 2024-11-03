@@ -1,3 +1,5 @@
+import 'package:easy_birthday/core/consts.dart';
+
 class PlanModel {
   final String title;
   final double price;
@@ -28,6 +30,13 @@ class PlanModel {
       'productPurchaseName': productPurchaseName,
     };
   }
+
+  bool get isFree => title.toLowerCase() == "free";
+  bool get isStandard => title.toLowerCase() == "standard";
+  bool get isPlatinum => title.toLowerCase() == "platinum";
+  bool get isNotFree => !isFree;
+  bool get isNotStandard => !isStandard;
+  bool get isNotPlatinum => !isPlatinum;
 }
 
 enum PlansEnum { free, standard, platinum }
@@ -43,7 +52,7 @@ Map<String, PlanModel> appPlans = {
     price: 0,
     features: [
       'טקסט לברכה מרגשת',
-      'גלריית תמונות (עד 30 תמונות)',
+      'גלריית תמונות (עד $freeImagesLimit תמונות)',
     ],
   ),
   "standard": PlanModel(
@@ -51,8 +60,10 @@ Map<String, PlanModel> appPlans = {
     price: 25,
     features: [
       'טקסט לברכה מרגשת - ניתן להשתמש בAI',
-      'גלריית תמונות (עד 60 תמונות)',
-      'גלריית סרטונים (עד 5 סרטונים)',
+      'גלריית תמונות (עד $standardImagesLimit תמונות)',
+      'גלריית סרטונים (עד $standardVideosLimit סרטונים)',
+      'הפתעת יום הולדת - מסך נעול עד שתחליטו שאתם מעצבים',
+      'משחק הזיכרון עם תמונות משותפות שלכם!',
       'ללא פרסומות',
     ],
     productPurchaseName: 'standard_plan',
@@ -62,9 +73,13 @@ Map<String, PlanModel> appPlans = {
     price: 40,
     features: [
       'טקסט לברכה מרגשת - ניתן להשתמש בAI',
-      'גלריית תמונות (ללא הגבלה)',
-      'גלריית סרטונים (עד 15 סרטונים)',
+      'גלריית תמונות (עד $platinumImagesLimit תמונות)',
+      'גלריית סרטונים (עד $platinumVideosLimit סרטונים)',
+      'הפתעת יום הולדת - מסך נעול עד שתחליטו שאתם מעצבים',
+      'משחק הזיכרון עם תמונות משותפות שלכם!',
       'משחק טריוויה כיפי ומאתגר',
+      'בניית לו"ז ליום הולדת בלוח שנה משותף',
+      'רשימת משאלות - תן גישה לפרטנר שלך לבקש 3 משאלות',
       'ללא פרסומות',
     ],
     productPurchaseName: 'platinum_plan',

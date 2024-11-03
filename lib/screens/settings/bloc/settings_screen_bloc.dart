@@ -9,6 +9,8 @@ import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/models/persona_model/role_model.dart';
+import 'package:easy_birthday/models/plan_model/plan_model.dart';
+import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/services/encryption.dart';
 import 'package:easy_birthday/services/firebase/firebase_auth.dart';
@@ -22,7 +24,11 @@ class SettingsScreenBloc
     extends Bloc<SettingsScreenEvent, SettingsScreenState> {
   final AppSettingsDataSource appSettingsDB;
   final PersonaRepo personaRepo;
-  SettingsScreenBloc({required this.appSettingsDB, required this.personaRepo})
+  final EventRepo eventRepo;
+  SettingsScreenBloc(
+      {required this.appSettingsDB,
+      required this.personaRepo,
+      required this.eventRepo})
       : super(SettingsScreenInitial()) {
     on<SettingsScreenEventInit>(_settingsScreenEventInit);
     on<SettingsScreenEventChangeColor>(_settingsScreenEventChangeColor);
@@ -43,6 +49,9 @@ class SettingsScreenBloc
     on<SettingsScreenEventNavToChangePassword>(
         _settingsScreenEventNavToChangePassword);
     on<SettingsScreenEventChangePassword>(_settingsScreenEventChangePassword);
+    on<SettingsScreenEventNavigateToChangePlan>(
+        _settingsScreenEventNavigateToChangePlan);
+    on<SettingsScreenEventPlanPurchase>(_settingsScreenEventPlanPurchase);
   }
   FutureOr<void> _settingsScreenEventInit(
       SettingsScreenEventInit event, Emitter<SettingsScreenState> emit) async {
@@ -130,11 +139,29 @@ class SettingsScreenBloc
     emit(SettingsScreenNavigateToChangePassword());
   }
 
+  FutureOr<void> _settingsScreenEventNavigateToChangePlan(
+      SettingsScreenEventNavigateToChangePlan event,
+      Emitter<SettingsScreenState> emit) {
+    emit(SettingsScreenNavigateToChangePlan());
+  }
+
   FutureOr<void> _settingsScreenEventChangePassword(
       SettingsScreenEventChangePassword event,
       Emitter<SettingsScreenState> emit) async {
     final encryptedPassword =
         MyEncryptionDecryption.encryptFernet(event.password).base64;
     personaRepo.updatePersona(globalUser.copyWith(password: encryptedPassword));
+  }
+
+  FutureOr<void> _settingsScreenEventPlanPurchase(
+      SettingsScreenEventPlanPurchase event,
+      Emitter<SettingsScreenState> emit) async {
+    if (event.planTitle != null) {
+      eventRepo.updateEvent(globalEvent!.copyWith(
+          planSubscribe: appPlans.entries
+              .firstWhere(
+                  (plan) => plan.value.productPurchaseName == event.planTitle)
+              .value));
+    }
   }
 }

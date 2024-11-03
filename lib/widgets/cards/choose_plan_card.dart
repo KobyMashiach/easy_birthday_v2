@@ -24,23 +24,31 @@ class ChoosePlanCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Text(plan.title,
-            style: AppTextStyle().bigTitle.copyWith(
-                  color: isSelected ? Colors.white : Colors.black,
-                )),
+        Text(
+          plan.title,
+          style: AppTextStyle().bigTitle.copyWith(
+                color: isSelected ? Colors.white : Colors.black,
+              ),
+        ),
         const SizedBox(height: 8.0),
-        Text("${plan.price.toStringAsFixed(2)}₪",
-            style: AppTextStyle().title.copyWith(
-                  color: isSelected ? Colors.white : Colors.black,
-                )),
+        Text(
+          "${plan.price.toStringAsFixed(2)}₪",
+          style: AppTextStyle().title.copyWith(
+                color: isSelected ? Colors.white : Colors.black,
+              ),
+        ),
         const SizedBox(height: 16.0),
-        ListView.separated(
+        Expanded(
+          child: ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) => futuresList(index),
             separatorBuilder: (context, index) => const SizedBox(height: 12),
-            itemCount: plan.features.length),
-        const Spacer(),
+            itemCount: plan.features.length,
+          ),
+        ),
+        const SizedBox(height: 16.0),
         if (plan.title != "Free" && !currentPlan) cartButton(),
         if (currentPlan) checkIcon(),
       ],
@@ -78,7 +86,10 @@ class ChoosePlanCard extends StatelessWidget {
               log(productId);
               onPurchasePlan?.call(productId);
             } else if (status == PurchaseStatus.error) {
-            } else if (status == PurchaseStatus.pending) {}
+              // Handle error
+            } else if (status == PurchaseStatus.pending) {
+              // Handle pending
+            }
           },
         );
       },

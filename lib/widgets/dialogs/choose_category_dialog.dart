@@ -4,7 +4,6 @@ import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_enum.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
-import 'package:easy_birthday/widgets/design/fields/app_dropdown.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:flutter/material.dart';
@@ -63,33 +62,37 @@ class _ChooseCategoryDialogState extends State<ChooseCategoryDialog> {
             counterText: "",
           ),
           const SizedBox(height: 24),
-          // AppDropDown<CategoryModel>(
-          //   onChanged: (value) => setState(() => choosenCategory = value),
-          //   listValues: categoriesList
-          //       .where((category) => getPlansTitles().contains(category.inPlan))
-          //       .toList(),
-          //   hintText: t.choose_category(context: globalGender),
-          //   valueFormatter: (objectType) => objectType.name,
-          // ),
           Wrap(
             spacing: 8.0,
-            children: categoriesList
-                .where((category) => getPlansTitles().contains(category.inPlan))
-                .map((category) => ChoiceChip(
-                      label: Text(category.name),
-                      labelStyle: AppTextStyle().dropDownValues,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      selectedColor: AppColors.primaryColor,
-                      backgroundColor: AppColors.greyLightDisableColor,
-                      selected: choosenCategory == category,
-                      onSelected: (selected) {
-                        setState(() {
-                          choosenCategory = selected ? category : null;
-                        });
-                      },
-                    ))
-                .toList(),
+            children: categoriesList.map((category) {
+              final isUnlocked = getPlansTitles().contains(category.inPlan);
+              return ChoiceChip(
+                  label: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(category.name),
+                      if (!isUnlocked) const Icon(Icons.lock, size: 16),
+                    ],
+                  ),
+                  labelStyle: AppTextStyle().dropDownValues,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  selectedColor: AppColors.primaryColor,
+                  backgroundColor: isUnlocked
+                      ? AppColors.greyLightDisableColor
+                      : AppColors.greyDisableColor,
+                  selected: choosenCategory == category,
+                  onSelected: (selected) {
+                    if (isUnlocked) {
+                      setState(() {
+                        choosenCategory = selected ? category : null;
+                      });
+                    } else {
+                      kheasydevAppToast(t.locked_category);
+                    }
+                  });
+            }).toList(),
           ),
         ],
       ),

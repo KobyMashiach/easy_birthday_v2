@@ -17,6 +17,7 @@
   "build_app_description": "האפליקציה נבנית כרגע במיוחד בשבילך!",
   "change_color": "שינוי צבע",
   "change_gender": "שינוי מין",
+  "change_plan": "שינוי תוכנית",
   "choose_gender": "בחר מין",
   "male": "זכר",
   "female": "נקבה",
@@ -373,5 +374,10 @@
     "male": "$name סיימה את המשחק עם ניקוד: $score",
     "female": "$name סיים את המשחק עם ניקוד: $score"
   },
-  "open_new_memory_game": "פתיחת גישה למשחק חדש"
+  "open_new_memory_game": "פתיחת גישה למשחק חדש",
+  "cant_upload_more_than(context=GenderContext)": {
+    "male": "אתה לא יכול להעלות יותר מ-$number קבצים",
+    "female": "את לא יכולה להעלות יותר מ-$number קבצים"
+  },
+  "locked_category": "קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות"
 }

@@ -1,4 +1,5 @@
 import 'package:easy_birthday/core/consts.dart';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/dev/generate_greeting.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
@@ -55,21 +56,22 @@ class _AddTextScreenState extends State<AddTextScreen> {
                   style: AppTextStyle().title,
                   textAlign: TextAlign.center,
                 ),
-                appButton(
-                  text: t.create_greeting_using_ai,
-                  margin: const EdgeInsets.all(12),
-                  onTap: () => KheasydevNavigatePage().push(
-                    context,
-                    GenerateGreeting(
-                      generateGreeting: (generateText) {
-                        KheasydevNavigatePage().pop(context);
-                        if (generateText != null) {
-                          textController.text = generateText;
-                        }
-                      },
+                if (globalEvent!.planSubscribe.isNotFree)
+                  appButton(
+                    text: t.create_greeting_using_ai,
+                    margin: const EdgeInsets.all(12),
+                    onTap: () => KheasydevNavigatePage().push(
+                      context,
+                      GenerateGreeting(
+                        generateGreeting: (generateText) {
+                          KheasydevNavigatePage().pop(context);
+                          if (generateText != null) {
+                            textController.text = generateText;
+                          }
+                        },
+                      ),
                     ),
                   ),
-                ),
                 AppTextField(
                   hintText: t.add_text,
                   maxLines: 12,

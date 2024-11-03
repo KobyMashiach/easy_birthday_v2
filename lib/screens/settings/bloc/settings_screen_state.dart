@@ -36,3 +36,6 @@ final class SettingsScreenNavigateToLoginScreen
 
 final class SettingsScreenNavigateToChangePassword
     extends SettingsScreenNavigateState {}
+
+final class SettingsScreenNavigateToChangePlan
+    extends SettingsScreenNavigateState {}

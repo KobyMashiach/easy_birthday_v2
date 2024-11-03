@@ -77,8 +77,10 @@ Future<File?> pickSingleImage() async {
 Future<List<File>> pickMultipleFiles({bool? videos}) async {
   FileType fileType = videos == true ? FileType.video : FileType.image;
 
-  FilePickerResult? result =
-      await FilePicker.platform.pickFiles(type: fileType, allowMultiple: true);
+  FilePickerResult? result = await FilePicker.platform.pickFiles(
+    type: fileType,
+    allowMultiple: true,
+  );
 
   if (result != null) {
     return result.paths.map((path) => File(path!)).toList();

@@ -1,6 +1,14 @@
 const tempVideoUrl = "https://youtu.be/Xv8DqpQfvnI?si=h_RwyQ0Y0wEmiBO4";
 const downloadPath = "/storage/emulated/0/Download";
 
+const freeImagesLimit = 10;
+const standardImagesLimit = 30;
+const platinumImagesLimit = 80;
+
+const freeVideosLimit = 0;
+const standardVideosLimit = 5;
+const platinumVideosLimit = 10;
+
 //? Flags
 const israelFlag = "assets/flags/israel.svg";
 const usaFlag = "assets/flags/usa.svg";

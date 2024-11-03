@@ -3,8 +3,11 @@ import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/models/persona_model/role_model.dart';
+import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/repos/persona_repo.dart';
 import 'package:easy_birthday/screens/login_register/first_register/inner/choose_app_color_screen.dart';
+import 'package:easy_birthday/screens/login_register/first_register/inner/choose_plan_screen.dart';
 import 'package:easy_birthday/screens/login_register/login/login_screen.dart';
 import 'package:easy_birthday/screens/settings/bloc/settings_screen_bloc.dart';
 import 'package:easy_birthday/screens/settings/inner/app_info.dart';
@@ -70,6 +73,15 @@ class SettingsScreen extends StatelessWidget {
         'function': () async => bloc.add(SettingsScreenEventLogoutDialog()),
       },
     ];
+    if (globalUser.role.isNotPartner()) {
+      settingOptions.insert(4, {
+        'title': t.change_plan,
+        'icon': Icons.published_with_changes_rounded,
+        'function': () async =>
+            bloc.add(SettingsScreenEventNavigateToChangePlan()),
+      });
+    }
+
     return settingOptions;
   }
 
@@ -79,6 +91,9 @@ class SettingsScreen extends StatelessWidget {
       onPopInvokedWithResult: (value, result) => appOnwillpop(context),
       child: MultiRepositoryProvider(
         providers: [
+          RepositoryProvider(
+            create: (context) => EventRepo(),
+          ),
           RepositoryProvider(
             create: (context) => AppSettingsDataSource(),
           ),
@@ -93,6 +108,7 @@ class SettingsScreen extends StatelessWidget {
           create: (context) => SettingsScreenBloc(
             appSettingsDB: context.read<AppSettingsDataSource>(),
             personaRepo: context.read<PersonaRepo>(),
+            eventRepo: context.read<EventRepo>(),
           )..add(SettingsScreenEventInit()),
           child: BlocConsumer<SettingsScreenBloc, SettingsScreenState>(
             listenWhen: (previous, current) =>
@@ -162,6 +178,21 @@ class SettingsScreen extends StatelessWidget {
                             SettingsScreenEventChangePassword(
                                 password: password)),
                       ));
+
+                case const (SettingsScreenNavigateToChangePlan):
+                  KheasydevNavigatePage().push(
+                    context,
+                    ChoosePlanScreen(
+                      currentPlan: globalEvent!.planSubscribe,
+                      onPlanPurchase: (planTitle) {
+                        bloc.add(SettingsScreenEventPlanPurchase(
+                            planTitle: planTitle));
+                        KheasydevNavigatePage().pop(context);
+                      },
+                      onContinue: () => KheasydevNavigatePage().pop(context),
+                      fromSettings: true,
+                    ),
+                  );
               }
             },
             builder: (context, state) {

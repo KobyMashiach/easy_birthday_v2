@@ -41,6 +41,13 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
   bool isMarkingMode = false;
   List<File> newFiles = [];
   Set<int> selectedIndexes = {};
+  int canUploadFilesNumber = freeImagesLimit;
+
+  @override
+  void initState() {
+    canUploadFilesNumber = getUploadLimit(widget.isImagesPicker);
+    super.initState();
+  }
 
   void onDeleteFiles() {
     List<int> deletedFiles = [];
@@ -253,11 +260,22 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
         },
         inactiveButtonText: t.add(context: globalGender),
         inactiveButtonOnTap: () async {
+          if ((mediaUrls.length + newFiles.length) >= canUploadFilesNumber) {
+            kheasydevAppToast(t.cant_upload_more_than(
+                context: globalGender, number: canUploadFilesNumber));
+            return;
+          }
+
           final List<File> pickedMediaFiles =
               await pickMultipleFiles(videos: !widget.isImagesPicker);
+
           if (pickedMediaFiles.isNotEmpty) {
             setState(() {
-              newFiles.addAll(pickedMediaFiles);
+              int remainingSlots =
+                  canUploadFilesNumber - (mediaUrls.length + newFiles.length);
+              newFiles.addAll(
+                pickedMediaFiles.take(remainingSlots),
+              );
             });
           }
         },
@@ -296,5 +314,21 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
         ),
       ),
     );
+  }
+
+  int getUploadLimit(bool isImage) {
+    if (isImage) {
+      return globalEvent!.planSubscribe.isFree
+          ? freeImagesLimit
+          : globalEvent!.planSubscribe.isStandard
+              ? standardImagesLimit
+              : platinumImagesLimit;
+    } else {
+      return globalEvent!.planSubscribe.isFree
+          ? freeVideosLimit
+          : globalEvent!.planSubscribe.isStandard
+              ? standardVideosLimit
+              : platinumVideosLimit;
+    }
   }
 }

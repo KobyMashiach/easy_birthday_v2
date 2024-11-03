@@ -1,21 +1,24 @@
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/plan_model/plan_model.dart';
 import 'package:easy_birthday/widgets/cards/choose_plan_card.dart';
+import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class ChoosePlanScreen extends StatefulWidget {
   final VoidCallback onContinue;
-  final VoidCallback onPrevious;
+  final VoidCallback? onPrevious;
   final PlanModel currentPlan;
   final Function(String? planTitle) onPlanPurchase;
+  final bool fromSettings;
 
   const ChoosePlanScreen({
     super.key,
     required this.onContinue,
-    required this.onPrevious,
+    this.onPrevious,
     required this.currentPlan,
     required this.onPlanPurchase,
+    this.fromSettings = false,
   });
 
   @override
@@ -31,6 +34,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: widget.fromSettings ? appAppBar(title: t.change_plan) : null,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -93,7 +97,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
         ),
       ),
       bottomNavigationBar: AppButtonsBottomNavigationBar(
-        activeButtonText: t.finish,
+        oneButton: widget.fromSettings,
+        activeButtonText: !widget.fromSettings ? t.finish : t.cancel,
         activeButtonOnTap: widget.onContinue,
         inactiveButtonText: t.back,
         inactiveButtonOnTap: widget.onPrevious,

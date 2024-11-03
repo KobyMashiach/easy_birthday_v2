@@ -35,6 +35,8 @@ class SettingsScreenEventNavigateToAppInfo extends SettingsScreenEvent {}
 
 class SettingsScreenEventNavigateToChangeLanguage extends SettingsScreenEvent {}
 
+class SettingsScreenEventNavigateToChangePlan extends SettingsScreenEvent {}
+
 class SettingsScreenEventLogoutDialog extends SettingsScreenEvent {}
 
 class SettingsScreenEventLogout extends SettingsScreenEvent {}
@@ -45,4 +47,10 @@ class SettingsScreenEventChangePassword extends SettingsScreenEvent {
   final String password;
 
   SettingsScreenEventChangePassword({required this.password});
+}
+
+class SettingsScreenEventPlanPurchase extends SettingsScreenEvent {
+  final String? planTitle;
+
+  SettingsScreenEventPlanPurchase({required this.planTitle});
 }
