@@ -180,7 +180,7 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
           icon: Icons.image,
           title: t.add_picture,
           onTap: () async {
-            final image = await pickSingleImage();
+            final image = await pickImageImagePicker();
             if (image != null) {
               setState(() => items.add(Image.file(image, height: 150)));
             }

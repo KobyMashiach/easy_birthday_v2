@@ -78,7 +78,7 @@ class _AddProfileImageScreenState extends State<AddProfileImageScreen> {
           bottom: 0,
           child: GestureDetector(
             onTap: () async {
-              final newImage = await pickSingleImage();
+              final newImage = await pickImageImagePicker();
               if (newImage != null) {
                 setState(() => image = newImage);
               }

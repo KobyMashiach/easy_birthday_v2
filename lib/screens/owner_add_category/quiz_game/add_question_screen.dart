@@ -96,7 +96,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: ElevatedButton.icon(
                           onPressed: () async {
-                            final choosenImage = await pickSingleImage();
+                            final choosenImage = await pickImageImagePicker();
                             if (choosenImage != null) {
                               image = choosenImage;
                               setState(() => displayImage =

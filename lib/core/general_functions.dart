@@ -9,10 +9,13 @@ import 'package:easy_birthday/models/persona_model/role_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'dart:typed_data';
 import 'dart:convert';
 import 'dart:math' as math;
+
+import 'package:path_provider/path_provider.dart';
 
 String cutFilePathWithoutFinish(String videoTitle) =>
     "EasyRingTube${videoTitle}_cut";
@@ -59,6 +62,20 @@ String getRandomString(int stringLength) {
   math.Random rnd = math.Random();
   return String.fromCharCodes(Iterable.generate(
       stringLength, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+}
+
+Future<File?> pickImageImagePicker() async {
+  final ImagePicker picker = ImagePicker();
+  final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+  if (image != null) {
+    final bytes = await image.readAsBytes();
+    final tempDir = await getTemporaryDirectory();
+    final file = File('${tempDir.path}/picked_image_${getRandomString(5)}.png');
+    await file.writeAsBytes(bytes);
+    return file;
+  }
+  return null;
 }
 
 Future<File?> pickSingleImage() async {
