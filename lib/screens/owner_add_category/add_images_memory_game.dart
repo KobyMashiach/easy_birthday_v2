@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
+import 'package:easy_birthday/widgets/design/general/button_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,7 +21,7 @@ import 'package:http/http.dart' as http;
 
 class AddImagesMemoryGame extends StatefulWidget {
   final CategoryModel category;
-  final Function(List<File> files) onDone;
+  final Function(CategoryModel category, List<File> files) onDone;
   final VoidCallback openMemoryAgain;
   const AddImagesMemoryGame(
       {super.key,
@@ -33,6 +34,7 @@ class AddImagesMemoryGame extends StatefulWidget {
 }
 
 class _AddImagesMemoryGameState extends State<AddImagesMemoryGame> {
+  bool lock = false;
   bool change = false;
   bool loading = false;
   final List<String?> _imageUrls = List.filled(6, null);
@@ -42,6 +44,7 @@ class _AddImagesMemoryGameState extends State<AddImagesMemoryGame> {
   @override
   void initState() {
     super.initState();
+    lock = widget.category.lock;
     _loadImages();
   }
 
@@ -124,6 +127,10 @@ class _AddImagesMemoryGameState extends State<AddImagesMemoryGame> {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 24),
+                      buttonContainer(
+                          icon: lock ? Icons.lock_outline : Icons.lock_open,
+                          title: lock ? t.lock : t.unlock,
+                          onTap: () => setState(() => lock = !lock)),
                       if (widget.category.memoryGame?.lock ?? false) ...[
                         Text(t.memory_game_done(
                             context: globalGender,
@@ -161,7 +168,8 @@ class _AddImagesMemoryGameState extends State<AddImagesMemoryGame> {
                   final List<File> imageFiles =
                       await _convertImagesToFileList();
                   KheasydevNavigatePage().pop(context);
-                  widget.onDone.call(imageFiles);
+                  widget.onDone
+                      .call(widget.category.copyWith(lock: lock), imageFiles);
                 }
               }
             : null,

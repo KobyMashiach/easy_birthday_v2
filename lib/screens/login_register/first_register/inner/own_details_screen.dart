@@ -99,6 +99,7 @@ class _OwnDetailsScreenState extends State<OwnDetailsScreen> {
                           controller: fullNameController,
                           keyboard: TextInputType.name,
                           showError: errorsMap["name"],
+                          textInputAction: TextInputAction.next,
                           isRequired: true,
                         ),
                         AppTextField(
@@ -106,6 +107,7 @@ class _OwnDetailsScreenState extends State<OwnDetailsScreen> {
                           controller: emailController,
                           keyboard: TextInputType.emailAddress,
                           showError: errorsMap["email"],
+                          textInputAction: TextInputAction.next,
                           isRequired: true,
                         ),
                         AppDropDown(

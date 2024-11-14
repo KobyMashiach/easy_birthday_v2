@@ -4,8 +4,8 @@ import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/dev/generate_greeting.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
-import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
+import 'package:easy_birthday/widgets/design/general/button_container.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddTextScreen extends StatefulWidget {
   final CategoryModel category;
-  final Function(String text) onDone;
+  final Function(CategoryModel category, String text) onDone;
   const AddTextScreen(
       {super.key, required this.category, required this.onDone});
 
@@ -24,10 +24,12 @@ class AddTextScreen extends StatefulWidget {
 }
 
 class _AddTextScreenState extends State<AddTextScreen> {
+  bool lock = false;
   late TextEditingController textController;
 
   @override
   void initState() {
+    lock = widget.category.lock;
     textController = TextEditingController();
     textController.text = widget.category.text ?? "";
     super.initState();
@@ -56,22 +58,32 @@ class _AddTextScreenState extends State<AddTextScreen> {
                   style: AppTextStyle().title,
                   textAlign: TextAlign.center,
                 ),
-                if (globalEvent!.planSubscribe.isNotFree)
-                  appButton(
-                    text: t.create_greeting_using_ai,
-                    margin: const EdgeInsets.all(12),
-                    onTap: () => KheasydevNavigatePage().push(
-                      context,
-                      GenerateGreeting(
-                        generateGreeting: (generateText) {
-                          KheasydevNavigatePage().pop(context);
-                          if (generateText != null) {
-                            textController.text = generateText;
-                          }
-                        },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (globalEvent!.planSubscribe.isNotFree)
+                      buttonContainer(
+                        title: t.create_greeting_using_ai,
+                        icon: Icons.generating_tokens_outlined,
+                        // margin: const EdgeInsets.all(12),
+                        onTap: () => KheasydevNavigatePage().push(
+                          context,
+                          GenerateGreeting(
+                            generateGreeting: (generateText) {
+                              KheasydevNavigatePage().pop(context);
+                              if (generateText != null) {
+                                textController.text = generateText;
+                              }
+                            },
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
+                    buttonContainer(
+                        icon: lock ? Icons.lock_outline : Icons.lock_open,
+                        title: lock ? t.lock : t.unlock,
+                        onTap: () => setState(() => lock = !lock)),
+                  ],
+                ),
                 AppTextField(
                   hintText: t.add_text,
                   maxLines: 12,
@@ -88,7 +100,8 @@ class _AddTextScreenState extends State<AddTextScreen> {
         oneButton: true,
         activeButtonOnTap: () {
           if (textController.text.isNotEmpty) {
-            widget.onDone.call(textController.text);
+            widget.onDone.call(
+                widget.category.copyWith(lock: lock), textController.text);
             KheasydevNavigatePage().pop(context);
           } else {
             kheasydevAppToast(t.no_allow_text_empty);

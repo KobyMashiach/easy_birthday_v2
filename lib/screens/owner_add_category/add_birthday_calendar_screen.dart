@@ -8,6 +8,7 @@ import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
+import 'package:easy_birthday/widgets/design/general/button_container.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
@@ -17,7 +18,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 class AddBirthdayCalendarScreen extends StatefulWidget {
   final CategoryModel category;
-  final Function(CalendarModel calendar) onDone;
+  final Function(CategoryModel category, CalendarModel calendar) onDone;
   const AddBirthdayCalendarScreen(
       {super.key, required this.category, required this.onDone});
 
@@ -27,6 +28,8 @@ class AddBirthdayCalendarScreen extends StatefulWidget {
 }
 
 class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
+  bool lock = false;
+
   CalendarFormat _calendarFormat = CalendarFormat.month;
 
   DateTime? _selectedDay;
@@ -34,8 +37,9 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
 
   @override
   void initState() {
-    super.initState();
+    lock = widget.category.lock;
     _events = widget.category.calendarEvents ?? const CalendarModel();
+    super.initState();
   }
 
   @override
@@ -49,7 +53,16 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
             child: Column(
               children: [
                 ...topWidgets,
-                pickRangeDateButton(context),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    pickRangeDateButton(context),
+                    buttonContainer(
+                        icon: lock ? Icons.lock_outline : Icons.lock_open,
+                        title: lock ? t.lock : t.unlock,
+                        onTap: () => setState(() => lock = !lock)),
+                  ],
+                ),
                 if (_events.startDate != null) tableCalendar(context),
                 const SizedBox(height: 8.0),
                 if (_selectedDay != null) ...displaySelectedDateEvents(context)
@@ -63,7 +76,8 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
         activeButtonDisable: _events.startDate == null,
         activeButtonOnTap: _events.startDate != null
             ? () {
-                widget.onDone.call(_events);
+                widget.onDone
+                    .call(widget.category.copyWith(lock: lock), _events);
                 Navigator.of(context).pop();
               }
             : null,
@@ -151,9 +165,9 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
   }
 
   Widget pickRangeDateButton(BuildContext context) {
-    return appButton(
-      text: t.pick_date_range,
-      margin: const EdgeInsets.all(12),
+    return buttonContainer(
+      title: t.pick_date_range,
+      icon: Icons.date_range_outlined,
       onTap: () async {
         final DateTimeRange? pickedRange = await showDateRangePicker(
           context: context,

@@ -62,10 +62,9 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddTextScreen(
                       category: newState.category,
-                      onDone: (text) => bloc.add(
+                      onDone: (category, text) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
-                              category:
-                                  newState.category.copyWith(text: text))),
+                              category: category.copyWith(text: text))),
                     ));
               case const (HomeScreenNavToAddPictures):
                 final newState = state as HomeScreenNavToAddPictures;
@@ -85,10 +84,10 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddBirthdayCalendarScreen(
                       category: newState.category,
-                      onDone: (calendar) => bloc.add(
+                      onDone: (category, calendar) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
-                              category: newState.category
-                                  .copyWith(calendarEvents: calendar))),
+                              category:
+                                  category.copyWith(calendarEvents: calendar))),
                     ));
               case const (HomeScreenNavToAddBirthdaySuprise):
                 final newState = state as HomeScreenNavToAddBirthdaySuprise;
@@ -117,9 +116,9 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddWishesListScreen(
                       category: newState.category,
-                      onDone: (text, edit) => bloc.add(
+                      onDone: (category, text, edit) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
-                              category: newState.category.copyWith(
+                              category: category.copyWith(
                                   // ignore: prefer_const_constructors
                                   wishesList: edit
                                       ? newState.category.wishesList!
@@ -143,9 +142,9 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddImagesMemoryGame(
                       category: newState.category,
-                      onDone: (files) => bloc.add(
+                      onDone: (category, files) => bloc.add(
                           HomeScreenEventUploadImagesToMemoryGame(
-                              category: newState.category, files: files)),
+                              category: category, files: files)),
                       openMemoryAgain: () => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
                               category: newState.category.copyWith(

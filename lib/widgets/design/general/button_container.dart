@@ -20,7 +20,17 @@ Widget buttonContainer(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, color: Colors.white, size: 40),
-          Text(title, style: AppTextStyle().smallDescription)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                title,
+                style: AppTextStyle().smallDescription,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
         ],
       ),
     ),

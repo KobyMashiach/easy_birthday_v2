@@ -87,6 +87,7 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
               controller: phoneController,
               keyboard: TextInputType.phone,
               showError: errorsMap["phone"],
+              textInputAction: TextInputAction.next,
               isRequired: true,
             ),
           ),
@@ -184,12 +185,14 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
                           keyboard: TextInputType.name,
                           showError: errorsMap["name"],
                           isRequired: true,
+                          textInputAction: TextInputAction.next,
                         ),
                         AppTextField(
                           hintText: t.email,
                           controller: emailController,
                           keyboard: TextInputType.emailAddress,
                           showError: errorsMap["email"],
+                          textInputAction: TextInputAction.next,
                         ),
                         AppDropDown(
                           onChanged: (value) => genderController.text = value,
@@ -205,6 +208,7 @@ class _PartnerDetailsScreenState extends State<PartnerDetailsScreen> {
                           readOnly: true,
                           showError: errorsMap["birth"],
                           isRequired: true,
+                          textInputAction: TextInputAction.next,
                           child: IconButton(
                               onPressed: () => onDateOfBirthTap(),
                               icon: const Icon(Icons.calendar_month)),

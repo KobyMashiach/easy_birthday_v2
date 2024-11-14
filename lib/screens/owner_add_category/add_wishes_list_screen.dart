@@ -6,6 +6,7 @@ import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/wishes_model/wishes_model.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
+import 'package:easy_birthday/widgets/design/general/button_container.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
@@ -16,7 +17,7 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddWishesListScreen extends StatefulWidget {
   final CategoryModel category;
-  final Function(String text, bool edit) onDone;
+  final Function(CategoryModel category, String text, bool edit) onDone;
   final VoidCallback deleteWishes;
   const AddWishesListScreen(
       {super.key,
@@ -29,10 +30,12 @@ class AddWishesListScreen extends StatefulWidget {
 }
 
 class _AddWishesListScreenState extends State<AddWishesListScreen> {
+  bool lock = false;
   late TextEditingController textController;
 
   @override
   void initState() {
+    lock = widget.category.lock;
     textController = TextEditingController();
     textController.text = widget.category.wishesList?.contract ?? "";
     super.initState();
@@ -61,6 +64,10 @@ class _AddWishesListScreenState extends State<AddWishesListScreen> {
                   style: AppTextStyle().title,
                   textAlign: TextAlign.center,
                 ),
+                buttonContainer(
+                    icon: lock ? Icons.lock_outline : Icons.lock_open,
+                    title: lock ? t.lock : t.unlock,
+                    onTap: () => setState(() => lock = !lock)),
                 if (widget.category.wishesList?.lock ?? false)
                   displayWishesButton(context),
                 AppTextField(
@@ -79,8 +86,8 @@ class _AddWishesListScreenState extends State<AddWishesListScreen> {
         oneButton: true,
         activeButtonOnTap: () {
           if (textController.text.isNotEmpty) {
-            widget.onDone
-                .call(textController.text, widget.category.wishesList != null);
+            widget.onDone.call(widget.category.copyWith(lock: lock),
+                textController.text, widget.category.wishesList != null);
             KheasydevNavigatePage().pop(context);
           } else {
             kheasydevAppToast(t.no_allow_text_empty);

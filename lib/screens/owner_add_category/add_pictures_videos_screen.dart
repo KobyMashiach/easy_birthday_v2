@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_birthday/core/colors.dart';
+import 'package:easy_birthday/widgets/design/general/button_container.dart';
 import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -37,6 +38,7 @@ class AddPicturesVideosScreen extends StatefulWidget {
 }
 
 class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
+  bool lock = false;
   bool isMarkAllChecked = false;
   bool isMarkingMode = false;
   List<File> newFiles = [];
@@ -46,6 +48,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
   @override
   void initState() {
     canUploadFilesNumber = getUploadLimit(widget.isImagesPicker);
+    lock = widget.category.lock;
     super.initState();
   }
 
@@ -163,6 +166,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
                       : t.add_videos_to(title: widget.category.titleAppear!),
                   style: AppTextStyle().title,
                   textAlign: TextAlign.center),
+              buttons(mediaUrls),
               kheasydevDivider(
                   black: true,
                   padding: const EdgeInsets.symmetric(vertical: 12)),
@@ -254,32 +258,51 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
       bottomNavigationBar: AppButtonsBottomNavigationBar(
         activeButtonOnTap: () {
           if (newFiles.isNotEmpty) {
-            widget.onAddFiles.call(widget.category, newFiles);
+            widget.onAddFiles
+                .call(widget.category.copyWith(lock: lock), newFiles);
+          } else {
+            widget.onAddFiles.call(widget.category.copyWith(lock: lock), []);
           }
           KheasydevNavigatePage().pop(context);
         },
-        inactiveButtonText: t.add(context: globalGender),
-        inactiveButtonOnTap: () async {
-          if ((mediaUrls.length + newFiles.length) >= canUploadFilesNumber) {
-            kheasydevAppToast(t.cant_upload_more_than(
-                context: globalGender, number: canUploadFilesNumber));
-            return;
-          }
-
-          final List<File> pickedMediaFiles =
-              await pickMultipleFiles(videos: !widget.isImagesPicker);
-
-          if (pickedMediaFiles.isNotEmpty) {
-            setState(() {
-              int remainingSlots =
-                  canUploadFilesNumber - (mediaUrls.length + newFiles.length);
-              newFiles.addAll(
-                pickedMediaFiles.take(remainingSlots),
-              );
-            });
-          }
-        },
+        oneButton: true,
       ),
+    );
+  }
+
+  Row buttons(List<String> mediaUrls) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        buttonContainer(
+            icon: Icons.add_a_photo,
+            title: t.add(context: globalGender),
+            onTap: () async {
+              if ((mediaUrls.length + newFiles.length) >=
+                  canUploadFilesNumber) {
+                kheasydevAppToast(t.cant_upload_more_than(
+                    context: globalGender, number: canUploadFilesNumber));
+                return;
+              }
+
+              final List<File> pickedMediaFiles =
+                  await pickMultipleFiles(videos: !widget.isImagesPicker);
+
+              if (pickedMediaFiles.isNotEmpty) {
+                setState(() {
+                  int remainingSlots = canUploadFilesNumber -
+                      (mediaUrls.length + newFiles.length);
+                  newFiles.addAll(
+                    pickedMediaFiles.take(remainingSlots),
+                  );
+                });
+              }
+            }),
+        buttonContainer(
+            icon: lock ? Icons.lock_outline : Icons.lock_open,
+            title: lock ? t.lock : t.unlock,
+            onTap: () => setState(() => lock = !lock)),
+      ],
     );
   }
 
