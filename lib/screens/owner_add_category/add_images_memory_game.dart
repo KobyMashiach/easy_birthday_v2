@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/general/button_container.dart';
+import 'package:easy_birthday/widgets/dialogs/edit_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,11 +22,14 @@ import 'package:http/http.dart' as http;
 
 class AddImagesMemoryGame extends StatefulWidget {
   final CategoryModel category;
+  final Function(CategoryModel category) onChangeTitle;
+
   final Function(CategoryModel category, List<File> files) onDone;
   final VoidCallback openMemoryAgain;
   const AddImagesMemoryGame(
       {super.key,
       required this.category,
+      required this.onChangeTitle,
       required this.onDone,
       required this.openMemoryAgain});
 
@@ -121,10 +125,29 @@ class _AddImagesMemoryGameState extends State<AddImagesMemoryGame> {
                     children: [
                       Text(t.memory_game, style: AppTextStyle().bigTitle),
                       SvgPicture.asset(memoryIllustrations, height: 200),
-                      Text(
-                        t.upload_six_images(context: globalGender),
-                        style: AppTextStyle().title,
-                        textAlign: TextAlign.center,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            t.upload_six_images(context: globalGender),
+                            style: AppTextStyle().title,
+                            textAlign: TextAlign.center,
+                          ),
+                          IconButton(
+                              onPressed: () async {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AddTitleDialog(
+                                          title: widget.category.titleAppear!,
+                                          onInputText: (text) {
+                                            widget.onChangeTitle.call(widget
+                                                .category
+                                                .copyWith(titleAppear: text));
+                                          },
+                                        ));
+                              },
+                              icon: const Icon(Icons.edit))
+                        ],
                       ),
                       const SizedBox(height: 24),
                       buttonContainer(

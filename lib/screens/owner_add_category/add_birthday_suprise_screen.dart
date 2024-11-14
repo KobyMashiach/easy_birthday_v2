@@ -8,6 +8,7 @@ import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/general/button_container.dart';
 import 'package:easy_birthday/widgets/dialogs/add_text_dialog.dart';
+import 'package:easy_birthday/widgets/dialogs/edit_title.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
@@ -18,10 +19,14 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddBirthdaySupriseScreen extends StatefulWidget {
   final CategoryModel category;
+  final Function(CategoryModel category) onChangeTitle;
   final Function(CategoryModel category, List<Widget> widgets) onDone;
 
   const AddBirthdaySupriseScreen(
-      {super.key, required this.category, required this.onDone});
+      {super.key,
+      required this.category,
+      required this.onChangeTitle,
+      required this.onDone});
 
   @override
   State<AddBirthdaySupriseScreen> createState() =>
@@ -52,11 +57,28 @@ class _AddBirthdaySupriseScreenState extends State<AddBirthdaySupriseScreen> {
               children: [
                 Text(t.add_suprise, style: AppTextStyle().bigTitle),
                 SvgPicture.asset(supriseIllustration, height: 200),
-                Text(
-                  t.add_text_pictures_description(
-                      title: widget.category.titleAppear!),
-                  style: AppTextStyle().title,
-                  textAlign: TextAlign.center,
+                Row(
+                  children: [
+                    Text(
+                      t.add_text_pictures_description(
+                          title: widget.category.titleAppear!),
+                      style: AppTextStyle().title,
+                      textAlign: TextAlign.center,
+                    ),
+                    IconButton(
+                        onPressed: () async {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AddTitleDialog(
+                                    title: widget.category.titleAppear!,
+                                    onInputText: (text) {
+                                      widget.onChangeTitle.call(widget.category
+                                          .copyWith(titleAppear: text));
+                                    },
+                                  ));
+                        },
+                        icon: const Icon(Icons.edit))
+                  ],
                 ),
                 const SizedBox(height: 24),
                 Text(

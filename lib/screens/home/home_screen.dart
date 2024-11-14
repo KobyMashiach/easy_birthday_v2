@@ -62,6 +62,8 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddTextScreen(
                       category: newState.category,
+                      onChangeTitle: (category) =>
+                          updateCategory(bloc, category),
                       onDone: (category, text) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
                               category: category.copyWith(text: text))),
@@ -84,6 +86,8 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddBirthdayCalendarScreen(
                       category: newState.category,
+                      onChangeTitle: (category) =>
+                          updateCategory(bloc, category),
                       onDone: (category, calendar) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
                               category:
@@ -95,6 +99,8 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddBirthdaySupriseScreen(
                       category: newState.category,
+                      onChangeTitle: (category) =>
+                          updateCategory(bloc, category),
                       onDone: (category, widgets) => bloc.add(
                           HomeScreenEventUploadSupriseInEvent(
                               category: category, widgets: widgets)),
@@ -105,6 +111,8 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddQuizGameScreen(
                       category: newState.category,
+                      onChangeTitle: (category) =>
+                          updateCategory(bloc, category),
                       onDone: (questions, lock) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
                               category: newState.category
@@ -116,6 +124,8 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddWishesListScreen(
                       category: newState.category,
+                      onChangeTitle: (category) =>
+                          updateCategory(bloc, category),
                       onDone: (category, text, edit) => bloc.add(
                           HomeScreenEventUpdateCategoryInEvent(
                               category: category.copyWith(
@@ -142,6 +152,8 @@ class HomeScreen extends StatelessWidget {
                     context,
                     AddImagesMemoryGame(
                       category: newState.category,
+                      onChangeTitle: (category) =>
+                          updateCategory(bloc, category),
                       onDone: (category, files) => bloc.add(
                           HomeScreenEventUploadImagesToMemoryGame(
                               category: category, files: files)),
@@ -212,11 +224,16 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  void updateCategory(HomeScreenBloc bloc, CategoryModel category) {
+    return bloc.add(HomeScreenEventUpdateCategoryInEvent(category: category));
+  }
+
   AddPicturesVideosScreen navToPicturesVideosScreen(
       CategoryModel category, HomeScreenBloc bloc,
       {required bool isImagesPicker}) {
     return AddPicturesVideosScreen(
       category: category,
+      onChangeTitle: (category) => updateCategory(bloc, category),
       isImagesPicker: isImagesPicker,
       onAddFiles: (category, files) => bloc.add(
           HomeScreenEventUploadFilesInEvent(category: category, files: files)),

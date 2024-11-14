@@ -9,6 +9,7 @@ import 'package:easy_birthday/services/translates/slang_settings.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
 import 'package:easy_birthday/widgets/design/general/button_container.dart';
+import 'package:easy_birthday/widgets/dialogs/edit_title.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
@@ -18,9 +19,14 @@ import 'package:table_calendar/table_calendar.dart';
 
 class AddBirthdayCalendarScreen extends StatefulWidget {
   final CategoryModel category;
+  final Function(CategoryModel category) onChangeTitle;
+
   final Function(CategoryModel category, CalendarModel calendar) onDone;
   const AddBirthdayCalendarScreen(
-      {super.key, required this.category, required this.onDone});
+      {super.key,
+      required this.category,
+      required this.onChangeTitle,
+      required this.onDone});
 
   @override
   State<AddBirthdayCalendarScreen> createState() =>
@@ -204,10 +210,28 @@ class _AddBirthdayCalendarScreenState extends State<AddBirthdayCalendarScreen> {
     return [
       Text(t.birthday_calendar, style: AppTextStyle().bigTitle),
       SvgPicture.asset(widget.category.categoryType.getImage(), height: 200),
-      Text(
-        t.write_calendar_time_to(title: widget.category.titleAppear!),
-        style: AppTextStyle().title,
-        textAlign: TextAlign.center,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            t.write_calendar_time_to(title: widget.category.titleAppear!),
+            style: AppTextStyle().title,
+            textAlign: TextAlign.center,
+          ),
+          IconButton(
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (context) => AddTitleDialog(
+                          title: widget.category.titleAppear!,
+                          onInputText: (text) {
+                            widget.onChangeTitle.call(
+                                widget.category.copyWith(titleAppear: text));
+                          },
+                        ));
+              },
+              icon: const Icon(Icons.edit))
+        ],
       ),
     ];
   }

@@ -7,6 +7,7 @@ import 'package:easy_birthday/screens/owner_add_category/quiz_game/add_question_
 import 'package:easy_birthday/screens/owner_add_category/quiz_game/remove_question_screen.dart';
 import 'package:easy_birthday/services/firebase/firestore_data.dart';
 import 'package:easy_birthday/widgets/design/general/button_container.dart';
+import 'package:easy_birthday/widgets/dialogs/edit_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -22,9 +23,14 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddQuizGameScreen extends StatefulWidget {
   final CategoryModel category;
+  final Function(CategoryModel category) onChangeTitle;
+
   final Function(List<QuestionModel> questions, bool lock) onDone;
   const AddQuizGameScreen(
-      {super.key, required this.category, required this.onDone});
+      {super.key,
+      required this.category,
+      required this.onChangeTitle,
+      required this.onDone});
 
   @override
   State<AddQuizGameScreen> createState() => _AddQuizGameScreenState();
@@ -148,10 +154,28 @@ class _AddQuizGameScreenState extends State<AddQuizGameScreen> {
     return [
       Text(t.quiz_game, style: AppTextStyle().bigTitle),
       SvgPicture.asset(widget.category.categoryType.getImage(), height: 200),
-      Text(
-        t.add_quiz_to(title: widget.category.titleAppear!),
-        style: AppTextStyle().title,
-        textAlign: TextAlign.center,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            t.add_quiz_to(title: widget.category.titleAppear!),
+            style: AppTextStyle().title,
+            textAlign: TextAlign.center,
+          ),
+          IconButton(
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (context) => AddTitleDialog(
+                          title: widget.category.titleAppear!,
+                          onInputText: (text) {
+                            widget.onChangeTitle.call(
+                                widget.category.copyWith(titleAppear: text));
+                          },
+                        ));
+              },
+              icon: const Icon(Icons.edit))
+        ],
       ),
     ];
   }

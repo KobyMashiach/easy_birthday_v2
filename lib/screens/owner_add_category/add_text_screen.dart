@@ -6,6 +6,7 @@ import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
 import 'package:easy_birthday/widgets/design/general/button_container.dart';
+import 'package:easy_birthday/widgets/dialogs/edit_title.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,13 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddTextScreen extends StatefulWidget {
   final CategoryModel category;
+  final Function(CategoryModel category) onChangeTitle;
   final Function(CategoryModel category, String text) onDone;
   const AddTextScreen(
-      {super.key, required this.category, required this.onDone});
+      {super.key,
+      required this.category,
+      required this.onChangeTitle,
+      required this.onDone});
 
   @override
   State<AddTextScreen> createState() => _AddTextScreenState();
@@ -53,10 +58,28 @@ class _AddTextScreenState extends State<AddTextScreen> {
               children: [
                 Text(t.add_text, style: AppTextStyle().bigTitle),
                 SvgPicture.asset(writeLetterIllustration, height: 200),
-                Text(
-                  t.write_text_to(title: widget.category.titleAppear!),
-                  style: AppTextStyle().title,
-                  textAlign: TextAlign.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      t.write_text_to(title: widget.category.titleAppear!),
+                      style: AppTextStyle().title,
+                      textAlign: TextAlign.center,
+                    ),
+                    IconButton(
+                        onPressed: () async {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AddTitleDialog(
+                                    title: widget.category.titleAppear!,
+                                    onInputText: (text) {
+                                      widget.onChangeTitle.call(widget.category
+                                          .copyWith(titleAppear: text));
+                                    },
+                                  ));
+                        },
+                        icon: const Icon(Icons.edit))
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

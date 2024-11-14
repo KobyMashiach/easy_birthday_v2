@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 295
+/// Strings: 296
 ///
-/// Built on 2024-11-03 at 14:06 UTC
+/// Built on 2024-11-14 at 22:54 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -707,6 +707,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 		}
 	}
 	String get locked_category => 'קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות';
+	String get edit_title => 'ערוך כותרת';
 }
 
 /// Flat map(s) containing all translations.
@@ -1268,6 +1269,7 @@ extension on Translations {
 				}
 			};
 			case 'locked_category': return 'קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות';
+			case 'edit_title': return 'ערוך כותרת';
 			default: return null;
 		}
 	}

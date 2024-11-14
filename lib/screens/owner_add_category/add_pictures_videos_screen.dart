@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/widgets/design/general/button_container.dart';
+import 'package:easy_birthday/widgets/dialogs/edit_title.dart';
 import 'package:easy_birthday/widgets/general/video_thumbnail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,12 +23,14 @@ class AddPicturesVideosScreen extends StatefulWidget {
   const AddPicturesVideosScreen({
     super.key,
     required this.category,
+    required this.onChangeTitle,
     required this.isImagesPicker,
     required this.onAddFiles,
     required this.onDeleteFiles,
   });
 
   final CategoryModel category;
+  final Function(CategoryModel category) onChangeTitle;
   final bool isImagesPicker;
   final Function(CategoryModel category, List<File> files) onAddFiles;
   final Function(CategoryModel category, List<int> indexes) onDeleteFiles;
@@ -160,12 +163,32 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
               Text(isImagesPicker ? t.add_pictures : t.add_videos,
                   style: AppTextStyle().bigTitle),
               SvgPicture.asset(writeLetterIllustration, height: 200),
-              Text(
-                  isImagesPicker
-                      ? t.add_pictures_to(title: widget.category.titleAppear!)
-                      : t.add_videos_to(title: widget.category.titleAppear!),
-                  style: AppTextStyle().title,
-                  textAlign: TextAlign.center),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                      isImagesPicker
+                          ? t.add_pictures_to(
+                              title: widget.category.titleAppear!)
+                          : t.add_videos_to(
+                              title: widget.category.titleAppear!),
+                      style: AppTextStyle().title,
+                      textAlign: TextAlign.center),
+                  IconButton(
+                      onPressed: () async {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AddTitleDialog(
+                                  title: widget.category.titleAppear!,
+                                  onInputText: (text) {
+                                    widget.onChangeTitle.call(widget.category
+                                        .copyWith(titleAppear: text));
+                                  },
+                                ));
+                      },
+                      icon: const Icon(Icons.edit))
+                ],
+              ),
               buttons(mediaUrls),
               kheasydevDivider(
                   black: true,

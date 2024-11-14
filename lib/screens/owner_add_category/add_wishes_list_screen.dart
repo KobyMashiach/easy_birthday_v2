@@ -7,6 +7,7 @@ import 'package:easy_birthday/models/wishes_model/wishes_model.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
 import 'package:easy_birthday/widgets/design/general/button_container.dart';
+import 'package:easy_birthday/widgets/dialogs/edit_title.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/widgets/general/appbar.dart';
 import 'package:easy_birthday/widgets/general/bottom_navigation_bars/app_buttons_bottom_navigation_bar.dart';
@@ -17,11 +18,14 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 
 class AddWishesListScreen extends StatefulWidget {
   final CategoryModel category;
+  final Function(CategoryModel category) onChangeTitle;
+
   final Function(CategoryModel category, String text, bool edit) onDone;
   final VoidCallback deleteWishes;
   const AddWishesListScreen(
       {super.key,
       required this.category,
+      required this.onChangeTitle,
       required this.onDone,
       required this.deleteWishes});
 
@@ -59,10 +63,28 @@ class _AddWishesListScreenState extends State<AddWishesListScreen> {
               children: [
                 Text(t.write_contract, style: AppTextStyle().bigTitle),
                 SvgPicture.asset(wishIllustrations, height: 200),
-                Text(
-                  t.write_contract_to(title: widget.category.titleAppear!),
-                  style: AppTextStyle().title,
-                  textAlign: TextAlign.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      t.write_contract_to(title: widget.category.titleAppear!),
+                      style: AppTextStyle().title,
+                      textAlign: TextAlign.center,
+                    ),
+                    IconButton(
+                        onPressed: () async {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AddTitleDialog(
+                                    title: widget.category.titleAppear!,
+                                    onInputText: (text) {
+                                      widget.onChangeTitle.call(widget.category
+                                          .copyWith(titleAppear: text));
+                                    },
+                                  ));
+                        },
+                        icon: const Icon(Icons.edit))
+                  ],
                 ),
                 buttonContainer(
                     icon: lock ? Icons.lock_outline : Icons.lock_open,
