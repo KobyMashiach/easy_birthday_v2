@@ -41,7 +41,8 @@ class HomeScreen extends StatelessWidget {
       ],
       child: BlocProvider(
         create: (context) =>
-            HomeScreenBloc(eventRepo: context.read<EventRepo>()),
+            HomeScreenBloc(eventRepo: context.read<EventRepo>())
+              ..add(HomeScreenEventFirebaseListen()),
         child: BlocConsumer<HomeScreenBloc, HomeScreenState>(
           listenWhen: (previous, current) => current is HomeScreenStateNavigate,
           buildWhen: (previous, current) => current is! HomeScreenStateNavigate,

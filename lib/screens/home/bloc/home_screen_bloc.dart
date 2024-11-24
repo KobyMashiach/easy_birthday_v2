@@ -1,7 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_birthday/models/event_model/event_model.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:easy_birthday/core/general_functions.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
@@ -11,7 +16,6 @@ import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/models/memory_game_model/memory_game_model.dart';
 import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/services/firebase/firestore_data.dart';
-import 'package:flutter/widgets.dart';
 
 part 'home_screen_event.dart';
 part 'home_screen_state.dart';
@@ -19,6 +23,7 @@ part 'home_screen_state.dart';
 class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   final EventRepo eventRepo;
   HomeScreenBloc({required this.eventRepo}) : super(HomeScreenInitial()) {
+    on<HomeScreenEventFirebaseListen>(_homeScreenEventFirebaseListen);
     on<HomeScreenEventAddButtonClicked>(_homeScreenEventAddButtonClicked);
     on<HomeScreenEventAddOrEditCategory>(_homeScreenEventAddNewCategory);
     on<HomeScreenEventUpdateCategoryInEvent>(
@@ -62,6 +67,38 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
       case CategoryEnum.memoryGame:
         emit(HomeScreenNavToAddMemoryGame(category: newCategory));
     }
+  }
+
+  FutureOr<void> _homeScreenEventFirebaseListen(
+      HomeScreenEventFirebaseListen event,
+      Emitter<HomeScreenState> emit) async {
+    DocumentReference documentReference = FirebaseFirestore.instance
+        .collection('events')
+        .doc(globalEvent!.eventId);
+
+    await emit.forEach<DocumentSnapshot>(
+      documentReference.snapshots(),
+      onData: (documentSnapshot) {
+        if (documentSnapshot.exists) {
+          Map<String, dynamic> data =
+              documentSnapshot.data() as Map<String, dynamic>;
+          eventRepo.updateEvent(EventModel.fromJson(data));
+          log('Document data: $data');
+
+          return HomeScreenRefreshUI();
+        } else {
+          log('Document does not exist');
+          return HomeScreenRefreshUI();
+        }
+      },
+      onError: (error, stackTrace) {
+        log('Error: $error');
+        return HomeScreenRefreshUI();
+      },
+    );
+    // emit(HomeScreenLoading());
+    // await Future.delayed(const Duration(milliseconds: 100));
+    // emit(HomeScreenRefreshUI());
   }
 
   FutureOr<void> _homeScreenEventUpdateCategoryInEvent(

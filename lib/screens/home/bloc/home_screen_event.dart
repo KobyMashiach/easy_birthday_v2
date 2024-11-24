@@ -3,6 +3,8 @@ part of 'home_screen_bloc.dart';
 @immutable
 abstract class HomeScreenEvent {}
 
+class HomeScreenEventFirebaseListen extends HomeScreenEvent {}
+
 class HomeScreenEventAddButtonClicked extends HomeScreenEvent {}
 
 class HomeScreenEventAddOrEditCategory extends HomeScreenEvent {
