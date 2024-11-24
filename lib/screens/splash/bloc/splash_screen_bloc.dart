@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:easy_birthday/core/check_platform.dart';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
@@ -74,7 +75,12 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
         }
       }
     } else {
-      emit(SplashScreenNavigationToLoginScreen());
+      final bool isWearOs = await checkIfWearOS();
+      emit(
+        !isWearOs
+            ? SplashScreenNavigationToLoginScreen()
+            : SplashScreenNavigationToLoginWearOs(),
+      );
     }
   }
 }
