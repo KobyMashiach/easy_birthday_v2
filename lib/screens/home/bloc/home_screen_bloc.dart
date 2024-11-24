@@ -83,7 +83,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
           Map<String, dynamic> data =
               documentSnapshot.data() as Map<String, dynamic>;
           eventRepo.updateEvent(EventModel.fromJson(data));
-          log('Document data: $data');
+          log('New Event: $data');
 
           return HomeScreenRefreshUI();
         } else {
@@ -96,9 +96,6 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
         return HomeScreenRefreshUI();
       },
     );
-    // emit(HomeScreenLoading());
-    // await Future.delayed(const Duration(milliseconds: 100));
-    // emit(HomeScreenRefreshUI());
   }
 
   FutureOr<void> _homeScreenEventUpdateCategoryInEvent(
