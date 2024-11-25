@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/dev/wear_os/wear_os_login.dart';
+import 'package:easy_birthday/main.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_login.dart';
 import 'package:easy_birthday/screens/login_register/first_register/first_register_main.dart';
@@ -11,6 +12,7 @@ import 'package:easy_birthday/screens/splash/bloc/splash_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
+import 'package:watch_connectivity/watch_connectivity.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -64,6 +66,43 @@ class _SplashScreenState extends State<SplashScreen> {
               .pushAndRemoveUntil(context, const WearOSLoginPage());
       }
     }
+  }
+
+  void initializeWatchConnectivity() {
+    final WatchConnectivity watchConnectivity = WatchConnectivity();
+
+    watchConnectivity.messageStream.listen((message) {
+      debugPrint("Received message: $message");
+      if (message['path'] == '/start_login') {
+        // Handle the login request
+        debugPrint("Login request received. Opening login screen...");
+
+        // Ensure the widget is still mounted
+        if (mounted) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+
+          // Send a response back to the watch
+          watchConnectivity.sendMessage({
+            'path': '/login_response',
+            'status': 'success',
+          });
+        } else {
+          final globalContext =
+              NavigationContextService.navigatorKey.currentContext!;
+          KheasydevNavigatePage().push(globalContext, const LoginScreen());
+          debugPrint("Widget is no longer mounted. Cannot navigate.");
+        }
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initializeWatchConnectivity();
   }
 
   @override

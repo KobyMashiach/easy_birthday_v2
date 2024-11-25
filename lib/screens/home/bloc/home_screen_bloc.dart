@@ -83,7 +83,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
           Map<String, dynamic> data =
               documentSnapshot.data() as Map<String, dynamic>;
           eventRepo.updateEvent(EventModel.fromJson(data));
-          log('New Event: $data');
+          log('New Event: ${data["eventId"]}');
 
           return HomeScreenRefreshUI();
         } else {

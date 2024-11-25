@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:watch_connectivity/watch_connectivity.dart';
 import 'package:wear/wear.dart';
@@ -11,6 +12,7 @@ class WearOSLoginPage extends StatefulWidget {
 
 class _WearOSLoginPageState extends State<WearOSLoginPage> {
   final WatchConnectivity _watchConnectivity = WatchConnectivity();
+  late StreamSubscription _messageSubscription;
 
   String loginStatus = "Waiting for phone login...";
 
@@ -20,8 +22,8 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
     _initializeWatchConnectivity();
   }
 
-  Future<void> _initializeWatchConnectivity() async {
-    _watchConnectivity.messageStream.listen((message) {
+  void _initializeWatchConnectivity() {
+    _messageSubscription = _watchConnectivity.messageStream.listen((message) {
       if (message['path'] == '/login_response') {
         final status = message['status'] as String;
         setState(() {
@@ -34,6 +36,7 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
 
   Future<void> _sendLoginRequest() async {
     try {
+      debugPrint("Sending login request to phone...");
       await _watchConnectivity.sendMessage({
         'path': '/start_login',
         'action': 'login',
@@ -41,7 +44,9 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
       setState(() {
         loginStatus = "Waiting for phone login...";
       });
+      debugPrint("Login request sent successfully.");
     } catch (e) {
+      debugPrint("Error sending login request: $e");
       setState(() {
         loginStatus = "Failed to send login request. Please try again.";
       });
@@ -67,22 +72,20 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
               padding: const EdgeInsets.all(16),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      loginStatus,
-                      style: const TextStyle(fontSize: 18, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: _sendLoginRequest,
-                      child: const Text("Login via Phone"),
-                    ),
-                  ],
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    loginStatus,
+                    style: const TextStyle(fontSize: 18, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: _sendLoginRequest,
+                    child: const Text("Login via Phone"),
+                  ),
+                ],
               ),
             ),
           ),
@@ -93,6 +96,7 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
 
   @override
   void dispose() {
+    _messageSubscription.cancel();
     super.dispose();
   }
 }
