@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
-
 import 'dart:async';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/dev/wear_os/wear_os_login.dart';
@@ -26,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
   bool _canNavigate = false;
 
   _SplashScreenState() {
-    // Ensure the splash screen is visible for at least 3 seconds
     Timer(const Duration(seconds: 3), () {
       setState(() {
         _canNavigate = true;
@@ -43,7 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _checkNavigationCondition() {
     if (_canNavigate) {
-      // KheasydevNavigatePage().pushAndRemoveUntil(context, const LoginScreen());
       final splashBloc = context.read<SplashScreenBloc>();
       final state = splashBloc.state;
       switch (state.runtimeType) {
@@ -74,10 +70,9 @@ class _SplashScreenState extends State<SplashScreen> {
     watchConnectivity.messageStream.listen((message) {
       debugPrint("Received message: $message");
       if (message['path'] == '/start_login') {
-        // Handle the login request
         debugPrint("Login request received. Opening login screen...");
 
-        KheasydevNavigatePage().push(
+        KheasydevNavigatePage().pushAndRemoveUntil(
             NavigationContextService.navigatorKey.currentContext!, LoginScreen(
           loginWithWatch: (loginSuccess, isOwner) {
             if (loginSuccess) {

@@ -14,4 +14,10 @@ class AppTextStyle {
   TextStyle get mainListValues => const TextStyle(fontSize: 28);
   TextStyle get cardTitle =>
       const TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
+
+  TextStyle get watchTitle =>
+      const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+  TextStyle get watchSubTitle =>
+      const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+  TextStyle get watchDescription => const TextStyle(fontSize: 12);
 }

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 297
+/// Strings: 305
 ///
-/// Built on 2024-11-25 at 13:48 UTC
+/// Built on 2024-11-25 at 14:27 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -165,6 +165,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 				return 'ברוכה הבאה ${name}';
 		}
 	}
+	String get welcome => 'ברוכ/ה הבאה!';
 	String get home_screen => 'מסך בית';
 	String get settings => 'הגדרות';
 	String get contact_us => 'יצירת קשר';
@@ -709,6 +710,13 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get locked_category => 'קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות';
 	String get edit_title => 'ערוך כותרת';
 	String get watch_login_success => 'התחברת בהצלחה!\nאפשר לעבור לשעון';
+	String get login_via_phone => 'התחבר באמצעות הטלפון';
+	String get wait_for_phone_login => 'מחכה להתחברות דרך הטלפון';
+	String get login_successful => 'התחברת בהצלחה!';
+	String get no_owner => 'המשתמש לא משתמש ניהולי';
+	String get login_failed => 'ההתחברות נכשלה';
+	String get please_open_app_in_phone => 'פתח את האפליקציה בטלפון כדי להתחבר';
+	String get failed_send_login_request => 'נכשל בשליחת בקשה לטלפון, נא נסה שנית';
 }
 
 /// Flat map(s) containing all translations.
@@ -728,6 +736,7 @@ extension on Translations {
 						return 'ברוכה הבאה ${name}';
 				}
 			};
+			case 'welcome': return 'ברוכ/ה הבאה!';
 			case 'home_screen': return 'מסך בית';
 			case 'settings': return 'הגדרות';
 			case 'contact_us': return 'יצירת קשר';
@@ -1272,6 +1281,13 @@ extension on Translations {
 			case 'locked_category': return 'קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות';
 			case 'edit_title': return 'ערוך כותרת';
 			case 'watch_login_success': return 'התחברת בהצלחה!\nאפשר לעבור לשעון';
+			case 'login_via_phone': return 'התחבר באמצעות הטלפון';
+			case 'wait_for_phone_login': return 'מחכה להתחברות דרך הטלפון';
+			case 'login_successful': return 'התחברת בהצלחה!';
+			case 'no_owner': return 'המשתמש לא משתמש ניהולי';
+			case 'login_failed': return 'ההתחברות נכשלה';
+			case 'please_open_app_in_phone': return 'פתח את האפליקציה בטלפון כדי להתחבר';
+			case 'failed_send_login_request': return 'נכשל בשליחת בקשה לטלפון, נא נסה שנית';
 			default: return null;
 		}
 	}

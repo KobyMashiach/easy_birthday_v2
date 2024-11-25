@@ -6,6 +6,7 @@
     "male": "ברוך הבא $name",
     "female": "ברוכה הבאה $name"
   },
+  "welcome": "ברוכ/ה הבאה!",
   "home_screen": "מסך בית",
   "settings": "הגדרות",
   "contact_us": "יצירת קשר",
@@ -381,5 +382,12 @@
   },
   "locked_category": "קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות",
   "edit_title": "ערוך כותרת",
-  "watch_login_success": "התחברת בהצלחה!\nאפשר לעבור לשעון"
+  "watch_login_success": "התחברת בהצלחה!\nאפשר לעבור לשעון",
+  "login_via_phone": "התחבר באמצעות הטלפון",
+  "wait_for_phone_login": "מחכה להתחברות דרך הטלפון",
+  "login_successful": "התחברת בהצלחה!",
+  "no_owner": "המשתמש לא משתמש ניהולי",
+  "login_failed": "ההתחברות נכשלה",
+  "please_open_app_in_phone": "פתח את האפליקציה בטלפון כדי להתחבר",
+  "failed_send_login_request": "נכשל בשליחת בקשה לטלפון, נא נסה שנית"
 }

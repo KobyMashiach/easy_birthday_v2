@@ -1,7 +1,12 @@
 import 'dart:async';
+import 'package:easy_birthday/core/text_styles.dart';
+import 'package:easy_birthday/dev/wear_os/wear_design.dart';
+import 'package:easy_birthday/dev/wear_os/wear_os_categories.dart';
+import 'package:easy_birthday/i18n/strings.g.dart';
+import 'package:easy_birthday/main.dart';
 import 'package:flutter/material.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 import 'package:watch_connectivity/watch_connectivity.dart';
-import 'package:wear/wear.dart';
 
 class WearOSLoginPage extends StatefulWidget {
   const WearOSLoginPage({super.key});
@@ -13,8 +18,10 @@ class WearOSLoginPage extends StatefulWidget {
 class _WearOSLoginPageState extends State<WearOSLoginPage> {
   final WatchConnectivity _watchConnectivity = WatchConnectivity();
   late StreamSubscription _messageSubscription;
+  bool buttonDisable = false;
+  bool loginSuccessful = false;
 
-  String loginStatus = "Waiting for phone login...";
+  String loginStatus = t.welcome;
 
   @override
   void initState() {
@@ -26,15 +33,19 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
     _messageSubscription = _watchConnectivity.messageStream.listen((message) {
       if (message['path'] == '/login_response') {
         final status = message['status'] as String;
-        setState(() {
-          //TODO: change message 'success' or 'owner' or else
+        setState(() async {
           switch (status) {
             case 'success':
-              loginStatus = 'Login Successful';
+              loginStatus = t.login_successful;
+              setState(() => loginSuccessful = true);
+              await Future.delayed(const Duration(seconds: 1));
+              KheasydevNavigatePage().pushAndRemoveUntil(
+                  NavigationContextService.navigatorKey.currentContext!,
+                  const WearOsCategories());
             case 'partner':
-              loginStatus = 'User Is Partner';
+              loginStatus = t.no_owner;
             default:
-              loginStatus = 'Login Failed';
+              loginStatus = t.login_failed;
           }
         });
       }
@@ -49,20 +60,16 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
         'action': 'login',
       });
 
-      // Set an initial status indicating a waiting state
       setState(() {
-        loginStatus = "Waiting for phone login...";
+        loginStatus = "${t.wait_for_phone_login}...";
       });
 
-      // Wait for a response or timeout
       bool isPhoneResponded =
           await _waitForPhoneResponse(timeout: const Duration(seconds: 30));
 
       if (!isPhoneResponded) {
-        // Display message if no response is received within the timeout
         setState(() {
-          loginStatus =
-              "Failed: Please open the app on your phone to continue.";
+          loginStatus = t.please_open_app_in_phone;
         });
       } else {
         debugPrint("Login request handled by phone.");
@@ -70,18 +77,16 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
     } catch (e) {
       debugPrint("Error sending login request: $e");
       setState(() {
-        loginStatus = "Failed to send login request. Please try again.";
+        loginStatus = t.failed_send_login_request;
       });
     }
   }
 
   Future<bool> _waitForPhoneResponse({required Duration timeout}) async {
     try {
-      // Simulating a listener for a response from the phone
       bool receivedResponse = false;
       final completer = Completer<bool>();
 
-      // Add a listener to detect a response from the phone
       _watchConnectivity.messageStream.listen((message) {
         if (message['action'] == 'login_response') {
           receivedResponse = true;
@@ -89,7 +94,6 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
         }
       });
 
-      // Wait for either the response or timeout
       await Future.any([
         completer.future,
         Future.delayed(timeout),
@@ -104,43 +108,28 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WatchShape(builder: (context, shape, child) {
-      final isRound = shape == WearShape.round;
-      return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Container(
-              decoration: isRound
-                  ? const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red,
-                    )
-                  : BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    loginStatus,
-                    style: const TextStyle(fontSize: 18, color: Colors.white),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: _sendLoginRequest,
-                    child: const Text("Login via Phone"),
-                  ),
-                ],
-              ),
-            ),
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return WearDesign(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/logo_transparant.png',
+              height: screenHeight * 0.4),
+          Text(
+            loginStatus,
+            style: AppTextStyle().watchTitle,
+            textAlign: TextAlign.center,
           ),
-        ),
-      );
-    });
+          loginSuccessful
+              ? const CircularProgressIndicator()
+              : ElevatedButton(
+                  onPressed: _sendLoginRequest,
+                  child: Text(t.login_via_phone),
+                ),
+        ],
+      ),
+    );
   }
 
   @override

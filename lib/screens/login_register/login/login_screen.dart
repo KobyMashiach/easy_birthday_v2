@@ -293,8 +293,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 actions: [
                   LanguageDropdown(onLanguageChange: () => setState(() {}))
                 ],
-                onBackButtonPreesed: () =>
-                    widget.loginWithWatch?.call(false, false),
               ),
               body: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24),
