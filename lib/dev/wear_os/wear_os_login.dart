@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watch_connectivity/watch_connectivity.dart';
+// import 'package:wear/wear.dart';
 
 class WearOSLoginPage extends StatefulWidget {
   const WearOSLoginPage({super.key});
@@ -49,6 +50,7 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    // return WatchShape(builder: (context, shape, child) {
     return Scaffold(
       appBar: AppBar(title: const Text("Login with Phone")),
       body: Center(
@@ -69,6 +71,7 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
         ),
       ),
     );
+    // });
   }
 
   @override
