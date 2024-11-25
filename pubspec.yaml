@@ -38,7 +38,8 @@ dependencies:
   kh_easy_dev:
     git:
       url: https://github.com/kobymashiach/kh_easy_dev
-  age_calculator: ^1.0.0
+  wear:
+    path: ../flutter_wear_plugin
 
   # Localization and Internationalization
   slang: ^3.31.1
@@ -68,6 +69,7 @@ dependencies:
   # State Management and Utilities
   flutter_bloc: ^8.1.4
   freezed: ^2.5.2
+  age_calculator: ^1.0.0
   json_annotation: ^4.9.0
   flutter_cache_manager: ^3.4.1
   cached_network_image: ^3.4.1

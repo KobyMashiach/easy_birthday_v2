@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watch_connectivity/watch_connectivity.dart';
-// import 'package:wear/wear.dart';
+import 'package:wear/wear.dart';
 
 class WearOSLoginPage extends StatefulWidget {
   const WearOSLoginPage({super.key});
@@ -50,28 +50,45 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // return WatchShape(builder: (context, shape, child) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Login with Phone")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              loginStatus,
-              style: const TextStyle(fontSize: 18),
-              textAlign: TextAlign.center,
+    return WatchShape(builder: (context, shape, child) {
+      final isRound = shape == WearShape.round;
+      return Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Container(
+              decoration: isRound
+                  ? const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    )
+                  : BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+              padding: const EdgeInsets.all(16),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      loginStatus,
+                      style: const TextStyle(fontSize: 18, color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: _sendLoginRequest,
+                      child: const Text("Login via Phone"),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _sendLoginRequest,
-              child: const Text("Login via Phone"),
-            ),
-          ],
+          ),
         ),
-      ),
-    );
-    // });
+      );
+    });
   }
 
   @override

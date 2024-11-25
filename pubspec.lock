@@ -1763,6 +1763,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  wear:
+    dependency: "direct main"
+    description:
+      path: "../flutter_wear_plugin"
+      relative: true
+    source: path
+    version: "1.2.0"
   web:
     dependency: transitive
     description:
