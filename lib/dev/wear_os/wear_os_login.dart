@@ -41,15 +41,57 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
         'path': '/start_login',
         'action': 'login',
       });
+
+      // Set an initial status indicating a waiting state
       setState(() {
         loginStatus = "Waiting for phone login...";
       });
-      debugPrint("Login request sent successfully.");
+
+      // Wait for a response or timeout
+      bool isPhoneResponded =
+          await _waitForPhoneResponse(timeout: const Duration(seconds: 15));
+
+      if (!isPhoneResponded) {
+        // Display message if no response is received within the timeout
+        setState(() {
+          loginStatus =
+              "Failed: Please open the app on your phone to continue.";
+        });
+      } else {
+        debugPrint("Login request handled by phone.");
+      }
     } catch (e) {
       debugPrint("Error sending login request: $e");
       setState(() {
         loginStatus = "Failed to send login request. Please try again.";
       });
+    }
+  }
+
+  Future<bool> _waitForPhoneResponse({required Duration timeout}) async {
+    try {
+      // Simulating a listener for a response from the phone
+      bool receivedResponse = false;
+      final completer = Completer<bool>();
+
+      // Add a listener to detect a response from the phone
+      _watchConnectivity.messageStream.listen((message) {
+        if (message['action'] == 'login_response') {
+          receivedResponse = true;
+          completer.complete(true);
+        }
+      });
+
+      // Wait for either the response or timeout
+      await Future.any([
+        completer.future,
+        Future.delayed(timeout),
+      ]);
+
+      return receivedResponse;
+    } catch (e) {
+      debugPrint("Error waiting for phone response: $e");
+      return false;
     }
   }
 
