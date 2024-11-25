@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:easy_birthday/core/text_styles.dart';
-import 'package:easy_birthday/dev/wear_os/wear_design.dart';
-import 'package:easy_birthday/dev/wear_os/wear_os_categories.dart';
+import 'package:easy_birthday/screens/wear_os/wear_design.dart';
+import 'package:easy_birthday/screens/wear_os/wear_os_categories/wear_os_categories.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/main.dart';
 import 'package:flutter/material.dart';

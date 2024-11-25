@@ -19,5 +19,5 @@ class AppTextStyle {
       const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
   TextStyle get watchSubTitle =>
       const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
-  TextStyle get watchDescription => const TextStyle(fontSize: 12);
+  TextStyle get watchDescription => const TextStyle(fontSize: 16);
 }

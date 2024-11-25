@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:easy_birthday/core/colors.dart';
-import 'package:easy_birthday/dev/wear_os/wear_os_login.dart';
+import 'package:easy_birthday/screens/wear_os/wear_os_categories/wear_os_categories.dart';
+import 'package:easy_birthday/screens/wear_os/wear_os_login.dart';
 import 'package:easy_birthday/main.dart';
 import 'package:easy_birthday/screens/home/home_screen.dart';
 import 'package:easy_birthday/screens/login_register/first_login.dart';
@@ -58,8 +59,10 @@ class _SplashScreenState extends State<SplashScreen> {
               .pushAndRemoveUntil(context, const FirstLoginScreen());
 
         case const (SplashScreenNavigationToLoginWearOs):
+          // KheasydevNavigatePage()
+          //     .pushAndRemoveUntil(context, const WearOSLoginPage());
           KheasydevNavigatePage()
-              .pushAndRemoveUntil(context, const WearOSLoginPage());
+              .pushAndRemoveUntil(context, const WearOsCategories());
       }
     }
   }

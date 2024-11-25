@@ -38,8 +38,12 @@ dependencies:
   kh_easy_dev:
     git:
       url: https://github.com/kobymashiach/kh_easy_dev
+
+  # Wear - Watch
   wear:
     path: ../flutter_wear_plugin
+  watch_connectivity: ^0.2.0
+  wearable_rotary: ^2.0.2
 
   # Localization and Internationalization
   slang: ^3.31.1
@@ -65,6 +69,7 @@ dependencies:
   confetti: ^0.8.0
   flip_card: ^0.7.0
   image_picker: ^1.1.2
+  animations: ^2.0.11
 
   # State Management and Utilities
   flutter_bloc: ^8.1.4
@@ -74,7 +79,6 @@ dependencies:
   flutter_cache_manager: ^3.4.1
   cached_network_image: ^3.4.1
   device_info_plus: ^11.1.1
-  watch_connectivity: ^0.2.0
 
   # Network and API
   http: ^1.1.0
