@@ -78,13 +78,28 @@ class _SplashScreenState extends State<SplashScreen> {
         debugPrint("Login request received. Opening login screen...");
 
         KheasydevNavigatePage().push(
-            NavigationContextService.navigatorKey.currentContext!,
-            const LoginScreen());
-
-        watchConnectivity.sendMessage({
-          'path': '/login_response',
-          'status': 'success',
-        });
+            NavigationContextService.navigatorKey.currentContext!, LoginScreen(
+          loginWithWatch: (loginSuccess, isOwner) {
+            if (loginSuccess) {
+              if (isOwner) {
+                watchConnectivity.sendMessage({
+                  'path': '/login_response',
+                  'status': 'success',
+                });
+              } else {
+                watchConnectivity.sendMessage({
+                  'path': '/login_response',
+                  'status': 'partner',
+                });
+              }
+            } else {
+              watchConnectivity.sendMessage({
+                'path': '/login_response',
+                'status': 'failed',
+              });
+            }
+          },
+        ));
       }
     });
   }

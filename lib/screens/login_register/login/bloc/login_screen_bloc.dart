@@ -47,7 +47,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
           MyEncryptionDecryption.getStringFromEncrypted(persona.password);
       if (firestorePassword == event.password) {
         await repo.updatePersona(persona);
-        await loginToApp(persona, emit);
+        await loginToApp(persona, emit, event.isWatch);
       } else {
         emit(LoginScreenRefreshUI());
         emit(LoginScreenStateDialogErrorMessage(message: t.wrong_password));
@@ -119,30 +119,40 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
     } else {
       final persona = await repo.getPersona(phoneNumber: event.phoneNumber);
       await repo.updatePersona(persona);
-      await loginToApp(persona, emit);
-      //TODO: login on phone
+      await loginToApp(persona, emit, event.isWatch);
     }
   }
 
-  Future<void> loginToApp(
-      PersonaModel persona, Emitter<LoginScreenState> emit) async {
+  Future<void> loginToApp(PersonaModel persona, Emitter<LoginScreenState> emit,
+      bool isWatch) async {
     globalEvent = await eventRepo.getEventFromServer();
     if (persona.role.isNotPartner()) {
       if (persona.registerComplete) {
-        emit(LoginScreenStateNavToHomeScreen());
+        emit(isWatch
+            ? LoginScreenStateMessageToWatch(message: "success")
+            : LoginScreenStateNavToHomeScreen());
+        emit(LoginScreenLoginWithWatch());
       } else {
-        emit(LoginScreenStateNavToFirstRegisterScreen());
+        emit(isWatch
+            ? LoginScreenStateMessageToWatch(message: "failed")
+            : LoginScreenStateNavToFirstRegisterScreen());
+        emit(LoginScreenRefreshUI());
       }
     } else {
-      final partnerPhone = globalEvent!.users
-          .where((user) => user != globalUser.phoneNumber)
-          .first;
-      final partnerUser = await repo.getPersona(phoneNumber: partnerPhone);
-      await repo.updatePartnerPersona(partnerUser);
-      if (persona.registerComplete) {
-        emit(LoginScreenStateNavToHomeScreen());
+      if (isWatch) {
+        emit(LoginScreenStateMessageToWatch(message: "partner"));
+        emit(LoginScreenRefreshUI());
       } else {
-        emit(LoginScreenStateNavToFirstLoginScreen());
+        final partnerPhone = globalEvent!.users
+            .where((user) => user != globalUser.phoneNumber)
+            .first;
+        final partnerUser = await repo.getPersona(phoneNumber: partnerPhone);
+        await repo.updatePartnerPersona(partnerUser);
+        if (persona.registerComplete) {
+          emit(LoginScreenStateNavToHomeScreen());
+        } else {
+          emit(LoginScreenStateNavToFirstLoginScreen());
+        }
       }
     }
   }

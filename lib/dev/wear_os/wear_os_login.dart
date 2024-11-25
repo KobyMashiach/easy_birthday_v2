@@ -27,8 +27,15 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
       if (message['path'] == '/login_response') {
         final status = message['status'] as String;
         setState(() {
-          loginStatus =
-              status == 'success' ? 'Login Successful' : 'Login Failed';
+          //TODO: change message 'success' or 'owner' or else
+          switch (status) {
+            case 'success':
+              loginStatus = 'Login Successful';
+            case 'partner':
+              loginStatus = 'User Is Partner';
+            default:
+              loginStatus = 'Login Failed';
+          }
         });
       }
     });

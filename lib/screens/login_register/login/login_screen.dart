@@ -25,7 +25,8 @@ import 'package:kh_easy_dev/services/navigate_page.dart';
 import 'package:kh_easy_dev/widgets/general/dialog_v2.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final Function(bool loginSuccess, bool isOwner)? loginWithWatch;
+  const LoginScreen({super.key, this.loginWithWatch});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -102,8 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 final newPhone = countryCode + phoneController.text;
                 if (loginWithPassword) {
                   bloc.add(LoginScreenEventOnLoginButtonClick(
-                      phoneNumber: newPhone,
-                      password: passwordController.text));
+                    phoneNumber: newPhone,
+                    password: passwordController.text,
+                    isWatch: widget.loginWithWatch != null,
+                  ));
                 } else {
                   bloc.add(LoginScreenEventOnSendCodeButtonClick(
                       phoneNumber: newPhone));
@@ -260,6 +263,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         verificationId: newState.verificationId,
                         otpCode: otpCode,
                         phoneNumber: newPhone,
+                        isWatch: widget.loginWithWatch != null,
                       ));
                     },
                     onTapSendAgain: () {
@@ -269,6 +273,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     verificationId: newState.verificationId,
                   ),
                 );
+              case const (LoginScreenStateMessageToWatch):
+                final newState = state as LoginScreenStateMessageToWatch;
+                switch (newState.message) {
+                  case 'success':
+                    widget.loginWithWatch!.call(true, true);
+                  case 'partner':
+                    widget.loginWithWatch!.call(true, false);
+                  default:
+                    widget.loginWithWatch!.call(false, false);
+                }
             }
           },
           builder: (context, state) {
@@ -279,35 +293,48 @@ class _LoginScreenState extends State<LoginScreen> {
                 actions: [
                   LanguageDropdown(onLanguageChange: () => setState(() {}))
                 ],
+                onBackButtonPreesed: () =>
+                    widget.loginWithWatch?.call(false, false),
               ),
               body: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Center(
                   child: state is LoginScreenLoading
                       ? const CircularProgressIndicator()
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Center(
-                              child: Column(
-                                children: [
+                      : state is LoginScreenLoginWithWatch
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                  SvgPicture.asset(watchIllustration),
                                   Text(
-                                    t.login,
-                                    style: AppTextStyle().bigTitle,
+                                    t.watch_login_success,
+                                    style: AppTextStyle().title,
+                                    textAlign: TextAlign.center,
+                                  )
+                                ])
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Center(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        t.login,
+                                        style: AppTextStyle().bigTitle,
+                                      ),
+                                      if (MediaQuery.of(context)
+                                              .viewInsets
+                                              .bottom ==
+                                          0)
+                                        SvgPicture.asset(loginIllustration,
+                                            height: 300),
+                                      countriesCode(),
+                                    ],
                                   ),
-                                  if (MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom ==
-                                      0)
-                                    SvgPicture.asset(loginIllustration,
-                                        height: 300),
-                                  countriesCode(),
-                                ],
-                              ),
+                                ),
+                                buttons(bloc),
+                              ],
                             ),
-                            buttons(bloc),
-                          ],
-                        ),
                 ),
               ),
             );

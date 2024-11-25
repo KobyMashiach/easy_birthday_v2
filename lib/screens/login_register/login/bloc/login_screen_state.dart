@@ -9,6 +9,8 @@ final class LoginScreenLoading extends LoginScreenState {}
 
 final class LoginScreenRefreshUI extends LoginScreenState {}
 
+final class LoginScreenLoginWithWatch extends LoginScreenState {}
+
 @immutable
 abstract class LoginScreenStateNavi extends LoginScreenState {}
 
@@ -33,3 +35,9 @@ final class LoginScreenStateNavToFirstRegisterScreen
 
 final class LoginScreenStateNavToFirstLoginScreen
     extends LoginScreenStateNavi {}
+
+final class LoginScreenStateMessageToWatch extends LoginScreenStateNavi {
+  final String message;
+
+  LoginScreenStateMessageToWatch({required this.message});
+}

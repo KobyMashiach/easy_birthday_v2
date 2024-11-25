@@ -25,6 +25,7 @@ const enterOtpIllustration = "assets/illustrations/enter_otp_illustration.svg";
 const paletteIllustration = "assets/illustrations/palette_illustration.svg";
 const giftIllustration = "assets/illustrations/gift_illustration.svg";
 const balloonsIllustration = "assets/illustrations/balloons_illustration.svg";
+const watchIllustration = "assets/illustrations/watch_illustration.svg";
 
 //? categories images - illustration
 const readTextIllustration = "assets/illustrations/read_text_illustration.svg";
