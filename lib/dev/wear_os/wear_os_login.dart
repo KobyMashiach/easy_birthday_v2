@@ -49,7 +49,7 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
 
       // Wait for a response or timeout
       bool isPhoneResponded =
-          await _waitForPhoneResponse(timeout: const Duration(seconds: 15));
+          await _waitForPhoneResponse(timeout: const Duration(seconds: 30));
 
       if (!isPhoneResponded) {
         // Display message if no response is received within the timeout

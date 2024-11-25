@@ -77,24 +77,14 @@ class _SplashScreenState extends State<SplashScreen> {
         // Handle the login request
         debugPrint("Login request received. Opening login screen...");
 
-        // Ensure the widget is still mounted
-        if (mounted) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()),
-          );
+        KheasydevNavigatePage().push(
+            NavigationContextService.navigatorKey.currentContext!,
+            const LoginScreen());
 
-          // Send a response back to the watch
-          watchConnectivity.sendMessage({
-            'path': '/login_response',
-            'status': 'success',
-          });
-        } else {
-          final globalContext =
-              NavigationContextService.navigatorKey.currentContext!;
-          KheasydevNavigatePage().push(globalContext, const LoginScreen());
-          debugPrint("Widget is no longer mounted. Cannot navigate.");
-        }
+        watchConnectivity.sendMessage({
+          'path': '/login_response',
+          'status': 'success',
+        });
       }
     });
   }

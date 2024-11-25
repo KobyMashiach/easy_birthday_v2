@@ -120,6 +120,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
       final persona = await repo.getPersona(phoneNumber: event.phoneNumber);
       await repo.updatePersona(persona);
       await loginToApp(persona, emit);
+      //TODO: login on phone
     }
   }
 
