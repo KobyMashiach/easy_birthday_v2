@@ -19,3 +19,6 @@ class SplashScreenNavigationToFirstLoginScreen
     extends SplashScreenNavigatorState {}
 
 class SplashScreenNavigationToLoginWearOs extends SplashScreenNavigatorState {}
+
+class SplashScreenNavigationToCategoriesWearOs
+    extends SplashScreenNavigatorState {}

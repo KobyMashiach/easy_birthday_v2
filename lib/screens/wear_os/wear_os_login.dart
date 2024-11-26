@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:developer';
+import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/screens/wear_os/wear_design.dart';
 import 'package:easy_birthday/screens/wear_os/wear_os_categories/wear_os_categories.dart';
@@ -33,23 +35,38 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
     _messageSubscription = _watchConnectivity.messageStream.listen((message) {
       if (message['path'] == '/login_response') {
         final status = message['status'] as String;
-        setState(() async {
-          switch (status) {
-            case 'success':
-              loginStatus = t.login_successful;
-              setState(() => loginSuccessful = true);
-              await Future.delayed(const Duration(seconds: 1));
-              KheasydevNavigatePage().pushAndRemoveUntil(
-                  NavigationContextService.navigatorKey.currentContext!,
-                  const WearOsCategories());
-            case 'partner':
-              loginStatus = t.no_owner;
-            default:
-              loginStatus = t.login_failed;
-          }
-        });
+        log(globalUser.toString());
+        log(globalEvent.toString());
+        updateLoginStatus(status);
       }
     });
+  }
+
+  void updateLoginStatus(String status) async {
+    switch (status) {
+      case 'success':
+        setState(() {
+          loginStatus = t.login_successful;
+          loginSuccessful = true;
+        });
+        await Future.delayed(const Duration(seconds: 1));
+        //TODO: Push and remove until
+        KheasydevNavigatePage().push(
+          NavigationContextService.navigatorKey.currentContext!,
+          const WearOsCategories(),
+        );
+        break;
+      case 'partner':
+        setState(() {
+          loginStatus = t.no_owner;
+        });
+        break;
+      default:
+        setState(() {
+          loginStatus = t.login_failed;
+        });
+        break;
+    }
   }
 
   Future<void> _sendLoginRequest() async {

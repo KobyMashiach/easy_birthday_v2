@@ -59,8 +59,10 @@ class _SplashScreenState extends State<SplashScreen> {
               .pushAndRemoveUntil(context, const FirstLoginScreen());
 
         case const (SplashScreenNavigationToLoginWearOs):
-          // KheasydevNavigatePage()
-          //     .pushAndRemoveUntil(context, const WearOSLoginPage());
+          KheasydevNavigatePage()
+              .pushAndRemoveUntil(context, const WearOSLoginPage());
+
+        case const (SplashScreenNavigationToCategoriesWearOs):
           KheasydevNavigatePage()
               .pushAndRemoveUntil(context, const WearOsCategories());
       }

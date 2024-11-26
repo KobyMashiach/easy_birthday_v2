@@ -43,6 +43,7 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
     changeAppColors(globalAppSettings.appColor);
     changeLanguage(LanguageModel.getAppLocale(globalAppSettings.languageCode));
     changeGender(male: checkIfMaleGender(globalUser.gender));
+    final bool isWearOs = await checkIfWearOS();
     if (globalUser.phoneNumber != "") {
       globalUser =
           await personaRepo.getPersona(phoneNumber: globalUser.phoneNumber);
@@ -57,25 +58,33 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
 
       if (globalUser.role.isNotPartner()) {
         if (globalUser.registerComplete) {
-          emit(SplashScreenNavigationToHomeScreen());
+          emit(!isWearOs
+              ? SplashScreenNavigationToHomeScreen()
+              : SplashScreenNavigationToCategoriesWearOs());
         } else {
-          emit(SplashScreenNavigationToFirstRegister());
+          emit(!isWearOs
+              ? SplashScreenNavigationToFirstRegister()
+              : SplashScreenNavigationToLoginWearOs());
         }
       } else {
-        final event = await eventRepo.getEventFromServer();
-        final partnerPhone =
-            event!.users.where((user) => user != globalUser.phoneNumber).first;
-        final partnerUser =
-            await personaRepo.getPersona(phoneNumber: partnerPhone);
-        await personaRepo.updatePartnerPersona(partnerUser);
-        if (globalUser.registerComplete) {
-          emit(SplashScreenNavigationToHomeScreen());
+        if (isWearOs) {
+          emit(SplashScreenNavigationToLoginWearOs());
         } else {
-          emit(SplashScreenNavigationToFirstLoginScreen());
+          final event = await eventRepo.getEventFromServer();
+          final partnerPhone = event!.users
+              .where((user) => user != globalUser.phoneNumber)
+              .first;
+          final partnerUser =
+              await personaRepo.getPersona(phoneNumber: partnerPhone);
+          await personaRepo.updatePartnerPersona(partnerUser);
+          if (globalUser.registerComplete) {
+            emit(SplashScreenNavigationToHomeScreen());
+          } else {
+            emit(SplashScreenNavigationToFirstLoginScreen());
+          }
         }
       }
     } else {
-      final bool isWearOs = await checkIfWearOS();
       emit(
         !isWearOs
             ? SplashScreenNavigationToLoginScreen()

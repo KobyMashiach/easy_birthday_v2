@@ -44,6 +44,7 @@ dependencies:
     path: ../flutter_wear_plugin
   watch_connectivity: ^0.2.0
   wearable_rotary: ^2.0.2
+  rotary_scrollbar: ^1.0.0
 
   # Localization and Internationalization
   slang: ^3.31.1
