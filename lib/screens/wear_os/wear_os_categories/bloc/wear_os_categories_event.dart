@@ -14,3 +14,5 @@ class WearOsCategoriesEventOnLockPress extends WearOsCategoriesEvent {
 
   WearOsCategoriesEventOnLockPress({required this.category});
 }
+
+class WearOsCategoriesEventOnLogout extends WearOsCategoriesEvent {}

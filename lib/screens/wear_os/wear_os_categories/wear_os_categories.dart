@@ -7,10 +7,14 @@ import 'package:easy_birthday/repos/event_repo.dart';
 import 'package:easy_birthday/screens/wear_os/wear_design.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/screens/wear_os/wear_os_categories/bloc/wear_os_categories_bloc.dart';
+import 'package:easy_birthday/screens/wear_os/wear_os_login.dart';
 import 'package:easy_birthday/widgets/cards/wear_category_card.dart';
+import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
+import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
+import 'package:kh_easy_dev/services/navigate_page.dart';
 import 'package:rotary_scrollbar/widgets/rotary_scrollbar.dart';
 import 'package:wearable_rotary/wearable_rotary.dart';
 
@@ -58,7 +62,17 @@ class _WearOsCategoriesState extends State<WearOsCategories> {
             eventRepo: context.read<EventRepo>(),
             generalDataSource: context.read<GeneralDataSource>())
           ..add(WearOsCategoriesEventInit(eventId: widget.eventId)),
-        child: BlocBuilder<WearOsCategoriesBloc, WearOsCategoriesState>(
+        child: BlocConsumer<WearOsCategoriesBloc, WearOsCategoriesState>(
+          listenWhen: (previous, current) =>
+              current is WearOsCategoriesNavigate,
+          buildWhen: (previous, current) =>
+              current is! WearOsCategoriesNavigate,
+          listener: (context, state) {
+            if (state is WearOsCategoriesOnLogout) {
+              KheasydevNavigatePage()
+                  .pushAndRemoveUntil(context, const WearOSLoginPage());
+            }
+          },
           builder: (context, state) {
             final bloc = context.read<WearOsCategoriesBloc>();
             return WearDesign(
@@ -72,6 +86,32 @@ class _WearOsCategoriesState extends State<WearOsCategories> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(_getCurrentTime(), style: AppTextStyle().watchTitle),
+                      IconButton(
+                          onPressed: () async {
+                            final userChoise = await showDialog(
+                              context: context,
+                              builder: (context) => generalDialog(
+                                  title: t.sure_logout(
+                                      context: GenderContext.male),
+                                  noButtons: true,
+                                  buttons: [
+                                    appButton(
+                                        text: t.yes,
+                                        onTap: () => KheasydevNavigatePage()
+                                            .pop(context, value: true)),
+                                    const SizedBox(width: 4),
+                                    appButton(
+                                        text: t.no,
+                                        unfillColors: true,
+                                        onTap: () => KheasydevNavigatePage()
+                                            .pop(context)),
+                                  ]),
+                            );
+                            if (userChoise) {
+                              bloc.add(WearOsCategoriesEventOnLogout());
+                            }
+                          },
+                          icon: const Icon(Icons.logout)),
                       const SizedBox(height: 12),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12),

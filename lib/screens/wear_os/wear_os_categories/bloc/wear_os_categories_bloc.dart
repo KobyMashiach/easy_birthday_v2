@@ -20,6 +20,7 @@ class WearOsCategoriesBloc
       : super(WearOsCategoriesInitial()) {
     on<WearOsCategoriesEventInit>(_wearOsCategoriesEventInit);
     on<WearOsCategoriesEventOnLockPress>(_wearOsCategoriesEventOnLockPress);
+    on<WearOsCategoriesEventOnLogout>(_wearOsCategoriesEventOnLogout);
   }
 
   FutureOr<void> _wearOsCategoriesEventInit(WearOsCategoriesEventInit event,
@@ -33,5 +34,12 @@ class WearOsCategoriesBloc
       Emitter<WearOsCategoriesState> emit) {
     final categoryLock = event.category.lock;
     eventRepo.updateCategory(event.category.copyWith(lock: !categoryLock));
+  }
+
+  FutureOr<void> _wearOsCategoriesEventOnLogout(
+      WearOsCategoriesEventOnLogout event,
+      Emitter<WearOsCategoriesState> emit) {
+    generalDataSource.deleteEventId();
+    emit(WearOsCategoriesOnLogout());
   }
 }
