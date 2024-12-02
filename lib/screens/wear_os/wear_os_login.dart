@@ -4,6 +4,7 @@ import 'package:easy_birthday/screens/wear_os/wear_design.dart';
 import 'package:easy_birthday/screens/wear_os/wear_os_categories/wear_os_categories.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/main.dart';
+import 'package:easy_birthday/widgets/general/language_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_easy_dev/services/navigate_page.dart';
 import 'package:watch_connectivity/watch_connectivity.dart';
@@ -127,6 +128,11 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          LanguageDropdown(
+            onLanguageChange: () => setState(() {}),
+            size: 30,
+            padding: EdgeInsets.zero,
+          ),
           Image.asset('assets/logo_transparant.png',
               height: screenHeight * 0.4),
           Text(

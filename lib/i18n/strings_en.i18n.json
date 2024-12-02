@@ -1,0 +1,394 @@
+{
+    "hello": "Hello",
+    "choose_own_gender": "Choose your gender",
+    "choose_partner_gender": "Choose your partner's gender",
+    "greeter(context=GenderContext)": {
+        "male": "Welcome $name",
+        "female": "Welcome $name"
+    },
+    "welcome": "Welcome!",
+    "home_screen": "Home Screen",
+    "settings": "Settings",
+    "contact_us": "Contact Us",
+    "pick_color": "Pick Color",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "recommand_drak_colors": "Dark colors are recommended",
+    "build_app": "Building the App",
+    "build_app_description": "The app is currently being customized just for you!",
+    "change_color": "Change Color",
+    "change_gender": "Change Gender",
+    "change_plan": "Change Plan",
+    "choose_gender": "Choose Gender",
+    "male": "Male",
+    "female": "Female",
+    "app_info": "App Info",
+    "app_name": "App Name",
+    "app_version": "App Version",
+    "event_id": "Event ID",
+    "change_language": "Change Language",
+    "choose_language": "Choose Language",
+    "soon": "Coming Soon",
+    "selected(context=GenderContext)": {
+        "male": "Selected",
+        "female": "Selected"
+    },
+    "back": "Back",
+    "login_screen": "Login Screen",
+    "login": "Login",
+    "register_screen": "Register Screen",
+    "register": "Register",
+    "phone": "Phone",
+    "password": "Password",
+    "have_account": "Already have an account?",
+    "no_account": "Don't have an account?",
+    "click_here": "Click Here",
+    "password_verification": "Password Verification",
+    "got_it": "Got it",
+    "short_password": "Password too short",
+    "password_dont_match": "Passwords do not match",
+    "phone_exist": "Phone number already exists",
+    "phone_not_valid": "Invalid phone number",
+    "short_password_description": "Password must be at least 8 characters",
+    "password_dont_match_description": "The two passwords you entered do not match, please try again",
+    "phone_exist_description": "This phone number is already registered in our system. Please go to the login screen and try again",
+    "phone_not_valid_description": "The phone number seems invalid. Please try again",
+    "email": "Email",
+    "email_exist": "Email already exists",
+    "email_not_valid": "Invalid email",
+    "email_exist_description": "This email is already registered in our system. Please go to the login screen and try again",
+    "email_not_valid_description": "The email seems invalid. Please try again",
+    "wrong_password": "Incorrect password. Please try again",
+    "user_not_found": "This email was not found. Please try again",
+    "user_disabled": "User is disabled",
+    "too_many_requests": "Too many requests for this account",
+    "operation_not_allowed": "Server error. Please try again later",
+    "default_error": "Login or registration failed. Please try again",
+    "invalid_credential": "Incorrect email or password. Please try again",
+    "forgot_password": "Forgot Password",
+    "password_recovery": "Password Recovery",
+    "send_mail": "Send Mail",
+    "send_code": "Send Code",
+    "mail__recover_sent_title": "Password recovery email sent successfully",
+    "mail__recover_sent_description": "Please click the link in the email.\nIf you don’t see the email, check the spam folder or try again",
+    "upload_dog_image": "Upload a picture of the dog",
+    "add_notes": "Add Notes",
+    "contact_phone": "Contact Phone Number",
+    "full_name": "Full Name",
+    "first_name": "First Name",
+    "otp_code": "Verification Code",
+    "otp_code_description": "You received an SMS with a verification code.\nPlease enter it and click OK",
+    "send_again": "Send Again",
+    "login_with_password": "Login with Password",
+    "login_with_otp_code": "Login with Verification Code",
+    "phone_not_exist_system": "Phone number does not exist in the system",
+    "explanation_screen_title": "Guide to Creating the Perfect Surprise",
+    "continue_": "Continue",
+    "first_register": "Initial Registration",
+    "date_of_birth": "Date of Birth",
+    "fill_your_details": "Fill in your details",
+    "fill_partner_details": "Fill in your partner's details",
+    "first_password": "Set an initial password. Your partner can change the password.\nIf left blank, the password will be 123456",
+    "recommended_colors": "Recommended Colors",
+    "choose_color(context=GenderContext)": {
+        "male": "Choose a color from the palette",
+        "female": "Choose a color from the palette"
+    },
+    "skip(context=GenderContext)": {
+        "male": "Skip",
+        "female": "Skip"
+    },
+    "continue_no_change": "Continue without changing",
+    "selected_color": "Selected Color",
+    "finish": "Finish",
+    "relationship": "Relationship",
+    "married(context=GenderContext)": {
+        "male": "My Husband",
+        "female": "My Wife"
+    },
+    "spouse(context=GenderContext)": {
+        "male": "My Partner",
+        "female": "My Partner"
+    },
+    "soul_mate": "Soul Mate",
+    "got_full_app": "You got a full app just for this!",
+    "title": "Title",
+    "celebrant(context=GenderContext)": {
+        "male": "Celebrant",
+        "female": "Celebrant"
+    },
+    "indicating(context=GenderContext)": {
+        "male": "Indicating",
+        "female": "Indicating"
+    },
+    "you(context=GenderContext)": {
+        "male": "You",
+        "female": "You"
+    },
+    "my_deer(context=GenderContext)": {
+        "male": "My Dear",
+        "female": "My Dear"
+    },
+    "display_result": "Show Results",
+    "we_use": "We will use the selected texts to build a personalized app",
+    "description": "Description",
+    "age": "Age",
+    "it": "It",
+    "special_age": "$age is a special age",
+    "fill_all_fields": "Please fill in all fields",
+    "more_few_seconds": "In a few seconds, we’ll start building the perfect gift!",
+    "logout": "Logout",
+    "sure_logout(context=GenderContext)": {
+        "male": "Are you sure you want to log out?",
+        "female": "Are you sure you want to log out?"
+    },
+    "current_plan": "Current Plan",
+    "change_password": "Change Password",
+    "new_password": "New Password",
+    "new_password_verification": "Verify New Password",
+    "phone_verification": "Phone Verification",
+    "greeting_first_login(context=GenderContext)": {
+        "male": "$name has prepared the coolest surprise for you!\nAn app built especially for your birthday!\nHere you will find a heartfelt personal blessing,\nshared photos of your most beautiful moments,\nand more surprises to warm your heart,\nbecause you deserve all the best in the world!\nGet ready, this will be an unforgettable celebration! 🎉🎉🎉",
+        "female": "$name has prepared the coolest surprise for you!\nAn app built especially for your birthday!\nHere you will find a heartfelt personal blessing,\nshared photos of your most beautiful moments,\nand more surprises to warm your heart,\nbecause you deserve all the best in the world!\nGet ready, this will be an unforgettable celebration! 🎉🎉🎉"
+    },
+    "lets_continue": "Let's continue!",
+    "add(context=GenderContext)": {
+        "male": "Add",
+        "female": "Add"
+    },
+    "remove(context=GenderContext)": {
+        "male": "Remove",
+        "female": "Remove"
+    },
+    "text": "Text",
+    "pictures": "Pictures",
+    "videos": "Videos",
+    "quiz_game": "Quiz Game",
+    "birthday_calendar": "Birthday Calendar",
+    "birthday_suprise": "Birthday Surprise",
+    "text_description(context=GenderContext)": {
+        "male": "Come on, write a heartfelt blessing or some funny text!",
+        "female": "Come on, write a heartfelt blessing or some funny text!"
+    },
+    "pictures_description(context=GenderContext)": {
+        "male": "Add some shared pictures that will melt your hearts",
+        "female": "Add some shared pictures that will melt your hearts"
+    },
+    "videos_description(context=GenderContext)": {
+        "male": "Add YouTube videos that remind you how cute you are together",
+        "female": "Add YouTube videos that remind you how cute you are together"
+    },
+    "quiz_game_description(context=GenderContext)": {
+        "male": "Build a trivia game to see if you know who's who!",
+        "female": "Build a trivia game to see if you know who's who!"
+    },
+    "choose_category(context=GenderContext)": {
+        "male": "Choose a category",
+        "female": "Choose a category"
+    },
+    "birthday_calendar_description(context=GenderContext)": {
+        "male": "Plan the coolest and most fun schedule for your partner's birthday! Create a perfect day filled with surprises and unforgettable activities.",
+        "female": "Plan the coolest and most fun schedule for your partner's birthday! Create a perfect day filled with surprises and unforgettable activities."
+    },
+    "birthday_suprise_description(context=GenderContext)": {
+        "male": "Create a birthday surprise, but shhh... it stays locked until your partner opens it!",
+        "female": "Create a birthday surprise, but shhh... it stays locked until your partner opens it!"
+    },
+    "wishes_list_description(context=GenderContext)": {
+        "male": "Let $name choose 3 wishes:\nWrite a little \"contract\" so they can't go overboard!",
+        "female": "Let $name choose 3 wishes:\nWrite a little \"contract\" so they can't go overboard!"
+    },
+    "wishes_list_display_description(context=GenderContext)": {
+        "male": "Choose 3 wishes that $name must fulfill!",
+        "female": "Choose 3 wishes that $name must fulfill!"
+    },
+    "please_choose_category": "Please choose a category",
+    "title_appear_category": "The title to appear for this category",
+    "title_appear_required": "Please fill in the title",
+    "text_appear_required": "Please fill in the text",
+    "write_text": "Write text",
+    "add_text": "Add text",
+    "add_picture": "Add picture",
+    "add_pictures": "Add pictures",
+    "add_videos": "Add videos",
+    "write_text_to": "Write text for: $title",
+    "add_pictures_to": "Add pictures for: $title",
+    "add_videos_to": "Add videos for: $title",
+    "add_text_pictures_title": "Add Text and Pictures",
+    "add_text_pictures_description": "Add text and pictures for: $title",
+    "add_suprise": "Add a Surprise",
+    "lock": "Locked",
+    "unlock": "Unlocked",
+    "no_allow_text_empty": "Text cannot be empty",
+    "edit": "Edit",
+    "exit": "Exit",
+    "sure_delete_name(context=GenderContext)": {
+        "male": "Are you sure you want to delete $text?",
+        "female": "Are you sure you want to delete $text?"
+    },
+    "sure_delete(context=GenderContext)": {
+        "male": "Are you sure you want to delete this event?",
+        "female": "Are you sure you want to delete this event?"
+    },
+    "delete": "Delete",
+    "mark_all": "Mark All",
+    "cancel_marking": "Cancel Marking",
+    "upload_files_count": "Uploaded $file out of $files files",
+    "use_emojis": "Use Emojis",
+    "lines_number": "Number of Lines",
+    "max_words_in_line": "Max Words per Line",
+    "add_free_text": "Add Free Text",
+    "yes": "Yes",
+    "no": "No",
+    "no_required": "Not Required",
+    "generate_text_description": "Write a birthday blessing for $relationship, the name is $name\nMy name is: $myName\nNumber of lines in the blessing: $lineNumber\nNumber of words per line: $wordsInLineNumber\nThe age is $age",
+    "partner_info": "Partner's Info",
+    "info": "Info",
+    "gender": "Gender",
+    "greeting_notes": "* Your names will be automatically added\n* Your partner's age will be automatically added\n* After receiving the blessing, you can edit it however you'd like",
+    "greeting_before_edit": "Blessing Before Edit",
+    "generate_greeting": "Generate Greeting",
+    "generate_new_greeting": "Generate New Greeting",
+    "edit_greeting": "Edit Greeting",
+    "create_greeting_using_ai": "Create Greeting Using AI",
+    "suprise_screen_description(context=GenderContext)": {
+        "male": "Add text or pictures, play with their order, and create the perfect surprise!\nThe surprise will remain secret until you decide it's ready for your partner!",
+        "female": "Add text or pictures, play with their order, and create the perfect surprise!\nThe surprise will remain secret until you decide it's ready for your partner!"
+    },
+    "the_image": "The Image",
+    "the_text": "The Text",
+    "secret_dialog(context=GenderContext)": {
+        "male": "\"$categoryName\" is locked until $name grants you permission to open it!",
+        "female": "\"$categoryName\" is locked until $name grants you permission to open it!"
+    },
+    "wishes_list": "Wishes List",
+    "write_contract": "Write a Contract",
+    "write_contract_to": "Write a Contract for: $title",
+    "display_wishes": "Show Wishes",
+    "delete_wishes": "Delete Wishes",
+    "delete_wishes_description(context=GenderContext)": {
+        "male": "If the wishes don’t align with the contract, you can delete them and $name can refill them",
+        "female": "If the wishes don’t align with the contract, you can delete them and $name can refill them"
+    },
+    "first_wish": "First Wish",
+    "second_wish": "Second Wish",
+    "third_wish": "Third Wish",
+    "save": "Save",
+    "save_and_lock": "Save and Lock",
+    "wish_list_lock_title": "Wish List is Locked",
+    "wish_list_lock_description": "To unlock it, please ask $name for a new chance",
+    "please_read_contract(context=GenderContext)": {
+        "male": "A contract written by $name especially for you",
+        "female": "A contract written by $name especially for you"
+    },
+    "no_wish_yet": "No wishes yet",
+    "calendar_time": "Schedule",
+    "write_calendar_time_to": "Write schedule for: $title",
+    "add_quiz_to": "Add Quiz to: $title",
+    "month": "Month",
+    "week": "Week",
+    "two_weeks": "Two Weeks",
+    "pick_start_date": "Pick Start Date",
+    "pick_end_date": "Pick End Date",
+    "pick_date_range": "Pick Date Range",
+    "event_in_date": "Events on $date",
+    "add_event(context=GenderContext)": {
+        "male": "Add Event",
+        "female": "Add Event"
+    },
+    "add_event_date(context=GenderContext)": {
+        "male": "Add Event to $date",
+        "female": "Add Event to $date"
+    },
+    "event_description": "Event Description",
+    "select_time": "Select Time",
+    "selected_time": "Selected Time: $time",
+    "add_question(context=GenderContext)": {
+        "male": "Add Question",
+        "female": "Add Question"
+    },
+    "remove_question(context=GenderContext)": {
+        "male": "Remove Question",
+        "female": "Remove Question"
+    },
+    "num_of_questions": "You currently have $number questions",
+    "show_questions": "Show Questions",
+    "true_": "True",
+    "false_": "False",
+    "true_false_question": "True or False Question",
+    "four_answers_question": "Four Answers Question",
+    "question": "Question",
+    "questions": "Questions",
+    "choose_currect_answer(context=GenderContext)": {
+        "male": "Choose the correct answer",
+        "female": "Choose the correct answer"
+    },
+    "add_image": "Add Image",
+    "first_question": "First Question",
+    "second_question": "Second Question",
+    "third_question": "Third Question",
+    "fourth_question": "Fourth Question",
+    "required_fill_question": "You must fill in the question",
+    "required_fill_all_answer": "You must fill in all the answers",
+    "choose_question_delete(context=GenderContext)": {
+        "male": "Select the questions you want to delete",
+        "female": "Select the questions you want to delete"
+    },
+    "mark_least_one_question": "You must mark at least one question",
+    "no_questions_add": "No questions added yet",
+    "quiz_game_partner_description(context=GenderContext)": {
+        "male": "Welcome to the trivia game!\n$name has prepared $number intriguing questions for you.\n❤️ Reminder: You cannot change an answer once given, so answer carefully and have fun 😉\nGood luck!",
+        "female": "Welcome to the trivia game!\n$name has prepared $number intriguing questions for you.\n❤️ Reminder: You cannot change an answer once given, so answer carefully and have fun 😉\nGood luck!"
+    },
+    "quiz_game_partner_no_questions(context=GenderContext)": {
+        "male": "$name hasn't added any questions yet",
+        "female": "$name hasn't added any questions yet"
+    },
+    "click_here_start(context=GenderContext)": {
+        "male": "Click here to start",
+        "female": "Click here to start"
+    },
+    "quiz_game_done": "Trivia Game Completed",
+    "you_answer_from": "You answered correctly $answers out of $questions questions",
+    "choose_couple_profile_image": "Choose your couple's profile image",
+    "memory_game": "Memory Game",
+    "num_mistakes": "Number of Mistakes",
+    "score": "Score",
+    "game_over": "Game Over",
+    "you_win(context=GenderContext)": {
+        "male": "You Win!",
+        "female": "You Win!"
+    },
+    "upload_six_images(context=GenderContext)": {
+        "male": "Upload 6 images for the memory game",
+        "female": "Upload 6 images for the memory game"
+    },
+    "upload_images": "Upload Images",
+    "confirm_images": "Confirm Images?",
+    "memory_game_description(context=GenderContext)": {
+        "male": "Create a fun memory game with 6 shared pictures of you two!",
+        "female": "Create a fun memory game with 6 shared pictures of you two!"
+    },
+    "memory_game_lock_title": "Memory Game is Locked",
+    "memory_game_lock_description": "To unlock it, please ask $name for a new chance",
+    "memory_game_done(context=GenderContext)": {
+        "male": "$name finished the game with a score of $score",
+        "female": "$name finished the game with a score of $score"
+    },
+    "open_new_memory_game": "Open a New Memory Game",
+    "cant_upload_more_than(context=GenderContext)": {
+        "male": "You cannot upload more than $number files",
+        "female": "You cannot upload more than $number files"
+    },
+    "locked_category": "This category is locked.\nTo unlock it, upgrade your plan in the settings",
+    "edit_title": "Edit Title",
+    "watch_login_success": "Successfully logged in!\nYou can now switch to the clock",
+    "login_via_phone": "Log in via Phone",
+    "wait_for_phone_login": "Waiting for phone login",
+    "login_successful": "Successfully logged in!",
+    "no_owner": "The user is not an administrative user",
+    "login_failed": "Login Failed",
+    "please_open_app_in_phone": "Please open the app on your phone to log in",
+    "failed_send_login_request": "Failed to send login request to phone. Please try again",
+    "no_category_added": "No categories have been added for this event"
+}

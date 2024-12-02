@@ -241,7 +241,7 @@
   "yes": "כן",
   "no": "לא",
   "no_required": "לא חובה",
-  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumebr\nהגיל  הוא $age",
+  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumber\nהגיל  הוא $age",
   "partner_info": "מידע על הבן/בת זוג",
   "info": "מידע",
   "gender": "מין",

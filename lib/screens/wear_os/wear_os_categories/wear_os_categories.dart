@@ -11,6 +11,7 @@ import 'package:easy_birthday/screens/wear_os/wear_os_login.dart';
 import 'package:easy_birthday/widgets/cards/wear_category_card.dart';
 import 'package:easy_birthday/widgets/design/buttons/app_button.dart';
 import 'package:easy_birthday/widgets/dialogs/general_dialog.dart';
+import 'package:easy_birthday/widgets/general/language_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kh_easy_dev/kh_easy_dev.dart';
@@ -86,32 +87,43 @@ class _WearOsCategoriesState extends State<WearOsCategories> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(_getCurrentTime(), style: AppTextStyle().watchTitle),
-                      IconButton(
-                          onPressed: () async {
-                            final userChoise = await showDialog(
-                              context: context,
-                              builder: (context) => generalDialog(
-                                  title: t.sure_logout(
-                                      context: GenderContext.male),
-                                  noButtons: true,
-                                  buttons: [
-                                    appButton(
-                                        text: t.yes,
-                                        onTap: () => KheasydevNavigatePage()
-                                            .pop(context, value: true)),
-                                    const SizedBox(width: 4),
-                                    appButton(
-                                        text: t.no,
-                                        unfillColors: true,
-                                        onTap: () => KheasydevNavigatePage()
-                                            .pop(context)),
-                                  ]),
-                            );
-                            if (userChoise) {
-                              bloc.add(WearOsCategoriesEventOnLogout());
-                            }
-                          },
-                          icon: const Icon(Icons.logout)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          LanguageDropdown(
+                            onLanguageChange: () => setState(() {}),
+                            size: 30,
+                            padding: EdgeInsets.zero,
+                          ),
+                          const SizedBox(width: 24),
+                          IconButton(
+                              onPressed: () async {
+                                final userChoise = await showDialog(
+                                  context: context,
+                                  builder: (context) => generalDialog(
+                                      title: t.sure_logout(
+                                          context: GenderContext.male),
+                                      noButtons: true,
+                                      buttons: [
+                                        appButton(
+                                            text: t.yes,
+                                            onTap: () => KheasydevNavigatePage()
+                                                .pop(context, value: true)),
+                                        const SizedBox(width: 4),
+                                        appButton(
+                                            text: t.no,
+                                            unfillColors: true,
+                                            onTap: () => KheasydevNavigatePage()
+                                                .pop(context)),
+                                      ]),
+                                );
+                                if (userChoise) {
+                                  bloc.add(WearOsCategoriesEventOnLogout());
+                                }
+                              },
+                              icon: const Icon(Icons.logout)),
+                        ],
+                      ),
                       const SizedBox(height: 12),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12),

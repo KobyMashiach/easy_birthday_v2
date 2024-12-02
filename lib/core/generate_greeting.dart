@@ -177,7 +177,7 @@ class _GenerateGreetingState extends State<GenerateGreeting> {
       age: calculateNextAge(),
       lineNumber:
           choosenItems.entries.firstWhere((e) => e.key == "lines_number").value,
-      wordsInLineNumebr: choosenItems.entries
+      wordsInLineNumber: choosenItems.entries
           .firstWhere((e) => e.key == "max_words_in_line")
           .value,
     );

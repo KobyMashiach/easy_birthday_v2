@@ -1,7 +1,7 @@
 import 'package:easy_birthday/core/consts.dart';
 import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
-import 'package:easy_birthday/dev/generate_greeting.dart';
+import 'package:easy_birthday/core/generate_greeting.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
 import 'package:easy_birthday/models/category_model/category_model.dart';
 import 'package:easy_birthday/widgets/design/fields/app_textfields.dart';
