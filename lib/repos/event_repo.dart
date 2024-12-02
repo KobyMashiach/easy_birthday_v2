@@ -14,9 +14,10 @@ class EventRepo {
 
   final collection = FirebaseFirestore.instance.collection('events');
 
-  Future<EventModel?> getEventFromServer() async {
-    if (globalUser.eventId != null) {
-      final data = await firestoreGetDocValues(collection, globalUser.eventId!);
+  Future<EventModel?> getEventFromServer([String? eventId]) async {
+    if (globalUser.eventId != null || eventId != null) {
+      final data = await firestoreGetDocValues(
+          collection, eventId ?? globalUser.eventId!);
       return EventModel.fromJson(data);
     }
     return null;
@@ -91,52 +92,4 @@ class EventRepo {
     firestoreUpdateDoc(collection,
         docName: globalEvent!.eventId, values: globalEvent!.toJson());
   }
-
-  // PersonaModel getLocalPersona() {
-  //   return localDB.getPersona();
-  // }
-
-  // PersonaModel? getLocalPartnerPersona() {
-  //   return localDB.getPartner();
-  // }
-
-  // Future<PersonaModel> getPersona({required String phoneNumber}) async {
-  //   final personaFirestore =
-  //       await firestoreGetDocValues(collection, phoneNumber);
-  //   final persona = PersonaModel.fromJson(personaFirestore);
-  //   return persona;
-  // }
-
-  // Future<bool> checkIfHaveDetails({required String phoneNumber}) async {
-  //   final personaExist =
-  //       await firestoreCheckIfDocExists(collection, phoneNumber);
-  //   return personaExist;
-  // }
-
-  // Future<void> updatePersona(PersonaModel persona) async {
-  //   await localDB.updatePersona(persona: persona);
-  //   final phoneExist =
-  //       await firestoreCheckIfDocExists(collection, persona.phoneNumber);
-  //   if (phoneExist) {
-  //     firestoreUpdateDoc(collection, docName: persona.phoneNumber);
-  //   }
-  // }
-
-  // Future<void> deletePersona({required String phoneNumber}) async {
-  //   await localDB.deletePersona();
-  //   final phoneExist = await firestoreCheckIfDocExists(collection, phoneNumber);
-  //   if (phoneExist) {
-  //     firestoreDeleteDoc(collection, docName: phoneNumber);
-  //   }
-  // }
-
-  // Future<void> updatePartnerPersona(PersonaModel persona) async {
-  //   await localDB.updatePartner(persona: persona);
-  //   final phoneExist =
-  //       await firestoreCheckIfDocExists(collection, persona.phoneNumber);
-  //   if (!phoneExist) {
-  //     firestoreNewDoc(collection,
-  //         docName: persona.phoneNumber, values: persona.toJson());
-  //   }
-  // }
 }

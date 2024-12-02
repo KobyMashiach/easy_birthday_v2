@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 305
+/// Strings: 306
 ///
-/// Built on 2024-11-25 at 14:27 UTC
+/// Built on 2024-12-01 at 23:37 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -717,6 +717,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get login_failed => 'ההתחברות נכשלה';
 	String get please_open_app_in_phone => 'פתח את האפליקציה בטלפון כדי להתחבר';
 	String get failed_send_login_request => 'נכשל בשליחת בקשה לטלפון, נא נסה שנית';
+	String get no_category_added => 'לא הוספת קטגרויות לאירוע זה';
 }
 
 /// Flat map(s) containing all translations.
@@ -1288,6 +1289,7 @@ extension on Translations {
 			case 'login_failed': return 'ההתחברות נכשלה';
 			case 'please_open_app_in_phone': return 'פתח את האפליקציה בטלפון כדי להתחבר';
 			case 'failed_send_login_request': return 'נכשל בשליחת בקשה לטלפון, נא נסה שנית';
+			case 'no_category_added': return 'לא הוספת קטגרויות לאירוע זה';
 			default: return null;
 		}
 	}

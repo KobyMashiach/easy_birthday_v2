@@ -1,6 +1,7 @@
 import 'package:easy_birthday/core/hive/adapters_controller.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
 import 'package:easy_birthday/core/hive/category_model_data_source.dart';
+import 'package:easy_birthday/core/hive/general_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/firebase_options.dart';
 import 'package:easy_birthday/i18n/strings.g.dart';
@@ -42,27 +43,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider(create: (context) => AppSettingsDataSource()),
+        RepositoryProvider(create: (context) => PersonaDataSource()),
         RepositoryProvider(
-          create: (context) => AppSettingsDataSource(),
-        ),
-        RepositoryProvider(
-          create: (context) => PersonaDataSource(),
-        ),
-        RepositoryProvider(
-          create: (context) => PersonaRepo(context.read<PersonaDataSource>()),
-        ),
-        RepositoryProvider(
-          create: (context) => CategoryModelDataSource(),
-        ),
-        RepositoryProvider(
-          create: (context) => EventRepo(),
-        ),
+            create: (context) =>
+                PersonaRepo(context.read<PersonaDataSource>())),
+        RepositoryProvider(create: (context) => CategoryModelDataSource()),
+        RepositoryProvider(create: (context) => EventRepo()),
+        RepositoryProvider(create: (context) => GeneralDataSource())
       ],
       child: BlocProvider(
         create: (context) => SplashScreenBloc(
           appSettingsDB: context.read<AppSettingsDataSource>(),
           personaRepo: context.read<PersonaRepo>(),
           eventRepo: context.read<EventRepo>(),
+          generalDataSource: context.read<GeneralDataSource>(),
         )..add(SplashScreenInitialized()),
         child: MaterialApp(
           navigatorKey: NavigationContextService.navigatorKey,

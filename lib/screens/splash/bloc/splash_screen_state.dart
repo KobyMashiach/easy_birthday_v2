@@ -21,4 +21,8 @@ class SplashScreenNavigationToFirstLoginScreen
 class SplashScreenNavigationToLoginWearOs extends SplashScreenNavigatorState {}
 
 class SplashScreenNavigationToCategoriesWearOs
-    extends SplashScreenNavigatorState {}
+    extends SplashScreenNavigatorState {
+  final String eventId;
+
+  SplashScreenNavigationToCategoriesWearOs({required this.eventId});
+}

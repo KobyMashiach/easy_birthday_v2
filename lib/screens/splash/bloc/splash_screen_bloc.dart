@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:easy_birthday/core/check_platform.dart';
 import 'package:easy_birthday/core/colors.dart';
 import 'package:easy_birthday/core/hive/app_settings_data_source.dart';
+import 'package:easy_birthday/core/hive/general_data_source.dart';
 import 'package:easy_birthday/core/hive/persona_data_source.dart';
 import 'package:easy_birthday/core/persona_functions.dart';
 import 'package:easy_birthday/models/language_model/language_model.dart';
@@ -21,10 +22,12 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
   final AppSettingsDataSource appSettingsDB;
   final PersonaRepo personaRepo;
   final EventRepo eventRepo;
+  final GeneralDataSource generalDataSource;
   SplashScreenBloc({
     required this.appSettingsDB,
     required this.personaRepo,
     required this.eventRepo,
+    required this.generalDataSource,
   }) : super(SplashScreenInitial()) {
     on<SplashScreenInitialized>(_splashScreenInitialized);
   }
@@ -33,6 +36,7 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
       SplashScreenInitialized event, Emitter<SplashScreenState> emit) async {
     await AppSettingsDataSource.initialise();
     await PersonaDataSource.initialise();
+    await GeneralDataSource.initialise();
 
     globalAppSettings = appSettingsDB.getAppSettings();
     globalUser = personaRepo.getLocalPersona();
@@ -44,6 +48,11 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
     changeLanguage(LanguageModel.getAppLocale(globalAppSettings.languageCode));
     changeGender(male: checkIfMaleGender(globalUser.gender));
     final bool isWearOs = await checkIfWearOS();
+    final String? wearOsEventId = generalDataSource.getEventId();
+    if (isWearOs && wearOsEventId != null) {
+      emit(SplashScreenNavigationToCategoriesWearOs(eventId: wearOsEventId));
+      return;
+    }
     if (globalUser.phoneNumber != "") {
       globalUser =
           await personaRepo.getPersona(phoneNumber: globalUser.phoneNumber);
@@ -60,7 +69,8 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
         if (globalUser.registerComplete) {
           emit(!isWearOs
               ? SplashScreenNavigationToHomeScreen()
-              : SplashScreenNavigationToCategoriesWearOs());
+              : SplashScreenNavigationToCategoriesWearOs(
+                  eventId: globalEvent!.eventId));
         } else {
           emit(!isWearOs
               ? SplashScreenNavigationToFirstRegister()

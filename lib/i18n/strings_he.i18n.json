@@ -389,5 +389,6 @@
   "no_owner": "המשתמש לא משתמש ניהולי",
   "login_failed": "ההתחברות נכשלה",
   "please_open_app_in_phone": "פתח את האפליקציה בטלפון כדי להתחבר",
-  "failed_send_login_request": "נכשל בשליחת בקשה לטלפון, נא נסה שנית"
+  "failed_send_login_request": "נכשל בשליחת בקשה לטלפון, נא נסה שנית",
+  "no_category_added": "לא הוספת קטגרויות לאירוע זה"
 }

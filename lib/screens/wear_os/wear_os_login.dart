@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-import 'package:easy_birthday/core/global_vars.dart';
 import 'package:easy_birthday/core/text_styles.dart';
 import 'package:easy_birthday/screens/wear_os/wear_design.dart';
 import 'package:easy_birthday/screens/wear_os/wear_os_categories/wear_os_categories.dart';
@@ -35,14 +33,13 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
     _messageSubscription = _watchConnectivity.messageStream.listen((message) {
       if (message['path'] == '/login_response') {
         final status = message['status'] as String;
-        log(globalUser.toString());
-        log(globalEvent.toString());
-        updateLoginStatus(status);
+        final String? eventId = message['eventId'] as String?;
+        updateLoginStatus(status, eventId);
       }
     });
   }
 
-  void updateLoginStatus(String status) async {
+  void updateLoginStatus(String status, [String? eventId]) async {
     switch (status) {
       case 'success':
         setState(() {
@@ -50,10 +47,9 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
           loginSuccessful = true;
         });
         await Future.delayed(const Duration(seconds: 1));
-        //TODO: Push and remove until
-        KheasydevNavigatePage().push(
+        KheasydevNavigatePage().pushAndRemoveUntil(
           NavigationContextService.navigatorKey.currentContext!,
-          const WearOsCategories(),
+          WearOsCategories(eventId: eventId!),
         );
         break;
       case 'partner':
