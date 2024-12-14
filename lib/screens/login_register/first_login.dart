@@ -30,6 +30,7 @@ class FirstLoginScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
                   child: Column(
+                    //TODO: change to spacing: 24
                     children: [
                       Text("Easy Birthday", style: AppTextStyle().bigTitle),
                       const SizedBox(height: 24),

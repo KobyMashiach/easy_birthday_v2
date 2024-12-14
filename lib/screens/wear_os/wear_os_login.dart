@@ -22,11 +22,12 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
   bool buttonDisable = false;
   bool loginSuccessful = false;
 
-  String loginStatus = t.welcome;
+  late String loginStatus;
 
   @override
   void initState() {
     super.initState();
+    loginStatus = t.welcome;
     _initializeWatchConnectivity();
   }
 
