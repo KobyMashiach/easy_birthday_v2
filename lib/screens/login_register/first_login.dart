@@ -30,22 +30,19 @@ class FirstLoginScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
                   child: Column(
-                    //TODO: change to spacing: 24
+                    spacing: 24,
                     children: [
                       Text("Easy Birthday", style: AppTextStyle().bigTitle),
-                      const SizedBox(height: 24),
                       SvgPicture.asset(
                         giftIllustration,
                         height: 200,
                       ),
-                      const SizedBox(height: 24),
                       Text(
                           t.greeting_first_login(
                               context: globalGender,
                               name: globalPartnerUser!.name),
                           textAlign: TextAlign.center,
                           style: AppTextStyle().description),
-                      const SizedBox(height: 24),
                     ],
                   ),
                 ),

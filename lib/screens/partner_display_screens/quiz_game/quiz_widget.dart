@@ -76,14 +76,11 @@ class _QuizWidgetState extends State<QuizWidget> {
   Column buildQuestion(QuestionModel question, int index) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      //TODO: change to spacing: 32
+      spacing: 32,
       children: [
-        const SizedBox(height: 32),
         if (question.imageUrl != null)
           Center(child: Image.network(question.imageUrl!, height: 150)),
-        const SizedBox(height: 32),
         Text(question.text, style: const TextStyle(fontSize: 24)),
-        const SizedBox(height: 32),
         Expanded(
           child: OptionsWidget(
             question: question,
