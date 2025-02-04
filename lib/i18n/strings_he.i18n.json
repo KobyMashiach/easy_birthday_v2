@@ -1,394 +1,394 @@
 {
-  "hello": "שלום",
-  "choose_own_gender": "בחירת המין שלך",
-  "choose_partner_gender": "בחירת מין הבן/בת זוג",
-  "greeter(context=GenderContext)": {
-    "male": "ברוך הבא $name",
-    "female": "ברוכה הבאה $name"
+  "add_event_date(context=GenderContext)": {
+    "female": "הוסיפי אירוע לתאריך $date",
+    "male": "הוסף אירוע לתאריך $date"
   },
-  "welcome": "ברוכ/ה הבאה!",
-  "home_screen": "מסך בית",
-  "settings": "הגדרות",
-  "contact_us": "יצירת קשר",
-  "pick_color": "בחר צבע",
-  "ok": "אישור",
-  "cancel": "ביטול",
-  "recommand_drak_colors": "מומלץ צבעים כהים",
-  "build_app": "בונה את האפליקציה",
-  "build_app_description": "האפליקציה נבנית כרגע במיוחד בשבילך!",
-  "change_color": "שינוי צבע",
-  "change_gender": "שינוי מין",
-  "change_plan": "שינוי תוכנית",
-  "choose_gender": "בחר מין",
-  "male": "זכר",
-  "female": "נקבה",
+  "add_event(context=GenderContext)": {
+    "female": "הוסיפי אירוע",
+    "male": "הוסף אירוע"
+  },
+  "add_free_text": "הוספת טקסט חופשי",
+  "add_image": "הוספת תמונה",
+  "add_notes": "הוספת הערות",
+  "add_picture": "הוסף תמונה",
+  "add_pictures": "הוסף תמונות",
+  "add_pictures_to": "הוסף תמונות ל: $title",
+  "add_question(context=GenderContext)": {
+    "female": "הוסיפי שאלה",
+    "male": "הוסף שאלה"
+  },
+  "add_quiz_to": "הוסף משחק טריוויה ל: $title",
+  "add_suprise": "הוספת הפתעה",
+  "add_text": "הוסף טקסט",
+  "add_text_pictures_description": "הוסף טקסט ותמונות ל: $title",
+  "add_text_pictures_title": "הוסף טקסט ותמונות",
+  "add_videos": "הוסף סרטונים",
+  "add_videos_to": "הוסף סרטונים ל: $title",
+  "add(context=GenderContext)": {
+    "female": "הוסיפי",
+    "male": "הוסף"
+  },
+  "age": "גיל",
   "app_info": "מידע על האפליקציה",
   "app_name": "שם האפליקציה",
   "app_version": "גרסת האפליקציה",
-  "event_id": "מספר אירוע",
-  "change_language": "שינוי שפה",
-  "choose_language": "בחר שפה",
-  "soon": "בקרוב",
-  "selected(context=GenderContext)": {
-    "male": "נבחר",
-    "female": "נבחרה"
-  },
   "back": "חזור",
-  "login_screen": "מסך התחברות",
-  "login": "התחברות",
-  "register_screen": "מסך הרשמה",
-  "register": "הרשמה",
-  "phone": "טלפון",
-  "password": "סיסמה",
-  "have_account": "יש משתמש",
-  "no_account": "אין משתמש",
+  "birthday_calendar": "לו\"ז יום הולדת",
+  "birthday_calendar_description(context=GenderContext)": {
+    "female": "בואי לבנות את הלו\"ז הכי מגניב וכיפי ליום ההולדת של בן הזוג שלך! תכנני לו יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.",
+    "male": "בוא לבנות את הלו\"ז הכי מגניב וכיפי ליום ההולדת של בת הזוג שלך! תכנן לה יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות."
+  },
+  "birthday_suprise": "הפתעת יום הולדת",
+  "birthday_suprise_description(context=GenderContext)": {
+    "female": "בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!",
+    "male": "בוא לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתפתח את זה, זה יישאר נעול אצל בת הזוג שלך!"
+  },
+  "build_app": "בונה את האפליקציה",
+  "build_app_description": "האפליקציה נבנית כרגע במיוחד בשבילך!",
+  "calendar_time": "לו\"ז",
+  "cancel": "ביטול",
+  "cancel_marking": "בטל סימון",
+  "cant_upload_more_than(context=GenderContext)": {
+    "female": "את לא יכולה להעלות יותר מ-$number קבצים",
+    "male": "אתה לא יכול להעלות יותר מ-$number קבצים"
+  },
+  "celebrant(context=GenderContext)": {
+    "female": "חוגגת",
+    "male": "חוגג"
+  },
+  "change_color": "שינוי צבע",
+  "change_gender": "שינוי מין",
+  "change_language": "שינוי שפה",
+  "change_password": "שנה סיסמה",
+  "change_plan": "שינוי תוכנית",
+  "choose_category(context=GenderContext)": {
+    "female": "בחרי קטגוריה",
+    "male": "בחר קטגוריה"
+  },
+  "choose_color(context=GenderContext)": {
+    "female": "בחרי צבע מקשת צבעים",
+    "male": "בחר צבע מקשת צבעים"
+  },
+  "choose_couple_profile_image": "בחר/י תמונת פרופיל זוגית שלכם",
+  "choose_currect_answer(context=GenderContext)": {
+    "female": "בחרי את התשובה הנכונה",
+    "male": "בחר את התשובה הנכונה"
+  },
+  "choose_gender": "בחר מין",
+  "choose_language": "בחר שפה",
+  "choose_own_gender": "בחירת המין שלך",
+  "choose_partner_gender": "בחירת מין הבן/בת זוג",
+  "choose_question_delete(context=GenderContext)": {
+    "female": "בחרי את השאלות שתרצי למחוק",
+    "male": "בחר את השאלות שתרצה למחוק"
+  },
   "click_here": "לחץ כאן",
-  "password_verification": "אימות סיסמה",
-  "got_it": "בסדר, הבנתי",
-  "short_password": "סיסמה קצרה מידי",
-  "password_dont_match": "הסיסמאות לא תואמות",
-  "phone_exist": "טלפון קיים במערכת",
-  "phone_not_valid": "מספר הטלפון לא חוקי",
-  "short_password_description": "הסיסמה צריכה להיות 8 תווים לפחות",
-  "password_dont_match_description": "2 הסיסמאות שהזנת לא תואמות, נא נסה שוב",
-  "phone_exist_description": "מספר הטלפון קיים במערכת שלנו, עבור למסך ההתחברות ונסה שנית",
-  "phone_not_valid_description": "כנראה שטעית במספר הטלפון, נא נסה שנית",
+  "click_here_start(context=GenderContext)": {
+    "female": "לחצי כאן להתחלה",
+    "male": "לחץ כאן להתחלה"
+  },
+  "confirm_images": "לאשר את התמונות?",
+  "contact_phone": "מספר טלפון ליצירת קשר",
+  "contact_us": "יצירת קשר",
+  "continue_": "המשך",
+  "continue_no_change": "המשך ללא שינוי",
+  "create_greeting_using_ai": "צור ברכה באמצעות AI",
+  "current_plan": "תוכנית נוכחית",
+  "date_of_birth": "תאריך לידה",
+  "default_error": "ההתחברות או ההרשמה נכשלו. בבקשה נסה שוב",
+  "delete": "מחיקה",
+  "delete_wishes": "מחיקת המשאלות",
+  "delete_wishes_description(context=GenderContext)": {
+    "female": "אם המשאלות לא עומדות בחוזה ניתן למחוק ואז $name יוכל למלא מחדש",
+    "male": "אם המשאלות לא עומדות בחוזה ניתן למחוק ואז $name תוכל למלא מחדש"
+  },
+  "description": "תיאור",
+  "display_result": "הראה תוצאות",
+  "display_wishes": "הצג משאלות",
+  "edit": "עריכה",
+  "edit_greeting": "עריכת הברכה",
+  "edit_title": "ערוך כותרת",
   "email": "אימייל",
   "email_exist": "כתובת מייל קיימת במערכת",
-  "email_not_valid": "כתובת המייל לא חוקית",
   "email_exist_description": "כתובת המייל קיימת במערכת שלנו, עבור למסך ההתחברות ונסה שנית",
+  "email_not_valid": "כתובת המייל לא חוקית",
   "email_not_valid_description": "כנראה שטעית בכתובת המייל, נא נסה שנית",
-  "wrong_password": "הסיסמה לא נכונה, נא נסה שנית",
-  "user_not_found": "לא נמצאה כתובת המייל הזו, נסה שוב",
-  "user_disabled": "משתמש מושבת",
-  "too_many_requests": "יותר מדי בקשות להתחבר לחשבון זה",
-  "operation_not_allowed": "שגיאת שרת, אנא נסה שוב מאוחר יותר",
-  "default_error": "ההתחברות או ההרשמה נכשלו. בבקשה נסה שוב",
-  "invalid_credential": "כתובת המייל או הסיסמה לא נכונים, נא נסה שנית",
-  "forgot_password": "שכחת סיסמה",
-  "password_recovery": "שחזור סיסמה",
-  "send_mail": "שלח מייל",
-  "send_code": "שלח קוד",
-  "mail__recover_sent_title": "מייל לשחזור סיסמה נשלח בהצלחה",
-  "mail__recover_sent_description": "נא לחץ על הקישור במייל.\nאם אינך רואה את המייל נסה לחפש בתיקיית הספאם או נסה שנית",
-  "upload_dog_image": "העלה תמונה של הכלב",
-  "add_notes": "הוספת הערות",
-  "contact_phone": "מספר טלפון ליצירת קשר",
-  "full_name": "שם מלא",
-  "first_name": "שם פרטי",
-  "otp_code": "קוד אימות",
-  "otp_code_description": "קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור",
-  "send_again": "שלח שוב",
-  "login_with_password": "התחבר עם סיסמה",
-  "login_with_otp_code": "התחבר עם קוד אימות",
-  "phone_not_exist_system": "מספר הטלפון לא קיים במערכת",
-  "explanation_screen_title": "המדריך ליצירת הפתעה מושלמת",
-  "continue_": "המשך",
-  "first_register": "הרשמה ראשונית",
-  "date_of_birth": "תאריך לידה",
-  "fill_your_details": "מלא/י את הפרטים שלך",
-  "fill_partner_details": "מלא/י את הפרטים של הבן/בת זוג שלך",
-  "first_password": "בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456",
-  "recommended_colors": "צבעים מומלצים",
-  "choose_color(context=GenderContext)": {
-    "male": "בחר צבע מקשת צבעים",
-    "female": "בחרי צבע מקשת צבעים"
-  },
-  "skip(context=GenderContext)": {
-    "male": "דלג",
-    "female": "דלגי"
-  },
-  "continue_no_change": "המשך ללא שינוי",
-  "selected_color": "צבע נבחר",
-  "finish": "סיום",
-  "relationship": "מערכת יחסים",
-  "married(context=GenderContext)": {
-    "male": "בעלי",
-    "female": "אשתי"
-  },
-  "spouse(context=GenderContext)": {
-    "male": "בן זוגי",
-    "female": "בת זוגתי"
-  },
-  "soul_mate": "נפש תאומה",
-  "got_full_app": "אז קיבלת אפליקציה שלמה רק בשביל זה",
-  "title": "כותרת",
-  "celebrant(context=GenderContext)": {
-    "male": "חוגג",
-    "female": "חוגגת"
-  },
-  "indicating(context=GenderContext)": {
-    "male": "מציין",
-    "female": "מציינת"
-  },
-  "you(context=GenderContext)": {
-    "male": "את",
-    "female": "אתה"
-  },
-  "my_deer(context=GenderContext)": {
-    "male": "היקר",
-    "female": "היקרה"
-  },
-  "display_result": "הראה תוצאות",
-  "we_use": "אנחנו נשתמש בטקסטים שבחרתם כדי לבנות את האפליקציה באופן אישי",
-  "description": "תיאור",
-  "age": "גיל",
-  "it": "זה",
-  "special_age": "גיל $age זה גיל מיוחד",
-  "fill_all_fields": "מלא את כל השדות בבקשה",
-  "more_few_seconds": "בעוד כמה שניות נוכל להתחיל לבנות את המתנה המושלמת!",
-  "logout": "התנתקות",
-  "sure_logout(context=GenderContext)": {
-    "male": "אתה בטוח שאתה רוצה להתנתק?",
-    "female": "את בטוחה שאת רוצה להתנתק?"
-  },
-  "current_plan": "תוכנית נוכחית",
-  "change_password": "שנה סיסמה",
-  "new_password": "סיסמה חדשה",
-  "new_password_verification": "אימות סיסמה חדשה",
-  "phone_verification": "אימות טלפון",
-  "greeting_first_login(context=GenderContext)": {
-    "male": "$name הכינה לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצא ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונן, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉",
-    "female": "$name הכין לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצאי ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונני, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉"
-  },
-  "lets_continue": "בואו נתקדם!",
-  "add(context=GenderContext)": {
-    "male": "הוסף",
-    "female": "הוסיפי"
-  },
-  "remove(context=GenderContext)": {
-    "male": "הסר",
-    "female": "הסירי"
-  },
-  "text": "טקסט",
-  "pictures": "תמונות",
-  "videos": "סרטונים",
-  "quiz_game": "משחק טריוויה",
-  "birthday_calendar": "לו\"ז יום הולדת",
-  "birthday_suprise": "הפתעת יום הולדת",
-  "text_description(context=GenderContext)": {
-    "male": "יאללה, תשלוף ברכה מהלב או כתוב איזה טקסט קורע שתרצה!",
-    "female": "יאללה, תשלפי ברכה מהלב או כתבי איזה טקסט קורע שתרצי!"
-  },
-  "pictures_description(context=GenderContext)": {
-    "male": "הוסף כמה תמונות משותפות שימסו לכם את הלב",
-    "female": "הוסיפי כמה תמונות משותפות שימסו לכם את הלב"
-  },
-  "videos_description(context=GenderContext)": {
-    "male": "הוסף סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד",
-    "female": "הוסיפי סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד"
-  },
-  "quiz_game_description(context=GenderContext)": {
-    "male": "יאללה, תבנה משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!",
-    "female": "יאללה, תבני משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!"
-  },
-  "choose_category(context=GenderContext)": {
-    "male": "בחר קטגוריה",
-    "female": "בחרי קטגוריה"
-  },
-  "birthday_calendar_description(context=GenderContext)": {
-    "male": "בוא לבנות את הלו\"ז הכי מגניב וכיפי ליום ההולדת של בת הזוג שלך! תכנן לה יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות.",
-    "female": "בואי לבנות את הלו\"ז הכי מגניב וכיפי ליום ההולדת של בן הזוג שלך! תכנני לו יום מושלם מלא בהפתעות ופעילויות בלתי נשכחות."
-  },
-  "birthday_suprise_description(context=GenderContext)": {
-    "male": "בוא לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתפתח את זה, זה יישאר נעול אצל בת הזוג שלך!",
-    "female": "בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!"
-  },
-  "wishes_list_description(context=GenderContext)": {
-    "male": "הוסף אפשרות ל$name לבחור 3 משאלות:\nרשום לה \"חוזה\" קטן, ככה שהיא לא תוכל להגזים!",
-    "female": "הוספי אפשרות ל$name לבחור 3 משאלות:\nרשמי לו \"חוזה\" קטן, ככה שהוא לא יוכל להגזים!"
-  },
-  "wishes_list_display_description(context=GenderContext)": {
-    "male": "בחר 3 משאלות ש$name חייבת להגשים!",
-    "female": "בחרי 3 משאלות ש$name חייב להגשים!"
-  },
-  "please_choose_category": "בחר קטגוריה בבקשה",
-  "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
-  "title_appear_required": "נא למלא את הכותרת",
-  "text_appear_required": "נא למלא את הטקסט",
-  "write_text": "רשום טקסט",
-  "add_text": "הוסף טקסט",
-  "add_picture": "הוסף תמונה",
-  "add_pictures": "הוסף תמונות",
-  "add_videos": "הוסף סרטונים",
-  "write_text_to": "רשום טקסט ל: $title",
-  "add_pictures_to": "הוסף תמונות ל: $title",
-  "add_videos_to": "הוסף סרטונים ל: $title",
-  "add_text_pictures_title": "הוסף טקסט ותמונות",
-  "add_text_pictures_description": "הוסף טקסט ותמונות ל: $title",
-  "add_suprise": "הוספת הפתעה",
-  "lock": "נעול",
-  "unlock": "לא נעול",
-  "no_allow_text_empty": "לא ניתן להשאיר טקסט ריק",
-  "edit": "עריכה",
+  "event_description": "תיאור אירוע",
+  "event_id": "מספר אירוע",
+  "event_in_date": "אירועים בתאריך $date",
   "exit": "יציאה",
-  "sure_delete_name(context=GenderContext)": {
-    "male": "אתה בטוח שאתה רוצה למחוק את $text?",
-    "female": "את בטוחה שאת רוצה למחוק את $text?"
-  },
-  "sure_delete(context=GenderContext)": {
-    "male": "אתה בטוח שאתה רוצה למחוק את האירוע הזה?",
-    "female": "את בטוחה שאת רוצה למחוק את האירוע הזה?"
-  },
-  "delete": "מחיקה",
-  "mark_all": "סמן הכל",
-  "cancel_marking": "בטל סימון",
-  "upload_files_count": "הועלו $file מתוך $files קבצים",
-  "use_emojis": "שימוש באימוג׳ים",
-  "lines_number": "מספר שורות",
-  "max_words_in_line": "מקסימום מילים בשורה",
-  "add_free_text": "הוספת טקסט חופשי",
-  "yes": "כן",
-  "no": "לא",
-  "no_required": "לא חובה",
-  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumber\nהגיל  הוא $age",
-  "partner_info": "מידע על הבן/בת זוג",
-  "info": "מידע",
+  "explanation_screen_title": "המדריך ליצירת הפתעה מושלמת",
+  "failed_send_login_request": "נכשל בשליחת בקשה לטלפון, נא נסה שנית",
+  "false_": "לא נכון",
+  "female": "נקבה",
+  "fill_all_fields": "מלא את כל השדות בבקשה",
+  "fill_partner_details": "מלא/י את הפרטים של הבן/בת זוג שלך",
+  "fill_your_details": "מלא/י את הפרטים שלך",
+  "finish": "סיום",
+  "first_name": "שם פרטי",
+  "first_password": "בחר סיסמה התחלתית, הבן/בת זוג יוכלו לשנות את הסיסמה\nאם השדה ישאר ריק הסיסמה תהיה 123456",
+  "first_question": "שאלה ראשונה",
+  "first_register": "הרשמה ראשונית",
+  "first_wish": "משאלה ראשוונה",
+  "forgot_password": "שכחת סיסמה",
+  "four_answers_question": "שאלת 4 תשובות",
+  "fourth_question": "שאלה רביעית",
+  "full_name": "שם מלא",
+  "game_over": "המשחק נגמר",
   "gender": "מין",
-  "greeting_notes": "* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו",
-  "greeting_before_edit": "ברכה לפני עריכה",
   "generate_greeting": "ליצור ברכה",
   "generate_new_greeting": "ליצור ברכה חדשה",
-  "edit_greeting": "עריכת הברכה",
-  "create_greeting_using_ai": "צור ברכה באמצעות AI",
+  "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumber\nהגיל  הוא $age",
+  "got_full_app": "אז קיבלת אפליקציה שלמה רק בשביל זה",
+  "got_it": "בסדר, הבנתי",
+  "greeter(context=GenderContext)": {
+    "female": "ברוכה הבאה $name",
+    "male": "ברוך הבא $name"
+  },
+  "greeting_before_edit": "ברכה לפני עריכה",
+  "greeting_first_login(context=GenderContext)": {
+    "female": "$name הכין לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצאי ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונני, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉",
+    "male": "$name הכינה לך את ההפתעה הכי מגניבה שיש!\nאפליקציה שנבנתה במיוחד בשבילך, ליום ההולדת שלך!\nכאן תמצא ברכה אישית מהלב,\nתמונות משותפות שלכם מכל הרגעים הכי יפים,\nועוד הפתעות שרק יחממו לך את הלב,\nכי מגיע לך את כל הטוב שבעולם!\nאז תתכונן, זו הולכת להיות חגיגה בלתי נשכחת!🎉🎉🎉"
+  },
+  "greeting_notes": "* השמות שלכם ירשמו באופן אוטומטי\n* הגיל של הבן/בת זוג ירשם באופן אוטומטי\n* לאחר קבלת הברכה תוכלו לערוך אותה כמו שרק תרצו",
+  "have_account": "יש משתמש",
+  "hello": "שלום",
+  "home_screen": "מסך בית",
+  "indicating(context=GenderContext)": {
+    "female": "מציינת",
+    "male": "מציין"
+  },
+  "info": "מידע",
+  "invalid_credential": "כתובת המייל או הסיסמה לא נכונים, נא נסה שנית",
+  "it": "זה",
+  "lets_continue": "בואו נתקדם!",
+  "lines_number": "מספר שורות",
+  "lock": "נעול",
+  "locked_category": "קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות",
+  "login": "התחברות",
+  "login_failed": "ההתחברות נכשלה",
+  "login_screen": "מסך התחברות",
+  "login_successful": "התחברת בהצלחה!",
+  "login_via_phone": "התחבר באמצעות הטלפון",
+  "login_with_otp_code": "התחבר עם קוד אימות",
+  "login_with_password": "התחבר עם סיסמה",
+  "logout": "התנתקות",
+  "mail__recover_sent_description": "נא לחץ על הקישור במייל.\nאם אינך רואה את המייל נסה לחפש בתיקיית הספאם או נסה שנית",
+  "mail__recover_sent_title": "מייל לשחזור סיסמה נשלח בהצלחה",
+  "male": "זכר",
+  "mark_all": "סמן הכל",
+  "mark_least_one_question": "יש לסמן לפחות שאלה אחת",
+  "married(context=GenderContext)": {
+    "female": "אשתי",
+    "male": "בעלי"
+  },
+  "max_words_in_line": "מקסימום מילים בשורה",
+  "memory_game": "משחק הזיכרון",
+  "memory_game_description(context=GenderContext)": {
+    "female": "בני משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!",
+    "male": "בנה משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!"
+  },
+  "memory_game_done(context=GenderContext)": {
+    "female": "$name סיים את המשחק עם ניקוד: $score",
+    "male": "$name סיימה את המשחק עם ניקוד: $score"
+  },
+  "memory_game_lock_description": "כדי לפתוח אותו אנא בקשו מ$name הזדמנות חדשה",
+  "memory_game_lock_title": "משחק הזיכרון נעול",
+  "month": "חודש",
+  "more_few_seconds": "בעוד כמה שניות נוכל להתחיל לבנות את המתנה המושלמת!",
+  "my_deer(context=GenderContext)": {
+    "female": "היקרה",
+    "male": "היקר"
+  },
+  "new_password": "סיסמה חדשה",
+  "new_password_verification": "אימות סיסמה חדשה",
+  "no": "לא",
+  "no_account": "אין משתמש",
+  "no_allow_text_empty": "לא ניתן להשאיר טקסט ריק",
+  "no_category_added": "לא הוספת קטגרויות לאירוע זה",
+  "no_owner": "המשתמש לא משתמש ניהולי",
+  "no_questions_add": "לא הועלו שאלות עדיין",
+  "no_required": "לא חובה",
+  "no_wish_yet": "אין עדיין משאלות",
+  "num_mistakes": "מספר טעויות",
+  "num_of_questions": "יש לך כרגע $number שאלות",
+  "ok": "אישור",
+  "open_new_memory_game": "פתיחת גישה למשחק חדש",
+  "operation_not_allowed": "שגיאת שרת, אנא נסה שוב מאוחר יותר",
+  "otp_code": "קוד אימות",
+  "otp_code_description": "קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור",
+  "partner_info": "מידע על הבן/בת זוג",
+  "password": "סיסמה",
+  "password_dont_match": "הסיסמאות לא תואמות",
+  "password_dont_match_description": "2 הסיסמאות שהזנת לא תואמות, נא נסה שוב",
+  "password_recovery": "שחזור סיסמה",
+  "password_verification": "אימות סיסמה",
+  "phone": "טלפון",
+  "phone_exist": "טלפון קיים במערכת",
+  "phone_exist_description": "מספר הטלפון קיים במערכת שלנו, עבור למסך ההתחברות ונסה שנית",
+  "phone_not_exist_system": "מספר הטלפון לא קיים במערכת",
+  "phone_not_valid": "מספר הטלפון לא חוקי",
+  "phone_not_valid_description": "כנראה שטעית במספר הטלפון, נא נסה שנית",
+  "phone_verification": "אימות טלפון",
+  "pick_color": "בחר צבע",
+  "pick_date_range": "בחר טווח תאריכים",
+  "pick_end_date": "בחר תאריך סיום",
+  "pick_start_date": "בחר תאריך התחלה",
+  "pictures": "תמונות",
+  "pictures_description(context=GenderContext)": {
+    "female": "הוסיפי כמה תמונות משותפות שימסו לכם את הלב",
+    "male": "הוסף כמה תמונות משותפות שימסו לכם את הלב"
+  },
+  "please_choose_category": "בחר קטגוריה בבקשה",
+  "please_open_app_in_phone": "פתח את האפליקציה בטלפון כדי להתחבר",
+  "please_read_contract(context=GenderContext)": {
+    "female": "חוזה ש$name כתב במיוחד בשבילך",
+    "male": "חוזה ש$name כתבה במיוחד בשבילך"
+  },
+  "question": "שאלה",
+  "questions": "שאלות",
+  "quiz_game": "משחק טריוויה",
+  "quiz_game_description(context=GenderContext)": {
+    "female": "יאללה, תבני משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!",
+    "male": "יאללה, תבנה משחק טריוויה שיבדוק אם אתם יודעים בכלל מי זה מי!"
+  },
+  "quiz_game_done": "משחק הטריוויה נגמר",
+  "quiz_game_partner_description(context=GenderContext)": {
+    "female": "ברוכה הבאה למשחק הטריוויה!\n$name הכין לך $number שאלות מסקרנות.\nשימי ❤️ – אי אפשר לתקן תשובה שנתת, אז תעני בכיף אבל בזהירות 😉\nבהצלחה!",
+    "male": "ברוך הבא למשחק הטריוויה!\n$name הכינה לך $number שאלות מסקרנות.\nשים ❤️ – אי אפשר לתקן תשובה שנתת, אז ענה בכיף אבל בזהירות 😉\nבהצלחה!"
+  },
+  "quiz_game_partner_no_questions(context=GenderContext)": {
+    "female": "$name לא העלה עדיין שאלות",
+    "male": "$name לא העלתה עדיין שאלות"
+  },
+  "recommand_drak_colors": "מומלץ צבעים כהים",
+  "recommended_colors": "צבעים מומלצים",
+  "register": "הרשמה",
+  "register_screen": "מסך הרשמה",
+  "relationship": "מערכת יחסים",
+  "remove_question(context=GenderContext)": {
+    "female": "הסירי שאלה",
+    "male": "הסר שאלה"
+  },
+  "remove(context=GenderContext)": {
+    "female": "הסירי",
+    "male": "הסר"
+  },
+  "required_fill_all_answer": "חובה למלא את כל התשובות",
+  "required_fill_question": "חובה למלא את השאלה",
+  "save": "שמור",
+  "save_and_lock": "שמור ונעל",
+  "score": "תוצאה",
+  "second_question": "שאלה שנייה",
+  "second_wish": "משאלה שנייה",
+  "secret_dialog(context=GenderContext)": {
+    "female": "\"$categoryName\" נעול עד ש$name יתן לך את ההרשאה לפתוח אותה!",
+    "male": "\"$categoryName\" נעול עד ש$name תיתן לך את ההרשאה לפתוח אותה!"
+  },
+  "select_time": "בחירת שעה",
+  "selected_color": "צבע נבחר",
+  "selected_time": "שעה שנבחרה: $time",
+  "selected(context=GenderContext)": {
+    "female": "נבחרה",
+    "male": "נבחר"
+  },
+  "send_again": "שלח שוב",
+  "send_code": "שלח קוד",
+  "send_mail": "שלח מייל",
+  "settings": "הגדרות",
+  "short_password": "סיסמה קצרה מידי",
+  "short_password_description": "הסיסמה צריכה להיות 8 תווים לפחות",
+  "show_questions": "הצגת השאלות",
+  "skip(context=GenderContext)": {
+    "female": "דלגי",
+    "male": "דלג"
+  },
+  "soon": "בקרוב",
+  "soul_mate": "נפש תאומה",
+  "special_age": "גיל $age זה גיל מיוחד",
+  "spouse(context=GenderContext)": {
+    "female": "בת זוגתי",
+    "male": "בן זוגי"
+  },
   "suprise_screen_description(context=GenderContext)": {
-    "male": "הוסף טקסט או תמונות, שחק עם הסדר ביניהם ותיצור את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליט שהיא מוכנה לבת הזוג שלך!",
-    "female": "הוסיפי טקסט או תמונות, שחקי עם הסדר ביניהם וצרי את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליטי שהיא מוכנה לבן הזוג שלך!"
+    "female": "הוסיפי טקסט או תמונות, שחקי עם הסדר ביניהם וצרי את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליטי שהיא מוכנה לבן הזוג שלך!",
+    "male": "הוסף טקסט או תמונות, שחק עם הסדר ביניהם ותיצור את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליט שהיא מוכנה לבת הזוג שלך!"
+  },
+  "sure_delete_name(context=GenderContext)": {
+    "female": "את בטוחה שאת רוצה למחוק את $text?",
+    "male": "אתה בטוח שאתה רוצה למחוק את $text?"
+  },
+  "sure_delete(context=GenderContext)": {
+    "female": "את בטוחה שאת רוצה למחוק את האירוע הזה?",
+    "male": "אתה בטוח שאתה רוצה למחוק את האירוע הזה?"
+  },
+  "sure_logout(context=GenderContext)": {
+    "female": "את בטוחה שאת רוצה להתנתק?",
+    "male": "אתה בטוח שאתה רוצה להתנתק?"
+  },
+  "text": "טקסט",
+  "text_appear_required": "נא למלא את הטקסט",
+  "text_description(context=GenderContext)": {
+    "female": "יאללה, תשלפי ברכה מהלב או כתבי איזה טקסט קורע שתרצי!",
+    "male": "יאללה, תשלוף ברכה מהלב או כתוב איזה טקסט קורע שתרצה!"
   },
   "the_image": "התמונה",
   "the_text": "הטקסט",
-  "secret_dialog(context=GenderContext)": {
-    "male": "\"$categoryName\" נעול עד ש$name תיתן לך את ההרשאה לפתוח אותה!",
-    "female": "\"$categoryName\" נעול עד ש$name יתן לך את ההרשאה לפתוח אותה!"
+  "third_question": "שאלה שלישית",
+  "third_wish": "משאלה שלישית",
+  "title": "כותרת",
+  "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
+  "title_appear_required": "נא למלא את הכותרת",
+  "too_many_requests": "יותר מדי בקשות להתחבר לחשבון זה",
+  "true_": "נכון",
+  "true_false_question": "שאלת נכון או לא נכון",
+  "two_weeks": "שבועיים",
+  "unlock": "לא נעול",
+  "upload_dog_image": "העלה תמונה של הכלב",
+  "upload_files_count": "הועלו $file מתוך $files קבצים",
+  "upload_images": "העלאת תמונות",
+  "upload_six_images(context=GenderContext)": {
+    "female": "העלי 6 תמונות שישמשו למשחק הזיכרון",
+    "male": "העלה 6 תמונות שישמשו למשחק הזיכרון"
   },
+  "use_emojis": "שימוש באימוג׳ים",
+  "user_disabled": "משתמש מושבת",
+  "user_not_found": "לא נמצאה כתובת המייל הזו, נסה שוב",
+  "videos": "סרטונים",
+  "videos_description(context=GenderContext)": {
+    "female": "הוסיפי סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד",
+    "male": "הוסף סרטוני יוטיוב שמזכירים לכם כמה אתם חמודים ביחד"
+  },
+  "wait_for_phone_login": "מחכה להתחברות דרך הטלפון",
+  "watch_login_success": "התחברת בהצלחה!\nאפשר לעבור לשעון",
+  "we_use": "אנחנו נשתמש בטקסטים שבחרתם כדי לבנות את האפליקציה באופן אישי",
+  "week": "שבוע",
+  "welcome": "ברוכ/ה הבאה!",
+  "wish_list_lock_description": "כדי לפתוח אותה אנא בקשו מ$name הזדמנות חדשה",
+  "wish_list_lock_title": "רשימת המשאלות נעולה",
   "wishes_list": "רשימת משאלות",
+  "wishes_list_description(context=GenderContext)": {
+    "female": "הוספי אפשרות ל$name לבחור 3 משאלות:\nרשמי לו \"חוזה\" קטן, ככה שהוא לא יוכל להגזים!",
+    "male": "הוסף אפשרות ל$name לבחור 3 משאלות:\nרשום לה \"חוזה\" קטן, ככה שהיא לא תוכל להגזים!"
+  },
+  "wishes_list_display_description(context=GenderContext)": {
+    "female": "בחרי 3 משאלות ש$name חייב להגשים!",
+    "male": "בחר 3 משאלות ש$name חייבת להגשים!"
+  },
+  "write_calendar_time_to": "רשום לו\"ז ל: $title",
   "write_contract": "רשום חוזה",
   "write_contract_to": "רשום חוזה ל: $title",
-  "display_wishes": "הצג משאלות",
-  "delete_wishes": "מחיקת המשאלות",
-  "delete_wishes_description(context=GenderContext)": {
-    "male": "אם המשאלות לא עומדות בחוזה ניתן למחוק ואז $name תוכל למלא מחדש",
-    "female": "אם המשאלות לא עומדות בחוזה ניתן למחוק ואז $name יוכל למלא מחדש"
-  },
-  "first_wish": "משאלה ראשוונה",
-  "second_wish": "משאלה שנייה",
-  "third_wish": "משאלה שלישית",
-  "save": "שמור",
-  "save_and_lock": "שמור ונעל",
-  "wish_list_lock_title": "רשימת המשאלות נעולה",
-  "wish_list_lock_description": "כדי לפתוח אותה אנא בקשו מ$name הזדמנות חדשה",
-  "please_read_contract(context=GenderContext)": {
-    "male": "חוזה ש$name כתבה במיוחד בשבילך",
-    "female": "חוזה ש$name כתב במיוחד בשבילך"
-  },
-  "no_wish_yet": "אין עדיין משאלות",
-  "calendar_time": "לו\"ז",
-  "write_calendar_time_to": "רשום לו\"ז ל: $title",
-  "add_quiz_to": "הוסף משחק טריוויה ל: $title",
-  "month": "חודש",
-  "week": "שבוע",
-  "two_weeks": "שבועיים",
-  "pick_start_date": "בחר תאריך התחלה",
-  "pick_end_date": "בחר תאריך סיום",
-  "pick_date_range": "בחר טווח תאריכים",
-  "event_in_date": "אירועים בתאריך $date",
-  "add_event(context=GenderContext)": {
-    "male": "הוסף אירוע",
-    "female": "הוסיפי אירוע"
-  },
-  "add_event_date(context=GenderContext)": {
-    "male": "הוסף אירוע לתאריך $date",
-    "female": "הוסיפי אירוע לתאריך $date"
-  },
-  "event_description": "תיאור אירוע",
-  "select_time": "בחירת שעה",
-  "selected_time": "שעה שנבחרה: $time",
-  "add_question(context=GenderContext)": {
-    "male": "הוסף שאלה",
-    "female": "הוסיפי שאלה"
-  },
-  "remove_question(context=GenderContext)": {
-    "male": "הסר שאלה",
-    "female": "הסירי שאלה"
-  },
-  "num_of_questions": "יש לך כרגע $number שאלות",
-  "show_questions": "הצגת השאלות",
-  "true_": "נכון",
-  "false_": "לא נכון",
-  "true_false_question": "שאלת נכון או לא נכון",
-  "four_answers_question": "שאלת 4 תשובות",
-  "question": "שאלה",
-  "questions": "שאלות",
-  "choose_currect_answer(context=GenderContext)": {
-    "male": "בחר את התשובה הנכונה",
-    "female": "בחרי את התשובה הנכונה"
-  },
-  "add_image": "הוספת תמונה",
-  "first_question": "שאלה ראשונה",
-  "second_question": "שאלה שנייה",
-  "third_question": "שאלה שלישית",
-  "fourth_question": "שאלה רביעית",
-  "required_fill_question": "חובה למלא את השאלה",
-  "required_fill_all_answer": "חובה למלא את כל התשובות",
-  "choose_question_delete(context=GenderContext)": {
-    "male": "בחר את השאלות שתרצה למחוק",
-    "female": "בחרי את השאלות שתרצי למחוק"
-  },
-  "mark_least_one_question": "יש לסמן לפחות שאלה אחת",
-  "no_questions_add": "לא הועלו שאלות עדיין",
-  "quiz_game_partner_description(context=GenderContext)": {
-    "male": "ברוך הבא למשחק הטריוויה!\n$name הכינה לך $number שאלות מסקרנות.\nשים ❤️ – אי אפשר לתקן תשובה שנתת, אז ענה בכיף אבל בזהירות 😉\nבהצלחה!",
-    "female": "ברוכה הבאה למשחק הטריוויה!\n$name הכין לך $number שאלות מסקרנות.\nשימי ❤️ – אי אפשר לתקן תשובה שנתת, אז תעני בכיף אבל בזהירות 😉\nבהצלחה!"
-  },
-  "quiz_game_partner_no_questions(context=GenderContext)": {
-    "male": "$name לא העלתה עדיין שאלות",
-    "female": "$name לא העלה עדיין שאלות"
-  },
-  "click_here_start(context=GenderContext)": {
-    "male": "לחץ כאן להתחלה",
-    "female": "לחצי כאן להתחלה"
-  },
-  "quiz_game_done": "משחק הטריוויה נגמר",
+  "write_text": "רשום טקסט",
+  "write_text_to": "רשום טקסט ל: $title",
+  "wrong_password": "הסיסמה לא נכונה, נא נסה שנית",
+  "yes": "כן",
   "you_answer_from": "ענית נכון על $answers מתוך $questions שאלות",
-  "choose_couple_profile_image": "בחר/י תמונת פרופיל זוגית שלכם",
-  "memory_game": "משחק הזיכרון",
-  "num_mistakes": "מספר טעויות",
-  "score": "תוצאה",
-  "game_over": "המשחק נגמר",
   "you_win(context=GenderContext)": {
-    "male": "אתה ניצחת!",
-    "female": "את ניצחת!"
+    "female": "את ניצחת!",
+    "male": "אתה ניצחת!"
   },
-  "upload_six_images(context=GenderContext)": {
-    "male": "העלה 6 תמונות שישמשו למשחק הזיכרון",
-    "female": "העלי 6 תמונות שישמשו למשחק הזיכרון"
-  },
-  "upload_images": "העלאת תמונות",
-  "confirm_images": "לאשר את התמונות?",
-  "memory_game_description(context=GenderContext)": {
-    "male": "בנה משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!",
-    "female": "בני משחק זיכרון מגניב עם 6 תמונות משותפות שלכם!"
-  },
-  "memory_game_lock_title": "משחק הזיכרון נעול",
-  "memory_game_lock_description": "כדי לפתוח אותו אנא בקשו מ$name הזדמנות חדשה",
-  "memory_game_done(context=GenderContext)": {
-    "male": "$name סיימה את המשחק עם ניקוד: $score",
-    "female": "$name סיים את המשחק עם ניקוד: $score"
-  },
-  "open_new_memory_game": "פתיחת גישה למשחק חדש",
-  "cant_upload_more_than(context=GenderContext)": {
-    "male": "אתה לא יכול להעלות יותר מ-$number קבצים",
-    "female": "את לא יכולה להעלות יותר מ-$number קבצים"
-  },
-  "locked_category": "קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות",
-  "edit_title": "ערוך כותרת",
-  "watch_login_success": "התחברת בהצלחה!\nאפשר לעבור לשעון",
-  "login_via_phone": "התחבר באמצעות הטלפון",
-  "wait_for_phone_login": "מחכה להתחברות דרך הטלפון",
-  "login_successful": "התחברת בהצלחה!",
-  "no_owner": "המשתמש לא משתמש ניהולי",
-  "login_failed": "ההתחברות נכשלה",
-  "please_open_app_in_phone": "פתח את האפליקציה בטלפון כדי להתחבר",
-  "failed_send_login_request": "נכשל בשליחת בקשה לטלפון, נא נסה שנית",
-  "no_category_added": "לא הוספת קטגרויות לאירוע זה"
+  "you(context=GenderContext)": {
+    "female": "אתה",
+    "male": "את"
+  }
 }
