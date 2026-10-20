@@ -1,0 +1,65 @@
+import 'package:easy_birthday/core/constants/app_constants.dart';
+import 'package:easy_birthday/core/constants/app_text_styles.dart';
+import 'package:easy_birthday/core/utils/i18n/strings.g.dart';
+import 'package:easy_birthday/core/utils/routing/routing.dart';
+import 'package:easy_birthday/core/widgets/general/app_buttons_bottom_navigation_bar.dart';
+import 'package:easy_birthday/core/widgets/general/appbar.dart';
+import 'package:easy_birthday/features/category_display/presentation/widgets/confetti_widget.dart';
+import 'package:easy_birthday/features/category_display/presentation/widgets/dual_number_circular_progress.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+
+/// `extra` for [Routing.doneQuiz]; only pushed from inside this feature.
+typedef DoneQuizExtra = ({int score, int numOfQuestions});
+
+class DoneQuizScreen extends StatelessWidget {
+  final int score;
+  final int numOfQuestions;
+  const DoneQuizScreen({
+    super.key,
+    required this.score,
+    required this.numOfQuestions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: appAppBar(title: t.quiz_game_done),
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          const ScreenConfettiWidget(),
+          Center(
+            // Scrolls instead of overflowing on short screens.
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(t.quiz_game_done, style: AppTextStyle().title),
+                  SvgPicture.asset(partyIllustrations, height: 300),
+                  DualNumberCircularProgress(
+                    activeNumber: score,
+                    totalNumber: numOfQuestions,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    t.you_answer_from(
+                      answers: score,
+                      questions: numOfQuestions,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: AppButtonsBottomNavigationBar(
+        oneButton: true,
+        activeButtonText: t.exit,
+        activeButtonOnTap: () => context.goNamed(Routing.home),
+      ),
+    );
+  }
+}

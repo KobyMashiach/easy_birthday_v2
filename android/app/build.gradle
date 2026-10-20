@@ -1,16 +1,9 @@
 plugins {
     id "com.android.application"
-    id 'com.google.gms.google-services' 
+    id "com.google.gms.google-services"
     id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin" 
-}
-
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file("local.properties")
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader("UTF-8") { reader ->
-        localProperties.load(reader)
-    }
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
 }
 
 def keystoreProperties = new Properties()
@@ -21,20 +14,10 @@ if (keystorePropertiesFile.exists()) {
     }
 }
 
-
-def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
-if (flutterVersionCode == null) {
-    flutterVersionCode = "1"
-}
-
-def flutterVersionName = localProperties.getProperty("flutter.versionName")
-if (flutterVersionName == null) {
-    flutterVersionName = "1.0"
-}
-
 android {
     namespace = "com.KHEasyDev.easy_birthday"
-    compileSdk = 34
+    // Google Play requires targeting Android 16 (API 36).
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -45,41 +28,39 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    
+
     defaultConfig {
         applicationId = "com.KHEasyDev.easy_birthday"
+        // Play Billing Library 8+ and current Firebase SDKs require API 23+.
         minSdk = 24
-        targetSdk = 34
-        versionCode = flutterVersionCode.toInteger()
-        versionName = flutterVersionName
+        targetSdk = 36
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     signingConfigs {
         release {
-           keyAlias keystoreProperties['keyAlias']
-           keyPassword keystoreProperties['keyPassword']
-           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-           storePassword keystoreProperties['storePassword']
+            if (keystorePropertiesFile.exists()) {
+                keyAlias = keystoreProperties["keyAlias"]
+                keyPassword = keystoreProperties["keyPassword"]
+                storeFile = keystoreProperties["storeFile"] ? file(keystoreProperties["storeFile"]) : null
+                storePassword = keystoreProperties["storePassword"]
+            }
         }
     }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.release
+            // Falls back to debug signing when key.properties is absent so
+            // local release builds still work; Play uploads need the real key.
+            signingConfig = keystorePropertiesFile.exists() ? signingConfigs.release : signingConfigs.debug
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 }
 
 flutter {
     source = "../.."
-}
-
-dependencies {
-    implementation platform('com.google.firebase:firebase-bom:32.5.0')
-    implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.1.2'
-    implementation 'com.google.firebase:firebase-appcheck-debug:16.1.2'
-    implementation platform('com.google.firebase:firebase-bom:33.2.0')
-    implementation 'com.google.firebase:firebase-auth'
 }

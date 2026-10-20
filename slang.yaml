@@ -1,6 +1,6 @@
 base_locale: en
-input_directory: lib/i18n
-output_directory: lib/i18n
+input_directory: lib/core/utils/i18n
+output_directory: lib/core/utils/i18n
 use_redundant_keys: true
 
 languages:

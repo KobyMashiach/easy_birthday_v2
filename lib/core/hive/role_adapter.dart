@@ -1,5 +1,5 @@
-import 'package:easy_birthday/models/persona_model/role_model.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:easy_birthday/features/user/data/models/role_model.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 class RoleModelAdapter extends TypeAdapter<RoleModel> {
   @override
