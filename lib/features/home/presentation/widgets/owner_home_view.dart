@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -153,23 +152,26 @@ class OwnerHomeScreen extends StatelessWidget {
 
           return Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: AppColors.softFill,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: Colors.black, width: 2),
             ),
             clipBehavior: Clip.hardEdge,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(22),
               child: pictures
                   ? CachedNetworkImage(
                       imageUrl: mediaUrl,
                       fit: BoxFit.cover,
                       memCacheWidth: cacheWidth,
                       placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator.adaptive(),
+                        child: CircularProgressIndicator(),
                       ),
-                      errorWidget: (context, url, error) => const Icon(
-                        Icons.image_not_supported_outlined,
-                        color: AppColors.inkSecondary,
+                      errorWidget: (context, url, error) => Container(
+                        color: Colors.grey,
+                        child: const Icon(
+                          Icons.image_not_supported,
+                          color: Colors.white,
+                        ),
                       ),
                     )
                   : VideoThumbnailWidget(videoUrl: mediaUrl),
@@ -203,23 +205,22 @@ class OwnerHomeScreen extends StatelessWidget {
           return const SizedBox(height: 28);
         }
         final category = categories[index];
-        return DecoratedBox(
+        return Container(
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: AppColors.hairline),
-            boxShadow: [
+            color: AppColors.primaryColor,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: const [
               BoxShadow(
-                color: AppColors.primaryColor.withValues(alpha: 0.10),
-                blurRadius: 18,
-                offset: const Offset(0, 6),
+                color: Colors.black12,
+                blurRadius: 6,
+                offset: Offset(0, 3),
               ),
             ],
           ),
           child: categoryCardWidget(context, category, bloc),
         );
       },
-      separatorBuilder: (context, index) => const SizedBox(height: 14),
+      separatorBuilder: (context, index) => const SizedBox(height: 24),
       itemCount: categories.length + 1,
     );
   }
@@ -230,57 +231,20 @@ class OwnerHomeScreen extends StatelessWidget {
     HomeBloc bloc,
   ) {
     return ListTile(
-      minTileHeight: 76,
-      contentPadding: const EdgeInsetsDirectional.only(start: 14, end: 8),
-      leading: Container(
-        width: 52,
-        height: 52,
-        padding: const EdgeInsets.all(6),
-        decoration: BoxDecoration(
-          color: AppColors.softFill,
-          borderRadius: BorderRadius.circular(16),
+      leading: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.sizeOf(context).width * 0.7,
         ),
-        child: SvgPicture.asset(category.categoryType.getImage()),
-      ),
-      title: Text(
-        category.displayTitle,
-        style: AppTextStyle().description.copyWith(
-          fontWeight: FontWeight.bold,
-          color: AppColors.ink,
-          height: 1.1,
-        ),
-        overflow: TextOverflow.ellipsis,
-        maxLines: 1,
-      ),
-      subtitle: Row(
-        children: [
-          Flexible(
-            child: Text(
-              category.name,
-              style: AppTextStyle().smallDescription.copyWith(
-                color: AppColors.inkSecondary,
-                height: 1.1,
-              ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
+        child: Text(
+          category.displayTitle,
+          style: AppTextStyle().description.copyWith(
+            fontWeight: FontWeight.bold,
           ),
-          if (category.lock) ...[
-            const SizedBox(width: 6),
-            const Icon(
-              Icons.lock_outline,
-              size: 16,
-              color: AppColors.inkSecondary,
-            ),
-          ],
-        ],
-      ),
-      trailing: IconButton.filledTonal(
-        style: IconButton.styleFrom(
-          backgroundColor: AppColors.softFill,
-          foregroundColor: AppColors.accentOnLight,
-          minimumSize: const Size(44, 44),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
         ),
+      ),
+      trailing: IconButton(
         onPressed: () async {
           final Size screenSize = MediaQuery.sizeOf(context);
           final selectedAction = await selectedActionOnEyeDialog(

@@ -30,6 +30,7 @@ class _SplashViewState extends State<_SplashView> {
   bool _isVisible = false;
   bool _canNavigate = false;
   bool _navigated = false;
+  Timer? _fadeInTimer;
   Timer? _minimumDisplayTimer;
 
   void _checkNavigationCondition() {
@@ -61,12 +62,12 @@ class _SplashViewState extends State<_SplashView> {
   @override
   void initState() {
     super.initState();
-    // Fade the logo in on the next frame, and keep the splash up only long
-    // enough to avoid a flash; navigation happens as soon as data is ready.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    // Fade the logo in after a short delay, and keep the splash up until the
+    // fade has finished.
+    _fadeInTimer = Timer(const Duration(milliseconds: 500), () {
       if (mounted) setState(() => _isVisible = true);
     });
-    _minimumDisplayTimer = Timer(const Duration(milliseconds: 1200), () {
+    _minimumDisplayTimer = Timer(const Duration(seconds: 3), () {
       if (!mounted) return;
       _canNavigate = true;
       _checkNavigationCondition();
@@ -75,6 +76,7 @@ class _SplashViewState extends State<_SplashView> {
 
   @override
   void dispose() {
+    _fadeInTimer?.cancel();
     _minimumDisplayTimer?.cancel();
     super.dispose();
   }
@@ -86,44 +88,37 @@ class _SplashViewState extends State<_SplashView> {
       buildWhen: (previous, current) => !current.isOneShot,
       listener: (context, state) => _checkNavigationCondition(),
       builder: (context, state) {
-        return DecoratedBox(
+        return Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [AppColors.background, AppColors.softFill],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              colors: [AppColors.primaryColor, AppColors.shadowColor],
+              begin: const FractionalOffset(0, 0),
+              end: const FractionalOffset(1.0, 1.0),
+              stops: const [0.0, 1.0],
+              tileMode: TileMode.clamp,
             ),
           ),
-          child: Center(
-            child: AnimatedOpacity(
-              opacity: _isVisible ? 1.0 : 0,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeOut,
-              child: AnimatedScale(
-                scale: _isVisible ? 1.0 : 0.92,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeOutCubic,
-                child: Container(
-                  width: 148,
-                  height: 148,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(36),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primaryColor.withValues(alpha: 0.30),
-                        blurRadius: 40,
-                        offset: const Offset(0, 16),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(36),
-                    child: Image.asset(
-                      "assets/logo.png",
-                      fit: BoxFit.cover,
-                      cacheWidth: 450,
+          child: AnimatedOpacity(
+            opacity: _isVisible ? 1.0 : 0,
+            duration: const Duration(milliseconds: 2200),
+            child: Center(
+              child: Container(
+                height: MediaQuery.sizeOf(context).height,
+                width: MediaQuery.sizeOf(context).width / 1.1,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.disableColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.3),
+                      blurRadius: 2.0,
+                      offset: const Offset(5.0, 3.0),
+                      spreadRadius: 2.0,
                     ),
-                  ),
+                  ],
+                ),
+                child: Center(
+                  child: ClipOval(child: Image.asset("assets/logo.png")),
                 ),
               ),
             ),

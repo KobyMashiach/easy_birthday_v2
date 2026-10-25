@@ -53,7 +53,7 @@ class _WearOSLoginPageState extends State<WearOSLoginPage> {
                 textAlign: TextAlign.center,
               ),
               state.status == .loginSuccessful
-                  ? const CircularProgressIndicator.adaptive()
+                  ? const CircularProgressIndicator()
                   : ElevatedButton(
                       onPressed: state is Loading
                           ? null

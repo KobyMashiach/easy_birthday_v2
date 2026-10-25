@@ -84,7 +84,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
               ? const Center(
                   child: Icon(Icons.image_not_supported, color: Colors.white),
                 )
-              : const Center(child: CircularProgressIndicator.adaptive()),
+              : const Center(child: CircularProgressIndicator()),
           _isInitialized
               ? Align(
                   alignment: Alignment.center,

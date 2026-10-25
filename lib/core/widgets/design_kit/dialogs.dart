@@ -363,7 +363,6 @@ class KhEasydevDialogV2 extends StatelessWidget {
                         if (buttons == null && !noButtons) ...[
                           Expanded(
                             child: kheasydevAppButton(
-                              classic: true,
                               text: okButtonText ?? "OK",
                               textSize: buttonsTextSize,
                               primaryColor: primaryColor,
@@ -375,7 +374,6 @@ class KhEasydevDialogV2 extends StatelessWidget {
                           if (!oneButton)
                             Expanded(
                               child: kheasydevAppButton(
-                                classic: true,
                                 text: cancelButtonText ?? "Cancel",
                                 textSize: buttonsTextSize,
                                 primaryColor: primaryColor,

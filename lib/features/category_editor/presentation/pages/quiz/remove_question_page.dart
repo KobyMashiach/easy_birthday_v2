@@ -92,7 +92,7 @@ class _RemoveQuestionScreenState extends State<RemoveQuestionScreen> {
       children: [
         Expanded(
           flex: 1,
-          child: Checkbox.adaptive(
+          child: Checkbox(
             value: checkBoxes[index],
             activeColor: AppColors.primaryColor,
             onChanged: (value) => setState(() {

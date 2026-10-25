@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const CircularProgressIndicator.adaptive(),
+                      const CircularProgressIndicator(),
                       if (text != null) ...[
                         const SizedBox(height: 12),
                         Text(text),

@@ -212,7 +212,7 @@ class _AddPicturesVideosScreenState extends State<AddPicturesVideosScreen> {
               ),
               Row(
                 children: [
-                  Checkbox.adaptive(
+                  Checkbox(
                     value: isMarkAllChecked,
                     activeColor: AppColors.primaryColor,
                     onChanged: (value) {

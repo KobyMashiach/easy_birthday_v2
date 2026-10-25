@@ -17,7 +17,8 @@ AppBar appAppBar({
     title: title,
     logoPath: 'assets/logo.png',
     primaryColor: AppColors.primaryColor,
-    titleColor: AppColors.ink,
+    shadowColor: AppColors.shadowColor,
+    titleColor: Colors.white,
     actions: actions,
     developerRoute: SessionService().user.role.isAdmin()
         ? Routing.developer
@@ -26,7 +27,7 @@ AppBar appAppBar({
         ? IconButton(
             tooltip: t.back,
             onPressed: onBackButtonPressed,
-            icon: Icon(Icons.adaptive.arrow_back),
+            icon: const Icon(Icons.arrow_back),
           )
         : null,
     context: context ?? rootNavigatorKey.currentContext,

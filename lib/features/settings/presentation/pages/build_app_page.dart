@@ -69,7 +69,7 @@ class _BuildAppPageState extends State<BuildAppPage>
                   SizedBox(
                     width: 100,
                     height: 100,
-                    child: CircularProgressIndicator.adaptive(
+                    child: CircularProgressIndicator(
                       strokeWidth: 15.0,
                       value: _controller.value,
                       backgroundColor: AppColors.disableColor,

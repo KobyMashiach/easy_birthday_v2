@@ -100,7 +100,7 @@ class _VideoThumbnailWidgetState extends State<VideoThumbnailWidget> {
       // No endless spinner when the frame can't be extracted.
       child: _failed
           ? const Icon(Icons.videocam_outlined, color: Colors.grey)
-          : const CircularProgressIndicator.adaptive(),
+          : const CircularProgressIndicator(),
     );
   }
 }

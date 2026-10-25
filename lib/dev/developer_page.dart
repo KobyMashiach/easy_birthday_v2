@@ -199,10 +199,12 @@ class DeveloperScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final _DevOption option = options[index];
             return Card(
-              child: ListTile(
-                leading: Icon(option.icon),
-                title: Text(option.title),
+              child: GestureDetector(
                 onTap: option.onTap,
+                child: ListTile(
+                  leading: Icon(option.icon),
+                  title: Text(option.title),
+                ),
               ),
             );
           },

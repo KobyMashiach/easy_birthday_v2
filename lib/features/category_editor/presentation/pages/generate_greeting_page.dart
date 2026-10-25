@@ -88,7 +88,7 @@ class _GenerateGreetingViewState extends State<_GenerateGreetingView> {
     return Scaffold(
       appBar: appAppBar(title: t.create_greeting_using_ai),
       body: loading
-          ? const Center(child: CircularProgressIndicator.adaptive())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Column(
                 children: [

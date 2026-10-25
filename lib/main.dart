@@ -21,7 +21,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -106,8 +105,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.background,
-        canvasColor: AppColors.background,
+        scaffoldBackgroundColor: Colors.grey[100],
         fontFamily: GoogleFonts.amaticSc(
           fontWeight: FontWeight.bold,
         ).fontFamily,
@@ -122,53 +120,8 @@ class MyApp extends StatelessWidget {
             textStyle: const TextStyle(fontSize: 20),
           ),
         ),
-        // Same seed as before so Material buttons/dialogs keep their
-        // original colors.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
-        // Light, modern surfaces: flat white cards with soft corners and
-        // a hairline instead of heavy shadows.
-        cardTheme: const CardThemeData(
-          color: Colors.white,
-          elevation: 0,
-          margin: EdgeInsets.symmetric(vertical: 4),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            side: BorderSide(color: AppColors.hairline),
-          ),
-        ),
-        listTileTheme: const ListTileThemeData(
-          iconColor: AppColors.inkSecondary,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20),
-        ),
-        dividerTheme: const DividerThemeData(
-          color: AppColors.hairline,
-          thickness: 1,
-          space: 1,
-        ),
-        snackBarTheme: SnackBarThemeData(
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: AppColors.ink,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-          ),
-        ),
-        progressIndicatorTheme: ProgressIndicatorThemeData(
-          color: AppColors.accentOnLight,
-        ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: AppColors.primaryColor,
-          foregroundColor: Colors.white,
-          elevation: 2,
-          shape: const StadiumBorder(),
-        ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent,
-          foregroundColor: AppColors.ink,
-          elevation: 0,
-          // Dark status-bar icons on the light background.
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-        ),
         // iOS: no Material ink ripples (Apple uses highlight/press
         // feedback), native slide transitions with edge-swipe back, and
         // Cupertino controls tinted with the app color.

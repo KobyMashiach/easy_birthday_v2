@@ -114,7 +114,7 @@ class _WearOsCategoriesState extends State<WearOsCategories> {
                       child: event == null
                           ? state is LoadFailed
                                 ? Text(t.operation_not_allowed)
-                                : const CircularProgressIndicator.adaptive()
+                                : const CircularProgressIndicator()
                           : event.categories.isEmpty
                           ? Text(t.no_category_added)
                           : ListView.separated(

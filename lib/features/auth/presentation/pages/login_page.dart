@@ -274,7 +274,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.symmetric(vertical: 24),
               child: Center(
                 child: state is Loading
-                    ? const CircularProgressIndicator.adaptive()
+                    ? const CircularProgressIndicator()
                     : Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

@@ -27,7 +27,7 @@ class AppNetworkImage extends StatelessWidget {
       memCacheWidth: memCacheWidth,
       memCacheHeight: memCacheHeight,
       placeholder: (context, url) =>
-          const Center(child: CircularProgressIndicator.adaptive()),
+          const Center(child: CircularProgressIndicator()),
       errorWidget: (context, url, error) => Container(
         color: Colors.grey,
         child: const Icon(Icons.image_not_supported, color: Colors.white),

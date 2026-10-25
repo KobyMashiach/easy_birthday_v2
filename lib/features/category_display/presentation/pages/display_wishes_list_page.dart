@@ -70,14 +70,14 @@ class _DisplayWishesListState extends State<DisplayWishesList> {
               children: [
                 DisplayScreensTop(category: widget.category),
                 wishesList.lock
-                    // At least a screen high (texts at the top, as before) but
-                    // grows instead of overflowing in landscape / large text.
+                    // At least a screen high (texts vertically centered, as
+                    // before) but grows instead of overflowing in landscape /
+                    // large text.
                     ? ConstrainedBox(
                         constraints: BoxConstraints(
                           minHeight: MediaQuery.sizeOf(context).height,
                         ),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Expanded lets long texts wrap instead of
                             // overflowing the row.

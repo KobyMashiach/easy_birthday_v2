@@ -1,7 +1,6 @@
 import 'package:easy_birthday/core/constants/app_text_styles.dart';
 import 'package:easy_birthday/core/utils/countries/countries_model.dart';
 import 'package:easy_birthday/core/utils/countries/countries_list.dart';
-import 'package:easy_birthday/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_birthday/core/widgets/design_kit/design_kit.dart';
 
@@ -164,8 +163,9 @@ class _CountriesCodesDropdownState extends State<CountriesCodesDropdown> {
             height: 55,
             padding: const EdgeInsets.symmetric(horizontal: 4),
             decoration: BoxDecoration(
-              color: AppColors.softFill,
-              borderRadius: BorderRadius.circular(18.0),
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade400),
+              borderRadius: BorderRadius.circular(32.0),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

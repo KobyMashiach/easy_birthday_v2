@@ -104,7 +104,7 @@ class _QuizWidgetState extends State<QuizWidget> {
                 memCacheHeight: 450,
                 placeholder: (context, url) => const SizedBox(
                   height: 150,
-                  child: Center(child: CircularProgressIndicator.adaptive()),
+                  child: Center(child: CircularProgressIndicator()),
                 ),
                 errorWidget: (context, url, error) => const SizedBox(
                   height: 150,

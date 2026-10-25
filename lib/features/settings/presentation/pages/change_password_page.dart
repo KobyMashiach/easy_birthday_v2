@@ -124,7 +124,7 @@ class _ChangePasswordViewState extends State<_ChangePasswordView> {
           body: Padding(
             padding: const EdgeInsets.all(12),
             child: state is Loading
-                ? const Center(child: CircularProgressIndicator.adaptive())
+                ? const Center(child: CircularProgressIndicator())
                 // Scrolls so the fields stay reachable above the keyboard.
                 : SingleChildScrollView(
                     child: Column(

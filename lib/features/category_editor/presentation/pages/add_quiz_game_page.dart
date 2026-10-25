@@ -92,7 +92,7 @@ class _AddQuizGameViewState extends State<_AddQuizGameView> {
     return Scaffold(
       appBar: appAppBar(title: t.quiz_game),
       body: loading
-          ? const Center(child: CircularProgressIndicator.adaptive())
+          ? const Center(child: CircularProgressIndicator())
           : Padding(
               padding: const EdgeInsets.all(24),
               child: SingleChildScrollView(

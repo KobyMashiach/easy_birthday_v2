@@ -1,19 +1,10 @@
-import 'package:easy_birthday/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
-  TextStyle get bigTitle => const TextStyle(
-    fontSize: 44,
-    fontWeight: FontWeight.bold,
-    height: 1.1,
-    color: AppColors.ink,
-  );
-  TextStyle get title => const TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.bold,
-    height: 1.15,
-    color: AppColors.ink,
-  );
+  TextStyle get bigTitle =>
+      const TextStyle(fontSize: 48, fontWeight: FontWeight.bold);
+  TextStyle get title =>
+      const TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
   TextStyle get subTitle =>
       const TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
   TextStyle get description => const TextStyle(fontSize: 24);

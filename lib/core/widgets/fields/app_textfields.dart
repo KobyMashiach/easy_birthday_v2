@@ -63,7 +63,7 @@ class _AppTextFieldState extends State<AppTextField> {
               maxLength: widget.maxLength,
               maxLines: widget.maxLines ?? 1,
               textInputAction: widget.textInputAction,
-              style: const TextStyle(color: AppColors.ink),
+              style: const TextStyle(color: Colors.black),
               controller: widget.controller,
               obscureText: checkPassword ? !_passwordVisible : false,
               keyboardType: widget.keyboard ?? TextInputType.text,
@@ -95,40 +95,24 @@ class _AppTextFieldState extends State<AppTextField> {
                     if (widget.child != null) widget.child!,
                   ],
                 ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 14,
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: widget.showError == true
-                      ? const BorderSide(color: AppColors.error, width: 1.2)
-                      : BorderSide.none,
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(18.0),
+                  borderSide: BorderSide(
+                    color: widget.showError == true
+                        ? AppColors.error
+                        : Colors.grey.shade400,
+                  ),
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.accentOnLight,
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(18.0),
+                  borderSide: const BorderSide(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
-                fillColor: AppColors.softFill,
+                fillColor: Colors.white,
                 filled: true,
                 hintText: widget.isRequired
                     ? "${widget.hintText} *"
                     : widget.hintText,
-                hintStyle: const TextStyle(
-                  color: AppColors.inkSecondary,
-                  fontSize: 24,
-                ),
+                hintStyle: TextStyle(color: Colors.grey[500], fontSize: 24),
               ),
             ),
           ),

@@ -325,9 +325,9 @@ Widget _buttons(
       left: !isRtl ? screenWidth * 0.05 : 0,
     ),
     child: Builder(
-      builder: (buttonContext) => InkWell(
+      builder: (buttonContext) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: onTap == null ? null : () => onTap(buttonContext),
-        borderRadius: BorderRadius.circular(12),
         child: ConstrainedBox(
           constraints: const BoxConstraints(minHeight: 44),
           child: Row(

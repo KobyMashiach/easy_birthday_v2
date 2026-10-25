@@ -240,7 +240,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ],
             ),
             body: state is Loading
-                ? const Center(child: CircularProgressIndicator.adaptive())
+                ? const Center(child: CircularProgressIndicator())
                 : Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24),
                     child: Center(

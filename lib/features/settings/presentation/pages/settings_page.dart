@@ -213,8 +213,6 @@ class SettingsScreen extends StatelessWidget {
           builder: (context, state) {
             final bloc = context.read<SettingsBloc>();
             final settingOptions = _settingsOptions(context, bloc);
-            final bool isApple =
-                Theme.of(context).platform == TargetPlatform.iOS;
 
             return Scaffold(
               appBar: appAppBar(title: t.settings),
@@ -227,28 +225,18 @@ class SettingsScreen extends StatelessWidget {
                       const SizedBox(height: 5),
                   itemBuilder: (context, index) {
                     final option = settingOptions[index];
-                    final bool destructive = option.destructive;
-                    final Color? tint = destructive
+                    final Color? tint = option.destructive
                         ? CupertinoColors.destructiveRed
                         : null;
                     return Card(
-                      clipBehavior: Clip.antiAlias,
-                      child: ListTile(
-                        minTileHeight: 52,
+                      child: GestureDetector(
                         onTap: option.onTap,
-                        leading: Icon(option.icon, color: tint),
-                        iconColor: tint,
-                        textColor: tint,
-                        title: Text(option.title),
-                        trailing:
-                            option.hint ??
-                            (isApple && !destructive
-                                ? const Icon(
-                                    CupertinoIcons.chevron_forward,
-                                    size: 18,
-                                    color: CupertinoColors.systemGrey2,
-                                  )
-                                : null),
+                        child: ListTile(
+                          leading: Icon(option.icon, color: tint),
+                          textColor: tint,
+                          title: Text(option.title),
+                          trailing: option.hint,
+                        ),
                       ),
                     );
                   },

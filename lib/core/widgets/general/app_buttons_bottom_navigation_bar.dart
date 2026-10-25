@@ -1,6 +1,5 @@
 import 'package:easy_birthday/core/utils/i18n/strings.g.dart';
 import 'package:easy_birthday/core/widgets/buttons/app_button.dart';
-import 'package:easy_birthday/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButtonsBottomNavigationBar extends StatelessWidget {
@@ -28,23 +27,24 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Container(
+      width: MediaQuery.sizeOf(context).width,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.96),
-        border: const Border(top: BorderSide(color: AppColors.hairline)),
+        color: Colors.white,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 20,
-            offset: const Offset(0, -4),
+            color: Colors.black.withValues(alpha: 0.5),
+            spreadRadius: 0,
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: SafeArea(
         top: false,
-        minimum: const EdgeInsets.only(bottom: 12),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -58,7 +58,7 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
                         () => Navigator.of(context).maybePop(),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 40),
               ],
               if (middleButton) ...[
                 Expanded(
@@ -70,7 +70,7 @@ class AppButtonsBottomNavigationBar extends StatelessWidget {
                         () => Navigator.of(context).maybePop(),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 40),
               ],
               Expanded(
                 child: appButton(

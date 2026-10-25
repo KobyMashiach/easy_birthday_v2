@@ -68,7 +68,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
               children: [
                 Row(
                   children: [
-                    Checkbox.adaptive(
+                    Checkbox(
                       value: trueOrFalseQuestion,
                       activeColor: AppColors.primaryColor,
                       onChanged: (value) => setState(
@@ -208,7 +208,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
       children: [
         Expanded(
           flex: 1,
-          child: Checkbox.adaptive(
+          child: Checkbox(
             activeColor: AppColors.primaryColor,
             value: correctAnswer == index,
             onChanged: (value) => setState(() {
