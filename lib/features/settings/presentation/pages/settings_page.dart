@@ -10,6 +10,7 @@ import 'package:easy_birthday/core/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/core/widgets/general/appbar.dart';
 import 'package:easy_birthday/core/widgets/general/app_on_will_pop.dart';
 import 'package:easy_birthday/core/widgets/general/side_menu_v2.dart';
+import 'package:easy_birthday/features/event/data/models/child_model.dart';
 import 'package:easy_birthday/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:easy_birthday/features/user/data/models/role_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -60,6 +61,18 @@ class SettingsScreen extends StatelessWidget {
               bloc.add(.changeLanguage(languageCode)),
         ),
       ),
+    ),
+    _SettingOption(
+      title: t.children,
+      icon: Icons.child_care_outlined,
+      hint: Text(
+        [
+          for (final ChildModel child
+              in SessionService().event?.children ?? const <ChildModel>[])
+            child.emoji,
+        ].join(),
+      ),
+      onTap: () => context.pushNamed(Routing.children),
     ),
     _SettingOption(
       title: t.change_password,

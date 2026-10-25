@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_birthday/core/constants/app_colors.dart';
 import 'package:easy_birthday/core/constants/app_text_styles.dart';
 import 'package:easy_birthday/core/utils/i18n/strings.g.dart';
 import 'package:easy_birthday/core/utils/routing/routing.dart';
-import 'package:easy_birthday/core/widgets/design_kit/design_kit.dart';
 import 'package:easy_birthday/features/category_display/presentation/pages/done_quiz_page.dart';
 import 'package:easy_birthday/features/category_display/presentation/widgets/quiz/options_widget.dart';
 import 'package:easy_birthday/features/event/data/models/question_model.dart';
@@ -66,12 +66,31 @@ class _QuizWidgetState extends State<QuizWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           Text(
             '${t.question} ${_questionNumber > questionsList.length ? questionsList.length : _questionNumber}/${questionsList.length}',
             style: AppTextStyle().title,
           ),
-          kheasydevDivider(black: true),
+          const SizedBox(height: 8),
+          TweenAnimationBuilder<double>(
+            tween: Tween(
+              end:
+                  (_questionNumber - 1).clamp(0, questionsList.length) /
+                  (questionsList.isEmpty ? 1 : questionsList.length),
+            ),
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeOutCubic,
+            builder: (context, value, _) => ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: LinearProgressIndicator(
+                value: value,
+                minHeight: 10,
+                color: AppColors.disableColor,
+                backgroundColor: Colors.black12,
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
           Expanded(
             child: PageView.builder(
               itemCount: questionsList.length,
@@ -113,6 +132,20 @@ class _QuizWidgetState extends State<QuizWidget> {
               ),
             ),
           Text(question.text, style: const TextStyle(fontSize: 24)),
+          if (question.isLocked)
+            Center(
+              child: TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: 1),
+                duration: const Duration(milliseconds: 700),
+                curve: Curves.elasticOut,
+                builder: (context, v, child) =>
+                    Transform.scale(scale: v, child: child),
+                child: Text(
+                  question.selectedOption?.isCorrect ?? false ? "🎉" : "🙈",
+                  style: const TextStyle(fontSize: 44),
+                ),
+              ),
+            ),
           OptionsWidget(
             question: question,
             onClickedOption: (option) {

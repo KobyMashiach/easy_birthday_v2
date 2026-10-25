@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_birthday/features/event/data/models/category_model.dart';
+import 'package:easy_birthday/features/event/data/models/child_model.dart';
 import 'package:easy_birthday/features/event/data/models/event_model.dart';
 import 'package:easy_birthday/features/event/data/models/plan_model.dart';
 
@@ -30,6 +31,9 @@ abstract class EventRepository {
   /// partner changed meanwhile can be overwritten.
   Future<void> updatePlan(EventModel event, PlanModel plan);
 
+  /// Writes only the event's children (settings), for the same reason.
+  Future<void> updateChildren(List<ChildModel> children);
+
   /// These change one category on the latest server copy of the event's
   /// `categories` (atomically), so the owner's and the partner's concurrent
   /// edits of different categories both survive.
@@ -46,6 +50,10 @@ abstract class EventRepository {
     CategoryModel Function(CategoryModel latest) change,
   );
   Future<void> deleteCategory(CategoryModel category);
+
+  /// Puts the categories in the order of [ids]; any category missing from
+  /// [ids] (e.g. just added on the other phone) keeps its place after them.
+  Future<void> reorderCategories(List<String> ids);
 
   /// The category as it is now in the session's event (it may have changed
   /// since a screen captured it).

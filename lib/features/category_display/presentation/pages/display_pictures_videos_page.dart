@@ -1,3 +1,4 @@
+import 'package:easy_birthday/core/widgets/animations/staggered_entrance.dart';
 import 'package:easy_birthday/core/widgets/dialogs/general_dialog.dart';
 import 'package:easy_birthday/core/widgets/general/appbar.dart';
 import 'package:easy_birthday/core/widgets/general/video_thumbnail_widget.dart';
@@ -31,24 +32,44 @@ class _DisplayPicturesVideosScreenState
               MediaQuery.devicePixelRatioOf(context))
           .round();
 
+  /// A Polaroid: white frame, wider at the bottom, slightly tilted (each
+  /// one its own way), popping in one after the other.
   Widget imageContainer(Widget child, int index) {
-    return GestureDetector(
-      onTap: () => _showImageDialog(index),
-      child: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
-            border: Border.all(
-              color: Colors.black,
-              width: 2,
+    return StaggeredEntrance(
+      index: index,
+      fromScale: 0.6,
+      from: Offset.zero,
+      child: Transform.rotate(
+        angle: ((index * 7) % 5 - 2) * 0.03,
+        child: PressableScale(
+          onTap: () => _showImageDialog(index),
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(5, 5, 5, 16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 6,
+                  offset: Offset(0, 3),
+                ),
+              ],
             ),
-          ),
-          clipBehavior: Clip.hardEdge,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(22),
-            child: child,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                ClipRRect(borderRadius: BorderRadius.circular(2), child: child),
+                if (!widget.isImages)
+                  const Center(
+                    child: CircleAvatar(
+                      radius: 16,
+                      backgroundColor: Colors.black45,
+                      child: Icon(Icons.play_arrow, color: Colors.white),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -67,10 +88,12 @@ class _DisplayPicturesVideosScreenState
         child: DisplayScreenLayout(
           category: widget.category,
           body: GridView.builder(
+            padding: const EdgeInsets.all(8),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              crossAxisSpacing: 8.0,
-              mainAxisSpacing: 8.0,
+              crossAxisCount: 3,
+              crossAxisSpacing: 14.0,
+              mainAxisSpacing: 14.0,
+              childAspectRatio: 0.85,
             ),
             itemCount: mediaUrls.length,
             itemBuilder: (context, index) {

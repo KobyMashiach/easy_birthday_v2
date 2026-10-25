@@ -7,8 +7,10 @@ import 'package:easy_birthday/features/auth/data/datasources/auth_remote_data_so
 import 'package:easy_birthday/features/auth/domain/repositories/auth_repository.dart';
 import 'package:easy_birthday/features/event/data/datasources/event_remote_data_source.dart';
 import 'package:easy_birthday/features/event/data/models/category_model.dart';
+import 'package:easy_birthday/features/event/data/models/child_model.dart';
 import 'package:easy_birthday/features/event/data/models/event_model.dart';
 import 'package:easy_birthday/features/event/data/models/plan_model.dart';
+import 'package:easy_birthday/features/event/data/repositories_impl/event_repository_impl.dart';
 import 'package:easy_birthday/features/event/domain/repositories/event_repository.dart';
 import 'package:easy_birthday/features/settings/data/datasources/app_settings_local_data_source.dart';
 import 'package:easy_birthday/features/settings/data/models/app_settings_model.dart';
@@ -85,6 +87,15 @@ class FakeEventRepository implements EventRepository {
   }
 
   @override
+  Future<void> updateChildren(List<ChildModel> children) async {
+    if (updateError != null) throw updateError!;
+    final updated = _session.event!.copyWith(children: children);
+    _session.event = updated;
+    updatedEvents.add(updated);
+    log.add('updateChildren');
+  }
+
+  @override
   Future<CategoryModel> addCategory(CategoryModel category) async {
     final added = category.copyWith(id: 'new-${category.name}');
     _session.event = _session.event!.copyWith(
@@ -122,6 +133,15 @@ class FakeEventRepository implements EventRepository {
           .toList(),
     );
     log.add('deleteCategory:${category.id}');
+  }
+
+  @override
+  Future<void> reorderCategories(List<String> ids) async {
+    if (updateError != null) throw updateError!;
+    _session.event = _session.event!.copyWith(
+      categories: orderCategories(_session.event!.categories, ids),
+    );
+    log.add('reorder:${ids.join(',')}');
   }
 
   @override

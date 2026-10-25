@@ -3,7 +3,10 @@
 import 'package:easy_birthday/features/event/data/models/memory_game_model.dart';
 import 'package:easy_birthday/features/event/data/models/calendar_model.dart';
 import 'package:easy_birthday/features/event/data/models/category_converters_json.dart';
+import 'package:easy_birthday/features/event/data/models/look_alike_model.dart';
+import 'package:easy_birthday/features/event/data/models/milestone_model.dart';
 import 'package:easy_birthday/features/event/data/models/question_model.dart';
+import 'package:easy_birthday/features/event/data/models/time_capsule_model.dart';
 import 'package:easy_birthday/features/event/data/models/wishes_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'category_enum.dart';
@@ -30,6 +33,15 @@ sealed class CategoryModel with _$CategoryModel {
     @Default(0) int quizGameScore,
     @Default("Free") String inPlan,
     @MemoryConverter() MemoryGameModel? memoryGame,
+
+    /// The children a family category is about (`EventModel.children`).
+    @Default([]) List<String> childIds,
+    @TimeCapsuleConverter() TimeCapsuleModel? timeCapsule,
+
+    /// Daily averages by `ParentStat.name`.
+    Map<String, double>? parentStats,
+    @MilestoneListConverter() List<MilestoneModel>? milestones,
+    @LookAlikeConverter() LookAlikeModel? lookAlike,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

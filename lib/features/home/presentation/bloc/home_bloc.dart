@@ -9,7 +9,10 @@ import 'package:easy_birthday/features/event/data/models/calendar_model.dart';
 import 'package:easy_birthday/features/event/data/models/category_enum.dart';
 import 'package:easy_birthday/features/event/data/models/category_model.dart';
 import 'package:easy_birthday/features/event/data/models/event_model.dart';
+import 'package:easy_birthday/features/event/data/models/look_alike_model.dart';
+import 'package:easy_birthday/features/event/data/models/milestone_model.dart';
 import 'package:easy_birthday/features/event/data/models/question_model.dart';
+import 'package:easy_birthday/features/event/data/models/time_capsule_model.dart';
 import 'package:easy_birthday/features/event/data/models/wishes_model.dart';
 import 'package:easy_birthday/features/event/domain/usecases/add_category_files_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/add_category_usecase.dart';
@@ -17,6 +20,7 @@ import 'package:easy_birthday/features/event/domain/usecases/delete_category_fil
 import 'package:easy_birthday/features/event/domain/usecases/delete_category_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/delete_media_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/get_current_category_usecase.dart';
+import 'package:easy_birthday/features/event/domain/usecases/reorder_categories_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/replace_memory_game_images_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/update_category_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/upload_category_files_usecase.dart';
@@ -38,6 +42,10 @@ sealed class HomeEvent with _$HomeEvent {
   const factory HomeEvent.changeTitle(CategoryModel category) = _ChangeTitle;
   const factory HomeEvent.deleteCategory(CategoryModel category) =
       _DeleteCategory;
+
+  /// The owner dragged the categories into this order (category ids).
+  const factory HomeEvent.reorderCategories(List<String> ids) =
+      _ReorderCategories;
   const factory HomeEvent.saveText(CategoryModel category, String text) =
       _SaveText;
   const factory HomeEvent.saveCalendar(
@@ -57,6 +65,9 @@ sealed class HomeEvent with _$HomeEvent {
   const factory HomeEvent.resetWishes(CategoryModel category) = _ResetWishes;
   const factory HomeEvent.resetMemoryGame(CategoryModel category) =
       _ResetMemoryGame;
+
+  /// Clears the partner's answers so they can play the quiz again.
+  const factory HomeEvent.resetQuiz(CategoryModel category) = _ResetQuiz;
   const factory HomeEvent.uploadFiles(
     CategoryModel category,
     List<File> files,
@@ -88,6 +99,45 @@ sealed class HomeEvent with _$HomeEvent {
     CategoryModel category,
     int score,
   ) = _SaveMemoryScore;
+  const factory HomeEvent.saveTimeCapsule(
+    CategoryModel category,
+    String letter,
+    DateTime openDate,
+  ) = _SaveTimeCapsule;
+
+  /// The partner seals their own letter into the capsule.
+  const factory HomeEvent.saveTimeCapsuleLetter(
+    CategoryModel category,
+    String letter,
+  ) = _SaveTimeCapsuleLetter;
+  const factory HomeEvent.saveParentStats(
+    CategoryModel category,
+    Map<String, double> stats,
+  ) = _SaveParentStats;
+
+  /// [milestones] with the picked photo of each new/changed one (null keeps
+  /// its saved `imageUrl`).
+  const factory HomeEvent.saveMilestones(
+    CategoryModel category,
+    List<(MilestoneModel milestone, File? image)> milestones,
+  ) = _SaveMilestones;
+
+  /// The owner's setup; photos not picked keep the saved ones.
+  const factory HomeEvent.saveLookAlike(
+    CategoryModel category,
+    Map<String, String> ownerAnswers, {
+    @Default({}) Map<String, File> childImages,
+    File? ownerImage,
+    File? partnerImage,
+  }) = _SaveLookAlike;
+
+  /// The partner finished the game.
+  const factory HomeEvent.saveLookAlikeAnswers(
+    CategoryModel category,
+    Map<String, String> answers,
+  ) = _SaveLookAlikeAnswers;
+  const factory HomeEvent.resetLookAlike(CategoryModel category) =
+      _ResetLookAlike;
 }
 
 /// Identity equality: every emit must reach the UI, even when it repeats the
@@ -136,6 +186,26 @@ sealed class HomeState with _$HomeState {
     EventModel? event,
     CategoryModel category,
   ) = NavigateToAddMemoryGame;
+  const factory HomeState.navigateToAddTimeCapsule(
+    EventModel? event,
+    CategoryModel category,
+  ) = NavigateToAddTimeCapsule;
+  const factory HomeState.navigateToAddBabyLetter(
+    EventModel? event,
+    CategoryModel category,
+  ) = NavigateToAddBabyLetter;
+  const factory HomeState.navigateToAddParentStats(
+    EventModel? event,
+    CategoryModel category,
+  ) = NavigateToAddParentStats;
+  const factory HomeState.navigateToAddMilestones(
+    EventModel? event,
+    CategoryModel category,
+  ) = NavigateToAddMilestones;
+  const factory HomeState.navigateToAddLookAlike(
+    EventModel? event,
+    CategoryModel category,
+  ) = NavigateToAddLookAlike;
   const factory HomeState.openEditAgain(
     EventModel? event,
     CategoryModel category,
@@ -160,6 +230,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final ReplaceMemoryGameImagesUseCase replaceMemoryGameImagesUseCase;
   final UploadCategoryFilesUseCase uploadCategoryFilesUseCase;
   final DeleteMediaUseCase deleteMediaUseCase;
+  final ReorderCategoriesUseCase reorderCategoriesUseCase;
 
   HomeBloc({
     required this.addCategoryUseCase,
@@ -172,18 +243,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required this.replaceMemoryGameImagesUseCase,
     required this.uploadCategoryFilesUseCase,
     required this.deleteMediaUseCase,
+    required this.reorderCategoriesUseCase,
   }) : super(.initial(SessionService().event)) {
     on<_Init>(_init);
     on<_AddButtonClicked>(_addButtonClicked);
     on<_AddOrEditCategory>(_addOrEditCategory);
     on<_ChangeTitle>(_changeTitle);
     on<_DeleteCategory>(_deleteCategory);
+    on<_ReorderCategories>(_reorderCategories);
     on<_SaveText>(_saveText);
     on<_SaveCalendar>(_saveCalendar);
     on<_SaveQuiz>(_saveQuiz);
     on<_SaveWishesContract>(_saveWishesContract);
     on<_ResetWishes>(_resetWishes);
     on<_ResetMemoryGame>(_resetMemoryGame);
+    on<_ResetQuiz>(_resetQuiz);
     on<_UploadFiles>(_uploadFilesToCategory);
     on<_SaveMemoryGameImages>(_saveMemoryGameImages);
     on<_DeleteFiles>(_deleteFiles);
@@ -191,6 +265,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_SaveQuizAnswer>(_saveQuizAnswer);
     on<_SaveWishes>(_saveWishes);
     on<_SaveMemoryScore>(_saveMemoryScore);
+    on<_SaveTimeCapsule>(_saveTimeCapsule);
+    on<_SaveTimeCapsuleLetter>(_saveTimeCapsuleLetter);
+    on<_SaveParentStats>(_saveParentStats);
+    on<_SaveMilestones>(_saveMilestones);
+    on<_SaveLookAlike>(_saveLookAlike);
+    on<_SaveLookAlikeAnswers>(_saveLookAlikeAnswers);
+    on<_ResetLookAlike>(_resetLookAlike);
   }
 
   factory HomeBloc.fromContext(BuildContext context) => HomeBloc(
@@ -205,6 +286,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         .read<ReplaceMemoryGameImagesUseCase>(),
     uploadCategoryFilesUseCase: context.read<UploadCategoryFilesUseCase>(),
     deleteMediaUseCase: context.read<DeleteMediaUseCase>(),
+    reorderCategoriesUseCase: context.read<ReorderCategoriesUseCase>(),
   );
 
   EventModel? get _event => SessionService().event;
@@ -324,6 +406,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
       CategoryEnum.wishesList => .navigateToAddWishesList(current, category),
       CategoryEnum.memoryGame => .navigateToAddMemoryGame(current, category),
+      CategoryEnum.timeCapsule => .navigateToAddTimeCapsule(current, category),
+      // Same contract editor as the wishes list.
+      CategoryEnum.parentCoupons => .navigateToAddWishesList(current, category),
+      CategoryEnum.babyLetter => .navigateToAddBabyLetter(current, category),
+      CategoryEnum.parentStats => .navigateToAddParentStats(current, category),
+      CategoryEnum.milestones => .navigateToAddMilestones(current, category),
+      CategoryEnum.lookAlike => .navigateToAddLookAlike(current, category),
     };
   }
 
@@ -420,7 +509,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit,
         (latest) => latest.copyWith(
           wishesList: (latest.wishesList ?? const WishesModel(lock: false))
-              .copyWith(first: null, second: null, third: null, lock: false),
+              .copyWith(
+                first: null,
+                second: null,
+                third: null,
+                lock: false,
+                redeemed: const [],
+              ),
         ),
       );
 
@@ -432,6 +527,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit,
     (latest) => latest.copyWith(
       memoryGame: latest.memoryGame?.copyWith(lock: false, score: 0),
+    ),
+  );
+
+  FutureOr<void> _resetQuiz(_ResetQuiz event, Emitter<HomeState> emit) => _save(
+    event.category,
+    emit,
+    (latest) => latest.copyWith(
+      quizGameScore: 0,
+      quizGame: [
+        for (final question in latest.quizGame ?? const <QuestionModel>[])
+          question.copyWith(
+            isLocked: false,
+            selectedOption: null,
+            partnerChoise: null,
+          ),
+      ],
     ),
   );
 
@@ -470,6 +581,198 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
+  FutureOr<void> _saveTimeCapsule(
+    _SaveTimeCapsule event,
+    Emitter<HomeState> emit,
+  ) => _save(
+    event.category,
+    emit,
+    (latest) => latest.copyWith(
+      lock: event.category.lock,
+      timeCapsule:
+          (latest.timeCapsule ?? TimeCapsuleModel(openDate: event.openDate))
+              .copyWith(openDate: event.openDate, ownerLetter: event.letter),
+    ),
+  );
+
+  FutureOr<void> _saveTimeCapsuleLetter(
+    _SaveTimeCapsuleLetter event,
+    Emitter<HomeState> emit,
+  ) {
+    if (_latest(event.category).timeCapsule == null) return null;
+    return _save(
+      event.category,
+      emit,
+      (latest) => latest.copyWith(
+        timeCapsule: latest.timeCapsule?.copyWith(partnerLetter: event.letter),
+      ),
+    );
+  }
+
+  FutureOr<void> _saveParentStats(
+    _SaveParentStats event,
+    Emitter<HomeState> emit,
+  ) => _save(
+    event.category,
+    emit,
+    (latest) =>
+        latest.copyWith(lock: event.category.lock, parentStats: event.stats),
+  );
+
+  /// Uploads the picked photos, then saves the milestones by date. Photos no
+  /// milestone uses anymore are deleted after the save, the new uploads when
+  /// the save fails.
+  FutureOr<void> _saveMilestones(
+    _SaveMilestones event,
+    Emitter<HomeState> emit,
+  ) => _whileBusy(emit, () async {
+    try {
+      final List<File> files = [
+        for (final (_, image) in event.milestones) ?image,
+      ];
+      final upload = await uploadCategoryFilesUseCase(
+        eventId: _eventId,
+        category: event.category,
+        files: files,
+        onProgress: _uploadProgress(emit),
+      );
+      final Iterator<String?> urls = upload.results.iterator;
+      final List<MilestoneModel> milestones = [
+        for (final (milestone, image) in event.milestones)
+          if (image == null)
+            milestone
+          else if ((urls..moveNext()).current case final String url)
+            milestone.copyWith(imageUrl: url)
+          else
+            milestone,
+      ]..sort((a, b) => a.date.compareTo(b.date));
+      late CategoryModel before;
+      final CategoryModel after;
+      try {
+        after = await updateCategoryUseCase(event.category, (latest) {
+          before = latest;
+          return latest.copyWith(
+            lock: event.category.lock,
+            milestones: milestones,
+          );
+        });
+      } catch (_) {
+        _deleteInBackground(upload.urls);
+        rethrow;
+      }
+      _deleteInBackground(
+        _milestoneImages(
+          before.milestones,
+        ).difference(_milestoneImages(after.milestones)),
+      );
+      if (upload.error case final Object error) _emitError(error, emit);
+    } catch (e) {
+      _emitError(e, emit);
+    }
+  });
+
+  static Set<String> _milestoneImages(List<MilestoneModel>? milestones) => {
+    for (final milestone in milestones ?? const <MilestoneModel>[])
+      ?milestone.imageUrl,
+  };
+
+  /// Uploads the picked photos (owner, partner, children) and saves them
+  /// with the owner's answers; replaced photos are deleted after the save.
+  FutureOr<void> _saveLookAlike(
+    _SaveLookAlike event,
+    Emitter<HomeState> emit,
+  ) => _whileBusy(emit, () async {
+    try {
+      final List<String> childIds = event.childImages.keys.toList();
+      final List<File?> picked = [
+        event.ownerImage,
+        event.partnerImage,
+        for (final id in childIds) event.childImages[id],
+      ];
+      final upload = await uploadCategoryFilesUseCase(
+        eventId: _eventId,
+        category: event.category,
+        files: picked.nonNulls.toList(),
+        onProgress: _uploadProgress(emit),
+      );
+      final Iterator<String?> uploaded = upload.results.iterator;
+      final List<String?> urls = [
+        for (final file in picked)
+          file == null ? null : (uploaded..moveNext()).current,
+      ];
+      late CategoryModel before;
+      final CategoryModel after;
+      try {
+        after = await updateCategoryUseCase(event.category, (latest) {
+          before = latest;
+          final LookAlikeModel current =
+              latest.lookAlike ?? const LookAlikeModel();
+          return latest.copyWith(
+            lock: event.category.lock,
+            lookAlike: current.copyWith(
+              ownerImageUrl: urls[0] ?? current.ownerImageUrl,
+              partnerImageUrl: urls[1] ?? current.partnerImageUrl,
+              childImageUrls: {
+                ...current.childImageUrls,
+                for (final (i, id) in childIds.indexed)
+                  if (urls[i + 2] case final String url) id: url,
+              },
+              ownerAnswers: event.ownerAnswers,
+            ),
+          );
+        });
+      } catch (_) {
+        _deleteInBackground(upload.urls);
+        rethrow;
+      }
+      _deleteInBackground(
+        _lookAlikeImages(
+          before.lookAlike,
+        ).difference(_lookAlikeImages(after.lookAlike)),
+      );
+      if (upload.error case final Object error) _emitError(error, emit);
+    } catch (e) {
+      _emitError(e, emit);
+    }
+  });
+
+  static Set<String> _lookAlikeImages(LookAlikeModel? lookAlike) => {
+    ...?lookAlike?.childImageUrls.values,
+    ?lookAlike?.ownerImageUrl,
+    ?lookAlike?.partnerImageUrl,
+  };
+
+  FutureOr<void> _saveLookAlikeAnswers(
+    _SaveLookAlikeAnswers event,
+    Emitter<HomeState> emit,
+  ) {
+    if (_latest(event.category).lookAlike == null) return null;
+    return _save(
+      event.category,
+      emit,
+      (latest) => latest.copyWith(
+        lookAlike: latest.lookAlike?.copyWith(
+          partnerAnswers: event.answers,
+          lock: true,
+        ),
+      ),
+    );
+  }
+
+  FutureOr<void> _resetLookAlike(
+    _ResetLookAlike event,
+    Emitter<HomeState> emit,
+  ) => _save(
+    event.category,
+    emit,
+    (latest) => latest.copyWith(
+      lookAlike: latest.lookAlike?.copyWith(
+        partnerAnswers: const {},
+        lock: false,
+      ),
+    ),
+  );
+
   FutureOr<void> _deleteCategory(
     _DeleteCategory event,
     Emitter<HomeState> emit,
@@ -480,6 +783,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       _emitError(e, emit);
     }
   });
+
+  /// No spinner: the new order shows right away (the session is updated
+  /// before the write), and a failed write puts the old order back.
+  FutureOr<void> _reorderCategories(
+    _ReorderCategories event,
+    Emitter<HomeState> emit,
+  ) async {
+    final Future<void> write = reorderCategoriesUseCase(event.ids);
+    emit(_currentState);
+    try {
+      await write;
+    } catch (e) {
+      _emitError(e, emit);
+    }
+    emit(_currentState);
+  }
 
   void _emitError(Object e, Emitter<HomeState> emit) {
     debugPrint('Home operation failed: $e');

@@ -15,7 +15,9 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WishesModel {
 
- bool get lock; String? get contract; String? get first; String? get second; String? get third;
+ bool get lock; String? get contract; String? get first; String? get second; String? get third;/// Indexes (0-2) of the wishes already used. Parenting coupons are
+/// redeemed by tearing their stub.
+ List<int> get redeemed;
 /// Create a copy of WishesModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +30,16 @@ $WishesModelCopyWith<WishesModel> get copyWith => _$WishesModelCopyWithImpl<Wish
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WishesModel&&(identical(other.lock, lock) || other.lock == lock)&&(identical(other.contract, contract) || other.contract == contract)&&(identical(other.first, first) || other.first == first)&&(identical(other.second, second) || other.second == second)&&(identical(other.third, third) || other.third == third));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WishesModel&&(identical(other.lock, lock) || other.lock == lock)&&(identical(other.contract, contract) || other.contract == contract)&&(identical(other.first, first) || other.first == first)&&(identical(other.second, second) || other.second == second)&&(identical(other.third, third) || other.third == third)&&const DeepCollectionEquality().equals(other.redeemed, redeemed));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,lock,contract,first,second,third);
+int get hashCode => Object.hash(runtimeType,lock,contract,first,second,third,const DeepCollectionEquality().hash(redeemed));
 
 @override
 String toString() {
-  return 'WishesModel(lock: $lock, contract: $contract, first: $first, second: $second, third: $third)';
+  return 'WishesModel(lock: $lock, contract: $contract, first: $first, second: $second, third: $third, redeemed: $redeemed)';
 }
 
 
@@ -48,7 +50,7 @@ abstract mixin class $WishesModelCopyWith<$Res>  {
   factory $WishesModelCopyWith(WishesModel value, $Res Function(WishesModel) _then) = _$WishesModelCopyWithImpl;
 @useResult
 $Res call({
- bool lock, String? contract, String? first, String? second, String? third
+ bool lock, String? contract, String? first, String? second, String? third, List<int> redeemed
 });
 
 
@@ -65,14 +67,15 @@ class _$WishesModelCopyWithImpl<$Res>
 
 /// Create a copy of WishesModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? lock = null,Object? contract = freezed,Object? first = freezed,Object? second = freezed,Object? third = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? lock = null,Object? contract = freezed,Object? first = freezed,Object? second = freezed,Object? third = freezed,Object? redeemed = null,}) {
   return _then(_self.copyWith(
 lock: null == lock ? _self.lock : lock // ignore: cast_nullable_to_non_nullable
 as bool,contract: freezed == contract ? _self.contract : contract // ignore: cast_nullable_to_non_nullable
 as String?,first: freezed == first ? _self.first : first // ignore: cast_nullable_to_non_nullable
 as String?,second: freezed == second ? _self.second : second // ignore: cast_nullable_to_non_nullable
 as String?,third: freezed == third ? _self.third : third // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,redeemed: null == redeemed ? _self.redeemed : redeemed // ignore: cast_nullable_to_non_nullable
+as List<int>,
   ));
 }
 
@@ -154,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool lock,  String? contract,  String? first,  String? second,  String? third)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool lock,  String? contract,  String? first,  String? second,  String? third,  List<int> redeemed)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WishesModel() when $default != null:
-return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third);case _:
+return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third,_that.redeemed);case _:
   return orElse();
 
 }
@@ -175,10 +178,10 @@ return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool lock,  String? contract,  String? first,  String? second,  String? third)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool lock,  String? contract,  String? first,  String? second,  String? third,  List<int> redeemed)  $default,) {final _that = this;
 switch (_that) {
 case _WishesModel():
-return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third);}
+return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third,_that.redeemed);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -192,10 +195,10 @@ return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool lock,  String? contract,  String? first,  String? second,  String? third)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool lock,  String? contract,  String? first,  String? second,  String? third,  List<int> redeemed)?  $default,) {final _that = this;
 switch (_that) {
 case _WishesModel() when $default != null:
-return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third);case _:
+return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third,_that.redeemed);case _:
   return null;
 
 }
@@ -207,7 +210,7 @@ return $default(_that.lock,_that.contract,_that.first,_that.second,_that.third);
 @JsonSerializable()
 
 class _WishesModel implements WishesModel {
-  const _WishesModel({required this.lock, this.contract, this.first, this.second, this.third});
+  const _WishesModel({required this.lock, this.contract, this.first, this.second, this.third, final  List<int> redeemed = const []}): _redeemed = redeemed;
   factory _WishesModel.fromJson(Map<String, dynamic> json) => _$WishesModelFromJson(json);
 
 @override final  bool lock;
@@ -215,6 +218,17 @@ class _WishesModel implements WishesModel {
 @override final  String? first;
 @override final  String? second;
 @override final  String? third;
+/// Indexes (0-2) of the wishes already used. Parenting coupons are
+/// redeemed by tearing their stub.
+ final  List<int> _redeemed;
+/// Indexes (0-2) of the wishes already used. Parenting coupons are
+/// redeemed by tearing their stub.
+@override@JsonKey() List<int> get redeemed {
+  if (_redeemed is EqualUnmodifiableListView) return _redeemed;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_redeemed);
+}
+
 
 /// Create a copy of WishesModel
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +243,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WishesModel&&(identical(other.lock, lock) || other.lock == lock)&&(identical(other.contract, contract) || other.contract == contract)&&(identical(other.first, first) || other.first == first)&&(identical(other.second, second) || other.second == second)&&(identical(other.third, third) || other.third == third));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WishesModel&&(identical(other.lock, lock) || other.lock == lock)&&(identical(other.contract, contract) || other.contract == contract)&&(identical(other.first, first) || other.first == first)&&(identical(other.second, second) || other.second == second)&&(identical(other.third, third) || other.third == third)&&const DeepCollectionEquality().equals(other._redeemed, _redeemed));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,lock,contract,first,second,third);
+int get hashCode => Object.hash(runtimeType,lock,contract,first,second,third,const DeepCollectionEquality().hash(_redeemed));
 
 @override
 String toString() {
-  return 'WishesModel(lock: $lock, contract: $contract, first: $first, second: $second, third: $third)';
+  return 'WishesModel(lock: $lock, contract: $contract, first: $first, second: $second, third: $third, redeemed: $redeemed)';
 }
 
 
@@ -249,7 +263,7 @@ abstract mixin class _$WishesModelCopyWith<$Res> implements $WishesModelCopyWith
   factory _$WishesModelCopyWith(_WishesModel value, $Res Function(_WishesModel) _then) = __$WishesModelCopyWithImpl;
 @override @useResult
 $Res call({
- bool lock, String? contract, String? first, String? second, String? third
+ bool lock, String? contract, String? first, String? second, String? third, List<int> redeemed
 });
 
 
@@ -266,14 +280,15 @@ class __$WishesModelCopyWithImpl<$Res>
 
 /// Create a copy of WishesModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? lock = null,Object? contract = freezed,Object? first = freezed,Object? second = freezed,Object? third = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? lock = null,Object? contract = freezed,Object? first = freezed,Object? second = freezed,Object? third = freezed,Object? redeemed = null,}) {
   return _then(_WishesModel(
 lock: null == lock ? _self.lock : lock // ignore: cast_nullable_to_non_nullable
 as bool,contract: freezed == contract ? _self.contract : contract // ignore: cast_nullable_to_non_nullable
 as String?,first: freezed == first ? _self.first : first // ignore: cast_nullable_to_non_nullable
 as String?,second: freezed == second ? _self.second : second // ignore: cast_nullable_to_non_nullable
 as String?,third: freezed == third ? _self.third : third // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,redeemed: null == redeemed ? _self._redeemed : redeemed // ignore: cast_nullable_to_non_nullable
+as List<int>,
   ));
 }
 

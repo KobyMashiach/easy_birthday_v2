@@ -5,6 +5,7 @@ import 'package:easy_birthday/features/settings/presentation/pages/app_info_page
 import 'package:easy_birthday/features/settings/presentation/pages/build_app_page.dart';
 import 'package:easy_birthday/features/settings/presentation/pages/change_language_page.dart';
 import 'package:easy_birthday/features/settings/presentation/pages/change_password_page.dart';
+import 'package:easy_birthday/features/settings/presentation/pages/children_page.dart';
 import 'package:easy_birthday/features/settings/presentation/pages/gender_change_page.dart';
 import 'package:easy_birthday/features/settings/presentation/pages/settings_page.dart';
 import 'package:flutter/widgets.dart';
@@ -67,6 +68,11 @@ final List<RouteBase> settingsRoutes = [
         },
       ),
     ],
+  ),
+  GoRoute(
+    path: Routing.children,
+    name: Routing.children,
+    builder: (context, state) => const ChildrenScreen(),
   ),
   GoRoute(
     path: Routing.buildApp,

@@ -1,4 +1,5 @@
 import 'package:easy_birthday/features/event/data/models/category_model.dart';
+import 'package:easy_birthday/features/event/data/models/child_model.dart';
 import 'package:easy_birthday/features/event/data/models/plan_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -28,5 +29,20 @@ class CategoryConverter
   @override
   Map<String, dynamic> toJson(CategoryModel category) {
     return category.toJson();
+  }
+}
+
+class ChildConverter
+    implements JsonConverter<ChildModel, Map<String, dynamic>> {
+  const ChildConverter();
+
+  @override
+  ChildModel fromJson(Map<String, dynamic> json) {
+    return ChildModel.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson(ChildModel child) {
+    return child.toJson();
   }
 }

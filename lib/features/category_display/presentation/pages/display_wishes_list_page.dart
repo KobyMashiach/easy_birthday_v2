@@ -1,4 +1,8 @@
+import 'dart:math' as math;
+
+import 'package:easy_birthday/core/constants/app_colors.dart';
 import 'package:easy_birthday/core/constants/app_text_styles.dart';
+import 'package:easy_birthday/core/widgets/animations/staggered_entrance.dart';
 import 'package:easy_birthday/core/services/session_service.dart';
 import 'package:easy_birthday/core/utils/i18n/strings.g.dart';
 import 'package:easy_birthday/core/widgets/buttons/app_button.dart';
@@ -96,10 +100,22 @@ class _DisplayWishesListState extends State<DisplayWishesList> {
                                     ),
                                     style: AppTextStyle().description,
                                   ),
-                                  const SizedBox(height: 24),
-                                  Text("1. ${wishesList.first ?? ""}"),
-                                  Text("2. ${wishesList.second ?? ""}"),
-                                  Text("3. ${wishesList.third ?? ""}"),
+                                  const SizedBox(height: 16),
+                                  const Center(child: _FloatingGenie()),
+                                  const SizedBox(height: 8),
+                                  for (final (index, wish) in [
+                                    wishesList.first,
+                                    wishesList.second,
+                                    wishesList.third,
+                                  ].indexed)
+                                    StaggeredEntrance(
+                                      index: index + 2,
+                                      fromScale: 0.8,
+                                      child: _WishCard(
+                                        number: index + 1,
+                                        text: wish ?? "",
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),
@@ -122,18 +138,26 @@ class _DisplayWishesListState extends State<DisplayWishesList> {
                               ),
                             ),
                           ),
-                          wishTextField(
-                            hintText: t.first_wish,
-                            controller: firstWish,
-                          ),
-                          wishTextField(
-                            hintText: t.second_wish,
-                            controller: secondWish,
-                          ),
-                          wishTextField(
-                            hintText: t.third_wish,
-                            controller: thirdWish,
-                          ),
+                          const _FloatingGenie(),
+                          for (final (index, (hint, controller)) in [
+                            (t.first_wish, firstWish),
+                            (t.second_wish, secondWish),
+                            (t.third_wish, thirdWish),
+                          ].indexed)
+                            StaggeredEntrance(
+                              index: index,
+                              child: Row(
+                                children: [
+                                  _StarBadge(number: index + 1),
+                                  Expanded(
+                                    child: wishTextField(
+                                      hintText: hint,
+                                      controller: controller,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                         ],
                       ),
               ],
@@ -208,5 +232,159 @@ class _DisplayWishesListState extends State<DisplayWishesList> {
     firstWish.text = wishesList.first ?? "";
     secondWish.text = wishesList.second ?? "";
     thirdWish.text = wishesList.third ?? "";
+  }
+}
+
+/// A genie bobbing over the wishes.
+class _FloatingGenie extends StatefulWidget {
+  const _FloatingGenie();
+
+  @override
+  State<_FloatingGenie> createState() => _FloatingGenieState();
+}
+
+class _FloatingGenieState extends State<_FloatingGenie>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        final double v = Curves.easeInOut.transform(_controller.value);
+        return Transform.translate(
+          offset: Offset(0, -8 * v),
+          child: Transform.rotate(angle: (v - 0.5) * 0.12, child: child),
+        );
+      },
+      child: const Text("🧞", style: TextStyle(fontSize: 56)),
+    );
+  }
+}
+
+/// The wish's number on a star.
+class _StarBadge extends StatelessWidget {
+  final int number;
+  const _StarBadge({required this.number});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 40,
+      height: 40,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          const Icon(Icons.star_rounded, color: Colors.amber, size: 40),
+          Text(
+            "$number",
+            textScaler: TextScaler.noScaling,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// A granted wish: a glowing card with twinkling stars.
+class _WishCard extends StatefulWidget {
+  final int number;
+  final String text;
+  const _WishCard({required this.number, required this.text});
+
+  @override
+  State<_WishCard> createState() => _WishCardState();
+}
+
+class _WishCardState extends State<_WishCard>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _twinkle;
+
+  @override
+  void initState() {
+    super.initState();
+    _twinkle = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1600 + widget.number * 300),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _twinkle.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Color color = AppColors.primaryColor;
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            color,
+            HSLColor.fromColor(
+              color,
+            ).withHue((HSLColor.fromColor(color).hue + 40) % 360).toColor(),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(color: color.withValues(alpha: 0.5), blurRadius: 12),
+        ],
+      ),
+      child: Row(
+        children: [
+          _StarBadge(number: widget.number),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              widget.text,
+              style: AppTextStyle().description.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          AnimatedBuilder(
+            animation: _twinkle,
+            builder: (context, child) => Opacity(
+              opacity: 0.3 + 0.7 * _twinkle.value,
+              child: Transform.rotate(
+                angle: _twinkle.value * math.pi / 4,
+                child: child,
+              ),
+            ),
+            child: const Text("✨", style: TextStyle(fontSize: 24)),
+          ),
+        ],
+      ),
+    );
   }
 }

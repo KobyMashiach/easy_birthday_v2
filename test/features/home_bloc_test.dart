@@ -19,6 +19,7 @@ import 'package:easy_birthday/features/event/domain/usecases/delete_category_fil
 import 'package:easy_birthday/features/event/domain/usecases/delete_category_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/delete_media_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/get_current_category_usecase.dart';
+import 'package:easy_birthday/features/event/domain/usecases/reorder_categories_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/replace_memory_game_images_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/update_category_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/upload_category_files_usecase.dart';
@@ -99,6 +100,7 @@ void main() {
     ),
     uploadCategoryFilesUseCase: UploadCategoryFilesUseCase(repository),
     deleteMediaUseCase: DeleteMediaUseCase(repository),
+    reorderCategoriesUseCase: ReorderCategoriesUseCase(repository),
   );
 
   setUp(() {

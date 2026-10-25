@@ -6,6 +6,7 @@ import 'package:easy_birthday/core/services/session_service.dart';
 import 'package:easy_birthday/core/utils/general_functions.dart';
 import 'package:easy_birthday/features/event/data/datasources/event_remote_data_source.dart';
 import 'package:easy_birthday/features/event/data/models/category_model.dart';
+import 'package:easy_birthday/features/event/data/models/child_model.dart';
 import 'package:easy_birthday/features/event/data/models/event_converters_json.dart';
 import 'package:easy_birthday/features/event/data/models/event_model.dart';
 import 'package:easy_birthday/features/event/data/models/plan_model.dart';
@@ -99,6 +100,19 @@ class EventRepositoryImpl implements EventRepository {
   }
 
   @override
+  Future<void> updateChildren(List<ChildModel> children) {
+    final EventModel event = _event;
+    return _writeOptimistically(
+      event.copyWith(children: children),
+      () => remoteDataSource.updateEvent(event.eventId, {
+        'children': [
+          for (final child in children) const ChildConverter().toJson(child),
+        ],
+      }),
+    );
+  }
+
+  @override
   Future<CategoryModel> addCategory(CategoryModel category) async {
     final newCategory = category.copyWith(id: getRandomString(10));
     await _changeCategories((categories) => [...categories, newCategory]);
@@ -128,6 +142,10 @@ class EventRepositoryImpl implements EventRepository {
         if (c.id != category.id) c,
     ],
   );
+
+  @override
+  Future<void> reorderCategories(List<String> ids) =>
+      _changeCategories((categories) => orderCategories(categories, ids));
 
   @override
   CategoryModel currentCategory(CategoryModel category) =>
@@ -207,4 +225,20 @@ class EventRepositoryImpl implements EventRepository {
       rethrow;
     }
   }
+}
+
+/// [categories] in the order of [ids], then the ones [ids] doesn't name, in
+/// their current order.
+List<CategoryModel> orderCategories(
+  List<CategoryModel> categories,
+  List<String> ids,
+) {
+  final Map<String?, CategoryModel> byId = {
+    for (final category in categories) category.id: category,
+  };
+  return [
+    for (final id in ids) ?byId[id],
+    for (final category in categories)
+      if (!ids.contains(category.id)) category,
+  ];
 }

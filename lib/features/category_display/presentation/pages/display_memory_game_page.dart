@@ -1,4 +1,8 @@
+import 'dart:math' as math;
+
+import 'package:easy_birthday/core/constants/app_colors.dart';
 import 'package:easy_birthday/core/constants/app_text_styles.dart';
+import 'package:easy_birthday/core/widgets/animations/staggered_entrance.dart';
 import 'package:easy_birthday/core/services/session_service.dart';
 import 'package:easy_birthday/core/utils/i18n/strings.g.dart';
 import 'package:easy_birthday/core/widgets/general/appbar.dart';
@@ -169,37 +173,59 @@ class _DisplayMemoryGameState extends State<DisplayMemoryGame> {
                             final bool showFront =
                                 wrongFlips >= canWrong || cardFlipped[index];
 
-                            return GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () => onCardTapped(index),
-                              child: FlipCard(
-                                key: cardKeys[index],
-                                flipOnTouch: false,
-                                direction: FlipDirection.HORIZONTAL,
-                                front: Container(
-                                  decoration: BoxDecoration(
-                                    color: isMatched
-                                        ? Colors.green
-                                        : Colors.lightBlueAccent,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Center(child: cachedImage(index)),
-                                ),
-                                back: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.blueGrey,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Center(
-                                    child: showFront
-                                        ? cachedImage(index)
-                                        : const Text(
-                                            "❓",
-                                            style: TextStyle(
-                                              fontSize: 24,
-                                              color: Colors.white,
-                                            ),
+                            return StaggeredEntrance(
+                              index: index,
+                              fromScale: 0.5,
+                              from: Offset.zero,
+                              child: GestureDetector(
+                                behavior: HitTestBehavior.opaque,
+                                onTap: () => onCardTapped(index),
+                                child: _MatchPulse(
+                                  matched: isMatched,
+                                  child: FlipCard(
+                                    key: cardKeys[index],
+                                    flipOnTouch: false,
+                                    direction: FlipDirection.HORIZONTAL,
+                                    front: AnimatedContainer(
+                                      duration: const Duration(
+                                        milliseconds: 300,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(
+                                          12,
+                                        ),
+                                        border: Border.all(
+                                          color: isMatched
+                                              ? Colors.green
+                                              : AppColors.primaryColor,
+                                          width: isMatched ? 3 : 2,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: isMatched
+                                                ? Colors.green.withValues(
+                                                    alpha: 0.5,
+                                                  )
+                                                : Colors.black12,
+                                            blurRadius: isMatched ? 10 : 4,
                                           ),
+                                        ],
+                                      ),
+                                      child: Center(child: cachedImage(index)),
+                                    ),
+                                    back: showFront
+                                        ? Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            child: Center(
+                                              child: cachedImage(index),
+                                            ),
+                                          )
+                                        : const _CardBack(),
                                   ),
                                 ),
                               ),
@@ -309,18 +335,101 @@ class _StatChip extends StatelessWidget {
             children: [
               Icon(icon, color: color, size: 24),
               const SizedBox(width: 8),
-              Text(
-                text,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: color,
+              // The number pops whenever it changes.
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 350),
+                transitionBuilder: (child, animation) => ScaleTransition(
+                  scale: CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.elasticOut,
+                  ),
+                  child: child,
+                ),
+                child: Text(
+                  text,
+                  key: ValueKey(text),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
                 ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+/// The face-down side: the app color with a soft heart pattern and a "?".
+class _CardBack extends StatelessWidget {
+  const _CardBack();
+
+  @override
+  Widget build(BuildContext context) {
+    final Color color = AppColors.primaryColor;
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [color, Color.lerp(color, Colors.black, 0.25)!],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.white, width: 3),
+        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4)],
+      ),
+      child: Stack(
+        children: [
+          for (final (x, y) in const [
+            (-0.7, -0.7),
+            (0.7, -0.6),
+            (-0.6, 0.7),
+            (0.75, 0.75),
+          ])
+            Align(
+              alignment: Alignment(x, y),
+              child: Icon(
+                Icons.favorite,
+                size: 12,
+                color: Colors.white.withValues(alpha: 0.35),
+              ),
+            ),
+          const Center(
+            child: Text(
+              "?",
+              style: TextStyle(
+                fontSize: 32,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Pulses once when its pair is matched.
+class _MatchPulse extends StatelessWidget {
+  final bool matched;
+  final Widget child;
+  const _MatchPulse({required this.matched, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    if (!matched) return child;
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 600),
+      builder: (context, v, child) => Transform.scale(
+        scale: 1 + math.sin(v * math.pi) * 0.12,
+        child: child,
+      ),
+      child: child,
     );
   }
 }

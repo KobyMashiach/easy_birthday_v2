@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppSettingsModel {
 
-@HiveField(0)@ColorConverter() Color get appColor;@HiveField(1) String get languageCode;
+@HiveField(0)@ColorConverter() Color get appColor;@HiveField(1) String get languageCode;/// The last "what's new" spotlight shown on this device.
+@HiveField(2) String? get whatsNewSeen;
 /// Create a copy of AppSettingsModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $AppSettingsModelCopyWith<AppSettingsModel> get copyWith => _$AppSettingsModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppSettingsModel&&(identical(other.appColor, appColor) || other.appColor == appColor)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppSettingsModel&&(identical(other.appColor, appColor) || other.appColor == appColor)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.whatsNewSeen, whatsNewSeen) || other.whatsNewSeen == whatsNewSeen));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,appColor,languageCode);
+int get hashCode => Object.hash(runtimeType,appColor,languageCode,whatsNewSeen);
 
 @override
 String toString() {
-  return 'AppSettingsModel(appColor: $appColor, languageCode: $languageCode)';
+  return 'AppSettingsModel(appColor: $appColor, languageCode: $languageCode, whatsNewSeen: $whatsNewSeen)';
 }
 
 
@@ -48,7 +49,7 @@ abstract mixin class $AppSettingsModelCopyWith<$Res>  {
   factory $AppSettingsModelCopyWith(AppSettingsModel value, $Res Function(AppSettingsModel) _then) = _$AppSettingsModelCopyWithImpl;
 @useResult
 $Res call({
-@HiveField(0)@ColorConverter() Color appColor,@HiveField(1) String languageCode
+@HiveField(0)@ColorConverter() Color appColor,@HiveField(1) String languageCode,@HiveField(2) String? whatsNewSeen
 });
 
 
@@ -65,11 +66,12 @@ class _$AppSettingsModelCopyWithImpl<$Res>
 
 /// Create a copy of AppSettingsModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? appColor = null,Object? languageCode = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? appColor = null,Object? languageCode = null,Object? whatsNewSeen = freezed,}) {
   return _then(_self.copyWith(
 appColor: null == appColor ? _self.appColor : appColor // ignore: cast_nullable_to_non_nullable
 as Color,languageCode: null == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
-as String,
+as String,whatsNewSeen: freezed == whatsNewSeen ? _self.whatsNewSeen : whatsNewSeen // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -151,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)@ColorConverter()  Color appColor, @HiveField(1)  String languageCode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)@ColorConverter()  Color appColor, @HiveField(1)  String languageCode, @HiveField(2)  String? whatsNewSeen)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppSettingsModel() when $default != null:
-return $default(_that.appColor,_that.languageCode);case _:
+return $default(_that.appColor,_that.languageCode,_that.whatsNewSeen);case _:
   return orElse();
 
 }
@@ -172,10 +174,10 @@ return $default(_that.appColor,_that.languageCode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)@ColorConverter()  Color appColor, @HiveField(1)  String languageCode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)@ColorConverter()  Color appColor, @HiveField(1)  String languageCode, @HiveField(2)  String? whatsNewSeen)  $default,) {final _that = this;
 switch (_that) {
 case _AppSettingsModel():
-return $default(_that.appColor,_that.languageCode);}
+return $default(_that.appColor,_that.languageCode,_that.whatsNewSeen);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -189,10 +191,10 @@ return $default(_that.appColor,_that.languageCode);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)@ColorConverter()  Color appColor, @HiveField(1)  String languageCode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)@ColorConverter()  Color appColor, @HiveField(1)  String languageCode, @HiveField(2)  String? whatsNewSeen)?  $default,) {final _that = this;
 switch (_that) {
 case _AppSettingsModel() when $default != null:
-return $default(_that.appColor,_that.languageCode);case _:
+return $default(_that.appColor,_that.languageCode,_that.whatsNewSeen);case _:
   return null;
 
 }
@@ -204,11 +206,13 @@ return $default(_that.appColor,_that.languageCode);case _:
 @JsonSerializable()
 
 class _AppSettingsModel implements AppSettingsModel {
-   _AppSettingsModel({@HiveField(0)@ColorConverter() required this.appColor, @HiveField(1) required this.languageCode});
+   _AppSettingsModel({@HiveField(0)@ColorConverter() required this.appColor, @HiveField(1) required this.languageCode, @HiveField(2) this.whatsNewSeen});
   factory _AppSettingsModel.fromJson(Map<String, dynamic> json) => _$AppSettingsModelFromJson(json);
 
 @override@HiveField(0)@ColorConverter() final  Color appColor;
 @override@HiveField(1) final  String languageCode;
+/// The last "what's new" spotlight shown on this device.
+@override@HiveField(2) final  String? whatsNewSeen;
 
 /// Create a copy of AppSettingsModel
 /// with the given fields replaced by the non-null parameter values.
@@ -223,16 +227,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppSettingsModel&&(identical(other.appColor, appColor) || other.appColor == appColor)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppSettingsModel&&(identical(other.appColor, appColor) || other.appColor == appColor)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.whatsNewSeen, whatsNewSeen) || other.whatsNewSeen == whatsNewSeen));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,appColor,languageCode);
+int get hashCode => Object.hash(runtimeType,appColor,languageCode,whatsNewSeen);
 
 @override
 String toString() {
-  return 'AppSettingsModel(appColor: $appColor, languageCode: $languageCode)';
+  return 'AppSettingsModel(appColor: $appColor, languageCode: $languageCode, whatsNewSeen: $whatsNewSeen)';
 }
 
 
@@ -243,7 +247,7 @@ abstract mixin class _$AppSettingsModelCopyWith<$Res> implements $AppSettingsMod
   factory _$AppSettingsModelCopyWith(_AppSettingsModel value, $Res Function(_AppSettingsModel) _then) = __$AppSettingsModelCopyWithImpl;
 @override @useResult
 $Res call({
-@HiveField(0)@ColorConverter() Color appColor,@HiveField(1) String languageCode
+@HiveField(0)@ColorConverter() Color appColor,@HiveField(1) String languageCode,@HiveField(2) String? whatsNewSeen
 });
 
 
@@ -260,11 +264,12 @@ class __$AppSettingsModelCopyWithImpl<$Res>
 
 /// Create a copy of AppSettingsModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? appColor = null,Object? languageCode = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? appColor = null,Object? languageCode = null,Object? whatsNewSeen = freezed,}) {
   return _then(_AppSettingsModel(
 appColor: null == appColor ? _self.appColor : appColor // ignore: cast_nullable_to_non_nullable
 as Color,languageCode: null == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
-as String,
+as String,whatsNewSeen: freezed == whatsNewSeen ? _self.whatsNewSeen : whatsNewSeen // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

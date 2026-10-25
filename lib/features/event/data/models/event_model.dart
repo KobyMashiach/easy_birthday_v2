@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_birthday/core/utils/general_functions.dart';
 import 'package:easy_birthday/core/utils/converters/color_converter.dart';
 import 'package:easy_birthday/features/event/data/models/category_model.dart';
+import 'package:easy_birthday/features/event/data/models/child_model.dart';
 import 'package:easy_birthday/features/event/data/models/event_converters_json.dart';
 import 'package:easy_birthday/features/event/data/models/plan_model.dart';
 import 'package:flutter/widgets.dart';
@@ -27,8 +28,25 @@ sealed class EventModel with _$EventModel {
     @JsonKey(name: 'choosenTexts') Map<String, String>? chosenTexts,
     @Default([]) @CategoryConverter() List<CategoryModel> categories,
     String? profileImageUrl,
+    @Default([]) @ChildConverter() List<ChildModel> children,
   }) = _EventModel;
 
   factory EventModel.fromJson(Map<String, dynamic> json) =>
       _$EventModelFromJson(json);
+}
+
+extension EventModelX on EventModel {
+  /// The child [id], or null when there is none (e.g. it was removed).
+  ChildModel? childById(String? id) {
+    for (final child in children) {
+      if (child.id == id) return child;
+    }
+    return null;
+  }
+
+  /// The children of [ids] that still exist, oldest first.
+  List<ChildModel> childrenByIds(List<String> ids) => [
+    for (final child in children)
+      if (ids.contains(child.id)) child,
+  ]..sort((a, b) => a.dateOfBirth.compareTo(b.dateOfBirth));
 }

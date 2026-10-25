@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_birthday/core/constants/app_text_styles.dart';
+import 'package:easy_birthday/core/widgets/buttons/app_button.dart';
 import 'package:easy_birthday/core/services/session_service.dart';
 import 'package:easy_birthday/core/utils/i18n/strings.g.dart';
 import 'package:easy_birthday/core/utils/routing/routing.dart';
@@ -25,11 +26,15 @@ class AddQuizGameScreen extends StatelessWidget {
   final void Function(CategoryModel category) onChangeTitle;
 
   final void Function(List<QuestionModel> questions, bool lock) onDone;
+
+  /// Lets the partner play again (clears their answers).
+  final VoidCallback openQuizAgain;
   const AddQuizGameScreen({
     super.key,
     required this.category,
     required this.onChangeTitle,
     required this.onDone,
+    required this.openQuizAgain,
   });
 
   @override
@@ -41,6 +46,7 @@ class AddQuizGameScreen extends StatelessWidget {
         category: category,
         onChangeTitle: onChangeTitle,
         onDone: onDone,
+        openQuizAgain: openQuizAgain,
       ),
     );
   }
@@ -50,11 +56,13 @@ class _AddQuizGameView extends StatefulWidget {
   final CategoryModel category;
   final void Function(CategoryModel category) onChangeTitle;
   final void Function(List<QuestionModel> questions, bool lock) onDone;
+  final VoidCallback openQuizAgain;
 
   const _AddQuizGameView({
     required this.category,
     required this.onChangeTitle,
     required this.onDone,
+    required this.openQuizAgain,
   });
 
   @override
@@ -99,6 +107,7 @@ class _AddQuizGameViewState extends State<_AddQuizGameView> {
                 child: Column(
                   children: [
                     ...topWidgets,
+                    ..._playedSection(),
                     const SizedBox(height: 24),
                     Text(t.num_of_questions(number: questionsList.length)),
                     buttons(questionsList),
@@ -133,6 +142,36 @@ class _AddQuizGameViewState extends State<_AddQuizGameView> {
         },
       ),
     );
+  }
+
+  /// Once the partner has answered: how they did, and a way to let them
+  /// play again (like the memory game).
+  List<Widget> _playedSection() {
+    final List<QuestionModel> saved = widget.category.quizGame ?? const [];
+    final int answered = saved.where((q) => q.isLocked).length;
+    if (answered == 0) return const [];
+    return [
+      const SizedBox(height: 16),
+      Text(
+        t.quiz_game_played(
+          context: SessionService().gender,
+          name: SessionService().partner?.name ?? '',
+          answered: answered,
+          total: saved.length,
+          score: widget.category.quizGameScore,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      appButton(
+        text: t.open_new_quiz_game,
+        unfillColors: true,
+        margin: const EdgeInsets.only(top: 8),
+        onTap: () {
+          widget.openQuizAgain();
+          context.popIfPossible();
+        },
+      ),
+    ];
   }
 
   ConstrainedBox imageContainer(String imageUrl) {

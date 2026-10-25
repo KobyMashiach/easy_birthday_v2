@@ -12,6 +12,11 @@ _WishesModel _$WishesModelFromJson(Map<String, dynamic> json) => _WishesModel(
   first: json['first'] as String?,
   second: json['second'] as String?,
   third: json['third'] as String?,
+  redeemed:
+      (json['redeemed'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$WishesModelToJson(_WishesModel instance) =>
@@ -21,4 +26,5 @@ Map<String, dynamic> _$WishesModelToJson(_WishesModel instance) =>
       'first': instance.first,
       'second': instance.second,
       'third': instance.third,
+      'redeemed': instance.redeemed,
     };

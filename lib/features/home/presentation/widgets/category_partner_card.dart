@@ -1,5 +1,6 @@
 import 'package:easy_birthday/core/constants/app_colors.dart';
 import 'package:easy_birthday/core/constants/app_text_styles.dart';
+import 'package:easy_birthday/core/widgets/animations/staggered_entrance.dart';
 import 'package:easy_birthday/features/event/data/models/category_enum.dart';
 import 'package:easy_birthday/features/event/data/models/category_model.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class CategoryPartnerCard extends StatelessWidget {
     return Semantics(
       button: true,
       label: category.displayTitle,
-      child: GestureDetector(
+      child: PressableScale(
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(

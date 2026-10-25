@@ -17,8 +17,10 @@ import 'package:easy_birthday/features/event/domain/usecases/delete_category_use
 import 'package:easy_birthday/features/event/domain/usecases/delete_media_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/get_current_category_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/get_event_usecase.dart';
+import 'package:easy_birthday/features/event/domain/usecases/reorder_categories_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/replace_memory_game_images_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/update_category_usecase.dart';
+import 'package:easy_birthday/features/event/domain/usecases/update_children_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/update_event_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/upload_category_files_usecase.dart';
 import 'package:easy_birthday/features/event/domain/usecases/upload_media_usecase.dart';
@@ -109,6 +111,10 @@ List<SingleChildWidget> buildRepositoryProviders(AppDependencies deps) {
     RepositoryProvider<GetEventUseCase>(
       create: (context) => GetEventUseCase(context.read<EventRepository>()),
     ),
+    RepositoryProvider<ReorderCategoriesUseCase>(
+      create: (context) =>
+          ReorderCategoriesUseCase(context.read<EventRepository>()),
+    ),
     RepositoryProvider<ReplaceMemoryGameImagesUseCase>(
       create: (context) =>
           ReplaceMemoryGameImagesUseCase(context.read<EventRepository>()),
@@ -116,6 +122,10 @@ List<SingleChildWidget> buildRepositoryProviders(AppDependencies deps) {
     RepositoryProvider<UpdateCategoryUseCase>(
       create: (context) =>
           UpdateCategoryUseCase(context.read<EventRepository>()),
+    ),
+    RepositoryProvider<UpdateChildrenUseCase>(
+      create: (context) =>
+          UpdateChildrenUseCase(context.read<EventRepository>()),
     ),
     RepositoryProvider<UpdateEventUseCase>(
       create: (context) => UpdateEventUseCase(context.read<EventRepository>()),

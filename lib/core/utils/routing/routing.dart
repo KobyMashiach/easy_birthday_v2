@@ -28,6 +28,11 @@ class Routing {
   static const addBirthdaySurprise = '/add-birthday-surprise';
   static const addWishesList = '/add-wishes-list';
   static const addMemoryGame = '/add-memory-game';
+  static const addTimeCapsule = '/add-time-capsule';
+  static const addBabyLetter = '/add-baby-letter';
+  static const addParentStats = '/add-parent-stats';
+  static const addMilestones = '/add-milestones';
+  static const addLookAlike = '/add-look-alike';
 
   // category display (partner)
   static const displayText = '/display-text';
@@ -38,6 +43,12 @@ class Routing {
   static const displayBirthdaySurprise = '/display-birthday-surprise';
   static const displayWishesList = '/display-wishes-list';
   static const displayMemoryGame = '/display-memory-game';
+  static const displayTimeCapsule = '/display-time-capsule';
+  static const displayParentCoupons = '/display-parent-coupons';
+  static const displayBabyLetter = '/display-baby-letter';
+  static const displayParentStats = '/display-parent-stats';
+  static const displayMilestones = '/display-milestones';
+  static const displayLookAlike = '/display-look-alike';
 
   // settings (children are relative to /settings)
   static const settings = '/settings';
@@ -46,6 +57,8 @@ class Routing {
   static const changePassword = 'change-password';
   static const genderChange = 'gender-change';
   static const buildApp = '/build-app';
+  // Root route: also opened from home (dialog / what's new).
+  static const children = '/children';
   static const contactUs = '/contact-us';
 
   // wear os

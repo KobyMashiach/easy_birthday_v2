@@ -177,6 +177,7 @@ void main() {
         category: _category,
         onChangeTitle: changeTitle,
         onDone: (List<QuestionModel> questions, bool lock) {},
+        openQuizAgain: () {},
       ), 'AddQuizGameScreen');
       await _expectPage(tester, Routing.addQuestion, (
         category: _category,

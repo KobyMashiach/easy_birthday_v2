@@ -55,7 +55,7 @@ extension HomeEventPatterns on HomeEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Init value)?  init,TResult Function( _AddButtonClicked value)?  addButtonClicked,TResult Function( _AddOrEditCategory value)?  addOrEditCategory,TResult Function( _ChangeTitle value)?  changeTitle,TResult Function( _DeleteCategory value)?  deleteCategory,TResult Function( _SaveText value)?  saveText,TResult Function( _SaveCalendar value)?  saveCalendar,TResult Function( _SaveQuiz value)?  saveQuiz,TResult Function( _SaveWishesContract value)?  saveWishesContract,TResult Function( _ResetWishes value)?  resetWishes,TResult Function( _ResetMemoryGame value)?  resetMemoryGame,TResult Function( _UploadFiles value)?  uploadFiles,TResult Function( _SaveMemoryGameImages value)?  saveMemoryGameImages,TResult Function( _DeleteFiles value)?  deleteFiles,TResult Function( _UploadSurprise value)?  uploadSurprise,TResult Function( _SaveQuizAnswer value)?  saveQuizAnswer,TResult Function( _SaveWishes value)?  saveWishes,TResult Function( _SaveMemoryScore value)?  saveMemoryScore,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Init value)?  init,TResult Function( _AddButtonClicked value)?  addButtonClicked,TResult Function( _AddOrEditCategory value)?  addOrEditCategory,TResult Function( _ChangeTitle value)?  changeTitle,TResult Function( _DeleteCategory value)?  deleteCategory,TResult Function( _ReorderCategories value)?  reorderCategories,TResult Function( _SaveText value)?  saveText,TResult Function( _SaveCalendar value)?  saveCalendar,TResult Function( _SaveQuiz value)?  saveQuiz,TResult Function( _SaveWishesContract value)?  saveWishesContract,TResult Function( _ResetWishes value)?  resetWishes,TResult Function( _ResetMemoryGame value)?  resetMemoryGame,TResult Function( _ResetQuiz value)?  resetQuiz,TResult Function( _UploadFiles value)?  uploadFiles,TResult Function( _SaveMemoryGameImages value)?  saveMemoryGameImages,TResult Function( _DeleteFiles value)?  deleteFiles,TResult Function( _UploadSurprise value)?  uploadSurprise,TResult Function( _SaveQuizAnswer value)?  saveQuizAnswer,TResult Function( _SaveWishes value)?  saveWishes,TResult Function( _SaveMemoryScore value)?  saveMemoryScore,TResult Function( _SaveTimeCapsule value)?  saveTimeCapsule,TResult Function( _SaveTimeCapsuleLetter value)?  saveTimeCapsuleLetter,TResult Function( _SaveParentStats value)?  saveParentStats,TResult Function( _SaveMilestones value)?  saveMilestones,TResult Function( _SaveLookAlike value)?  saveLookAlike,TResult Function( _SaveLookAlikeAnswers value)?  saveLookAlikeAnswers,TResult Function( _ResetLookAlike value)?  resetLookAlike,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Init() when init != null:
@@ -63,20 +63,29 @@ return init(_that);case _AddButtonClicked() when addButtonClicked != null:
 return addButtonClicked(_that);case _AddOrEditCategory() when addOrEditCategory != null:
 return addOrEditCategory(_that);case _ChangeTitle() when changeTitle != null:
 return changeTitle(_that);case _DeleteCategory() when deleteCategory != null:
-return deleteCategory(_that);case _SaveText() when saveText != null:
+return deleteCategory(_that);case _ReorderCategories() when reorderCategories != null:
+return reorderCategories(_that);case _SaveText() when saveText != null:
 return saveText(_that);case _SaveCalendar() when saveCalendar != null:
 return saveCalendar(_that);case _SaveQuiz() when saveQuiz != null:
 return saveQuiz(_that);case _SaveWishesContract() when saveWishesContract != null:
 return saveWishesContract(_that);case _ResetWishes() when resetWishes != null:
 return resetWishes(_that);case _ResetMemoryGame() when resetMemoryGame != null:
-return resetMemoryGame(_that);case _UploadFiles() when uploadFiles != null:
+return resetMemoryGame(_that);case _ResetQuiz() when resetQuiz != null:
+return resetQuiz(_that);case _UploadFiles() when uploadFiles != null:
 return uploadFiles(_that);case _SaveMemoryGameImages() when saveMemoryGameImages != null:
 return saveMemoryGameImages(_that);case _DeleteFiles() when deleteFiles != null:
 return deleteFiles(_that);case _UploadSurprise() when uploadSurprise != null:
 return uploadSurprise(_that);case _SaveQuizAnswer() when saveQuizAnswer != null:
 return saveQuizAnswer(_that);case _SaveWishes() when saveWishes != null:
 return saveWishes(_that);case _SaveMemoryScore() when saveMemoryScore != null:
-return saveMemoryScore(_that);case _:
+return saveMemoryScore(_that);case _SaveTimeCapsule() when saveTimeCapsule != null:
+return saveTimeCapsule(_that);case _SaveTimeCapsuleLetter() when saveTimeCapsuleLetter != null:
+return saveTimeCapsuleLetter(_that);case _SaveParentStats() when saveParentStats != null:
+return saveParentStats(_that);case _SaveMilestones() when saveMilestones != null:
+return saveMilestones(_that);case _SaveLookAlike() when saveLookAlike != null:
+return saveLookAlike(_that);case _SaveLookAlikeAnswers() when saveLookAlikeAnswers != null:
+return saveLookAlikeAnswers(_that);case _ResetLookAlike() when resetLookAlike != null:
+return resetLookAlike(_that);case _:
   return orElse();
 
 }
@@ -94,7 +103,7 @@ return saveMemoryScore(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Init value)  init,required TResult Function( _AddButtonClicked value)  addButtonClicked,required TResult Function( _AddOrEditCategory value)  addOrEditCategory,required TResult Function( _ChangeTitle value)  changeTitle,required TResult Function( _DeleteCategory value)  deleteCategory,required TResult Function( _SaveText value)  saveText,required TResult Function( _SaveCalendar value)  saveCalendar,required TResult Function( _SaveQuiz value)  saveQuiz,required TResult Function( _SaveWishesContract value)  saveWishesContract,required TResult Function( _ResetWishes value)  resetWishes,required TResult Function( _ResetMemoryGame value)  resetMemoryGame,required TResult Function( _UploadFiles value)  uploadFiles,required TResult Function( _SaveMemoryGameImages value)  saveMemoryGameImages,required TResult Function( _DeleteFiles value)  deleteFiles,required TResult Function( _UploadSurprise value)  uploadSurprise,required TResult Function( _SaveQuizAnswer value)  saveQuizAnswer,required TResult Function( _SaveWishes value)  saveWishes,required TResult Function( _SaveMemoryScore value)  saveMemoryScore,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Init value)  init,required TResult Function( _AddButtonClicked value)  addButtonClicked,required TResult Function( _AddOrEditCategory value)  addOrEditCategory,required TResult Function( _ChangeTitle value)  changeTitle,required TResult Function( _DeleteCategory value)  deleteCategory,required TResult Function( _ReorderCategories value)  reorderCategories,required TResult Function( _SaveText value)  saveText,required TResult Function( _SaveCalendar value)  saveCalendar,required TResult Function( _SaveQuiz value)  saveQuiz,required TResult Function( _SaveWishesContract value)  saveWishesContract,required TResult Function( _ResetWishes value)  resetWishes,required TResult Function( _ResetMemoryGame value)  resetMemoryGame,required TResult Function( _ResetQuiz value)  resetQuiz,required TResult Function( _UploadFiles value)  uploadFiles,required TResult Function( _SaveMemoryGameImages value)  saveMemoryGameImages,required TResult Function( _DeleteFiles value)  deleteFiles,required TResult Function( _UploadSurprise value)  uploadSurprise,required TResult Function( _SaveQuizAnswer value)  saveQuizAnswer,required TResult Function( _SaveWishes value)  saveWishes,required TResult Function( _SaveMemoryScore value)  saveMemoryScore,required TResult Function( _SaveTimeCapsule value)  saveTimeCapsule,required TResult Function( _SaveTimeCapsuleLetter value)  saveTimeCapsuleLetter,required TResult Function( _SaveParentStats value)  saveParentStats,required TResult Function( _SaveMilestones value)  saveMilestones,required TResult Function( _SaveLookAlike value)  saveLookAlike,required TResult Function( _SaveLookAlikeAnswers value)  saveLookAlikeAnswers,required TResult Function( _ResetLookAlike value)  resetLookAlike,}){
 final _that = this;
 switch (_that) {
 case _Init():
@@ -102,20 +111,29 @@ return init(_that);case _AddButtonClicked():
 return addButtonClicked(_that);case _AddOrEditCategory():
 return addOrEditCategory(_that);case _ChangeTitle():
 return changeTitle(_that);case _DeleteCategory():
-return deleteCategory(_that);case _SaveText():
+return deleteCategory(_that);case _ReorderCategories():
+return reorderCategories(_that);case _SaveText():
 return saveText(_that);case _SaveCalendar():
 return saveCalendar(_that);case _SaveQuiz():
 return saveQuiz(_that);case _SaveWishesContract():
 return saveWishesContract(_that);case _ResetWishes():
 return resetWishes(_that);case _ResetMemoryGame():
-return resetMemoryGame(_that);case _UploadFiles():
+return resetMemoryGame(_that);case _ResetQuiz():
+return resetQuiz(_that);case _UploadFiles():
 return uploadFiles(_that);case _SaveMemoryGameImages():
 return saveMemoryGameImages(_that);case _DeleteFiles():
 return deleteFiles(_that);case _UploadSurprise():
 return uploadSurprise(_that);case _SaveQuizAnswer():
 return saveQuizAnswer(_that);case _SaveWishes():
 return saveWishes(_that);case _SaveMemoryScore():
-return saveMemoryScore(_that);}
+return saveMemoryScore(_that);case _SaveTimeCapsule():
+return saveTimeCapsule(_that);case _SaveTimeCapsuleLetter():
+return saveTimeCapsuleLetter(_that);case _SaveParentStats():
+return saveParentStats(_that);case _SaveMilestones():
+return saveMilestones(_that);case _SaveLookAlike():
+return saveLookAlike(_that);case _SaveLookAlikeAnswers():
+return saveLookAlikeAnswers(_that);case _ResetLookAlike():
+return resetLookAlike(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -129,7 +147,7 @@ return saveMemoryScore(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Init value)?  init,TResult? Function( _AddButtonClicked value)?  addButtonClicked,TResult? Function( _AddOrEditCategory value)?  addOrEditCategory,TResult? Function( _ChangeTitle value)?  changeTitle,TResult? Function( _DeleteCategory value)?  deleteCategory,TResult? Function( _SaveText value)?  saveText,TResult? Function( _SaveCalendar value)?  saveCalendar,TResult? Function( _SaveQuiz value)?  saveQuiz,TResult? Function( _SaveWishesContract value)?  saveWishesContract,TResult? Function( _ResetWishes value)?  resetWishes,TResult? Function( _ResetMemoryGame value)?  resetMemoryGame,TResult? Function( _UploadFiles value)?  uploadFiles,TResult? Function( _SaveMemoryGameImages value)?  saveMemoryGameImages,TResult? Function( _DeleteFiles value)?  deleteFiles,TResult? Function( _UploadSurprise value)?  uploadSurprise,TResult? Function( _SaveQuizAnswer value)?  saveQuizAnswer,TResult? Function( _SaveWishes value)?  saveWishes,TResult? Function( _SaveMemoryScore value)?  saveMemoryScore,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Init value)?  init,TResult? Function( _AddButtonClicked value)?  addButtonClicked,TResult? Function( _AddOrEditCategory value)?  addOrEditCategory,TResult? Function( _ChangeTitle value)?  changeTitle,TResult? Function( _DeleteCategory value)?  deleteCategory,TResult? Function( _ReorderCategories value)?  reorderCategories,TResult? Function( _SaveText value)?  saveText,TResult? Function( _SaveCalendar value)?  saveCalendar,TResult? Function( _SaveQuiz value)?  saveQuiz,TResult? Function( _SaveWishesContract value)?  saveWishesContract,TResult? Function( _ResetWishes value)?  resetWishes,TResult? Function( _ResetMemoryGame value)?  resetMemoryGame,TResult? Function( _ResetQuiz value)?  resetQuiz,TResult? Function( _UploadFiles value)?  uploadFiles,TResult? Function( _SaveMemoryGameImages value)?  saveMemoryGameImages,TResult? Function( _DeleteFiles value)?  deleteFiles,TResult? Function( _UploadSurprise value)?  uploadSurprise,TResult? Function( _SaveQuizAnswer value)?  saveQuizAnswer,TResult? Function( _SaveWishes value)?  saveWishes,TResult? Function( _SaveMemoryScore value)?  saveMemoryScore,TResult? Function( _SaveTimeCapsule value)?  saveTimeCapsule,TResult? Function( _SaveTimeCapsuleLetter value)?  saveTimeCapsuleLetter,TResult? Function( _SaveParentStats value)?  saveParentStats,TResult? Function( _SaveMilestones value)?  saveMilestones,TResult? Function( _SaveLookAlike value)?  saveLookAlike,TResult? Function( _SaveLookAlikeAnswers value)?  saveLookAlikeAnswers,TResult? Function( _ResetLookAlike value)?  resetLookAlike,}){
 final _that = this;
 switch (_that) {
 case _Init() when init != null:
@@ -137,20 +155,29 @@ return init(_that);case _AddButtonClicked() when addButtonClicked != null:
 return addButtonClicked(_that);case _AddOrEditCategory() when addOrEditCategory != null:
 return addOrEditCategory(_that);case _ChangeTitle() when changeTitle != null:
 return changeTitle(_that);case _DeleteCategory() when deleteCategory != null:
-return deleteCategory(_that);case _SaveText() when saveText != null:
+return deleteCategory(_that);case _ReorderCategories() when reorderCategories != null:
+return reorderCategories(_that);case _SaveText() when saveText != null:
 return saveText(_that);case _SaveCalendar() when saveCalendar != null:
 return saveCalendar(_that);case _SaveQuiz() when saveQuiz != null:
 return saveQuiz(_that);case _SaveWishesContract() when saveWishesContract != null:
 return saveWishesContract(_that);case _ResetWishes() when resetWishes != null:
 return resetWishes(_that);case _ResetMemoryGame() when resetMemoryGame != null:
-return resetMemoryGame(_that);case _UploadFiles() when uploadFiles != null:
+return resetMemoryGame(_that);case _ResetQuiz() when resetQuiz != null:
+return resetQuiz(_that);case _UploadFiles() when uploadFiles != null:
 return uploadFiles(_that);case _SaveMemoryGameImages() when saveMemoryGameImages != null:
 return saveMemoryGameImages(_that);case _DeleteFiles() when deleteFiles != null:
 return deleteFiles(_that);case _UploadSurprise() when uploadSurprise != null:
 return uploadSurprise(_that);case _SaveQuizAnswer() when saveQuizAnswer != null:
 return saveQuizAnswer(_that);case _SaveWishes() when saveWishes != null:
 return saveWishes(_that);case _SaveMemoryScore() when saveMemoryScore != null:
-return saveMemoryScore(_that);case _:
+return saveMemoryScore(_that);case _SaveTimeCapsule() when saveTimeCapsule != null:
+return saveTimeCapsule(_that);case _SaveTimeCapsuleLetter() when saveTimeCapsuleLetter != null:
+return saveTimeCapsuleLetter(_that);case _SaveParentStats() when saveParentStats != null:
+return saveParentStats(_that);case _SaveMilestones() when saveMilestones != null:
+return saveMilestones(_that);case _SaveLookAlike() when saveLookAlike != null:
+return saveLookAlike(_that);case _SaveLookAlikeAnswers() when saveLookAlikeAnswers != null:
+return saveLookAlikeAnswers(_that);case _ResetLookAlike() when resetLookAlike != null:
+return resetLookAlike(_that);case _:
   return null;
 
 }
@@ -167,27 +194,36 @@ return saveMemoryScore(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  init,TResult Function()?  addButtonClicked,TResult Function( CategoryModel category,  bool edit)?  addOrEditCategory,TResult Function( CategoryModel category)?  changeTitle,TResult Function( CategoryModel category)?  deleteCategory,TResult Function( CategoryModel category,  String text)?  saveText,TResult Function( CategoryModel category,  CalendarModel calendar)?  saveCalendar,TResult Function( CategoryModel category,  List<QuestionModel> questions,  bool lock)?  saveQuiz,TResult Function( CategoryModel category,  String text,  bool edit)?  saveWishesContract,TResult Function( CategoryModel category)?  resetWishes,TResult Function( CategoryModel category)?  resetMemoryGame,TResult Function( CategoryModel category,  List<File> files)?  uploadFiles,TResult Function( CategoryModel category,  List<String> keptUrls,  List<File> newFiles)?  saveMemoryGameImages,TResult Function( CategoryModel category,  List<int> filesIndexes)?  deleteFiles,TResult Function( CategoryModel category,  List<Widget> widgets)?  uploadSurprise,TResult Function( CategoryModel category,  QuestionModel question,  int index,  int score)?  saveQuizAnswer,TResult Function( CategoryModel category,  WishesModel wishes)?  saveWishes,TResult Function( CategoryModel category,  int score)?  saveMemoryScore,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  init,TResult Function()?  addButtonClicked,TResult Function( CategoryModel category,  bool edit)?  addOrEditCategory,TResult Function( CategoryModel category)?  changeTitle,TResult Function( CategoryModel category)?  deleteCategory,TResult Function( List<String> ids)?  reorderCategories,TResult Function( CategoryModel category,  String text)?  saveText,TResult Function( CategoryModel category,  CalendarModel calendar)?  saveCalendar,TResult Function( CategoryModel category,  List<QuestionModel> questions,  bool lock)?  saveQuiz,TResult Function( CategoryModel category,  String text,  bool edit)?  saveWishesContract,TResult Function( CategoryModel category)?  resetWishes,TResult Function( CategoryModel category)?  resetMemoryGame,TResult Function( CategoryModel category)?  resetQuiz,TResult Function( CategoryModel category,  List<File> files)?  uploadFiles,TResult Function( CategoryModel category,  List<String> keptUrls,  List<File> newFiles)?  saveMemoryGameImages,TResult Function( CategoryModel category,  List<int> filesIndexes)?  deleteFiles,TResult Function( CategoryModel category,  List<Widget> widgets)?  uploadSurprise,TResult Function( CategoryModel category,  QuestionModel question,  int index,  int score)?  saveQuizAnswer,TResult Function( CategoryModel category,  WishesModel wishes)?  saveWishes,TResult Function( CategoryModel category,  int score)?  saveMemoryScore,TResult Function( CategoryModel category,  String letter,  DateTime openDate)?  saveTimeCapsule,TResult Function( CategoryModel category,  String letter)?  saveTimeCapsuleLetter,TResult Function( CategoryModel category,  Map<String, double> stats)?  saveParentStats,TResult Function( CategoryModel category,  List<(MilestoneModel milestone, File? image)> milestones)?  saveMilestones,TResult Function( CategoryModel category,  Map<String, String> ownerAnswers,  Map<String, File> childImages,  File? ownerImage,  File? partnerImage)?  saveLookAlike,TResult Function( CategoryModel category,  Map<String, String> answers)?  saveLookAlikeAnswers,TResult Function( CategoryModel category)?  resetLookAlike,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Init() when init != null:
 return init();case _AddButtonClicked() when addButtonClicked != null:
 return addButtonClicked();case _AddOrEditCategory() when addOrEditCategory != null:
 return addOrEditCategory(_that.category,_that.edit);case _ChangeTitle() when changeTitle != null:
 return changeTitle(_that.category);case _DeleteCategory() when deleteCategory != null:
-return deleteCategory(_that.category);case _SaveText() when saveText != null:
+return deleteCategory(_that.category);case _ReorderCategories() when reorderCategories != null:
+return reorderCategories(_that.ids);case _SaveText() when saveText != null:
 return saveText(_that.category,_that.text);case _SaveCalendar() when saveCalendar != null:
 return saveCalendar(_that.category,_that.calendar);case _SaveQuiz() when saveQuiz != null:
 return saveQuiz(_that.category,_that.questions,_that.lock);case _SaveWishesContract() when saveWishesContract != null:
 return saveWishesContract(_that.category,_that.text,_that.edit);case _ResetWishes() when resetWishes != null:
 return resetWishes(_that.category);case _ResetMemoryGame() when resetMemoryGame != null:
-return resetMemoryGame(_that.category);case _UploadFiles() when uploadFiles != null:
+return resetMemoryGame(_that.category);case _ResetQuiz() when resetQuiz != null:
+return resetQuiz(_that.category);case _UploadFiles() when uploadFiles != null:
 return uploadFiles(_that.category,_that.files);case _SaveMemoryGameImages() when saveMemoryGameImages != null:
 return saveMemoryGameImages(_that.category,_that.keptUrls,_that.newFiles);case _DeleteFiles() when deleteFiles != null:
 return deleteFiles(_that.category,_that.filesIndexes);case _UploadSurprise() when uploadSurprise != null:
 return uploadSurprise(_that.category,_that.widgets);case _SaveQuizAnswer() when saveQuizAnswer != null:
 return saveQuizAnswer(_that.category,_that.question,_that.index,_that.score);case _SaveWishes() when saveWishes != null:
 return saveWishes(_that.category,_that.wishes);case _SaveMemoryScore() when saveMemoryScore != null:
-return saveMemoryScore(_that.category,_that.score);case _:
+return saveMemoryScore(_that.category,_that.score);case _SaveTimeCapsule() when saveTimeCapsule != null:
+return saveTimeCapsule(_that.category,_that.letter,_that.openDate);case _SaveTimeCapsuleLetter() when saveTimeCapsuleLetter != null:
+return saveTimeCapsuleLetter(_that.category,_that.letter);case _SaveParentStats() when saveParentStats != null:
+return saveParentStats(_that.category,_that.stats);case _SaveMilestones() when saveMilestones != null:
+return saveMilestones(_that.category,_that.milestones);case _SaveLookAlike() when saveLookAlike != null:
+return saveLookAlike(_that.category,_that.ownerAnswers,_that.childImages,_that.ownerImage,_that.partnerImage);case _SaveLookAlikeAnswers() when saveLookAlikeAnswers != null:
+return saveLookAlikeAnswers(_that.category,_that.answers);case _ResetLookAlike() when resetLookAlike != null:
+return resetLookAlike(_that.category);case _:
   return orElse();
 
 }
@@ -205,27 +241,36 @@ return saveMemoryScore(_that.category,_that.score);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  init,required TResult Function()  addButtonClicked,required TResult Function( CategoryModel category,  bool edit)  addOrEditCategory,required TResult Function( CategoryModel category)  changeTitle,required TResult Function( CategoryModel category)  deleteCategory,required TResult Function( CategoryModel category,  String text)  saveText,required TResult Function( CategoryModel category,  CalendarModel calendar)  saveCalendar,required TResult Function( CategoryModel category,  List<QuestionModel> questions,  bool lock)  saveQuiz,required TResult Function( CategoryModel category,  String text,  bool edit)  saveWishesContract,required TResult Function( CategoryModel category)  resetWishes,required TResult Function( CategoryModel category)  resetMemoryGame,required TResult Function( CategoryModel category,  List<File> files)  uploadFiles,required TResult Function( CategoryModel category,  List<String> keptUrls,  List<File> newFiles)  saveMemoryGameImages,required TResult Function( CategoryModel category,  List<int> filesIndexes)  deleteFiles,required TResult Function( CategoryModel category,  List<Widget> widgets)  uploadSurprise,required TResult Function( CategoryModel category,  QuestionModel question,  int index,  int score)  saveQuizAnswer,required TResult Function( CategoryModel category,  WishesModel wishes)  saveWishes,required TResult Function( CategoryModel category,  int score)  saveMemoryScore,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  init,required TResult Function()  addButtonClicked,required TResult Function( CategoryModel category,  bool edit)  addOrEditCategory,required TResult Function( CategoryModel category)  changeTitle,required TResult Function( CategoryModel category)  deleteCategory,required TResult Function( List<String> ids)  reorderCategories,required TResult Function( CategoryModel category,  String text)  saveText,required TResult Function( CategoryModel category,  CalendarModel calendar)  saveCalendar,required TResult Function( CategoryModel category,  List<QuestionModel> questions,  bool lock)  saveQuiz,required TResult Function( CategoryModel category,  String text,  bool edit)  saveWishesContract,required TResult Function( CategoryModel category)  resetWishes,required TResult Function( CategoryModel category)  resetMemoryGame,required TResult Function( CategoryModel category)  resetQuiz,required TResult Function( CategoryModel category,  List<File> files)  uploadFiles,required TResult Function( CategoryModel category,  List<String> keptUrls,  List<File> newFiles)  saveMemoryGameImages,required TResult Function( CategoryModel category,  List<int> filesIndexes)  deleteFiles,required TResult Function( CategoryModel category,  List<Widget> widgets)  uploadSurprise,required TResult Function( CategoryModel category,  QuestionModel question,  int index,  int score)  saveQuizAnswer,required TResult Function( CategoryModel category,  WishesModel wishes)  saveWishes,required TResult Function( CategoryModel category,  int score)  saveMemoryScore,required TResult Function( CategoryModel category,  String letter,  DateTime openDate)  saveTimeCapsule,required TResult Function( CategoryModel category,  String letter)  saveTimeCapsuleLetter,required TResult Function( CategoryModel category,  Map<String, double> stats)  saveParentStats,required TResult Function( CategoryModel category,  List<(MilestoneModel milestone, File? image)> milestones)  saveMilestones,required TResult Function( CategoryModel category,  Map<String, String> ownerAnswers,  Map<String, File> childImages,  File? ownerImage,  File? partnerImage)  saveLookAlike,required TResult Function( CategoryModel category,  Map<String, String> answers)  saveLookAlikeAnswers,required TResult Function( CategoryModel category)  resetLookAlike,}) {final _that = this;
 switch (_that) {
 case _Init():
 return init();case _AddButtonClicked():
 return addButtonClicked();case _AddOrEditCategory():
 return addOrEditCategory(_that.category,_that.edit);case _ChangeTitle():
 return changeTitle(_that.category);case _DeleteCategory():
-return deleteCategory(_that.category);case _SaveText():
+return deleteCategory(_that.category);case _ReorderCategories():
+return reorderCategories(_that.ids);case _SaveText():
 return saveText(_that.category,_that.text);case _SaveCalendar():
 return saveCalendar(_that.category,_that.calendar);case _SaveQuiz():
 return saveQuiz(_that.category,_that.questions,_that.lock);case _SaveWishesContract():
 return saveWishesContract(_that.category,_that.text,_that.edit);case _ResetWishes():
 return resetWishes(_that.category);case _ResetMemoryGame():
-return resetMemoryGame(_that.category);case _UploadFiles():
+return resetMemoryGame(_that.category);case _ResetQuiz():
+return resetQuiz(_that.category);case _UploadFiles():
 return uploadFiles(_that.category,_that.files);case _SaveMemoryGameImages():
 return saveMemoryGameImages(_that.category,_that.keptUrls,_that.newFiles);case _DeleteFiles():
 return deleteFiles(_that.category,_that.filesIndexes);case _UploadSurprise():
 return uploadSurprise(_that.category,_that.widgets);case _SaveQuizAnswer():
 return saveQuizAnswer(_that.category,_that.question,_that.index,_that.score);case _SaveWishes():
 return saveWishes(_that.category,_that.wishes);case _SaveMemoryScore():
-return saveMemoryScore(_that.category,_that.score);}
+return saveMemoryScore(_that.category,_that.score);case _SaveTimeCapsule():
+return saveTimeCapsule(_that.category,_that.letter,_that.openDate);case _SaveTimeCapsuleLetter():
+return saveTimeCapsuleLetter(_that.category,_that.letter);case _SaveParentStats():
+return saveParentStats(_that.category,_that.stats);case _SaveMilestones():
+return saveMilestones(_that.category,_that.milestones);case _SaveLookAlike():
+return saveLookAlike(_that.category,_that.ownerAnswers,_that.childImages,_that.ownerImage,_that.partnerImage);case _SaveLookAlikeAnswers():
+return saveLookAlikeAnswers(_that.category,_that.answers);case _ResetLookAlike():
+return resetLookAlike(_that.category);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -239,27 +284,36 @@ return saveMemoryScore(_that.category,_that.score);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  init,TResult? Function()?  addButtonClicked,TResult? Function( CategoryModel category,  bool edit)?  addOrEditCategory,TResult? Function( CategoryModel category)?  changeTitle,TResult? Function( CategoryModel category)?  deleteCategory,TResult? Function( CategoryModel category,  String text)?  saveText,TResult? Function( CategoryModel category,  CalendarModel calendar)?  saveCalendar,TResult? Function( CategoryModel category,  List<QuestionModel> questions,  bool lock)?  saveQuiz,TResult? Function( CategoryModel category,  String text,  bool edit)?  saveWishesContract,TResult? Function( CategoryModel category)?  resetWishes,TResult? Function( CategoryModel category)?  resetMemoryGame,TResult? Function( CategoryModel category,  List<File> files)?  uploadFiles,TResult? Function( CategoryModel category,  List<String> keptUrls,  List<File> newFiles)?  saveMemoryGameImages,TResult? Function( CategoryModel category,  List<int> filesIndexes)?  deleteFiles,TResult? Function( CategoryModel category,  List<Widget> widgets)?  uploadSurprise,TResult? Function( CategoryModel category,  QuestionModel question,  int index,  int score)?  saveQuizAnswer,TResult? Function( CategoryModel category,  WishesModel wishes)?  saveWishes,TResult? Function( CategoryModel category,  int score)?  saveMemoryScore,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  init,TResult? Function()?  addButtonClicked,TResult? Function( CategoryModel category,  bool edit)?  addOrEditCategory,TResult? Function( CategoryModel category)?  changeTitle,TResult? Function( CategoryModel category)?  deleteCategory,TResult? Function( List<String> ids)?  reorderCategories,TResult? Function( CategoryModel category,  String text)?  saveText,TResult? Function( CategoryModel category,  CalendarModel calendar)?  saveCalendar,TResult? Function( CategoryModel category,  List<QuestionModel> questions,  bool lock)?  saveQuiz,TResult? Function( CategoryModel category,  String text,  bool edit)?  saveWishesContract,TResult? Function( CategoryModel category)?  resetWishes,TResult? Function( CategoryModel category)?  resetMemoryGame,TResult? Function( CategoryModel category)?  resetQuiz,TResult? Function( CategoryModel category,  List<File> files)?  uploadFiles,TResult? Function( CategoryModel category,  List<String> keptUrls,  List<File> newFiles)?  saveMemoryGameImages,TResult? Function( CategoryModel category,  List<int> filesIndexes)?  deleteFiles,TResult? Function( CategoryModel category,  List<Widget> widgets)?  uploadSurprise,TResult? Function( CategoryModel category,  QuestionModel question,  int index,  int score)?  saveQuizAnswer,TResult? Function( CategoryModel category,  WishesModel wishes)?  saveWishes,TResult? Function( CategoryModel category,  int score)?  saveMemoryScore,TResult? Function( CategoryModel category,  String letter,  DateTime openDate)?  saveTimeCapsule,TResult? Function( CategoryModel category,  String letter)?  saveTimeCapsuleLetter,TResult? Function( CategoryModel category,  Map<String, double> stats)?  saveParentStats,TResult? Function( CategoryModel category,  List<(MilestoneModel milestone, File? image)> milestones)?  saveMilestones,TResult? Function( CategoryModel category,  Map<String, String> ownerAnswers,  Map<String, File> childImages,  File? ownerImage,  File? partnerImage)?  saveLookAlike,TResult? Function( CategoryModel category,  Map<String, String> answers)?  saveLookAlikeAnswers,TResult? Function( CategoryModel category)?  resetLookAlike,}) {final _that = this;
 switch (_that) {
 case _Init() when init != null:
 return init();case _AddButtonClicked() when addButtonClicked != null:
 return addButtonClicked();case _AddOrEditCategory() when addOrEditCategory != null:
 return addOrEditCategory(_that.category,_that.edit);case _ChangeTitle() when changeTitle != null:
 return changeTitle(_that.category);case _DeleteCategory() when deleteCategory != null:
-return deleteCategory(_that.category);case _SaveText() when saveText != null:
+return deleteCategory(_that.category);case _ReorderCategories() when reorderCategories != null:
+return reorderCategories(_that.ids);case _SaveText() when saveText != null:
 return saveText(_that.category,_that.text);case _SaveCalendar() when saveCalendar != null:
 return saveCalendar(_that.category,_that.calendar);case _SaveQuiz() when saveQuiz != null:
 return saveQuiz(_that.category,_that.questions,_that.lock);case _SaveWishesContract() when saveWishesContract != null:
 return saveWishesContract(_that.category,_that.text,_that.edit);case _ResetWishes() when resetWishes != null:
 return resetWishes(_that.category);case _ResetMemoryGame() when resetMemoryGame != null:
-return resetMemoryGame(_that.category);case _UploadFiles() when uploadFiles != null:
+return resetMemoryGame(_that.category);case _ResetQuiz() when resetQuiz != null:
+return resetQuiz(_that.category);case _UploadFiles() when uploadFiles != null:
 return uploadFiles(_that.category,_that.files);case _SaveMemoryGameImages() when saveMemoryGameImages != null:
 return saveMemoryGameImages(_that.category,_that.keptUrls,_that.newFiles);case _DeleteFiles() when deleteFiles != null:
 return deleteFiles(_that.category,_that.filesIndexes);case _UploadSurprise() when uploadSurprise != null:
 return uploadSurprise(_that.category,_that.widgets);case _SaveQuizAnswer() when saveQuizAnswer != null:
 return saveQuizAnswer(_that.category,_that.question,_that.index,_that.score);case _SaveWishes() when saveWishes != null:
 return saveWishes(_that.category,_that.wishes);case _SaveMemoryScore() when saveMemoryScore != null:
-return saveMemoryScore(_that.category,_that.score);case _:
+return saveMemoryScore(_that.category,_that.score);case _SaveTimeCapsule() when saveTimeCapsule != null:
+return saveTimeCapsule(_that.category,_that.letter,_that.openDate);case _SaveTimeCapsuleLetter() when saveTimeCapsuleLetter != null:
+return saveTimeCapsuleLetter(_that.category,_that.letter);case _SaveParentStats() when saveParentStats != null:
+return saveParentStats(_that.category,_that.stats);case _SaveMilestones() when saveMilestones != null:
+return saveMilestones(_that.category,_that.milestones);case _SaveLookAlike() when saveLookAlike != null:
+return saveLookAlike(_that.category,_that.ownerAnswers,_that.childImages,_that.ownerImage,_that.partnerImage);case _SaveLookAlikeAnswers() when saveLookAlikeAnswers != null:
+return saveLookAlikeAnswers(_that.category,_that.answers);case _ResetLookAlike() when resetLookAlike != null:
+return resetLookAlike(_that.category);case _:
   return null;
 
 }
@@ -556,6 +610,78 @@ $CategoryModelCopyWith<$Res> get category {
     return _then(_self.copyWith(category: value));
   });
 }
+}
+
+/// @nodoc
+
+
+class _ReorderCategories implements HomeEvent {
+  const _ReorderCategories(final  List<String> ids): _ids = ids;
+  
+
+ final  List<String> _ids;
+ List<String> get ids {
+  if (_ids is EqualUnmodifiableListView) return _ids;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_ids);
+}
+
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ReorderCategoriesCopyWith<_ReorderCategories> get copyWith => __$ReorderCategoriesCopyWithImpl<_ReorderCategories>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReorderCategories&&const DeepCollectionEquality().equals(other._ids, _ids));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_ids));
+
+@override
+String toString() {
+  return 'HomeEvent.reorderCategories(ids: $ids)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ReorderCategoriesCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$ReorderCategoriesCopyWith(_ReorderCategories value, $Res Function(_ReorderCategories) _then) = __$ReorderCategoriesCopyWithImpl;
+@useResult
+$Res call({
+ List<String> ids
+});
+
+
+
+
+}
+/// @nodoc
+class __$ReorderCategoriesCopyWithImpl<$Res>
+    implements _$ReorderCategoriesCopyWith<$Res> {
+  __$ReorderCategoriesCopyWithImpl(this._self, this._then);
+
+  final _ReorderCategories _self;
+  final $Res Function(_ReorderCategories) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? ids = null,}) {
+  return _then(_ReorderCategories(
+null == ids ? _self._ids : ids // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
 }
 
 /// @nodoc
@@ -1018,6 +1144,81 @@ class __$ResetMemoryGameCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? category = null,}) {
   return _then(_ResetMemoryGame(
+null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,
+  ));
+}
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _ResetQuiz implements HomeEvent {
+  const _ResetQuiz(this.category);
+  
+
+ final  CategoryModel category;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ResetQuizCopyWith<_ResetQuiz> get copyWith => __$ResetQuizCopyWithImpl<_ResetQuiz>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResetQuiz&&(identical(other.category, category) || other.category == category));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,category);
+
+@override
+String toString() {
+  return 'HomeEvent.resetQuiz(category: $category)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ResetQuizCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$ResetQuizCopyWith(_ResetQuiz value, $Res Function(_ResetQuiz) _then) = __$ResetQuizCopyWithImpl;
+@useResult
+$Res call({
+ CategoryModel category
+});
+
+
+$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$ResetQuizCopyWithImpl<$Res>
+    implements _$ResetQuizCopyWith<$Res> {
+  __$ResetQuizCopyWithImpl(this._self, this._then);
+
+  final _ResetQuiz _self;
+  final $Res Function(_ResetQuiz) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? category = null,}) {
+  return _then(_ResetQuiz(
 null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as CategoryModel,
   ));
@@ -1629,6 +1830,581 @@ $CategoryModelCopyWith<$Res> get category {
 }
 
 /// @nodoc
+
+
+class _SaveTimeCapsule implements HomeEvent {
+  const _SaveTimeCapsule(this.category, this.letter, this.openDate);
+  
+
+ final  CategoryModel category;
+ final  String letter;
+ final  DateTime openDate;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SaveTimeCapsuleCopyWith<_SaveTimeCapsule> get copyWith => __$SaveTimeCapsuleCopyWithImpl<_SaveTimeCapsule>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SaveTimeCapsule&&(identical(other.category, category) || other.category == category)&&(identical(other.letter, letter) || other.letter == letter)&&(identical(other.openDate, openDate) || other.openDate == openDate));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,category,letter,openDate);
+
+@override
+String toString() {
+  return 'HomeEvent.saveTimeCapsule(category: $category, letter: $letter, openDate: $openDate)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SaveTimeCapsuleCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$SaveTimeCapsuleCopyWith(_SaveTimeCapsule value, $Res Function(_SaveTimeCapsule) _then) = __$SaveTimeCapsuleCopyWithImpl;
+@useResult
+$Res call({
+ CategoryModel category, String letter, DateTime openDate
+});
+
+
+$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$SaveTimeCapsuleCopyWithImpl<$Res>
+    implements _$SaveTimeCapsuleCopyWith<$Res> {
+  __$SaveTimeCapsuleCopyWithImpl(this._self, this._then);
+
+  final _SaveTimeCapsule _self;
+  final $Res Function(_SaveTimeCapsule) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? category = null,Object? letter = null,Object? openDate = null,}) {
+  return _then(_SaveTimeCapsule(
+null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,null == letter ? _self.letter : letter // ignore: cast_nullable_to_non_nullable
+as String,null == openDate ? _self.openDate : openDate // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _SaveTimeCapsuleLetter implements HomeEvent {
+  const _SaveTimeCapsuleLetter(this.category, this.letter);
+  
+
+ final  CategoryModel category;
+ final  String letter;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SaveTimeCapsuleLetterCopyWith<_SaveTimeCapsuleLetter> get copyWith => __$SaveTimeCapsuleLetterCopyWithImpl<_SaveTimeCapsuleLetter>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SaveTimeCapsuleLetter&&(identical(other.category, category) || other.category == category)&&(identical(other.letter, letter) || other.letter == letter));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,category,letter);
+
+@override
+String toString() {
+  return 'HomeEvent.saveTimeCapsuleLetter(category: $category, letter: $letter)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SaveTimeCapsuleLetterCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$SaveTimeCapsuleLetterCopyWith(_SaveTimeCapsuleLetter value, $Res Function(_SaveTimeCapsuleLetter) _then) = __$SaveTimeCapsuleLetterCopyWithImpl;
+@useResult
+$Res call({
+ CategoryModel category, String letter
+});
+
+
+$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$SaveTimeCapsuleLetterCopyWithImpl<$Res>
+    implements _$SaveTimeCapsuleLetterCopyWith<$Res> {
+  __$SaveTimeCapsuleLetterCopyWithImpl(this._self, this._then);
+
+  final _SaveTimeCapsuleLetter _self;
+  final $Res Function(_SaveTimeCapsuleLetter) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? category = null,Object? letter = null,}) {
+  return _then(_SaveTimeCapsuleLetter(
+null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,null == letter ? _self.letter : letter // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _SaveParentStats implements HomeEvent {
+  const _SaveParentStats(this.category, final  Map<String, double> stats): _stats = stats;
+  
+
+ final  CategoryModel category;
+ final  Map<String, double> _stats;
+ Map<String, double> get stats {
+  if (_stats is EqualUnmodifiableMapView) return _stats;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_stats);
+}
+
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SaveParentStatsCopyWith<_SaveParentStats> get copyWith => __$SaveParentStatsCopyWithImpl<_SaveParentStats>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SaveParentStats&&(identical(other.category, category) || other.category == category)&&const DeepCollectionEquality().equals(other._stats, _stats));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,category,const DeepCollectionEquality().hash(_stats));
+
+@override
+String toString() {
+  return 'HomeEvent.saveParentStats(category: $category, stats: $stats)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SaveParentStatsCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$SaveParentStatsCopyWith(_SaveParentStats value, $Res Function(_SaveParentStats) _then) = __$SaveParentStatsCopyWithImpl;
+@useResult
+$Res call({
+ CategoryModel category, Map<String, double> stats
+});
+
+
+$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$SaveParentStatsCopyWithImpl<$Res>
+    implements _$SaveParentStatsCopyWith<$Res> {
+  __$SaveParentStatsCopyWithImpl(this._self, this._then);
+
+  final _SaveParentStats _self;
+  final $Res Function(_SaveParentStats) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? category = null,Object? stats = null,}) {
+  return _then(_SaveParentStats(
+null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,null == stats ? _self._stats : stats // ignore: cast_nullable_to_non_nullable
+as Map<String, double>,
+  ));
+}
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _SaveMilestones implements HomeEvent {
+  const _SaveMilestones(this.category, final  List<(MilestoneModel milestone, File? image)> milestones): _milestones = milestones;
+  
+
+ final  CategoryModel category;
+ final  List<(MilestoneModel milestone, File? image)> _milestones;
+ List<(MilestoneModel milestone, File? image)> get milestones {
+  if (_milestones is EqualUnmodifiableListView) return _milestones;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_milestones);
+}
+
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SaveMilestonesCopyWith<_SaveMilestones> get copyWith => __$SaveMilestonesCopyWithImpl<_SaveMilestones>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SaveMilestones&&(identical(other.category, category) || other.category == category)&&const DeepCollectionEquality().equals(other._milestones, _milestones));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,category,const DeepCollectionEquality().hash(_milestones));
+
+@override
+String toString() {
+  return 'HomeEvent.saveMilestones(category: $category, milestones: $milestones)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SaveMilestonesCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$SaveMilestonesCopyWith(_SaveMilestones value, $Res Function(_SaveMilestones) _then) = __$SaveMilestonesCopyWithImpl;
+@useResult
+$Res call({
+ CategoryModel category, List<(MilestoneModel milestone, File? image)> milestones
+});
+
+
+$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$SaveMilestonesCopyWithImpl<$Res>
+    implements _$SaveMilestonesCopyWith<$Res> {
+  __$SaveMilestonesCopyWithImpl(this._self, this._then);
+
+  final _SaveMilestones _self;
+  final $Res Function(_SaveMilestones) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? category = null,Object? milestones = null,}) {
+  return _then(_SaveMilestones(
+null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,null == milestones ? _self._milestones : milestones // ignore: cast_nullable_to_non_nullable
+as List<(MilestoneModel milestone, File? image)>,
+  ));
+}
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _SaveLookAlike implements HomeEvent {
+  const _SaveLookAlike(this.category, final  Map<String, String> ownerAnswers, {final  Map<String, File> childImages = const {}, this.ownerImage, this.partnerImage}): _ownerAnswers = ownerAnswers,_childImages = childImages;
+  
+
+ final  CategoryModel category;
+ final  Map<String, String> _ownerAnswers;
+ Map<String, String> get ownerAnswers {
+  if (_ownerAnswers is EqualUnmodifiableMapView) return _ownerAnswers;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_ownerAnswers);
+}
+
+ final  Map<String, File> _childImages;
+@JsonKey() Map<String, File> get childImages {
+  if (_childImages is EqualUnmodifiableMapView) return _childImages;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_childImages);
+}
+
+ final  File? ownerImage;
+ final  File? partnerImage;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SaveLookAlikeCopyWith<_SaveLookAlike> get copyWith => __$SaveLookAlikeCopyWithImpl<_SaveLookAlike>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SaveLookAlike&&(identical(other.category, category) || other.category == category)&&const DeepCollectionEquality().equals(other._ownerAnswers, _ownerAnswers)&&const DeepCollectionEquality().equals(other._childImages, _childImages)&&(identical(other.ownerImage, ownerImage) || other.ownerImage == ownerImage)&&(identical(other.partnerImage, partnerImage) || other.partnerImage == partnerImage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,category,const DeepCollectionEquality().hash(_ownerAnswers),const DeepCollectionEquality().hash(_childImages),ownerImage,partnerImage);
+
+@override
+String toString() {
+  return 'HomeEvent.saveLookAlike(category: $category, ownerAnswers: $ownerAnswers, childImages: $childImages, ownerImage: $ownerImage, partnerImage: $partnerImage)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SaveLookAlikeCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$SaveLookAlikeCopyWith(_SaveLookAlike value, $Res Function(_SaveLookAlike) _then) = __$SaveLookAlikeCopyWithImpl;
+@useResult
+$Res call({
+ CategoryModel category, Map<String, String> ownerAnswers, Map<String, File> childImages, File? ownerImage, File? partnerImage
+});
+
+
+$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$SaveLookAlikeCopyWithImpl<$Res>
+    implements _$SaveLookAlikeCopyWith<$Res> {
+  __$SaveLookAlikeCopyWithImpl(this._self, this._then);
+
+  final _SaveLookAlike _self;
+  final $Res Function(_SaveLookAlike) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? category = null,Object? ownerAnswers = null,Object? childImages = null,Object? ownerImage = freezed,Object? partnerImage = freezed,}) {
+  return _then(_SaveLookAlike(
+null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,null == ownerAnswers ? _self._ownerAnswers : ownerAnswers // ignore: cast_nullable_to_non_nullable
+as Map<String, String>,childImages: null == childImages ? _self._childImages : childImages // ignore: cast_nullable_to_non_nullable
+as Map<String, File>,ownerImage: freezed == ownerImage ? _self.ownerImage : ownerImage // ignore: cast_nullable_to_non_nullable
+as File?,partnerImage: freezed == partnerImage ? _self.partnerImage : partnerImage // ignore: cast_nullable_to_non_nullable
+as File?,
+  ));
+}
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _SaveLookAlikeAnswers implements HomeEvent {
+  const _SaveLookAlikeAnswers(this.category, final  Map<String, String> answers): _answers = answers;
+  
+
+ final  CategoryModel category;
+ final  Map<String, String> _answers;
+ Map<String, String> get answers {
+  if (_answers is EqualUnmodifiableMapView) return _answers;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_answers);
+}
+
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SaveLookAlikeAnswersCopyWith<_SaveLookAlikeAnswers> get copyWith => __$SaveLookAlikeAnswersCopyWithImpl<_SaveLookAlikeAnswers>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SaveLookAlikeAnswers&&(identical(other.category, category) || other.category == category)&&const DeepCollectionEquality().equals(other._answers, _answers));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,category,const DeepCollectionEquality().hash(_answers));
+
+@override
+String toString() {
+  return 'HomeEvent.saveLookAlikeAnswers(category: $category, answers: $answers)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SaveLookAlikeAnswersCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$SaveLookAlikeAnswersCopyWith(_SaveLookAlikeAnswers value, $Res Function(_SaveLookAlikeAnswers) _then) = __$SaveLookAlikeAnswersCopyWithImpl;
+@useResult
+$Res call({
+ CategoryModel category, Map<String, String> answers
+});
+
+
+$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$SaveLookAlikeAnswersCopyWithImpl<$Res>
+    implements _$SaveLookAlikeAnswersCopyWith<$Res> {
+  __$SaveLookAlikeAnswersCopyWithImpl(this._self, this._then);
+
+  final _SaveLookAlikeAnswers _self;
+  final $Res Function(_SaveLookAlikeAnswers) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? category = null,Object? answers = null,}) {
+  return _then(_SaveLookAlikeAnswers(
+null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,null == answers ? _self._answers : answers // ignore: cast_nullable_to_non_nullable
+as Map<String, String>,
+  ));
+}
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _ResetLookAlike implements HomeEvent {
+  const _ResetLookAlike(this.category);
+  
+
+ final  CategoryModel category;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ResetLookAlikeCopyWith<_ResetLookAlike> get copyWith => __$ResetLookAlikeCopyWithImpl<_ResetLookAlike>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResetLookAlike&&(identical(other.category, category) || other.category == category));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,category);
+
+@override
+String toString() {
+  return 'HomeEvent.resetLookAlike(category: $category)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ResetLookAlikeCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$ResetLookAlikeCopyWith(_ResetLookAlike value, $Res Function(_ResetLookAlike) _then) = __$ResetLookAlikeCopyWithImpl;
+@useResult
+$Res call({
+ CategoryModel category
+});
+
+
+$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$ResetLookAlikeCopyWithImpl<$Res>
+    implements _$ResetLookAlikeCopyWith<$Res> {
+  __$ResetLookAlikeCopyWithImpl(this._self, this._then);
+
+  final _ResetLookAlike _self;
+  final $Res Function(_ResetLookAlike) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? category = null,}) {
+  return _then(_ResetLookAlike(
+null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,
+  ));
+}
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
 mixin _$HomeState {
 
  EventModel? get event;
@@ -1708,7 +2484,7 @@ extension HomeStatePatterns on HomeState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  initial,TResult Function( Loading value)?  loading,TResult Function( Loaded value)?  loaded,TResult Function( ErrorMessage value)?  errorMessage,TResult Function( OpenAddDialog value)?  openAddDialog,TResult Function( NavigateToAddText value)?  navigateToAddText,TResult Function( NavigateToAddPictures value)?  navigateToAddPictures,TResult Function( NavigateToAddVideos value)?  navigateToAddVideos,TResult Function( NavigateToAddQuizGame value)?  navigateToAddQuizGame,TResult Function( NavigateToAddBirthdayCalendar value)?  navigateToAddBirthdayCalendar,TResult Function( NavigateToAddBirthdaySurprise value)?  navigateToAddBirthdaySurprise,TResult Function( NavigateToAddWishesList value)?  navigateToAddWishesList,TResult Function( NavigateToAddMemoryGame value)?  navigateToAddMemoryGame,TResult Function( OpenEditAgain value)?  openEditAgain,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  initial,TResult Function( Loading value)?  loading,TResult Function( Loaded value)?  loaded,TResult Function( ErrorMessage value)?  errorMessage,TResult Function( OpenAddDialog value)?  openAddDialog,TResult Function( NavigateToAddText value)?  navigateToAddText,TResult Function( NavigateToAddPictures value)?  navigateToAddPictures,TResult Function( NavigateToAddVideos value)?  navigateToAddVideos,TResult Function( NavigateToAddQuizGame value)?  navigateToAddQuizGame,TResult Function( NavigateToAddBirthdayCalendar value)?  navigateToAddBirthdayCalendar,TResult Function( NavigateToAddBirthdaySurprise value)?  navigateToAddBirthdaySurprise,TResult Function( NavigateToAddWishesList value)?  navigateToAddWishesList,TResult Function( NavigateToAddMemoryGame value)?  navigateToAddMemoryGame,TResult Function( NavigateToAddTimeCapsule value)?  navigateToAddTimeCapsule,TResult Function( NavigateToAddBabyLetter value)?  navigateToAddBabyLetter,TResult Function( NavigateToAddParentStats value)?  navigateToAddParentStats,TResult Function( NavigateToAddMilestones value)?  navigateToAddMilestones,TResult Function( NavigateToAddLookAlike value)?  navigateToAddLookAlike,TResult Function( OpenEditAgain value)?  openEditAgain,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case Initial() when initial != null:
@@ -1724,7 +2500,12 @@ return navigateToAddQuizGame(_that);case NavigateToAddBirthdayCalendar() when na
 return navigateToAddBirthdayCalendar(_that);case NavigateToAddBirthdaySurprise() when navigateToAddBirthdaySurprise != null:
 return navigateToAddBirthdaySurprise(_that);case NavigateToAddWishesList() when navigateToAddWishesList != null:
 return navigateToAddWishesList(_that);case NavigateToAddMemoryGame() when navigateToAddMemoryGame != null:
-return navigateToAddMemoryGame(_that);case OpenEditAgain() when openEditAgain != null:
+return navigateToAddMemoryGame(_that);case NavigateToAddTimeCapsule() when navigateToAddTimeCapsule != null:
+return navigateToAddTimeCapsule(_that);case NavigateToAddBabyLetter() when navigateToAddBabyLetter != null:
+return navigateToAddBabyLetter(_that);case NavigateToAddParentStats() when navigateToAddParentStats != null:
+return navigateToAddParentStats(_that);case NavigateToAddMilestones() when navigateToAddMilestones != null:
+return navigateToAddMilestones(_that);case NavigateToAddLookAlike() when navigateToAddLookAlike != null:
+return navigateToAddLookAlike(_that);case OpenEditAgain() when openEditAgain != null:
 return openEditAgain(_that);case _:
   return orElse();
 
@@ -1743,7 +2524,7 @@ return openEditAgain(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  initial,required TResult Function( Loading value)  loading,required TResult Function( Loaded value)  loaded,required TResult Function( ErrorMessage value)  errorMessage,required TResult Function( OpenAddDialog value)  openAddDialog,required TResult Function( NavigateToAddText value)  navigateToAddText,required TResult Function( NavigateToAddPictures value)  navigateToAddPictures,required TResult Function( NavigateToAddVideos value)  navigateToAddVideos,required TResult Function( NavigateToAddQuizGame value)  navigateToAddQuizGame,required TResult Function( NavigateToAddBirthdayCalendar value)  navigateToAddBirthdayCalendar,required TResult Function( NavigateToAddBirthdaySurprise value)  navigateToAddBirthdaySurprise,required TResult Function( NavigateToAddWishesList value)  navigateToAddWishesList,required TResult Function( NavigateToAddMemoryGame value)  navigateToAddMemoryGame,required TResult Function( OpenEditAgain value)  openEditAgain,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  initial,required TResult Function( Loading value)  loading,required TResult Function( Loaded value)  loaded,required TResult Function( ErrorMessage value)  errorMessage,required TResult Function( OpenAddDialog value)  openAddDialog,required TResult Function( NavigateToAddText value)  navigateToAddText,required TResult Function( NavigateToAddPictures value)  navigateToAddPictures,required TResult Function( NavigateToAddVideos value)  navigateToAddVideos,required TResult Function( NavigateToAddQuizGame value)  navigateToAddQuizGame,required TResult Function( NavigateToAddBirthdayCalendar value)  navigateToAddBirthdayCalendar,required TResult Function( NavigateToAddBirthdaySurprise value)  navigateToAddBirthdaySurprise,required TResult Function( NavigateToAddWishesList value)  navigateToAddWishesList,required TResult Function( NavigateToAddMemoryGame value)  navigateToAddMemoryGame,required TResult Function( NavigateToAddTimeCapsule value)  navigateToAddTimeCapsule,required TResult Function( NavigateToAddBabyLetter value)  navigateToAddBabyLetter,required TResult Function( NavigateToAddParentStats value)  navigateToAddParentStats,required TResult Function( NavigateToAddMilestones value)  navigateToAddMilestones,required TResult Function( NavigateToAddLookAlike value)  navigateToAddLookAlike,required TResult Function( OpenEditAgain value)  openEditAgain,}){
 final _that = this;
 switch (_that) {
 case Initial():
@@ -1759,7 +2540,12 @@ return navigateToAddQuizGame(_that);case NavigateToAddBirthdayCalendar():
 return navigateToAddBirthdayCalendar(_that);case NavigateToAddBirthdaySurprise():
 return navigateToAddBirthdaySurprise(_that);case NavigateToAddWishesList():
 return navigateToAddWishesList(_that);case NavigateToAddMemoryGame():
-return navigateToAddMemoryGame(_that);case OpenEditAgain():
+return navigateToAddMemoryGame(_that);case NavigateToAddTimeCapsule():
+return navigateToAddTimeCapsule(_that);case NavigateToAddBabyLetter():
+return navigateToAddBabyLetter(_that);case NavigateToAddParentStats():
+return navigateToAddParentStats(_that);case NavigateToAddMilestones():
+return navigateToAddMilestones(_that);case NavigateToAddLookAlike():
+return navigateToAddLookAlike(_that);case OpenEditAgain():
 return openEditAgain(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -1774,7 +2560,7 @@ return openEditAgain(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  initial,TResult? Function( Loading value)?  loading,TResult? Function( Loaded value)?  loaded,TResult? Function( ErrorMessage value)?  errorMessage,TResult? Function( OpenAddDialog value)?  openAddDialog,TResult? Function( NavigateToAddText value)?  navigateToAddText,TResult? Function( NavigateToAddPictures value)?  navigateToAddPictures,TResult? Function( NavigateToAddVideos value)?  navigateToAddVideos,TResult? Function( NavigateToAddQuizGame value)?  navigateToAddQuizGame,TResult? Function( NavigateToAddBirthdayCalendar value)?  navigateToAddBirthdayCalendar,TResult? Function( NavigateToAddBirthdaySurprise value)?  navigateToAddBirthdaySurprise,TResult? Function( NavigateToAddWishesList value)?  navigateToAddWishesList,TResult? Function( NavigateToAddMemoryGame value)?  navigateToAddMemoryGame,TResult? Function( OpenEditAgain value)?  openEditAgain,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  initial,TResult? Function( Loading value)?  loading,TResult? Function( Loaded value)?  loaded,TResult? Function( ErrorMessage value)?  errorMessage,TResult? Function( OpenAddDialog value)?  openAddDialog,TResult? Function( NavigateToAddText value)?  navigateToAddText,TResult? Function( NavigateToAddPictures value)?  navigateToAddPictures,TResult? Function( NavigateToAddVideos value)?  navigateToAddVideos,TResult? Function( NavigateToAddQuizGame value)?  navigateToAddQuizGame,TResult? Function( NavigateToAddBirthdayCalendar value)?  navigateToAddBirthdayCalendar,TResult? Function( NavigateToAddBirthdaySurprise value)?  navigateToAddBirthdaySurprise,TResult? Function( NavigateToAddWishesList value)?  navigateToAddWishesList,TResult? Function( NavigateToAddMemoryGame value)?  navigateToAddMemoryGame,TResult? Function( NavigateToAddTimeCapsule value)?  navigateToAddTimeCapsule,TResult? Function( NavigateToAddBabyLetter value)?  navigateToAddBabyLetter,TResult? Function( NavigateToAddParentStats value)?  navigateToAddParentStats,TResult? Function( NavigateToAddMilestones value)?  navigateToAddMilestones,TResult? Function( NavigateToAddLookAlike value)?  navigateToAddLookAlike,TResult? Function( OpenEditAgain value)?  openEditAgain,}){
 final _that = this;
 switch (_that) {
 case Initial() when initial != null:
@@ -1790,7 +2576,12 @@ return navigateToAddQuizGame(_that);case NavigateToAddBirthdayCalendar() when na
 return navigateToAddBirthdayCalendar(_that);case NavigateToAddBirthdaySurprise() when navigateToAddBirthdaySurprise != null:
 return navigateToAddBirthdaySurprise(_that);case NavigateToAddWishesList() when navigateToAddWishesList != null:
 return navigateToAddWishesList(_that);case NavigateToAddMemoryGame() when navigateToAddMemoryGame != null:
-return navigateToAddMemoryGame(_that);case OpenEditAgain() when openEditAgain != null:
+return navigateToAddMemoryGame(_that);case NavigateToAddTimeCapsule() when navigateToAddTimeCapsule != null:
+return navigateToAddTimeCapsule(_that);case NavigateToAddBabyLetter() when navigateToAddBabyLetter != null:
+return navigateToAddBabyLetter(_that);case NavigateToAddParentStats() when navigateToAddParentStats != null:
+return navigateToAddParentStats(_that);case NavigateToAddMilestones() when navigateToAddMilestones != null:
+return navigateToAddMilestones(_that);case NavigateToAddLookAlike() when navigateToAddLookAlike != null:
+return navigateToAddLookAlike(_that);case OpenEditAgain() when openEditAgain != null:
 return openEditAgain(_that);case _:
   return null;
 
@@ -1808,7 +2599,7 @@ return openEditAgain(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( EventModel? event)?  initial,TResult Function( EventModel? event,  String? text)?  loading,TResult Function( EventModel? event)?  loaded,TResult Function( EventModel? event,  AppErrorType errorType)?  errorMessage,TResult Function( EventModel? event)?  openAddDialog,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddText,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddPictures,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddVideos,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddQuizGame,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddBirthdayCalendar,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddBirthdaySurprise,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddWishesList,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddMemoryGame,TResult Function( EventModel? event,  CategoryModel category)?  openEditAgain,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( EventModel? event)?  initial,TResult Function( EventModel? event,  String? text)?  loading,TResult Function( EventModel? event)?  loaded,TResult Function( EventModel? event,  AppErrorType errorType)?  errorMessage,TResult Function( EventModel? event)?  openAddDialog,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddText,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddPictures,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddVideos,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddQuizGame,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddBirthdayCalendar,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddBirthdaySurprise,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddWishesList,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddMemoryGame,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddTimeCapsule,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddBabyLetter,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddParentStats,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddMilestones,TResult Function( EventModel? event,  CategoryModel category)?  navigateToAddLookAlike,TResult Function( EventModel? event,  CategoryModel category)?  openEditAgain,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Initial() when initial != null:
 return initial(_that.event);case Loading() when loading != null:
@@ -1823,7 +2614,12 @@ return navigateToAddQuizGame(_that.event,_that.category);case NavigateToAddBirth
 return navigateToAddBirthdayCalendar(_that.event,_that.category);case NavigateToAddBirthdaySurprise() when navigateToAddBirthdaySurprise != null:
 return navigateToAddBirthdaySurprise(_that.event,_that.category);case NavigateToAddWishesList() when navigateToAddWishesList != null:
 return navigateToAddWishesList(_that.event,_that.category);case NavigateToAddMemoryGame() when navigateToAddMemoryGame != null:
-return navigateToAddMemoryGame(_that.event,_that.category);case OpenEditAgain() when openEditAgain != null:
+return navigateToAddMemoryGame(_that.event,_that.category);case NavigateToAddTimeCapsule() when navigateToAddTimeCapsule != null:
+return navigateToAddTimeCapsule(_that.event,_that.category);case NavigateToAddBabyLetter() when navigateToAddBabyLetter != null:
+return navigateToAddBabyLetter(_that.event,_that.category);case NavigateToAddParentStats() when navigateToAddParentStats != null:
+return navigateToAddParentStats(_that.event,_that.category);case NavigateToAddMilestones() when navigateToAddMilestones != null:
+return navigateToAddMilestones(_that.event,_that.category);case NavigateToAddLookAlike() when navigateToAddLookAlike != null:
+return navigateToAddLookAlike(_that.event,_that.category);case OpenEditAgain() when openEditAgain != null:
 return openEditAgain(_that.event,_that.category);case _:
   return orElse();
 
@@ -1842,7 +2638,7 @@ return openEditAgain(_that.event,_that.category);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( EventModel? event)  initial,required TResult Function( EventModel? event,  String? text)  loading,required TResult Function( EventModel? event)  loaded,required TResult Function( EventModel? event,  AppErrorType errorType)  errorMessage,required TResult Function( EventModel? event)  openAddDialog,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddText,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddPictures,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddVideos,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddQuizGame,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddBirthdayCalendar,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddBirthdaySurprise,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddWishesList,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddMemoryGame,required TResult Function( EventModel? event,  CategoryModel category)  openEditAgain,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( EventModel? event)  initial,required TResult Function( EventModel? event,  String? text)  loading,required TResult Function( EventModel? event)  loaded,required TResult Function( EventModel? event,  AppErrorType errorType)  errorMessage,required TResult Function( EventModel? event)  openAddDialog,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddText,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddPictures,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddVideos,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddQuizGame,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddBirthdayCalendar,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddBirthdaySurprise,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddWishesList,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddMemoryGame,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddTimeCapsule,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddBabyLetter,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddParentStats,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddMilestones,required TResult Function( EventModel? event,  CategoryModel category)  navigateToAddLookAlike,required TResult Function( EventModel? event,  CategoryModel category)  openEditAgain,}) {final _that = this;
 switch (_that) {
 case Initial():
 return initial(_that.event);case Loading():
@@ -1857,7 +2653,12 @@ return navigateToAddQuizGame(_that.event,_that.category);case NavigateToAddBirth
 return navigateToAddBirthdayCalendar(_that.event,_that.category);case NavigateToAddBirthdaySurprise():
 return navigateToAddBirthdaySurprise(_that.event,_that.category);case NavigateToAddWishesList():
 return navigateToAddWishesList(_that.event,_that.category);case NavigateToAddMemoryGame():
-return navigateToAddMemoryGame(_that.event,_that.category);case OpenEditAgain():
+return navigateToAddMemoryGame(_that.event,_that.category);case NavigateToAddTimeCapsule():
+return navigateToAddTimeCapsule(_that.event,_that.category);case NavigateToAddBabyLetter():
+return navigateToAddBabyLetter(_that.event,_that.category);case NavigateToAddParentStats():
+return navigateToAddParentStats(_that.event,_that.category);case NavigateToAddMilestones():
+return navigateToAddMilestones(_that.event,_that.category);case NavigateToAddLookAlike():
+return navigateToAddLookAlike(_that.event,_that.category);case OpenEditAgain():
 return openEditAgain(_that.event,_that.category);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -1872,7 +2673,7 @@ return openEditAgain(_that.event,_that.category);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( EventModel? event)?  initial,TResult? Function( EventModel? event,  String? text)?  loading,TResult? Function( EventModel? event)?  loaded,TResult? Function( EventModel? event,  AppErrorType errorType)?  errorMessage,TResult? Function( EventModel? event)?  openAddDialog,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddText,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddPictures,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddVideos,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddQuizGame,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddBirthdayCalendar,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddBirthdaySurprise,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddWishesList,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddMemoryGame,TResult? Function( EventModel? event,  CategoryModel category)?  openEditAgain,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( EventModel? event)?  initial,TResult? Function( EventModel? event,  String? text)?  loading,TResult? Function( EventModel? event)?  loaded,TResult? Function( EventModel? event,  AppErrorType errorType)?  errorMessage,TResult? Function( EventModel? event)?  openAddDialog,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddText,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddPictures,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddVideos,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddQuizGame,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddBirthdayCalendar,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddBirthdaySurprise,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddWishesList,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddMemoryGame,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddTimeCapsule,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddBabyLetter,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddParentStats,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddMilestones,TResult? Function( EventModel? event,  CategoryModel category)?  navigateToAddLookAlike,TResult? Function( EventModel? event,  CategoryModel category)?  openEditAgain,}) {final _that = this;
 switch (_that) {
 case Initial() when initial != null:
 return initial(_that.event);case Loading() when loading != null:
@@ -1887,7 +2688,12 @@ return navigateToAddQuizGame(_that.event,_that.category);case NavigateToAddBirth
 return navigateToAddBirthdayCalendar(_that.event,_that.category);case NavigateToAddBirthdaySurprise() when navigateToAddBirthdaySurprise != null:
 return navigateToAddBirthdaySurprise(_that.event,_that.category);case NavigateToAddWishesList() when navigateToAddWishesList != null:
 return navigateToAddWishesList(_that.event,_that.category);case NavigateToAddMemoryGame() when navigateToAddMemoryGame != null:
-return navigateToAddMemoryGame(_that.event,_that.category);case OpenEditAgain() when openEditAgain != null:
+return navigateToAddMemoryGame(_that.event,_that.category);case NavigateToAddTimeCapsule() when navigateToAddTimeCapsule != null:
+return navigateToAddTimeCapsule(_that.event,_that.category);case NavigateToAddBabyLetter() when navigateToAddBabyLetter != null:
+return navigateToAddBabyLetter(_that.event,_that.category);case NavigateToAddParentStats() when navigateToAddParentStats != null:
+return navigateToAddParentStats(_that.event,_that.category);case NavigateToAddMilestones() when navigateToAddMilestones != null:
+return navigateToAddMilestones(_that.event,_that.category);case NavigateToAddLookAlike() when navigateToAddLookAlike != null:
+return navigateToAddLookAlike(_that.event,_that.category);case OpenEditAgain() when openEditAgain != null:
 return openEditAgain(_that.event,_that.category);case _:
   return null;
 
@@ -2881,6 +3687,416 @@ class _$NavigateToAddMemoryGameCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? event = freezed,Object? category = null,}) {
   return _then(NavigateToAddMemoryGame(
+freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
+as EventModel?,null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,
+  ));
+}
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventModelCopyWith<$Res>? get event {
+    if (_self.event == null) {
+    return null;
+  }
+
+  return $EventModelCopyWith<$Res>(_self.event!, (value) {
+    return _then(_self.copyWith(event: value));
+  });
+}/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class NavigateToAddTimeCapsule implements HomeState {
+  const NavigateToAddTimeCapsule(this.event, this.category);
+  
+
+@override final  EventModel? event;
+ final  CategoryModel category;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NavigateToAddTimeCapsuleCopyWith<NavigateToAddTimeCapsule> get copyWith => _$NavigateToAddTimeCapsuleCopyWithImpl<NavigateToAddTimeCapsule>(this, _$identity);
+
+
+
+
+
+@override
+String toString() {
+  return 'HomeState.navigateToAddTimeCapsule(event: $event, category: $category)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NavigateToAddTimeCapsuleCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $NavigateToAddTimeCapsuleCopyWith(NavigateToAddTimeCapsule value, $Res Function(NavigateToAddTimeCapsule) _then) = _$NavigateToAddTimeCapsuleCopyWithImpl;
+@override @useResult
+$Res call({
+ EventModel? event, CategoryModel category
+});
+
+
+@override $EventModelCopyWith<$Res>? get event;$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class _$NavigateToAddTimeCapsuleCopyWithImpl<$Res>
+    implements $NavigateToAddTimeCapsuleCopyWith<$Res> {
+  _$NavigateToAddTimeCapsuleCopyWithImpl(this._self, this._then);
+
+  final NavigateToAddTimeCapsule _self;
+  final $Res Function(NavigateToAddTimeCapsule) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? event = freezed,Object? category = null,}) {
+  return _then(NavigateToAddTimeCapsule(
+freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
+as EventModel?,null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,
+  ));
+}
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventModelCopyWith<$Res>? get event {
+    if (_self.event == null) {
+    return null;
+  }
+
+  return $EventModelCopyWith<$Res>(_self.event!, (value) {
+    return _then(_self.copyWith(event: value));
+  });
+}/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class NavigateToAddBabyLetter implements HomeState {
+  const NavigateToAddBabyLetter(this.event, this.category);
+  
+
+@override final  EventModel? event;
+ final  CategoryModel category;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NavigateToAddBabyLetterCopyWith<NavigateToAddBabyLetter> get copyWith => _$NavigateToAddBabyLetterCopyWithImpl<NavigateToAddBabyLetter>(this, _$identity);
+
+
+
+
+
+@override
+String toString() {
+  return 'HomeState.navigateToAddBabyLetter(event: $event, category: $category)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NavigateToAddBabyLetterCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $NavigateToAddBabyLetterCopyWith(NavigateToAddBabyLetter value, $Res Function(NavigateToAddBabyLetter) _then) = _$NavigateToAddBabyLetterCopyWithImpl;
+@override @useResult
+$Res call({
+ EventModel? event, CategoryModel category
+});
+
+
+@override $EventModelCopyWith<$Res>? get event;$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class _$NavigateToAddBabyLetterCopyWithImpl<$Res>
+    implements $NavigateToAddBabyLetterCopyWith<$Res> {
+  _$NavigateToAddBabyLetterCopyWithImpl(this._self, this._then);
+
+  final NavigateToAddBabyLetter _self;
+  final $Res Function(NavigateToAddBabyLetter) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? event = freezed,Object? category = null,}) {
+  return _then(NavigateToAddBabyLetter(
+freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
+as EventModel?,null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,
+  ));
+}
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventModelCopyWith<$Res>? get event {
+    if (_self.event == null) {
+    return null;
+  }
+
+  return $EventModelCopyWith<$Res>(_self.event!, (value) {
+    return _then(_self.copyWith(event: value));
+  });
+}/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class NavigateToAddParentStats implements HomeState {
+  const NavigateToAddParentStats(this.event, this.category);
+  
+
+@override final  EventModel? event;
+ final  CategoryModel category;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NavigateToAddParentStatsCopyWith<NavigateToAddParentStats> get copyWith => _$NavigateToAddParentStatsCopyWithImpl<NavigateToAddParentStats>(this, _$identity);
+
+
+
+
+
+@override
+String toString() {
+  return 'HomeState.navigateToAddParentStats(event: $event, category: $category)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NavigateToAddParentStatsCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $NavigateToAddParentStatsCopyWith(NavigateToAddParentStats value, $Res Function(NavigateToAddParentStats) _then) = _$NavigateToAddParentStatsCopyWithImpl;
+@override @useResult
+$Res call({
+ EventModel? event, CategoryModel category
+});
+
+
+@override $EventModelCopyWith<$Res>? get event;$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class _$NavigateToAddParentStatsCopyWithImpl<$Res>
+    implements $NavigateToAddParentStatsCopyWith<$Res> {
+  _$NavigateToAddParentStatsCopyWithImpl(this._self, this._then);
+
+  final NavigateToAddParentStats _self;
+  final $Res Function(NavigateToAddParentStats) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? event = freezed,Object? category = null,}) {
+  return _then(NavigateToAddParentStats(
+freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
+as EventModel?,null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,
+  ));
+}
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventModelCopyWith<$Res>? get event {
+    if (_self.event == null) {
+    return null;
+  }
+
+  return $EventModelCopyWith<$Res>(_self.event!, (value) {
+    return _then(_self.copyWith(event: value));
+  });
+}/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class NavigateToAddMilestones implements HomeState {
+  const NavigateToAddMilestones(this.event, this.category);
+  
+
+@override final  EventModel? event;
+ final  CategoryModel category;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NavigateToAddMilestonesCopyWith<NavigateToAddMilestones> get copyWith => _$NavigateToAddMilestonesCopyWithImpl<NavigateToAddMilestones>(this, _$identity);
+
+
+
+
+
+@override
+String toString() {
+  return 'HomeState.navigateToAddMilestones(event: $event, category: $category)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NavigateToAddMilestonesCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $NavigateToAddMilestonesCopyWith(NavigateToAddMilestones value, $Res Function(NavigateToAddMilestones) _then) = _$NavigateToAddMilestonesCopyWithImpl;
+@override @useResult
+$Res call({
+ EventModel? event, CategoryModel category
+});
+
+
+@override $EventModelCopyWith<$Res>? get event;$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class _$NavigateToAddMilestonesCopyWithImpl<$Res>
+    implements $NavigateToAddMilestonesCopyWith<$Res> {
+  _$NavigateToAddMilestonesCopyWithImpl(this._self, this._then);
+
+  final NavigateToAddMilestones _self;
+  final $Res Function(NavigateToAddMilestones) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? event = freezed,Object? category = null,}) {
+  return _then(NavigateToAddMilestones(
+freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
+as EventModel?,null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel,
+  ));
+}
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventModelCopyWith<$Res>? get event {
+    if (_self.event == null) {
+    return null;
+  }
+
+  return $EventModelCopyWith<$Res>(_self.event!, (value) {
+    return _then(_self.copyWith(event: value));
+  });
+}/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CategoryModelCopyWith<$Res> get category {
+  
+  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class NavigateToAddLookAlike implements HomeState {
+  const NavigateToAddLookAlike(this.event, this.category);
+  
+
+@override final  EventModel? event;
+ final  CategoryModel category;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NavigateToAddLookAlikeCopyWith<NavigateToAddLookAlike> get copyWith => _$NavigateToAddLookAlikeCopyWithImpl<NavigateToAddLookAlike>(this, _$identity);
+
+
+
+
+
+@override
+String toString() {
+  return 'HomeState.navigateToAddLookAlike(event: $event, category: $category)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $NavigateToAddLookAlikeCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $NavigateToAddLookAlikeCopyWith(NavigateToAddLookAlike value, $Res Function(NavigateToAddLookAlike) _then) = _$NavigateToAddLookAlikeCopyWithImpl;
+@override @useResult
+$Res call({
+ EventModel? event, CategoryModel category
+});
+
+
+@override $EventModelCopyWith<$Res>? get event;$CategoryModelCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class _$NavigateToAddLookAlikeCopyWithImpl<$Res>
+    implements $NavigateToAddLookAlikeCopyWith<$Res> {
+  _$NavigateToAddLookAlikeCopyWithImpl(this._self, this._then);
+
+  final NavigateToAddLookAlike _self;
+  final $Res Function(NavigateToAddLookAlike) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? event = freezed,Object? category = null,}) {
+  return _then(NavigateToAddLookAlike(
 freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
 as EventModel?,null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as CategoryModel,

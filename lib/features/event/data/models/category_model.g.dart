@@ -38,6 +38,24 @@ _CategoryModel _$CategoryModelFromJson(
     json['memoryGame'],
     const MemoryConverter().fromJson,
   ),
+  childIds:
+      (json['childIds'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      const [],
+  timeCapsule: _$JsonConverterFromJson<Map<String, dynamic>, TimeCapsuleModel>(
+    json['timeCapsule'],
+    const TimeCapsuleConverter().fromJson,
+  ),
+  parentStats: (json['parentStats'] as Map<String, dynamic>?)?.map(
+    (k, e) => MapEntry(k, (e as num).toDouble()),
+  ),
+  milestones: _$JsonConverterFromJson<List<dynamic>, List<MilestoneModel>>(
+    json['milestones'],
+    const MilestoneListConverter().fromJson,
+  ),
+  lookAlike: _$JsonConverterFromJson<Map<String, dynamic>, LookAlikeModel>(
+    json['lookAlike'],
+    const LookAlikeConverter().fromJson,
+  ),
 );
 
 Map<String, dynamic> _$CategoryModelToJson(
@@ -70,6 +88,20 @@ Map<String, dynamic> _$CategoryModelToJson(
     instance.memoryGame,
     const MemoryConverter().toJson,
   ),
+  'childIds': instance.childIds,
+  'timeCapsule': _$JsonConverterToJson<Map<String, dynamic>, TimeCapsuleModel>(
+    instance.timeCapsule,
+    const TimeCapsuleConverter().toJson,
+  ),
+  'parentStats': instance.parentStats,
+  'milestones': _$JsonConverterToJson<List<dynamic>, List<MilestoneModel>>(
+    instance.milestones,
+    const MilestoneListConverter().toJson,
+  ),
+  'lookAlike': _$JsonConverterToJson<Map<String, dynamic>, LookAlikeModel>(
+    instance.lookAlike,
+    const LookAlikeConverter().toJson,
+  ),
 };
 
 const _$CategoryEnumEnumMap = {
@@ -81,6 +113,12 @@ const _$CategoryEnumEnumMap = {
   CategoryEnum.birthdaySuprise: 'birthdaySuprise',
   CategoryEnum.wishesList: 'wishesList',
   CategoryEnum.memoryGame: 'memoryGame',
+  CategoryEnum.timeCapsule: 'timeCapsule',
+  CategoryEnum.parentCoupons: 'parentCoupons',
+  CategoryEnum.babyLetter: 'babyLetter',
+  CategoryEnum.parentStats: 'parentStats',
+  CategoryEnum.milestones: 'milestones',
+  CategoryEnum.lookAlike: 'lookAlike',
 };
 
 Value? _$JsonConverterFromJson<Json, Value>(

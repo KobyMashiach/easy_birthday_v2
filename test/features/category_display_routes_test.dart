@@ -267,6 +267,13 @@ void main() {
         },
       ),
     ));
+    // It starts wrapped: open the gift first.
+    await tester.tap(
+      find.text(t.tap_to_open_gift(context: SessionService().gender)),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 2));
+    await tester.pump(const Duration(seconds: 1));
     expect(find.text('Hello'), findsOneWidget);
     expect(find.byType(CachedNetworkImage), findsOneWidget);
     await tester.tap(find.byType(CachedNetworkImage));

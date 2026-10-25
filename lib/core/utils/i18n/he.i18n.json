@@ -1,4 +1,16 @@
 {
+  "add_children_to_unlock(context=GenderContext)": {
+    "female": "יש לכם ילדים? הוסיפי אותם בהגדרות ויפתחו קטגוריות משפחתיות חדשות 🎉",
+    "male": "יש לכם ילדים? הוסף אותם בהגדרות ויפתחו קטגוריות משפחתיות חדשות 🎉"
+  },
+  "add_children(context=GenderContext)": {
+    "female": "הוסיפי ילדים",
+    "male": "הוסף ילדים"
+  },
+  "add_child(context=GenderContext)": {
+    "female": "הוסיפי ילד/ה",
+    "male": "הוסף ילד/ה"
+  },
   "add_event_date(context=GenderContext)": {
     "female": "הוסיפי אירוע לתאריך $date",
     "male": "הוסף אירוע לתאריך $date"
@@ -9,6 +21,8 @@
   },
   "add_free_text": "הוספת טקסט חופשי",
   "add_image": "הוספת תמונה",
+  "add_milestone": "הוספת אבן דרך",
+  "add_photo_optional": "הוספת תמונה (לא חובה)",
   "add_picture": "הוסף תמונה",
   "add_pictures": "הוסף תמונות",
   "add_pictures_to": "הוסף תמונות ל: $title",
@@ -27,9 +41,72 @@
     "male": "הוסף"
   },
   "age": "גיל",
+  "age_and": "$first ו$second",
+  "age_day_one": "יום אחד",
+  "age_day_two": "יומיים",
+  "age_days": "$n ימים",
+  "age_month_one": "חודש",
+  "age_month_two": "חודשיים",
+  "age_months": "$n חודשים",
+  "age_year_one": "שנה",
+  "age_year_two": "שנתיים",
+  "age_years": "$n שנים",
+  "all_coupons_redeemed": "כל הקופונים מומשו! 🎉",
   "app_info": "מידע על האפליקציה",
   "app_name": "שם האפליקציה",
   "app_version": "גרסת האפליקציה",
+  "at_age": "בגיל $age",
+  "baby_letter": "מכתב מהקטנים",
+  "baby_letter_boy_1(context=GenderContext)": {
+    "female": "אמא שלי,\nאני רק בן $age ועוד לא יודע לכתוב (עזרו לי קצת 🙈), אבל דבר אחד אני כבר יודע בטוח: את האמא הכי טובה בעולם.\nתודה על כל החיבוקים, על כל השירים בלילה ועל כל הפעמים שהצחקת אותי.\nמזל טוב ליום ההולדת! אני אוהב אותך עד הירח וחזרה 🌙",
+    "male": "אבא שלי,\nאני רק בן $age ועוד לא יודע לכתוב (עזרו לי קצת 🙈), אבל דבר אחד אני כבר יודע בטוח: אתה האבא הכי טוב בעולם.\nתודה על כל החיבוקים, על כל השירים בלילה ועל כל הפעמים שהצחקת אותי.\nמזל טוב ליום ההולדת! אני אוהב אותך עד הירח וחזרה 🌙"
+  },
+  "baby_letter_boy_2(context=GenderContext)": {
+    "female": "אמא,\nרציתי להגיד לך כמה דברים:\n1. כשאת מחזיקה אותי, אני מרגיש הכי בטוח בעולם.\n2. סליחה על הלילות הלבנים. בערך.\n3. כשאת מחייכת אליי, אני מחייך בחזרה. תמיד.\nיום הולדת שמח לאמא הכי שלי!",
+    "male": "אבא,\nרציתי להגיד לך כמה דברים:\n1. כשאתה מחזיק אותי, אני מרגיש הכי בטוח בעולם.\n2. סליחה על הלילות הלבנים. בערך.\n3. כשאתה מחייך אליי, אני מחייך בחזרה. תמיד.\nיום הולדת שמח לאבא הכי שלי!"
+  },
+  "baby_letter_boy_3(context=GenderContext)": {
+    "female": "יום הולדת שמח אמא! 🎂\nהיום אני מוותר לך: מותר לך לישון עד מאוחר (לא מבטיח כלום 😇).\nתודה שאת תמיד שם בשבילי. אוהב אותך המון המון!",
+    "male": "יום הולדת שמח אבא! 🎂\nהיום אני מוותר לך: מותר לך לישון עד מאוחר (לא מבטיח כלום 😇).\nתודה שאתה תמיד שם בשבילי. אוהב אותך המון המון!"
+  },
+  "baby_letter_description(context=GenderContext)": {
+    "female": "כתבי מכתב מרגש בשם הילדים, כאילו הם כתבו אותו בעצמם 👣",
+    "male": "כתוב מכתב מרגש בשם הילדים, כאילו הם כתבו אותו בעצמם 👣"
+  },
+  "baby_letter_editor_explanation(context=GenderContext)": {
+    "female": "כתבי את המכתב בקול של $name. אפשר להתחיל ממכתב מוכן ולשנות כרצונך.",
+    "male": "כתוב את המכתב בקול של $name. אפשר להתחיל ממכתב מוכן ולשנות כרצונך."
+  },
+  "baby_letter_girl_1(context=GenderContext)": {
+    "female": "אמא שלי,\nאני רק בת $age ועוד לא יודעת לכתוב (עזרו לי קצת 🙈), אבל דבר אחד אני כבר יודעת בטוח: את האמא הכי טובה בעולם.\nתודה על כל החיבוקים, על כל השירים בלילה ועל כל הפעמים שהצחקת אותי.\nמזל טוב ליום ההולדת! אני אוהבת אותך עד הירח וחזרה 🌙",
+    "male": "אבא שלי,\nאני רק בת $age ועוד לא יודעת לכתוב (עזרו לי קצת 🙈), אבל דבר אחד אני כבר יודעת בטוח: אתה האבא הכי טוב בעולם.\nתודה על כל החיבוקים, על כל השירים בלילה ועל כל הפעמים שהצחקת אותי.\nמזל טוב ליום ההולדת! אני אוהבת אותך עד הירח וחזרה 🌙"
+  },
+  "baby_letter_girl_2(context=GenderContext)": {
+    "female": "אמא,\nרציתי להגיד לך כמה דברים:\n1. כשאת מחזיקה אותי, אני מרגישה הכי בטוחה בעולם.\n2. סליחה על הלילות הלבנים. בערך.\n3. כשאת מחייכת אליי, אני מחייכת בחזרה. תמיד.\nיום הולדת שמח לאמא הכי שלי!",
+    "male": "אבא,\nרציתי להגיד לך כמה דברים:\n1. כשאתה מחזיק אותי, אני מרגישה הכי בטוחה בעולם.\n2. סליחה על הלילות הלבנים. בערך.\n3. כשאתה מחייך אליי, אני מחייכת בחזרה. תמיד.\nיום הולדת שמח לאבא הכי שלי!"
+  },
+  "baby_letter_girl_3(context=GenderContext)": {
+    "female": "יום הולדת שמח אמא! 🎂\nהיום אני מוותרת לך: מותר לך לישון עד מאוחר (לא מבטיחה כלום 😇).\nתודה שאת תמיד שם בשבילי. אוהבת אותך המון המון!",
+    "male": "יום הולדת שמח אבא! 🎂\nהיום אני מוותרת לך: מותר לך לישון עד מאוחר (לא מבטיחה כלום 😇).\nתודה שאתה תמיד שם בשבילי. אוהבת אותך המון המון!"
+  },
+  "baby_letter_girls_1(context=GenderContext)": {
+    "female": "אמא שלנו,\nאנחנו עוד קטנות מכדי לכתוב (עזרו לנו קצת 🙈), אבל דבר אחד אנחנו יודעות בטוח: את האמא הכי טובה בעולם.\nתודה על כל החיבוקים, השירים והצחוקים.\nמזל טוב ליום ההולדת! אנחנו אוהבות אותך עד הירח וחזרה 🌙",
+    "male": "אבא שלנו,\nאנחנו עוד קטנות מכדי לכתוב (עזרו לנו קצת 🙈), אבל דבר אחד אנחנו יודעות בטוח: אתה האבא הכי טוב בעולם.\nתודה על כל החיבוקים, השירים והצחוקים.\nמזל טוב ליום ההולדת! אנחנו אוהבות אותך עד הירח וחזרה 🌙"
+  },
+  "baby_letter_girls_2(context=GenderContext)": {
+    "female": "יום הולדת שמח אמא! 🎂\nהיום אנחנו מבטיחות לא לריב על מי יושבת לידך (לפחות עד הערב).\nתודה שאת תמיד שם בשבילנו. אוהבות אותך המון!",
+    "male": "יום הולדת שמח אבא! 🎂\nהיום אנחנו מבטיחות לא לריב על מי יושבת לידך (לפחות עד הערב).\nתודה שאתה תמיד שם בשבילנו. אוהבות אותך המון!"
+  },
+  "baby_letter_hint": "המכתב של $name ✍️",
+  "baby_letter_kids_1(context=GenderContext)": {
+    "female": "אמא שלנו,\nאנחנו עוד קטנים מכדי לכתוב (עזרו לנו קצת 🙈), אבל דבר אחד אנחנו יודעים בטוח: את האמא הכי טובה בעולם.\nתודה על כל החיבוקים, השירים והצחוקים.\nמזל טוב ליום ההולדת! אנחנו אוהבים אותך עד הירח וחזרה 🌙",
+    "male": "אבא שלנו,\nאנחנו עוד קטנים מכדי לכתוב (עזרו לנו קצת 🙈), אבל דבר אחד אנחנו יודעים בטוח: אתה האבא הכי טוב בעולם.\nתודה על כל החיבוקים, השירים והצחוקים.\nמזל טוב ליום ההולדת! אנחנו אוהבים אותך עד הירח וחזרה 🌙"
+  },
+  "baby_letter_kids_2(context=GenderContext)": {
+    "female": "יום הולדת שמח אמא! 🎂\nהיום אנחנו מבטיחים לא לריב על מי יושב לידך (לפחות עד הערב).\nתודה שאת תמיד שם בשבילנו. אוהבים אותך המון!",
+    "male": "יום הולדת שמח אבא! 🎂\nהיום אנחנו מבטיחים לא לריב על מי יושב לידך (לפחות עד הערב).\nתודה שאתה תמיד שם בשבילנו. אוהבים אותך המון!"
+  },
+  "baby_letter_title": "מכתב מ$name",
   "back": "חזור",
   "birthday_calendar": "לו\"ז יום הולדת",
   "birthday_calendar_description(context=GenderContext)": {
@@ -41,12 +118,34 @@
     "female": "בואי לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתיפתחי את זה, זה יישאר נעול אצל בן הזוג שלך!",
     "male": "בוא לבנות את הפתעת יום ההולדת, אבל ששששש... עד שתפתח את זה, זה יישאר נעול אצל בת הזוג שלך!"
   },
+  "boy": "בן",
   "build_app": "בונה את האפליקציה",
   "build_app_description": "האפליקציה נבנית כרגע במיוחד בשבילך!",
   "cancel": "ביטול",
   "cant_upload_more_than(context=GenderContext)": {
     "female": "את לא יכולה להעלות יותר מ-$number קבצים",
     "male": "אתה לא יכול להעלות יותר מ-$number קבצים"
+  },
+  "capsule_add_my_letter(context=GenderContext)": {
+    "female": "הוסיפי את המכתב שלך ✍️",
+    "male": "הוסף את המכתב שלך ✍️"
+  },
+  "capsule_birthday_18": "יום הולדת 18 של $name",
+  "capsule_date_required": "צריך לבחור מתי הקפסולה תיפתח",
+  "capsule_edit_my_letter": "עריכת המכתב שלי",
+  "capsule_for": "קפסולת זמן ל$name",
+  "capsule_in_a_year": "בעוד שנה",
+  "capsule_letter_hint": "מה תרצו להגיד ל$name בעתיד?",
+  "capsule_letter_of": "המכתב של $name",
+  "capsule_next_birthday": "יום ההולדת הבא של $name",
+  "capsule_opened": "הקפסולה של $name נפתחה! 🎉",
+  "capsule_opens_at": "נפתחת ב־$date",
+  "capsule_opens_on": "מתי הקפסולה תיפתח?",
+  "capsule_other_date": "תאריך אחר",
+  "capsule_partner_sealed": "💌 יש בקפסולה גם מכתב של $name",
+  "capsule_your_letter(context=GenderContext)": {
+    "female": "המכתב שלך לקפסולה",
+    "male": "המכתב שלך לקפסולה"
   },
   "category_deleted": "הקטגוריה הזו נמחקה",
   "celebrant(context=GenderContext)": {
@@ -58,18 +157,40 @@
   "change_language": "שינוי שפה",
   "change_password": "שנה סיסמה",
   "change_plan": "שינוי תוכנית",
+  "child_birth_date": "תאריך לידה",
+  "child_birth_date_required": "צריך לבחור תאריך לידה",
+  "child_name": "שם",
+  "child_name_required": "צריך למלא שם",
+  "child_photo_required": "צריך תמונה של כל אחד מהילדים",
+  "child_removed": "חלק מהילדים של הקטגוריה הזו הוסרו מההגדרות",
+  "children": "ילדים",
+  "children_photos": "תמונות הילדים",
+  "children_unlock_explanation": "לפי הגילאים של הילדים ייפתחו קטגוריות משפחתיות: מכתב מהקטנים, אבני דרך, סטטיסטיקות הורות ועוד 👶",
+  "choose_at_least_one_child": "צריך לבחור לפחות ילד אחד",
   "choose_category(context=GenderContext)": {
     "female": "בחרי קטגוריה",
     "male": "בחר קטגוריה"
+  },
+  "choose_child(context=GenderContext)": {
+    "female": "על מי הקטגוריה? (אפשר כמה)",
+    "male": "על מי הקטגוריה? (אפשר כמה)"
   },
   "choose_color(context=GenderContext)": {
     "female": "בחרי צבע מקשת צבעים",
     "male": "בחר צבע מקשת צבעים"
   },
   "choose_couple_profile_image": "בחר/י תמונת פרופיל זוגית שלכם",
+  "choose_coupons(context=GenderContext)": {
+    "female": "בחרי 3 קופונים שתוכלי לממש מתי שתרצי:",
+    "male": "בחר 3 קופונים שתוכל לממש מתי שתרצה:"
+  },
   "choose_currect_answer(context=GenderContext)": {
     "female": "בחרי את התשובה הנכונה",
     "male": "בחר את התשובה הנכונה"
+  },
+  "choose_day_hint(context=GenderContext)": {
+    "female": "בחרי יום בלוח כדי לראות מה מתוכנן 👆",
+    "male": "בחר יום בלוח כדי לראות מה מתוכנן 👆"
   },
   "choose_gender": "בחר מין",
   "choose_language": "בחר שפה",
@@ -96,15 +217,33 @@
   "contact_whatsapp": "וואטסאפ",
   "continue_": "המשך",
   "continue_no_change": "המשך ללא שינוי",
+  "couple_categories": "💑 קטגוריות זוגיות",
+  "coupon_idea_breakfast_in_bed": "ארוחת בוקר במיטה",
+  "coupon_idea_date_night": "ערב זוגי, הבייביסיטר עליי",
+  "coupon_idea_diaper_pass": "פטור מהחלפת טיטולים ליום",
+  "coupon_idea_friends_night": "ערב חופשי עם חברים",
+  "coupon_idea_full_night": "לילה שלם בלי לקום 😴",
+  "coupon_idea_long_shower": "מקלחת ארוכה בלי הפרעות",
+  "coupon_idea_massage": "עיסוי של חצי שעה",
+  "coupon_idea_sleep_in": "בוקר של שינה עד מאוחר",
+  "coupon_ideas": "רעיונות:",
+  "coupon_number": "קופון $n",
+  "coupon_seat": "מושב",
+  "coupon_stub": "ספח",
+  "coupon_valid_forever": "תוקף // ללא הגבלה",
+  "coupons_left": "קופונים שנשארו: $n",
   "create_greeting_using_ai": "צור ברכה באמצעות AI",
   "current_plan": "תוכנית נוכחית",
   "date_of_birth": "תאריך לידה",
+  "days": "ימים",
+  "days_of_parenting": "ימים של הורות",
   "default_error": "ההתחברות או ההרשמה נכשלו. בבקשה נסה שוב",
   "delete": "מחיקה",
   "delete_account": "מחיקת חשבון",
   "delete_account_description": "פעולה זו תמחק לצמיתות את החשבון, את הגישה של בן/בת הזוג ואת כל התמונות, הסרטונים וההודעות בהפתעה. לא ניתן לבטל פעולה זו.",
   "delete_account_failed": "לא הצלחנו למחוק את החשבון. כדאי לבדוק את החיבור ולנסות שוב.",
   "delete_account_sure": "למחוק את החשבון?",
+  "delete_child_description": "קטגוריות שכבר נוצרו לא יימחקו.",
   "delete_wishes": "מחיקת המשאלות",
   "delete_wishes_description(context=GenderContext)": {
     "female": "אם המשאלות לא עומדות בחוזה ניתן למחוק ואז $name יוכל למלא מחדש",
@@ -113,6 +252,11 @@
   "description": "תיאור",
   "display_result": "הראה תוצאות",
   "display_wishes": "הצג משאלות",
+  "drag_to_reorder(context=GenderContext)": {
+    "female": "גררי את הכרטיסים (או לחיצה ארוכה) כדי לקבוע את הסדר ש$name יראה ↕️",
+    "male": "גרור את הכרטיסים (או לחיצה ארוכה) כדי לקבוע את הסדר ש$name תראה ↕️"
+  },
+  "drag_to_tear": "גררו לקריעה",
   "edit": "עריכה",
   "edit_greeting": "עריכת הברכה",
   "edit_title": "ערוך כותרת",
@@ -130,6 +274,16 @@
   "explanation_screen_title": "המדריך ליצירת הפתעה מושלמת",
   "failed_send_login_request": "נכשל בשליחת בקשה לטלפון, נא נסה שנית",
   "false_": "לא נכון",
+  "family_categories": "👨‍👩‍👧 קטגוריות משפחה",
+  "feature_ears": "האוזניים",
+  "feature_eyes": "העיניים",
+  "feature_hair": "השיער",
+  "feature_hands": "הידיים",
+  "feature_laugh": "הצחוק",
+  "feature_mouth": "הפה",
+  "feature_nose": "האף",
+  "feature_smile": "החיוך",
+  "feature_temper": "העצבים 😅",
   "female": "נקבה",
   "fill_all_fields": "מלא את כל השדות בבקשה",
   "fill_partner_details": "מלא/י את הפרטים של הבן/בת זוג שלך",
@@ -147,6 +301,7 @@
   "generate_greeting": "ליצור ברכה",
   "generate_new_greeting": "ליצור ברכה חדשה",
   "generate_text_description": "רשום ברכת יום הולדת ל$relationship, השם הוא $name\nהשם שלי הוא: $myName\nמספר השורות של הברכה: $lineNumber\nמספר המילים בשורה:$wordsInLineNumber\nהגיל  הוא $age",
+  "girl": "בת",
   "got_full_app": "אז קיבלת אפליקציה שלמה רק בשביל זה",
   "greeter(context=GenderContext)": {
     "female": "ברוכה הבאה $name",
@@ -161,13 +316,23 @@
   "have_account": "יש משתמש",
   "hide_password": "הסתר סיסמה",
   "home_screen": "מסך בית",
+  "hours": "שעות",
+  "how_it_grew": "איך זה הצטבר 📈",
   "indicating(context=GenderContext)": {
     "female": "מציינת",
     "male": "מציין"
   },
   "info": "מידע",
   "invalid_credential": "כתובת המייל או הסיסמה לא נכונים, נא נסה שנית",
+  "later": "אחר כך",
+  "less": "פחות",
   "lets_continue": "בואו נתקדם!",
+  "lets_try(context=GenderContext)": {
+    "female": "בואי ננסה!",
+    "male": "בוא ננסה!"
+  },
+  "letter_from": "מכתב מ$name 💌",
+  "letter_template_number": "מכתב מוכן $n",
   "lines_number": "מספר שורות",
   "lock": "נעול",
   "locked_category": "קטגוריה זו נעולה.\nכדי לפתוח אותה יש לשדרג את התוכנית שלך בהגדרות",
@@ -179,6 +344,20 @@
   "login_with_otp_code": "התחבר עם קוד אימות",
   "login_with_password": "התחבר עם סיסמה",
   "logout": "התנתקות",
+  "look_alike": "מי דומה למי?",
+  "look_alike_agreed": "הסכמתם ב־$agreed מתוך $total ניחושים 🤝",
+  "look_alike_description(context=GenderContext)": {
+    "female": "עיניים, אף, חיוך... למי הילדים דומים יותר? בסוף מגלים מי ניצח 👑",
+    "male": "עיניים, אף, חיוך... למי הילדים דומים יותר? בסוף מגלים מי ניצח 👑"
+  },
+  "look_alike_editor_explanation(context=GenderContext)": {
+    "female": "העלי תמונה של כל ילד ושל שניכם, מאותו גיל אם יש ואם אין אז עדכנית. אפשר גם לנחש בעצמך ולגלות בסוף אם הסכמתם.",
+    "male": "העלה תמונה של כל ילד ושל שניכם, מאותו גיל אם יש ואם אין אז עדכנית. אפשר גם לנחש בעצמך ולגלות בסוף אם הסכמתם."
+  },
+  "look_alike_tie": "תיקו! $name: שילוב מושלם של שניכם 💞",
+  "look_alike_title": "למי $name דומים?",
+  "look_alike_winner_boy": "$name דומה ל$parent! 🎉",
+  "look_alike_winner_girl": "$name דומה ל$parent! 🎉",
   "male": "זכר",
   "mark_all": "סמן הכל",
   "mark_least_one_question": "יש לסמן לפחות שאלה אחת",
@@ -198,30 +377,90 @@
   },
   "memory_game_lock_description": "כדי לפתוח אותו אנא בקשו מ$name הזדמנות חדשה",
   "memory_game_lock_title": "משחק הזיכרון נעול",
+  "milestone_note": "כמה מילים (לא חובה)",
+  "milestone_title": "מה קרה?",
+  "milestone_title_required": "צריך לכתוב מה קרה",
+  "milestones": "אבני דרך",
+  "milestones_count": "$n אבני דרך של $name",
+  "milestones_description(context=GenderContext)": {
+    "female": "ציר זמן מתוק של כל הפעמים הראשונות: חיוך ראשון, צעד ראשון ועוד 👣",
+    "male": "ציר זמן מתוק של כל הפעמים הראשונות: חיוך ראשון, צעד ראשון ועוד 👣"
+  },
+  "milestones_editor_explanation(context=GenderContext)": {
+    "female": "הוסיפי את הרגעים הראשונים עם תאריך, ואם תרצי גם תמונה. הגיל בכל רגע מחושב לבד.",
+    "male": "הוסף את הרגעים הראשונים עם תאריך, ואם תרצה גם תמונה. הגיל בכל רגע מחושב לבד."
+  },
+  "milestones_title": "הפעמים הראשונות של $name",
+  "minutes": "דקות",
   "month": "חודש",
+  "more": "יותר",
   "more_few_seconds": "בעוד כמה שניות נוכל להתחיל לבנות את המתנה המושלמת!",
+  "more_firsts_coming": "ועוד המון פעמים ראשונות בדרך...",
+  "ms_crawled": "זחילה ראשונה",
+  "ms_first_birthday": "יום הולדת ראשון",
+  "ms_first_daycare": "יום ראשון בגן",
+  "ms_first_food": "אוכל ראשון",
+  "ms_first_haircut": "תספורת ראשונה",
+  "ms_first_smile": "חיוך ראשון",
+  "ms_first_steps": "צעדים ראשונים",
+  "ms_first_tooth": "שן ראשונה",
+  "ms_first_word": "מילה ראשונה",
+  "ms_rolled_over": "התהפכות ראשונה",
+  "ms_sat_up": "ישיבה ראשונה",
+  "ms_slept_through": "לילה שלם ראשון",
   "my_dear(context=GenderContext)": {
     "female": "היקרה",
     "male": "היקר"
   },
+  "names_and": "$first ו$last",
+  "new_badge": "חדש",
+  "new_child": "ילד/ה חדש/ה",
   "new_password": "סיסמה חדשה",
   "new_password_verification": "אימות סיסמה חדשה",
   "no": "לא",
   "no_account": "אין משתמש",
   "no_allow_text_empty": "לא ניתן להשאיר טקסט ריק",
   "no_category_added": "לא הוספת קטגרויות לאירוע זה",
+  "no_children_yet": "עוד לא הוספתם ילדים",
+  "no_events_this_day": "אין תוכניות ביום הזה... עדיין 😉",
+  "no_milestones_yet": "עוד אין אבני דרך. זה הזמן להוסיף את הראשונה!",
   "no_owner": "המשתמש לא משתמש ניהולי",
   "no_questions_add": "לא הועלו שאלות עדיין",
   "no_required": "לא חובה",
   "no_wish_yet": "אין עדיין משאלות",
+  "not_played_yet": "עוד לא שוחק",
+  "not_written_yet": "עוד לא נכתב",
   "nothing_here_yet": "אין כאן עדיין כלום",
   "num_mistakes": "מספר טעויות",
   "num_of_questions": "יש לך כרגע $number שאלות",
   "ok": "אישור",
+  "open_it(context=GenderContext)": {
+    "female": "פתחי",
+    "male": "פתח"
+  },
   "open_new_memory_game": "פתיחת גישה למשחק חדש",
+  "open_new_quiz_game": "פתיחת גישה לטריוויה חדשה",
   "operation_not_allowed": "שגיאת שרת, אנא נסה שוב מאוחר יותר",
   "otp_code": "קוד אימות",
   "otp_code_description": "קיבלת הודעת SMS עם קוד אימות.\nנא לרשום אותו וללחוץ אישור",
+  "parent_coupon_label": "קופון הורות",
+  "parent_coupons": "שוברי הורות",
+  "parent_coupons_description(context=GenderContext)": {
+    "female": "כתבי חוזה קטן, ובן הזוג שלך יבחר 3 קופונים להורים עייפים: כרטיסים שקורעים כשמממשים 🎟️",
+    "male": "כתוב חוזה קטן, ובת הזוג שלך תבחר 3 קופונים להורים עייפים: כרטיסים שקורעים כשמממשים 🎟️"
+  },
+  "parent_photo_hint": "עדיף תמונה שלכם בגיל $age. אין? גם תמונה עדכנית תעשה את העבודה 😉",
+  "parent_stats": "סטטיסטיקות הורות",
+  "parent_stats_description(context=GenderContext)": {
+    "female": "כמה טיטולים, כמה קפה, כמה לילות לבנים? מספרים מצחיקים עם גרפים, לפי הימים מאז הלידה 📊",
+    "male": "כמה טיטולים, כמה קפה, כמה לילות לבנים? מספרים מצחיקים עם גרפים, לפי הימים מאז הלידה 📊"
+  },
+  "parent_stats_editor_explanation(context=GenderContext)": {
+    "female": "כמה בממוצע ביום לכל ילד? הסכומים מחושבים לבד לפי הימים מאז הלידה. 0 מסתיר את השורה.",
+    "male": "כמה בממוצע ביום לכל ילד? הסכומים מחושבים לבד לפי הימים מאז הלידה. 0 מסתיר את השורה."
+  },
+  "parent_stats_title": "ההורות במספרים: $name",
+  "parents_photos": "התמונות שלכם",
   "partner_info": "מידע על הבן/בת זוג",
   "partner_phone_is_yours": "זה מספר הטלפון שלך. יש להזין את המספר של בן/בת הזוג",
   "partner_phone_taken": "מספר הטלפון הזה כבר שייך לחשבון אחר",
@@ -256,6 +495,7 @@
   "plan_free": "חינמית",
   "plan_platinum": "פלטינום",
   "plan_standard": "סטנדרט",
+  "play_again": "לתת ל$name לשחק שוב",
   "please_choose_category": "בחר קטגוריה בבקשה",
   "please_open_app_in_phone": "פתח את האפליקציה בטלפון כדי להתחבר",
   "please_read_contract(context=GenderContext)": {
@@ -281,9 +521,27 @@
     "female": "$name לא העלה עדיין שאלות",
     "male": "$name לא העלתה עדיין שאלות"
   },
+  "quiz_game_played(context=GenderContext)": {
+    "female": "$name ענה על $answered מתוך $total שאלות, $score נכונות",
+    "male": "$name ענתה על $answered מתוך $total שאלות, $score נכונות"
+  },
+  "quiz_verdict_good(context=GenderContext)": {
+    "female": "לא רע בכלל! 😄",
+    "male": "לא רע בכלל! 😄"
+  },
+  "quiz_verdict_great(context=GenderContext)": {
+    "female": "וואו! את באמת מכירה אותי 🏆",
+    "male": "וואו! אתה באמת מכיר אותי 🏆"
+  },
+  "quiz_verdict_low(context=GenderContext)": {
+    "female": "יש לנו עוד מה ללמוד ביחד 😅",
+    "male": "יש לנו עוד מה ללמוד ביחד 😅"
+  },
   "rate_app": "דרג את האפליקציה",
+  "ready_letters": "מכתבים מוכנים:",
   "recommand_drak_colors": "מומלץ צבעים כהים",
   "recommended_colors": "צבעים מומלצים",
+  "redeemed": "מומש",
   "register": "הרשמה",
   "register_screen": "מסך הרשמה",
   "relationship": "מערכת יחסים",
@@ -295,13 +553,19 @@
     "female": "הסירי",
     "male": "הסר"
   },
+  "reorder": "שינוי סדר",
+  "replace_photo": "החלפת תמונה",
   "required_fill_all_answer": "חובה למלא את כל התשובות",
   "required_fill_question": "חובה למלא את השאלה",
   "save": "שמור",
   "save_and_lock": "שמור ונעל",
+  "save_and_print_coupons": "שמירה והדפסה 🎟️",
   "score": "תוצאה",
+  "seal_letter": "חתימה בקפסולה 🔒",
+  "sealed": "חתום",
   "second_question": "שאלה שנייה",
   "second_wish": "משאלה שנייה",
+  "seconds": "שניות",
   "secret_dialog(context=GenderContext)": {
     "female": "\"$categoryName\" נעול עד ש$name יתן לך את ההרשאה לפתוח אותה!",
     "male": "\"$categoryName\" נעול עד ש$name תיתן לך את ההרשאה לפתוח אותה!"
@@ -325,6 +589,7 @@
     "female": "דלגי",
     "male": "דלג"
   },
+  "so_far": "עד היום",
   "something_went_wrong": "משהו השתבש. נסו שוב",
   "soon": "בקרוב",
   "soul_mate": "נפש תאומה",
@@ -333,6 +598,29 @@
     "female": "בת זוגתי",
     "male": "בן זוגי"
   },
+  "stat_coffee": "כוסות קפה",
+  "stat_daily_coffee": "כוסות קפה ביום",
+  "stat_daily_diapers": "טיטולים ביום",
+  "stat_daily_feedings": "האכלות ביום",
+  "stat_daily_kisses": "נשיקות ביום",
+  "stat_daily_laundry": "מכונות כביסה ביום",
+  "stat_daily_lullabies": "שירי ערש ביום",
+  "stat_daily_night_wakeups": "השכמות בלילה",
+  "stat_diapers": "טיטולים הוחלפו",
+  "stat_fact_coffee": "$liters ליטר קפה, מספיק למלא $baths אמבטיות ☕",
+  "stat_fact_diapers": "ערימה בגובה $meters מטר, כמו בניין של $floors קומות 🏢",
+  "stat_fact_feedings": "בערך $liters ליטר חלב 🍼",
+  "stat_fact_kisses": "ועדיין לא מספיק 😍",
+  "stat_fact_laundry": "$hours שעות של קיפול בגדים קטנטנים 🧦",
+  "stat_fact_lullabies": "$hours שעות של הופעות חיות, בלי לקבל שקל 🎤",
+  "stat_fact_night_wakeups": "$hours שעות ערים בלילה, $nights לילות שלמים בלי שינה 🥱",
+  "stat_feedings": "האכלות",
+  "stat_hidden": "מוסתר",
+  "stat_kisses": "נשיקות",
+  "stat_laundry": "מכונות כביסה",
+  "stat_lullabies": "שירי ערש",
+  "stat_night_wakeups": "השכמות בלילה",
+  "stat_until_today": "עד היום: $total",
   "suprise_screen_description(context=GenderContext)": {
     "female": "הוסיפי טקסט או תמונות, שחקי עם הסדר ביניהם וצרי את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליטי שהיא מוכנה לבן הזוג שלך!",
     "male": "הוסף טקסט או תמונות, שחק עם הסדר ביניהם ותיצור את ההפתעה המושלמת!\nההפתעה תישאר סודית עד שתחליט שהיא מוכנה לבת הזוג שלך!"
@@ -349,6 +637,18 @@
     "female": "את בטוחה שאת רוצה להתנתק?",
     "male": "אתה בטוח שאתה רוצה להתנתק?"
   },
+  "tap_to_open_gift(context=GenderContext)": {
+    "female": "לחצי על המתנה כדי לפתוח 🎁",
+    "male": "לחץ על המתנה כדי לפתוח 🎁"
+  },
+  "tap_to_open(context=GenderContext)": {
+    "female": "לחצי כדי לפתוח 💌",
+    "male": "לחץ כדי לפתוח 💌"
+  },
+  "tear_coupon_explanation(context=GenderContext)": {
+    "female": "רוצה לממש קופון? גררי את הספח וקרעי אותו מול $name 😉",
+    "male": "רוצה לממש קופון? גרור את הספח וקרע אותו מול $name 😉"
+  },
   "text": "טקסט",
   "text_appear_required": "נא למלא את הטקסט",
   "text_description(context=GenderContext)": {
@@ -359,13 +659,35 @@
   "the_text": "הטקסט",
   "third_question": "שאלה שלישית",
   "third_wish": "משאלה שלישית",
+  "time_capsule": "קפסולת זמן",
+  "time_capsule_description(context=GenderContext)": {
+    "female": "כתבי מכתב לילדים שייפתח רק בתאריך שתבחרי: יום ההולדת הבא, גיל 18... ⏳",
+    "male": "כתוב מכתב לילדים שייפתח רק בתאריך שתבחר: יום ההולדת הבא, גיל 18... ⏳"
+  },
+  "time_capsule_editor_explanation(context=GenderContext)": {
+    "female": "כתבי מכתב ובחרי מתי הקפסולה תיפתח. גם $name יוכל להוסיף מכתב משלו, והכול יישאר נעול עד התאריך.",
+    "male": "כתוב מכתב ובחר מתי הקפסולה תיפתח. גם $name תוכל להוסיף מכתב משלה, והכול יישאר נעול עד התאריך."
+  },
+  "time_capsule_title": "קפסולת זמן ל$name",
   "title": "כותרת",
   "title_appear_category": "הכותרת שתופיע לקטגוריה זו",
   "title_appear_required": "נא למלא את הכותרת",
+  "title_calendar": "היום המושלם של $name 🗓️",
+  "title_memory": "משחק הזיכרון שלנו 🧠",
+  "title_pictures": "התמונות שלנו 📸",
+  "title_quiz(context=GenderContext)": {
+    "female": "כמה את מכירה אותי? 🤔",
+    "male": "כמה אתה מכיר אותי? 🤔"
+  },
+  "title_surprise": "הפתעה ל$name 🎁",
+  "title_text": "ברכה ל$name 💌",
+  "title_videos": "הסרטונים שלנו 🎬",
+  "title_wishes": "3 משאלות ל$name 🧞",
   "too_many_requests": "יותר מדי בקשות להתחבר לחשבון זה",
   "true_": "נכון",
   "true_false_question": "שאלת נכון או לא נכון",
   "two_weeks": "שבועיים",
+  "typical_day": "יום טיפוסי אצלנו",
   "unlock": "לא נעול",
   "upload_files_count": "הועלו $file מתוך $files קבצים",
   "upload_images": "העלאת תמונות",
@@ -386,6 +708,25 @@
   "we_use": "אנחנו נשתמש בטקסטים שבחרתם כדי לבנות את האפליקציה באופן אישי",
   "week": "שבוע",
   "welcome": "ברוכ/ה הבאה!",
+  "whats_new_add_children(context=GenderContext)": {
+    "female": "קטגוריות חדשות להורים! הוסיפי את הילדים בהגדרות, ולפי הגילאים שלהם ייפתחו קטגוריות מיוחדות.",
+    "male": "קטגוריות חדשות להורים! הוסף את הילדים בהגדרות, ולפי הגילאים שלהם ייפתחו קטגוריות מיוחדות."
+  },
+  "whats_new_description(context=GenderContext)": {
+    "female": "קטגוריות חדשות למשפחה, לפי הגילאים של הילדים שלכם. לחצי על הכפתור כדי לנסות!",
+    "male": "קטגוריות חדשות למשפחה, לפי הגילאים של הילדים שלכם. לחץ על הכפתור כדי לנסות!"
+  },
+  "whats_new_partner_description(context=GenderContext)": {
+    "female": "חדש אצלך: $title, מאת $name 🎁 לחצי כדי לפתוח!",
+    "male": "חדש אצלך: $title, מאת $name 🎁 לחץ כדי לפתוח!"
+  },
+  "whats_new_partner_intro(context=GenderContext)": {
+    "female": "חדש: קטגוריות משפחתיות! מכתב מהקטנים, אבני דרך ועוד. הוסיפי את הילדים בהגדרות, וכך גם ל$name יהיו קטגוריות חדשות להפתיע אותך 👶",
+    "male": "חדש: קטגוריות משפחתיות! מכתב מהקטנים, אבני דרך ועוד. הוסף את הילדים בהגדרות, וכך גם ל$name יהיו קטגוריות חדשות להפתיע אותך 👶"
+  },
+  "whats_new_partner_title": "יש לך הפתעה חדשה!",
+  "whats_new_title": "קטגוריות למשפחה!",
+  "whose_feature": "$feature של $name: של מי?",
   "wish_list_lock_description": "כדי לפתוח אותה אנא בקשו מ$name הזדמנות חדשה",
   "wish_list_lock_title": "רשימת המשאלות נעולה",
   "wishes_list": "רשימת משאלות",
@@ -393,6 +734,7 @@
     "female": "הוספי אפשרות ל$name לבחור 3 משאלות:\nרשמי לו \"חוזה\" קטן, ככה שהוא לא יוכל להגזים!",
     "male": "הוסף אפשרות ל$name לבחור 3 משאלות:\nרשום לה \"חוזה\" קטן, ככה שהיא לא תוכל להגזים!"
   },
+  "with_love": "באהבה",
   "write_calendar_time_to": "רשום לו\"ז ל: $title",
   "write_contract": "רשום חוזה",
   "write_contract_to": "רשום חוזה ל: $title",
@@ -404,5 +746,9 @@
   "you_win(context=GenderContext)": {
     "female": "את ניצחת!",
     "male": "אתה ניצחת!"
+  },
+  "your_guess_optional(context=GenderContext)": {
+    "female": "הניחושים שלך (לא חובה)",
+    "male": "הניחושים שלך (לא חובה)"
   }
 }

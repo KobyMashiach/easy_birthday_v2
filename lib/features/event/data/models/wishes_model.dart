@@ -10,6 +10,10 @@ sealed class WishesModel with _$WishesModel {
     String? first,
     String? second,
     String? third,
+
+    /// Indexes (0-2) of the wishes already used. Parenting coupons are
+    /// redeemed by tearing their stub.
+    @Default([]) List<int> redeemed,
   }) = _WishesModel;
 
   factory WishesModel.fromJson(Map<String, dynamic> json) =>

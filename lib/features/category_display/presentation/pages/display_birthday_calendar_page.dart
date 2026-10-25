@@ -1,4 +1,7 @@
+import 'package:easy_birthday/core/constants/app_colors.dart';
 import 'package:easy_birthday/core/constants/app_text_styles.dart';
+import 'package:easy_birthday/core/services/session_service.dart';
+import 'package:easy_birthday/core/widgets/animations/staggered_entrance.dart';
 import 'package:easy_birthday/core/utils/i18n/slang_settings.dart';
 import 'package:easy_birthday/core/utils/i18n/strings.g.dart';
 import 'package:easy_birthday/core/widgets/general/appbar.dart';
@@ -54,7 +57,17 @@ class _DisplayBirthdayCalendarState extends State<DisplayBirthdayCalendar> {
                 DisplayScreensTop(category: widget.category),
                 tableCalendar(context),
                 const SizedBox(height: 8.0),
-                if (_selectedDay != null) ...displaySelectedDateEvents(context),
+                if (_selectedDay != null)
+                  ...displaySelectedDateEvents(context)
+                else
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      t.choose_day_hint(context: SessionService().gender),
+                      textAlign: TextAlign.center,
+                      style: AppTextStyle().smallDescription,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -64,23 +77,26 @@ class _DisplayBirthdayCalendarState extends State<DisplayBirthdayCalendar> {
   }
 
   List<Widget> displaySelectedDateEvents(BuildContext context) {
+    final List<DateEventModel> events = _getEventsForDay(_selectedDay!);
     return [
       Text(
         t.event_in_date(date: getDateString()),
         style: AppTextStyle().title,
       ),
-      ..._getEventsForDay(_selectedDay!).map(
-        // In the title (not `leading`, which can't wrap: a long description
-        // crashed the tile) with the color the leading slot had.
-        (event) => ListTile(
-          title: Text(
-            "${event.time.format(context)} - ${event.description}",
-            style: AppTextStyle().description.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
+      if (events.isEmpty)
+        Text(t.no_events_this_day, style: AppTextStyle().smallDescription),
+      for (final (index, event) in events.indexed)
+        StaggeredEntrance(
+          // Replays for each day picked.
+          key: ValueKey((_selectedDay, index)),
+          index: index,
+          from: const Offset(24, 0),
+          child: _EventTile(
+            time: event.time.format(context),
+            description: event.description,
+            isLast: index == events.length - 1,
           ),
         ),
-      ),
     ];
   }
 
@@ -106,6 +122,28 @@ class _DisplayBirthdayCalendarState extends State<DisplayBirthdayCalendar> {
       },
       onPageChanged: (focusedDay) => _focusedDay = focusedDay,
       daysOfWeekHeight: 30,
+      calendarStyle: CalendarStyle(
+        selectedDecoration: BoxDecoration(
+          color: AppColors.disableColor,
+          shape: BoxShape.circle,
+        ),
+        todayDecoration: BoxDecoration(
+          color: AppColors.primaryColor.withValues(alpha: 0.5),
+          shape: BoxShape.circle,
+        ),
+        markerDecoration: BoxDecoration(
+          color: AppColors.primaryColor,
+          shape: BoxShape.circle,
+        ),
+        markersMaxCount: 3,
+      ),
+      headerStyle: HeaderStyle(
+        titleCentered: true,
+        formatButtonDecoration: BoxDecoration(
+          border: Border.all(color: AppColors.primaryColor),
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
       eventLoader: _getEventsForDay,
       availableCalendarFormats: {
         CalendarFormat.week: t.month,
@@ -125,4 +163,87 @@ class _DisplayBirthdayCalendarState extends State<DisplayBirthdayCalendar> {
   // _selectedDay is a UTC-midnight calendar key; read its y/m/d directly
   // (calling toLocal() would shift the day in negative UTC offsets).
   String getDateString() => "${_selectedDay!.day}/${_selectedDay!.month}";
+}
+
+/// One plan of the day on a timeline: a dot and line, the time chip and
+/// the description.
+class _EventTile extends StatelessWidget {
+  final String time;
+  final String description;
+  final bool isLast;
+
+  const _EventTile({
+    required this.time,
+    required this.description,
+    required this.isLast,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            width: 24,
+            child: Column(
+              children: [
+                const SizedBox(height: 18),
+                Container(
+                  width: 14,
+                  height: 14,
+                  decoration: BoxDecoration(
+                    color: AppColors.disableColor,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2),
+                  ),
+                ),
+                if (!isLast)
+                  Expanded(
+                    child: Container(width: 2, color: AppColors.primaryColor),
+                  ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Card(
+              margin: const EdgeInsets.symmetric(vertical: 6),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        "🕒 $time",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(description, style: AppTextStyle().description),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -81,6 +81,24 @@ void main() {
       },
     );
 
+    test('reorderCategories keeps edits made meanwhile on the other phone '
+        'and puts categories it does not know last', () async {
+      final a = await repository.addCategory(_text.copyWith(name: 'A'));
+      final b = await repository.addCategory(_text.copyWith(name: 'B'));
+      final c = await repository.addCategory(_text.copyWith(name: 'C'));
+      // The partner's phone renames B and adds D; the owner hasn't seen it.
+      final other = EventRepositoryImpl(remoteDataSource: remote);
+      final stale = SessionService().event;
+      await other.updateCategory(b.id!, (x) => x.copyWith(name: 'B2'));
+      await other.addCategory(_text.copyWith(name: 'D'));
+      SessionService().event = stale;
+
+      await repository.reorderCategories([c.id!, a.id!, b.id!]);
+
+      expect(remoteNames(), ['C', 'A', 'B2', 'D']);
+      expect(remote.updates.last.keys, ['categories']);
+    });
+
     test('updateCategory replaces by id; deleteCategory removes it', () async {
       final added = await repository.addCategory(_text);
       await repository.updateCategory(

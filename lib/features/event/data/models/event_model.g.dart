@@ -35,6 +35,13 @@ _EventModel _$EventModelFromJson(Map<String, dynamic> json) => _EventModel(
           .toList() ??
       const [],
   profileImageUrl: json['profileImageUrl'] as String?,
+  children:
+      (json['children'] as List<dynamic>?)
+          ?.map(
+            (e) => const ChildConverter().fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$EventModelToJson(_EventModel instance) =>
@@ -54,6 +61,7 @@ Map<String, dynamic> _$EventModelToJson(_EventModel instance) =>
           .map(const CategoryConverter().toJson)
           .toList(),
       'profileImageUrl': instance.profileImageUrl,
+      'children': instance.children.map(const ChildConverter().toJson).toList(),
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

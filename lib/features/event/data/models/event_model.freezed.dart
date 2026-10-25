@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$EventModel {
 
  String get eventId; List<String> get users;@PlanConverter() PlanModel get planSubscribe;@ColorConverter() Color? get appColor; List<String>? get imagesUrl; String? get greeting;@JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp) DateTime? get partnerDateOfBirth;// Stored under the original (misspelled) key in Firestore.
-@JsonKey(name: 'choosenTexts') Map<String, String>? get chosenTexts;@CategoryConverter() List<CategoryModel> get categories; String? get profileImageUrl;
+@JsonKey(name: 'choosenTexts') Map<String, String>? get chosenTexts;@CategoryConverter() List<CategoryModel> get categories; String? get profileImageUrl;@ChildConverter() List<ChildModel> get children;
 /// Create a copy of EventModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $EventModelCopyWith<EventModel> get copyWith => _$EventModelCopyWithImpl<EventMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventModel&&(identical(other.eventId, eventId) || other.eventId == eventId)&&const DeepCollectionEquality().equals(other.users, users)&&(identical(other.planSubscribe, planSubscribe) || other.planSubscribe == planSubscribe)&&(identical(other.appColor, appColor) || other.appColor == appColor)&&const DeepCollectionEquality().equals(other.imagesUrl, imagesUrl)&&(identical(other.greeting, greeting) || other.greeting == greeting)&&(identical(other.partnerDateOfBirth, partnerDateOfBirth) || other.partnerDateOfBirth == partnerDateOfBirth)&&const DeepCollectionEquality().equals(other.chosenTexts, chosenTexts)&&const DeepCollectionEquality().equals(other.categories, categories)&&(identical(other.profileImageUrl, profileImageUrl) || other.profileImageUrl == profileImageUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventModel&&(identical(other.eventId, eventId) || other.eventId == eventId)&&const DeepCollectionEquality().equals(other.users, users)&&(identical(other.planSubscribe, planSubscribe) || other.planSubscribe == planSubscribe)&&(identical(other.appColor, appColor) || other.appColor == appColor)&&const DeepCollectionEquality().equals(other.imagesUrl, imagesUrl)&&(identical(other.greeting, greeting) || other.greeting == greeting)&&(identical(other.partnerDateOfBirth, partnerDateOfBirth) || other.partnerDateOfBirth == partnerDateOfBirth)&&const DeepCollectionEquality().equals(other.chosenTexts, chosenTexts)&&const DeepCollectionEquality().equals(other.categories, categories)&&(identical(other.profileImageUrl, profileImageUrl) || other.profileImageUrl == profileImageUrl)&&const DeepCollectionEquality().equals(other.children, children));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,eventId,const DeepCollectionEquality().hash(users),planSubscribe,appColor,const DeepCollectionEquality().hash(imagesUrl),greeting,partnerDateOfBirth,const DeepCollectionEquality().hash(chosenTexts),const DeepCollectionEquality().hash(categories),profileImageUrl);
+int get hashCode => Object.hash(runtimeType,eventId,const DeepCollectionEquality().hash(users),planSubscribe,appColor,const DeepCollectionEquality().hash(imagesUrl),greeting,partnerDateOfBirth,const DeepCollectionEquality().hash(chosenTexts),const DeepCollectionEquality().hash(categories),profileImageUrl,const DeepCollectionEquality().hash(children));
 
 @override
 String toString() {
-  return 'EventModel(eventId: $eventId, users: $users, planSubscribe: $planSubscribe, appColor: $appColor, imagesUrl: $imagesUrl, greeting: $greeting, partnerDateOfBirth: $partnerDateOfBirth, chosenTexts: $chosenTexts, categories: $categories, profileImageUrl: $profileImageUrl)';
+  return 'EventModel(eventId: $eventId, users: $users, planSubscribe: $planSubscribe, appColor: $appColor, imagesUrl: $imagesUrl, greeting: $greeting, partnerDateOfBirth: $partnerDateOfBirth, chosenTexts: $chosenTexts, categories: $categories, profileImageUrl: $profileImageUrl, children: $children)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $EventModelCopyWith<$Res>  {
   factory $EventModelCopyWith(EventModel value, $Res Function(EventModel) _then) = _$EventModelCopyWithImpl;
 @useResult
 $Res call({
- String eventId, List<String> users,@PlanConverter() PlanModel planSubscribe,@ColorConverter() Color? appColor, List<String>? imagesUrl, String? greeting,@JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp) DateTime? partnerDateOfBirth,@JsonKey(name: 'choosenTexts') Map<String, String>? chosenTexts,@CategoryConverter() List<CategoryModel> categories, String? profileImageUrl
+ String eventId, List<String> users,@PlanConverter() PlanModel planSubscribe,@ColorConverter() Color? appColor, List<String>? imagesUrl, String? greeting,@JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp) DateTime? partnerDateOfBirth,@JsonKey(name: 'choosenTexts') Map<String, String>? chosenTexts,@CategoryConverter() List<CategoryModel> categories, String? profileImageUrl,@ChildConverter() List<ChildModel> children
 });
 
 
@@ -66,7 +66,7 @@ class _$EventModelCopyWithImpl<$Res>
 
 /// Create a copy of EventModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? eventId = null,Object? users = null,Object? planSubscribe = null,Object? appColor = freezed,Object? imagesUrl = freezed,Object? greeting = freezed,Object? partnerDateOfBirth = freezed,Object? chosenTexts = freezed,Object? categories = null,Object? profileImageUrl = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? eventId = null,Object? users = null,Object? planSubscribe = null,Object? appColor = freezed,Object? imagesUrl = freezed,Object? greeting = freezed,Object? partnerDateOfBirth = freezed,Object? chosenTexts = freezed,Object? categories = null,Object? profileImageUrl = freezed,Object? children = null,}) {
   return _then(_self.copyWith(
 eventId: null == eventId ? _self.eventId : eventId // ignore: cast_nullable_to_non_nullable
 as String,users: null == users ? _self.users : users // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,8 @@ as String?,partnerDateOfBirth: freezed == partnerDateOfBirth ? _self.partnerDate
 as DateTime?,chosenTexts: freezed == chosenTexts ? _self.chosenTexts : chosenTexts // ignore: cast_nullable_to_non_nullable
 as Map<String, String>?,categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
 as List<CategoryModel>,profileImageUrl: freezed == profileImageUrl ? _self.profileImageUrl : profileImageUrl // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,children: null == children ? _self.children : children // ignore: cast_nullable_to_non_nullable
+as List<ChildModel>,
   ));
 }
 
@@ -160,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String eventId,  List<String> users, @PlanConverter()  PlanModel planSubscribe, @ColorConverter()  Color? appColor,  List<String>? imagesUrl,  String? greeting, @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)  DateTime? partnerDateOfBirth, @JsonKey(name: 'choosenTexts')  Map<String, String>? chosenTexts, @CategoryConverter()  List<CategoryModel> categories,  String? profileImageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String eventId,  List<String> users, @PlanConverter()  PlanModel planSubscribe, @ColorConverter()  Color? appColor,  List<String>? imagesUrl,  String? greeting, @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)  DateTime? partnerDateOfBirth, @JsonKey(name: 'choosenTexts')  Map<String, String>? chosenTexts, @CategoryConverter()  List<CategoryModel> categories,  String? profileImageUrl, @ChildConverter()  List<ChildModel> children)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EventModel() when $default != null:
-return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_that.imagesUrl,_that.greeting,_that.partnerDateOfBirth,_that.chosenTexts,_that.categories,_that.profileImageUrl);case _:
+return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_that.imagesUrl,_that.greeting,_that.partnerDateOfBirth,_that.chosenTexts,_that.categories,_that.profileImageUrl,_that.children);case _:
   return orElse();
 
 }
@@ -181,10 +182,10 @@ return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String eventId,  List<String> users, @PlanConverter()  PlanModel planSubscribe, @ColorConverter()  Color? appColor,  List<String>? imagesUrl,  String? greeting, @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)  DateTime? partnerDateOfBirth, @JsonKey(name: 'choosenTexts')  Map<String, String>? chosenTexts, @CategoryConverter()  List<CategoryModel> categories,  String? profileImageUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String eventId,  List<String> users, @PlanConverter()  PlanModel planSubscribe, @ColorConverter()  Color? appColor,  List<String>? imagesUrl,  String? greeting, @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)  DateTime? partnerDateOfBirth, @JsonKey(name: 'choosenTexts')  Map<String, String>? chosenTexts, @CategoryConverter()  List<CategoryModel> categories,  String? profileImageUrl, @ChildConverter()  List<ChildModel> children)  $default,) {final _that = this;
 switch (_that) {
 case _EventModel():
-return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_that.imagesUrl,_that.greeting,_that.partnerDateOfBirth,_that.chosenTexts,_that.categories,_that.profileImageUrl);}
+return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_that.imagesUrl,_that.greeting,_that.partnerDateOfBirth,_that.chosenTexts,_that.categories,_that.profileImageUrl,_that.children);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -198,10 +199,10 @@ return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String eventId,  List<String> users, @PlanConverter()  PlanModel planSubscribe, @ColorConverter()  Color? appColor,  List<String>? imagesUrl,  String? greeting, @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)  DateTime? partnerDateOfBirth, @JsonKey(name: 'choosenTexts')  Map<String, String>? chosenTexts, @CategoryConverter()  List<CategoryModel> categories,  String? profileImageUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String eventId,  List<String> users, @PlanConverter()  PlanModel planSubscribe, @ColorConverter()  Color? appColor,  List<String>? imagesUrl,  String? greeting, @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)  DateTime? partnerDateOfBirth, @JsonKey(name: 'choosenTexts')  Map<String, String>? chosenTexts, @CategoryConverter()  List<CategoryModel> categories,  String? profileImageUrl, @ChildConverter()  List<ChildModel> children)?  $default,) {final _that = this;
 switch (_that) {
 case _EventModel() when $default != null:
-return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_that.imagesUrl,_that.greeting,_that.partnerDateOfBirth,_that.chosenTexts,_that.categories,_that.profileImageUrl);case _:
+return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_that.imagesUrl,_that.greeting,_that.partnerDateOfBirth,_that.chosenTexts,_that.categories,_that.profileImageUrl,_that.children);case _:
   return null;
 
 }
@@ -213,7 +214,7 @@ return $default(_that.eventId,_that.users,_that.planSubscribe,_that.appColor,_th
 @JsonSerializable()
 
 class _EventModel implements EventModel {
-   _EventModel({required this.eventId, required final  List<String> users, @PlanConverter() required this.planSubscribe, @ColorConverter() this.appColor, final  List<String>? imagesUrl, this.greeting, @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp) this.partnerDateOfBirth, @JsonKey(name: 'choosenTexts') final  Map<String, String>? chosenTexts, @CategoryConverter() final  List<CategoryModel> categories = const [], this.profileImageUrl}): _users = users,_imagesUrl = imagesUrl,_chosenTexts = chosenTexts,_categories = categories;
+   _EventModel({required this.eventId, required final  List<String> users, @PlanConverter() required this.planSubscribe, @ColorConverter() this.appColor, final  List<String>? imagesUrl, this.greeting, @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp) this.partnerDateOfBirth, @JsonKey(name: 'choosenTexts') final  Map<String, String>? chosenTexts, @CategoryConverter() final  List<CategoryModel> categories = const [], this.profileImageUrl, @ChildConverter() final  List<ChildModel> children = const []}): _users = users,_imagesUrl = imagesUrl,_chosenTexts = chosenTexts,_categories = categories,_children = children;
   factory _EventModel.fromJson(Map<String, dynamic> json) => _$EventModelFromJson(json);
 
 @override final  String eventId;
@@ -256,6 +257,13 @@ class _EventModel implements EventModel {
 }
 
 @override final  String? profileImageUrl;
+ final  List<ChildModel> _children;
+@override@JsonKey()@ChildConverter() List<ChildModel> get children {
+  if (_children is EqualUnmodifiableListView) return _children;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_children);
+}
+
 
 /// Create a copy of EventModel
 /// with the given fields replaced by the non-null parameter values.
@@ -270,16 +278,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventModel&&(identical(other.eventId, eventId) || other.eventId == eventId)&&const DeepCollectionEquality().equals(other._users, _users)&&(identical(other.planSubscribe, planSubscribe) || other.planSubscribe == planSubscribe)&&(identical(other.appColor, appColor) || other.appColor == appColor)&&const DeepCollectionEquality().equals(other._imagesUrl, _imagesUrl)&&(identical(other.greeting, greeting) || other.greeting == greeting)&&(identical(other.partnerDateOfBirth, partnerDateOfBirth) || other.partnerDateOfBirth == partnerDateOfBirth)&&const DeepCollectionEquality().equals(other._chosenTexts, _chosenTexts)&&const DeepCollectionEquality().equals(other._categories, _categories)&&(identical(other.profileImageUrl, profileImageUrl) || other.profileImageUrl == profileImageUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventModel&&(identical(other.eventId, eventId) || other.eventId == eventId)&&const DeepCollectionEquality().equals(other._users, _users)&&(identical(other.planSubscribe, planSubscribe) || other.planSubscribe == planSubscribe)&&(identical(other.appColor, appColor) || other.appColor == appColor)&&const DeepCollectionEquality().equals(other._imagesUrl, _imagesUrl)&&(identical(other.greeting, greeting) || other.greeting == greeting)&&(identical(other.partnerDateOfBirth, partnerDateOfBirth) || other.partnerDateOfBirth == partnerDateOfBirth)&&const DeepCollectionEquality().equals(other._chosenTexts, _chosenTexts)&&const DeepCollectionEquality().equals(other._categories, _categories)&&(identical(other.profileImageUrl, profileImageUrl) || other.profileImageUrl == profileImageUrl)&&const DeepCollectionEquality().equals(other._children, _children));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,eventId,const DeepCollectionEquality().hash(_users),planSubscribe,appColor,const DeepCollectionEquality().hash(_imagesUrl),greeting,partnerDateOfBirth,const DeepCollectionEquality().hash(_chosenTexts),const DeepCollectionEquality().hash(_categories),profileImageUrl);
+int get hashCode => Object.hash(runtimeType,eventId,const DeepCollectionEquality().hash(_users),planSubscribe,appColor,const DeepCollectionEquality().hash(_imagesUrl),greeting,partnerDateOfBirth,const DeepCollectionEquality().hash(_chosenTexts),const DeepCollectionEquality().hash(_categories),profileImageUrl,const DeepCollectionEquality().hash(_children));
 
 @override
 String toString() {
-  return 'EventModel(eventId: $eventId, users: $users, planSubscribe: $planSubscribe, appColor: $appColor, imagesUrl: $imagesUrl, greeting: $greeting, partnerDateOfBirth: $partnerDateOfBirth, chosenTexts: $chosenTexts, categories: $categories, profileImageUrl: $profileImageUrl)';
+  return 'EventModel(eventId: $eventId, users: $users, planSubscribe: $planSubscribe, appColor: $appColor, imagesUrl: $imagesUrl, greeting: $greeting, partnerDateOfBirth: $partnerDateOfBirth, chosenTexts: $chosenTexts, categories: $categories, profileImageUrl: $profileImageUrl, children: $children)';
 }
 
 
@@ -290,7 +298,7 @@ abstract mixin class _$EventModelCopyWith<$Res> implements $EventModelCopyWith<$
   factory _$EventModelCopyWith(_EventModel value, $Res Function(_EventModel) _then) = __$EventModelCopyWithImpl;
 @override @useResult
 $Res call({
- String eventId, List<String> users,@PlanConverter() PlanModel planSubscribe,@ColorConverter() Color? appColor, List<String>? imagesUrl, String? greeting,@JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp) DateTime? partnerDateOfBirth,@JsonKey(name: 'choosenTexts') Map<String, String>? chosenTexts,@CategoryConverter() List<CategoryModel> categories, String? profileImageUrl
+ String eventId, List<String> users,@PlanConverter() PlanModel planSubscribe,@ColorConverter() Color? appColor, List<String>? imagesUrl, String? greeting,@JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp) DateTime? partnerDateOfBirth,@JsonKey(name: 'choosenTexts') Map<String, String>? chosenTexts,@CategoryConverter() List<CategoryModel> categories, String? profileImageUrl,@ChildConverter() List<ChildModel> children
 });
 
 
@@ -307,7 +315,7 @@ class __$EventModelCopyWithImpl<$Res>
 
 /// Create a copy of EventModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? eventId = null,Object? users = null,Object? planSubscribe = null,Object? appColor = freezed,Object? imagesUrl = freezed,Object? greeting = freezed,Object? partnerDateOfBirth = freezed,Object? chosenTexts = freezed,Object? categories = null,Object? profileImageUrl = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? eventId = null,Object? users = null,Object? planSubscribe = null,Object? appColor = freezed,Object? imagesUrl = freezed,Object? greeting = freezed,Object? partnerDateOfBirth = freezed,Object? chosenTexts = freezed,Object? categories = null,Object? profileImageUrl = freezed,Object? children = null,}) {
   return _then(_EventModel(
 eventId: null == eventId ? _self.eventId : eventId // ignore: cast_nullable_to_non_nullable
 as String,users: null == users ? _self._users : users // ignore: cast_nullable_to_non_nullable
@@ -319,7 +327,8 @@ as String?,partnerDateOfBirth: freezed == partnerDateOfBirth ? _self.partnerDate
 as DateTime?,chosenTexts: freezed == chosenTexts ? _self._chosenTexts : chosenTexts // ignore: cast_nullable_to_non_nullable
 as Map<String, String>?,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
 as List<CategoryModel>,profileImageUrl: freezed == profileImageUrl ? _self.profileImageUrl : profileImageUrl // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,children: null == children ? _self._children : children // ignore: cast_nullable_to_non_nullable
+as List<ChildModel>,
   ));
 }
 

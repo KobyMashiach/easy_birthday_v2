@@ -16,7 +16,9 @@ T _$identity<T>(T value) => value;
 mixin _$CategoryModel {
 
  CategoryEnum get categoryType; String get name; String get description; String? get id; String? get titleAppear; String? get text; List<String>? get urls; bool get lock;// Stored under the original (misspelled) key in Firestore.
-@JsonKey(name: 'supriseMap') Map<int, Map<String, String>>? get surpriseMap;@WishesConverter() WishesModel? get wishesList;@CalendarModelConverter() CalendarModel? get calendarEvents;@QuestionModelListConverter() List<QuestionModel>? get quizGame; int get quizGameScore; String get inPlan;@MemoryConverter() MemoryGameModel? get memoryGame;
+@JsonKey(name: 'supriseMap') Map<int, Map<String, String>>? get surpriseMap;@WishesConverter() WishesModel? get wishesList;@CalendarModelConverter() CalendarModel? get calendarEvents;@QuestionModelListConverter() List<QuestionModel>? get quizGame; int get quizGameScore; String get inPlan;@MemoryConverter() MemoryGameModel? get memoryGame;/// The children a family category is about (`EventModel.children`).
+ List<String> get childIds;@TimeCapsuleConverter() TimeCapsuleModel? get timeCapsule;/// Daily averages by `ParentStat.name`.
+ Map<String, double>? get parentStats;@MilestoneListConverter() List<MilestoneModel>? get milestones;@LookAlikeConverter() LookAlikeModel? get lookAlike;
 /// Create a copy of CategoryModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +31,16 @@ $CategoryModelCopyWith<CategoryModel> get copyWith => _$CategoryModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CategoryModel&&(identical(other.categoryType, categoryType) || other.categoryType == categoryType)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.id, id) || other.id == id)&&(identical(other.titleAppear, titleAppear) || other.titleAppear == titleAppear)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other.urls, urls)&&(identical(other.lock, lock) || other.lock == lock)&&const DeepCollectionEquality().equals(other.surpriseMap, surpriseMap)&&(identical(other.wishesList, wishesList) || other.wishesList == wishesList)&&(identical(other.calendarEvents, calendarEvents) || other.calendarEvents == calendarEvents)&&const DeepCollectionEquality().equals(other.quizGame, quizGame)&&(identical(other.quizGameScore, quizGameScore) || other.quizGameScore == quizGameScore)&&(identical(other.inPlan, inPlan) || other.inPlan == inPlan)&&(identical(other.memoryGame, memoryGame) || other.memoryGame == memoryGame));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CategoryModel&&(identical(other.categoryType, categoryType) || other.categoryType == categoryType)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.id, id) || other.id == id)&&(identical(other.titleAppear, titleAppear) || other.titleAppear == titleAppear)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other.urls, urls)&&(identical(other.lock, lock) || other.lock == lock)&&const DeepCollectionEquality().equals(other.surpriseMap, surpriseMap)&&(identical(other.wishesList, wishesList) || other.wishesList == wishesList)&&(identical(other.calendarEvents, calendarEvents) || other.calendarEvents == calendarEvents)&&const DeepCollectionEquality().equals(other.quizGame, quizGame)&&(identical(other.quizGameScore, quizGameScore) || other.quizGameScore == quizGameScore)&&(identical(other.inPlan, inPlan) || other.inPlan == inPlan)&&(identical(other.memoryGame, memoryGame) || other.memoryGame == memoryGame)&&const DeepCollectionEquality().equals(other.childIds, childIds)&&(identical(other.timeCapsule, timeCapsule) || other.timeCapsule == timeCapsule)&&const DeepCollectionEquality().equals(other.parentStats, parentStats)&&const DeepCollectionEquality().equals(other.milestones, milestones)&&(identical(other.lookAlike, lookAlike) || other.lookAlike == lookAlike));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,categoryType,name,description,id,titleAppear,text,const DeepCollectionEquality().hash(urls),lock,const DeepCollectionEquality().hash(surpriseMap),wishesList,calendarEvents,const DeepCollectionEquality().hash(quizGame),quizGameScore,inPlan,memoryGame);
+int get hashCode => Object.hashAll([runtimeType,categoryType,name,description,id,titleAppear,text,const DeepCollectionEquality().hash(urls),lock,const DeepCollectionEquality().hash(surpriseMap),wishesList,calendarEvents,const DeepCollectionEquality().hash(quizGame),quizGameScore,inPlan,memoryGame,const DeepCollectionEquality().hash(childIds),timeCapsule,const DeepCollectionEquality().hash(parentStats),const DeepCollectionEquality().hash(milestones),lookAlike]);
 
 @override
 String toString() {
-  return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, surpriseMap: $surpriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore, inPlan: $inPlan, memoryGame: $memoryGame)';
+  return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, surpriseMap: $surpriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore, inPlan: $inPlan, memoryGame: $memoryGame, childIds: $childIds, timeCapsule: $timeCapsule, parentStats: $parentStats, milestones: $milestones, lookAlike: $lookAlike)';
 }
 
 
@@ -49,11 +51,11 @@ abstract mixin class $CategoryModelCopyWith<$Res>  {
   factory $CategoryModelCopyWith(CategoryModel value, $Res Function(CategoryModel) _then) = _$CategoryModelCopyWithImpl;
 @useResult
 $Res call({
- CategoryEnum categoryType, String name, String description, String? id, String? titleAppear, String? text, List<String>? urls, bool lock,@JsonKey(name: 'supriseMap') Map<int, Map<String, String>>? surpriseMap,@WishesConverter() WishesModel? wishesList,@CalendarModelConverter() CalendarModel? calendarEvents,@QuestionModelListConverter() List<QuestionModel>? quizGame, int quizGameScore, String inPlan,@MemoryConverter() MemoryGameModel? memoryGame
+ CategoryEnum categoryType, String name, String description, String? id, String? titleAppear, String? text, List<String>? urls, bool lock,@JsonKey(name: 'supriseMap') Map<int, Map<String, String>>? surpriseMap,@WishesConverter() WishesModel? wishesList,@CalendarModelConverter() CalendarModel? calendarEvents,@QuestionModelListConverter() List<QuestionModel>? quizGame, int quizGameScore, String inPlan,@MemoryConverter() MemoryGameModel? memoryGame, List<String> childIds,@TimeCapsuleConverter() TimeCapsuleModel? timeCapsule, Map<String, double>? parentStats,@MilestoneListConverter() List<MilestoneModel>? milestones,@LookAlikeConverter() LookAlikeModel? lookAlike
 });
 
 
-$WishesModelCopyWith<$Res>? get wishesList;$CalendarModelCopyWith<$Res>? get calendarEvents;$MemoryGameModelCopyWith<$Res>? get memoryGame;
+$WishesModelCopyWith<$Res>? get wishesList;$CalendarModelCopyWith<$Res>? get calendarEvents;$MemoryGameModelCopyWith<$Res>? get memoryGame;$TimeCapsuleModelCopyWith<$Res>? get timeCapsule;$LookAlikeModelCopyWith<$Res>? get lookAlike;
 
 }
 /// @nodoc
@@ -66,7 +68,7 @@ class _$CategoryModelCopyWithImpl<$Res>
 
 /// Create a copy of CategoryModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? categoryType = null,Object? name = null,Object? description = null,Object? id = freezed,Object? titleAppear = freezed,Object? text = freezed,Object? urls = freezed,Object? lock = null,Object? surpriseMap = freezed,Object? wishesList = freezed,Object? calendarEvents = freezed,Object? quizGame = freezed,Object? quizGameScore = null,Object? inPlan = null,Object? memoryGame = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? categoryType = null,Object? name = null,Object? description = null,Object? id = freezed,Object? titleAppear = freezed,Object? text = freezed,Object? urls = freezed,Object? lock = null,Object? surpriseMap = freezed,Object? wishesList = freezed,Object? calendarEvents = freezed,Object? quizGame = freezed,Object? quizGameScore = null,Object? inPlan = null,Object? memoryGame = freezed,Object? childIds = null,Object? timeCapsule = freezed,Object? parentStats = freezed,Object? milestones = freezed,Object? lookAlike = freezed,}) {
   return _then(_self.copyWith(
 categoryType: null == categoryType ? _self.categoryType : categoryType // ignore: cast_nullable_to_non_nullable
 as CategoryEnum,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -83,7 +85,12 @@ as CalendarModel?,quizGame: freezed == quizGame ? _self.quizGame : quizGame // i
 as List<QuestionModel>?,quizGameScore: null == quizGameScore ? _self.quizGameScore : quizGameScore // ignore: cast_nullable_to_non_nullable
 as int,inPlan: null == inPlan ? _self.inPlan : inPlan // ignore: cast_nullable_to_non_nullable
 as String,memoryGame: freezed == memoryGame ? _self.memoryGame : memoryGame // ignore: cast_nullable_to_non_nullable
-as MemoryGameModel?,
+as MemoryGameModel?,childIds: null == childIds ? _self.childIds : childIds // ignore: cast_nullable_to_non_nullable
+as List<String>,timeCapsule: freezed == timeCapsule ? _self.timeCapsule : timeCapsule // ignore: cast_nullable_to_non_nullable
+as TimeCapsuleModel?,parentStats: freezed == parentStats ? _self.parentStats : parentStats // ignore: cast_nullable_to_non_nullable
+as Map<String, double>?,milestones: freezed == milestones ? _self.milestones : milestones // ignore: cast_nullable_to_non_nullable
+as List<MilestoneModel>?,lookAlike: freezed == lookAlike ? _self.lookAlike : lookAlike // ignore: cast_nullable_to_non_nullable
+as LookAlikeModel?,
   ));
 }
 /// Create a copy of CategoryModel
@@ -121,6 +128,30 @@ $MemoryGameModelCopyWith<$Res>? get memoryGame {
 
   return $MemoryGameModelCopyWith<$Res>(_self.memoryGame!, (value) {
     return _then(_self.copyWith(memoryGame: value));
+  });
+}/// Create a copy of CategoryModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TimeCapsuleModelCopyWith<$Res>? get timeCapsule {
+    if (_self.timeCapsule == null) {
+    return null;
+  }
+
+  return $TimeCapsuleModelCopyWith<$Res>(_self.timeCapsule!, (value) {
+    return _then(_self.copyWith(timeCapsule: value));
+  });
+}/// Create a copy of CategoryModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LookAlikeModelCopyWith<$Res>? get lookAlike {
+    if (_self.lookAlike == null) {
+    return null;
+  }
+
+  return $LookAlikeModelCopyWith<$Res>(_self.lookAlike!, (value) {
+    return _then(_self.copyWith(lookAlike: value));
   });
 }
 }
@@ -201,10 +232,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CategoryEnum categoryType,  String name,  String description,  String? id,  String? titleAppear,  String? text,  List<String>? urls,  bool lock, @JsonKey(name: 'supriseMap')  Map<int, Map<String, String>>? surpriseMap, @WishesConverter()  WishesModel? wishesList, @CalendarModelConverter()  CalendarModel? calendarEvents, @QuestionModelListConverter()  List<QuestionModel>? quizGame,  int quizGameScore,  String inPlan, @MemoryConverter()  MemoryGameModel? memoryGame)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CategoryEnum categoryType,  String name,  String description,  String? id,  String? titleAppear,  String? text,  List<String>? urls,  bool lock, @JsonKey(name: 'supriseMap')  Map<int, Map<String, String>>? surpriseMap, @WishesConverter()  WishesModel? wishesList, @CalendarModelConverter()  CalendarModel? calendarEvents, @QuestionModelListConverter()  List<QuestionModel>? quizGame,  int quizGameScore,  String inPlan, @MemoryConverter()  MemoryGameModel? memoryGame,  List<String> childIds, @TimeCapsuleConverter()  TimeCapsuleModel? timeCapsule,  Map<String, double>? parentStats, @MilestoneListConverter()  List<MilestoneModel>? milestones, @LookAlikeConverter()  LookAlikeModel? lookAlike)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CategoryModel() when $default != null:
-return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.titleAppear,_that.text,_that.urls,_that.lock,_that.surpriseMap,_that.wishesList,_that.calendarEvents,_that.quizGame,_that.quizGameScore,_that.inPlan,_that.memoryGame);case _:
+return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.titleAppear,_that.text,_that.urls,_that.lock,_that.surpriseMap,_that.wishesList,_that.calendarEvents,_that.quizGame,_that.quizGameScore,_that.inPlan,_that.memoryGame,_that.childIds,_that.timeCapsule,_that.parentStats,_that.milestones,_that.lookAlike);case _:
   return orElse();
 
 }
@@ -222,10 +253,10 @@ return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CategoryEnum categoryType,  String name,  String description,  String? id,  String? titleAppear,  String? text,  List<String>? urls,  bool lock, @JsonKey(name: 'supriseMap')  Map<int, Map<String, String>>? surpriseMap, @WishesConverter()  WishesModel? wishesList, @CalendarModelConverter()  CalendarModel? calendarEvents, @QuestionModelListConverter()  List<QuestionModel>? quizGame,  int quizGameScore,  String inPlan, @MemoryConverter()  MemoryGameModel? memoryGame)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CategoryEnum categoryType,  String name,  String description,  String? id,  String? titleAppear,  String? text,  List<String>? urls,  bool lock, @JsonKey(name: 'supriseMap')  Map<int, Map<String, String>>? surpriseMap, @WishesConverter()  WishesModel? wishesList, @CalendarModelConverter()  CalendarModel? calendarEvents, @QuestionModelListConverter()  List<QuestionModel>? quizGame,  int quizGameScore,  String inPlan, @MemoryConverter()  MemoryGameModel? memoryGame,  List<String> childIds, @TimeCapsuleConverter()  TimeCapsuleModel? timeCapsule,  Map<String, double>? parentStats, @MilestoneListConverter()  List<MilestoneModel>? milestones, @LookAlikeConverter()  LookAlikeModel? lookAlike)  $default,) {final _that = this;
 switch (_that) {
 case _CategoryModel():
-return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.titleAppear,_that.text,_that.urls,_that.lock,_that.surpriseMap,_that.wishesList,_that.calendarEvents,_that.quizGame,_that.quizGameScore,_that.inPlan,_that.memoryGame);}
+return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.titleAppear,_that.text,_that.urls,_that.lock,_that.surpriseMap,_that.wishesList,_that.calendarEvents,_that.quizGame,_that.quizGameScore,_that.inPlan,_that.memoryGame,_that.childIds,_that.timeCapsule,_that.parentStats,_that.milestones,_that.lookAlike);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -239,10 +270,10 @@ return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CategoryEnum categoryType,  String name,  String description,  String? id,  String? titleAppear,  String? text,  List<String>? urls,  bool lock, @JsonKey(name: 'supriseMap')  Map<int, Map<String, String>>? surpriseMap, @WishesConverter()  WishesModel? wishesList, @CalendarModelConverter()  CalendarModel? calendarEvents, @QuestionModelListConverter()  List<QuestionModel>? quizGame,  int quizGameScore,  String inPlan, @MemoryConverter()  MemoryGameModel? memoryGame)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CategoryEnum categoryType,  String name,  String description,  String? id,  String? titleAppear,  String? text,  List<String>? urls,  bool lock, @JsonKey(name: 'supriseMap')  Map<int, Map<String, String>>? surpriseMap, @WishesConverter()  WishesModel? wishesList, @CalendarModelConverter()  CalendarModel? calendarEvents, @QuestionModelListConverter()  List<QuestionModel>? quizGame,  int quizGameScore,  String inPlan, @MemoryConverter()  MemoryGameModel? memoryGame,  List<String> childIds, @TimeCapsuleConverter()  TimeCapsuleModel? timeCapsule,  Map<String, double>? parentStats, @MilestoneListConverter()  List<MilestoneModel>? milestones, @LookAlikeConverter()  LookAlikeModel? lookAlike)?  $default,) {final _that = this;
 switch (_that) {
 case _CategoryModel() when $default != null:
-return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.titleAppear,_that.text,_that.urls,_that.lock,_that.surpriseMap,_that.wishesList,_that.calendarEvents,_that.quizGame,_that.quizGameScore,_that.inPlan,_that.memoryGame);case _:
+return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.titleAppear,_that.text,_that.urls,_that.lock,_that.surpriseMap,_that.wishesList,_that.calendarEvents,_that.quizGame,_that.quizGameScore,_that.inPlan,_that.memoryGame,_that.childIds,_that.timeCapsule,_that.parentStats,_that.milestones,_that.lookAlike);case _:
   return null;
 
 }
@@ -254,7 +285,7 @@ return $default(_that.categoryType,_that.name,_that.description,_that.id,_that.t
 @JsonSerializable()
 
 class _CategoryModel implements CategoryModel {
-  const _CategoryModel({required this.categoryType, required this.name, required this.description, this.id, this.titleAppear, this.text, final  List<String>? urls, this.lock = false, @JsonKey(name: 'supriseMap') final  Map<int, Map<String, String>>? surpriseMap, @WishesConverter() this.wishesList, @CalendarModelConverter() this.calendarEvents, @QuestionModelListConverter() final  List<QuestionModel>? quizGame, this.quizGameScore = 0, this.inPlan = "Free", @MemoryConverter() this.memoryGame}): _urls = urls,_surpriseMap = surpriseMap,_quizGame = quizGame;
+  const _CategoryModel({required this.categoryType, required this.name, required this.description, this.id, this.titleAppear, this.text, final  List<String>? urls, this.lock = false, @JsonKey(name: 'supriseMap') final  Map<int, Map<String, String>>? surpriseMap, @WishesConverter() this.wishesList, @CalendarModelConverter() this.calendarEvents, @QuestionModelListConverter() final  List<QuestionModel>? quizGame, this.quizGameScore = 0, this.inPlan = "Free", @MemoryConverter() this.memoryGame, final  List<String> childIds = const [], @TimeCapsuleConverter() this.timeCapsule, final  Map<String, double>? parentStats, @MilestoneListConverter() final  List<MilestoneModel>? milestones, @LookAlikeConverter() this.lookAlike}): _urls = urls,_surpriseMap = surpriseMap,_quizGame = quizGame,_childIds = childIds,_parentStats = parentStats,_milestones = milestones;
   factory _CategoryModel.fromJson(Map<String, dynamic> json) => _$CategoryModelFromJson(json);
 
 @override final  CategoryEnum categoryType;
@@ -298,6 +329,37 @@ class _CategoryModel implements CategoryModel {
 @override@JsonKey() final  int quizGameScore;
 @override@JsonKey() final  String inPlan;
 @override@MemoryConverter() final  MemoryGameModel? memoryGame;
+/// The children a family category is about (`EventModel.children`).
+ final  List<String> _childIds;
+/// The children a family category is about (`EventModel.children`).
+@override@JsonKey() List<String> get childIds {
+  if (_childIds is EqualUnmodifiableListView) return _childIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_childIds);
+}
+
+@override@TimeCapsuleConverter() final  TimeCapsuleModel? timeCapsule;
+/// Daily averages by `ParentStat.name`.
+ final  Map<String, double>? _parentStats;
+/// Daily averages by `ParentStat.name`.
+@override Map<String, double>? get parentStats {
+  final value = _parentStats;
+  if (value == null) return null;
+  if (_parentStats is EqualUnmodifiableMapView) return _parentStats;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(value);
+}
+
+ final  List<MilestoneModel>? _milestones;
+@override@MilestoneListConverter() List<MilestoneModel>? get milestones {
+  final value = _milestones;
+  if (value == null) return null;
+  if (_milestones is EqualUnmodifiableListView) return _milestones;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+@override@LookAlikeConverter() final  LookAlikeModel? lookAlike;
 
 /// Create a copy of CategoryModel
 /// with the given fields replaced by the non-null parameter values.
@@ -312,16 +374,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CategoryModel&&(identical(other.categoryType, categoryType) || other.categoryType == categoryType)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.id, id) || other.id == id)&&(identical(other.titleAppear, titleAppear) || other.titleAppear == titleAppear)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other._urls, _urls)&&(identical(other.lock, lock) || other.lock == lock)&&const DeepCollectionEquality().equals(other._surpriseMap, _surpriseMap)&&(identical(other.wishesList, wishesList) || other.wishesList == wishesList)&&(identical(other.calendarEvents, calendarEvents) || other.calendarEvents == calendarEvents)&&const DeepCollectionEquality().equals(other._quizGame, _quizGame)&&(identical(other.quizGameScore, quizGameScore) || other.quizGameScore == quizGameScore)&&(identical(other.inPlan, inPlan) || other.inPlan == inPlan)&&(identical(other.memoryGame, memoryGame) || other.memoryGame == memoryGame));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CategoryModel&&(identical(other.categoryType, categoryType) || other.categoryType == categoryType)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.id, id) || other.id == id)&&(identical(other.titleAppear, titleAppear) || other.titleAppear == titleAppear)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other._urls, _urls)&&(identical(other.lock, lock) || other.lock == lock)&&const DeepCollectionEquality().equals(other._surpriseMap, _surpriseMap)&&(identical(other.wishesList, wishesList) || other.wishesList == wishesList)&&(identical(other.calendarEvents, calendarEvents) || other.calendarEvents == calendarEvents)&&const DeepCollectionEquality().equals(other._quizGame, _quizGame)&&(identical(other.quizGameScore, quizGameScore) || other.quizGameScore == quizGameScore)&&(identical(other.inPlan, inPlan) || other.inPlan == inPlan)&&(identical(other.memoryGame, memoryGame) || other.memoryGame == memoryGame)&&const DeepCollectionEquality().equals(other._childIds, _childIds)&&(identical(other.timeCapsule, timeCapsule) || other.timeCapsule == timeCapsule)&&const DeepCollectionEquality().equals(other._parentStats, _parentStats)&&const DeepCollectionEquality().equals(other._milestones, _milestones)&&(identical(other.lookAlike, lookAlike) || other.lookAlike == lookAlike));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,categoryType,name,description,id,titleAppear,text,const DeepCollectionEquality().hash(_urls),lock,const DeepCollectionEquality().hash(_surpriseMap),wishesList,calendarEvents,const DeepCollectionEquality().hash(_quizGame),quizGameScore,inPlan,memoryGame);
+int get hashCode => Object.hashAll([runtimeType,categoryType,name,description,id,titleAppear,text,const DeepCollectionEquality().hash(_urls),lock,const DeepCollectionEquality().hash(_surpriseMap),wishesList,calendarEvents,const DeepCollectionEquality().hash(_quizGame),quizGameScore,inPlan,memoryGame,const DeepCollectionEquality().hash(_childIds),timeCapsule,const DeepCollectionEquality().hash(_parentStats),const DeepCollectionEquality().hash(_milestones),lookAlike]);
 
 @override
 String toString() {
-  return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, surpriseMap: $surpriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore, inPlan: $inPlan, memoryGame: $memoryGame)';
+  return 'CategoryModel(categoryType: $categoryType, name: $name, description: $description, id: $id, titleAppear: $titleAppear, text: $text, urls: $urls, lock: $lock, surpriseMap: $surpriseMap, wishesList: $wishesList, calendarEvents: $calendarEvents, quizGame: $quizGame, quizGameScore: $quizGameScore, inPlan: $inPlan, memoryGame: $memoryGame, childIds: $childIds, timeCapsule: $timeCapsule, parentStats: $parentStats, milestones: $milestones, lookAlike: $lookAlike)';
 }
 
 
@@ -332,11 +394,11 @@ abstract mixin class _$CategoryModelCopyWith<$Res> implements $CategoryModelCopy
   factory _$CategoryModelCopyWith(_CategoryModel value, $Res Function(_CategoryModel) _then) = __$CategoryModelCopyWithImpl;
 @override @useResult
 $Res call({
- CategoryEnum categoryType, String name, String description, String? id, String? titleAppear, String? text, List<String>? urls, bool lock,@JsonKey(name: 'supriseMap') Map<int, Map<String, String>>? surpriseMap,@WishesConverter() WishesModel? wishesList,@CalendarModelConverter() CalendarModel? calendarEvents,@QuestionModelListConverter() List<QuestionModel>? quizGame, int quizGameScore, String inPlan,@MemoryConverter() MemoryGameModel? memoryGame
+ CategoryEnum categoryType, String name, String description, String? id, String? titleAppear, String? text, List<String>? urls, bool lock,@JsonKey(name: 'supriseMap') Map<int, Map<String, String>>? surpriseMap,@WishesConverter() WishesModel? wishesList,@CalendarModelConverter() CalendarModel? calendarEvents,@QuestionModelListConverter() List<QuestionModel>? quizGame, int quizGameScore, String inPlan,@MemoryConverter() MemoryGameModel? memoryGame, List<String> childIds,@TimeCapsuleConverter() TimeCapsuleModel? timeCapsule, Map<String, double>? parentStats,@MilestoneListConverter() List<MilestoneModel>? milestones,@LookAlikeConverter() LookAlikeModel? lookAlike
 });
 
 
-@override $WishesModelCopyWith<$Res>? get wishesList;@override $CalendarModelCopyWith<$Res>? get calendarEvents;@override $MemoryGameModelCopyWith<$Res>? get memoryGame;
+@override $WishesModelCopyWith<$Res>? get wishesList;@override $CalendarModelCopyWith<$Res>? get calendarEvents;@override $MemoryGameModelCopyWith<$Res>? get memoryGame;@override $TimeCapsuleModelCopyWith<$Res>? get timeCapsule;@override $LookAlikeModelCopyWith<$Res>? get lookAlike;
 
 }
 /// @nodoc
@@ -349,7 +411,7 @@ class __$CategoryModelCopyWithImpl<$Res>
 
 /// Create a copy of CategoryModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? categoryType = null,Object? name = null,Object? description = null,Object? id = freezed,Object? titleAppear = freezed,Object? text = freezed,Object? urls = freezed,Object? lock = null,Object? surpriseMap = freezed,Object? wishesList = freezed,Object? calendarEvents = freezed,Object? quizGame = freezed,Object? quizGameScore = null,Object? inPlan = null,Object? memoryGame = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? categoryType = null,Object? name = null,Object? description = null,Object? id = freezed,Object? titleAppear = freezed,Object? text = freezed,Object? urls = freezed,Object? lock = null,Object? surpriseMap = freezed,Object? wishesList = freezed,Object? calendarEvents = freezed,Object? quizGame = freezed,Object? quizGameScore = null,Object? inPlan = null,Object? memoryGame = freezed,Object? childIds = null,Object? timeCapsule = freezed,Object? parentStats = freezed,Object? milestones = freezed,Object? lookAlike = freezed,}) {
   return _then(_CategoryModel(
 categoryType: null == categoryType ? _self.categoryType : categoryType // ignore: cast_nullable_to_non_nullable
 as CategoryEnum,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -366,7 +428,12 @@ as CalendarModel?,quizGame: freezed == quizGame ? _self._quizGame : quizGame // 
 as List<QuestionModel>?,quizGameScore: null == quizGameScore ? _self.quizGameScore : quizGameScore // ignore: cast_nullable_to_non_nullable
 as int,inPlan: null == inPlan ? _self.inPlan : inPlan // ignore: cast_nullable_to_non_nullable
 as String,memoryGame: freezed == memoryGame ? _self.memoryGame : memoryGame // ignore: cast_nullable_to_non_nullable
-as MemoryGameModel?,
+as MemoryGameModel?,childIds: null == childIds ? _self._childIds : childIds // ignore: cast_nullable_to_non_nullable
+as List<String>,timeCapsule: freezed == timeCapsule ? _self.timeCapsule : timeCapsule // ignore: cast_nullable_to_non_nullable
+as TimeCapsuleModel?,parentStats: freezed == parentStats ? _self._parentStats : parentStats // ignore: cast_nullable_to_non_nullable
+as Map<String, double>?,milestones: freezed == milestones ? _self._milestones : milestones // ignore: cast_nullable_to_non_nullable
+as List<MilestoneModel>?,lookAlike: freezed == lookAlike ? _self.lookAlike : lookAlike // ignore: cast_nullable_to_non_nullable
+as LookAlikeModel?,
   ));
 }
 
@@ -405,6 +472,30 @@ $MemoryGameModelCopyWith<$Res>? get memoryGame {
 
   return $MemoryGameModelCopyWith<$Res>(_self.memoryGame!, (value) {
     return _then(_self.copyWith(memoryGame: value));
+  });
+}/// Create a copy of CategoryModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TimeCapsuleModelCopyWith<$Res>? get timeCapsule {
+    if (_self.timeCapsule == null) {
+    return null;
+  }
+
+  return $TimeCapsuleModelCopyWith<$Res>(_self.timeCapsule!, (value) {
+    return _then(_self.copyWith(timeCapsule: value));
+  });
+}/// Create a copy of CategoryModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LookAlikeModelCopyWith<$Res>? get lookAlike {
+    if (_self.lookAlike == null) {
+    return null;
+  }
+
+  return $LookAlikeModelCopyWith<$Res>(_self.lookAlike!, (value) {
+    return _then(_self.copyWith(lookAlike: value));
   });
 }
 }

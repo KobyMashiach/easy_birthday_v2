@@ -15,6 +15,9 @@ sealed class AppSettingsModel with _$AppSettingsModel {
   factory AppSettingsModel({
     @HiveField(0) @ColorConverter() required Color appColor,
     @HiveField(1) required String languageCode,
+
+    /// The last "what's new" spotlight shown on this device.
+    @HiveField(2) String? whatsNewSeen,
   }) = _AppSettingsModel;
 
   factory AppSettingsModel.fromJson(Map<String, dynamic> json) =>

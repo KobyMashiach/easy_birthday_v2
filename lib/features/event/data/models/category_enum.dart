@@ -9,6 +9,13 @@ enum CategoryEnum {
   birthdaySuprise,
   wishesList,
   memoryGame,
+  // Family categories: unlocked by the children set in the settings.
+  timeCapsule,
+  parentCoupons,
+  babyLetter,
+  parentStats,
+  milestones,
+  lookAlike,
 }
 
 /// The category's illustration asset.
@@ -23,6 +30,16 @@ extension CategoryEnumX on CategoryEnum {
       CategoryEnum.birthdaySuprise => surpriseIllustration,
       CategoryEnum.wishesList => wishIllustrations,
       CategoryEnum.memoryGame => memoryIllustrations,
+      CategoryEnum.timeCapsule => secretIllustrations,
+      CategoryEnum.parentCoupons => giftIllustration,
+      CategoryEnum.babyLetter => writeLetterIllustration,
+      CategoryEnum.parentStats => partyIllustrations,
+      CategoryEnum.milestones => calendarIllustration,
+      CategoryEnum.lookAlike => profileImageIllustrations,
     };
   }
+
+  /// A coupon category is a wishes list shown as tear-off tickets.
+  bool get usesWishes =>
+      this == CategoryEnum.wishesList || this == CategoryEnum.parentCoupons;
 }
